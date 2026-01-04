@@ -1,0 +1,50 @@
+---
+title: "Prepare: Week 11"
+subtitle: "Inference for Categorical Data"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For November 5
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required
+
+`r emo::ji("movie_camera")` Watch [Inference with Categorical Data, Part I: One Proportion](https://youtu.be/Di9weeNXhCg)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/31-cat-inf-one-prop.html)
+
+`r emo::ji("movie_camera")` Watch [Inference with Categorical Data, Part II: Difference in Proportions, Odds Ratio, Relative Risk](https://youtu.be/u35HGRSxKoY)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/32-cat-inf-diff-props-OR-RR.html)
+
+`r emo::ji("movie_camera")` Watch [Inference with Categorical Data, Part III: Two-way tables, Chi-square test](https://youtu.be/aUtjnTfmVuA)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/33-cat-inf-two-way-tables.html)
+
+
+<!-- `r emo::ji("memo")` Complete Prep Quiz 11 on Canvas -->
+
+
+### Optional 
+
+`r emo::ji("book")` Read [IMS: Chapter 16 - Inference for a single proportion](https://openintro-ims.netlify.app/inference-one-prop)
+
+`r emo::ji("book")` Read [IMS: Chapter 17 - Inference for comparing two proportions](https://openintro-ims.netlify.app/inference-two-props)
+
+`r emo::ji("book")` Read [IMS: Chapter 18 - Inference for two-way tables](https://openintro-ims.netlify.app/inference-tables)
+
+
+
+
+
+
+

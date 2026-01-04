@@ -1,0 +1,345 @@
+---
+title: "Hypothesis testing"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(DT)
+library(emo)
+library(openintro)
+library(ggdist)
+library(distributional)
+conflicts_prefer(infer::generate)
+```
+
+class: middle
+
+# Hypothesis testing for a regression slope
+
+## Is there a relationship between x and y?
+
+### Is $\beta_1 \neq 0$?
+
+$$\hat{y} = \beta_0 + \beta_1x$$
+
+---
+
+```{r message=FALSE, echo = FALSE}
+library(tidyverse)
+library(openintro)
+```
+
+## Data & model
+
+```{r message=FALSE}
+m1 <- lm(gift_aid ~ family_income, data = elmhurst)
+tidy(m1)
+```
+
+Once we've taken uncertainty into account, is $b_1$ different enough from zero to claim that there is a true relationship between family income and gift aid?
+
+---
+
+## Parameter vs. statistic
+
+A **parameter** for a hypothesis test is the "true" value of interest. We typically estimate the parameter using a **sample statistic** as a **point estimate**.
+
+$\beta_1~$: true relationship between gift aid and family income
+
+$b_1~$: relationship (slope) between gift aid and family income in the sample = `r round(tidy(m1)[2,2],2)`
+
+
+
+---
+
+## Two claims
+
+- **Null hypothesis:** "There is nothing going on"
+
+There is no relationship between gift aid and family income $(\beta_1 = 0)$
+
+--
+
+- **Alternative hypothesis:** "There is something going on"
+
+There is a relationship between gift aid and family income $(\beta_1 \neq 0)$
+
+---
+
+## Hypothesis testing as a proof by contradiction
+
+In order to prove A, 
++ Start by assuming A is false
++ Analyze the logical consequences of A being false, then
++ If you run into a contradiction, that is evidence that your premise (A = false) was incorrect. That is, you now have evidence that A = true
+
+In the language of hypothesis testing, we want to prove $H_A$. So, 
++ Start by assuming $H_0$ is true (i.e. that $H_A$ is false)
++ Analyze the logical consequences of $H_0$ being true 
+    + What would the sampling distribution of the test statistic look like when $H_0$ is true?
++ If your observed test statistic is unlikely to have happened if $H_0$ is true, then reject $H_0$ in favor of $H_A$
+
+---
+
+## Hypothesis testing as a court trial
+
+- **Null hypothesis**, $H_0$: Defendant is innocent
+
+- **Alternative hypothesis**, $H_A$: Defendant is guilty
+
+--
+
+- **Present the evidence:** Collect data
+
+--
+
+- **Judge the evidence:** "Could these data plausibly have happened by chance if the null hypothesis were true?"
+    * Yes: Fail to reject $H_0$
+    * No: Reject $H_0$
+    
+---
+
+## Sampling distributions & test statistics
+
+$$H_0: \beta_1 = 0$$
+$$H_A: \beta_1 \neq 0$$
+
+Mathematical theory tells us the when $H_0$ is true, 
+$$T = \frac{b_1 - \beta_1}{SE(b_1)} = \frac{b_1}{SE(b_1)} \sim t(df = n - 2)$$
+```{r, echo = FALSE}
+tidy(m1)
+```
+
+```{r}
+-0.0431/0.0108
+```
+
+---
+
+## Compare test statistic to reference distribution
+
+.panelset[
+.panel[.panel-name[Plot]
+```{r ref.label = "t-plot", echo = FALSE, warning = FALSE, out.height = "60%"}
+```
+]
+.panel[.panel-name[Code]
+```{r t-plot, fig.show="hide"}
+t_stat <- abs(tidy(m1)[2,2]/tidy(m1)[2,3]) |> pull()
+crit_value <- qt(.975, nrow(elmhurst) - 2)
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_halfeye(aes(y = "t(48)", color = "pink",
+                   dist = dist_student_t(df = 48),
+                   fill = after_stat(x < -4 & x > 4)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = t_stat, linewidth = 1, linetype = 20) +
+  geom_vline(xintercept = -t_stat, linewidth = 1, linetype = 20) +
+  annotate("label", label = "Test\nStatistic", x = t_stat, y = 1.5) +
+  annotate("label", label = "Test\nStatistic", x = -t_stat, y = 1.5) +
+  geom_vline(xintercept = crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  geom_vline(xintercept = -crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  annotate("label", label = "Critical\nValue", x = crit_value, y = 1.75) +
+  annotate("label", label = "Critical\nValue", x = -crit_value, y = 1.75) +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+]
+]
+
+
+---
+
+## Hypothesis testing framework
+
+- Start with a null hypothesis, $H_0$, that represents the status quo
+
+- Set an alternative hypothesis, $H_A$, that represents the research question, i.e. what we’re testing for
+
+- Conduct a hypothesis test under the assumption that the null hypothesis is true
+    + If test statistic is MORE extreme than the critical value, REJECT the null hypothesis in favor of the alternative (data provide convincing evidence the null hypothesis is false)
+    + If test statistic is LESS extreme than the critical value, FAIL TO REJECT the null hypothesis (data do NOT provide convincing evidence the null hypothesis is false)
+
+- **p-value** is the probability of observing a result as extreme or more extreme than what was observed, given that the null hypothesis is true
+
+---
+
+## Hypothesis testing framework
+
++ In other words, the **p-value** is the probability that falls BEYOND the test-statistic
++ REJECT $H_0$ for small p-values
++ The probability that falls beyond the critical value will always be $\alpha$
++ Reject when p-value $< \alpha$
+
+
+```{r, echo = FALSE, fig.height="40%"}
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_halfeye(aes(y = "t(48)", color = "pink",
+                   dist = dist_student_t(df = 48),
+                   fill = after_stat(x < -4 & x > 4)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = t_stat, linewidth = 1, linetype = 20) +
+  geom_vline(xintercept = -t_stat, linewidth = 1, linetype = 20) +
+  annotate("label", label = "Test\nStatistic", x = t_stat, y = 1.5) +
+  annotate("label", label = "Test\nStatistic", x = -t_stat, y = 1.5) +
+  geom_vline(xintercept = crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  geom_vline(xintercept = -crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  annotate("label", label = "Critical\nValue", x = crit_value, y = 1.75) +
+  annotate("label", label = "Critical\nValue", x = -crit_value, y = 1.75) +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+
+---
+
+## Hypothesis Test Conclusion
+
+$$\widehat{\text{gift_aid}} = \beta_0 + \beta_1\text{family_income}$$
+
+$$H_0: \beta_1 = 0$$
+$$H_A: \beta_1 \neq 0$$
+
+```{r}
+tidy(m1)
+```
+
+Because our `statistic` (`-3.98`) is more extreme than the critical value (or equivalently, because our p-value  = `2.29e-4` < 0.05), we REJECT $H_0$. That is, there is sufficient evidence to claim there is a statistically significant relationship between family income and gift aid. 
+
+
+---
+
+## Significance level $\alpha$
+
+Often, 5% is used as the cutoff for whether the p-value is low enough that the data are unlikely to have come from the null model. This cutoff value is called the **significance level**, $\alpha$.
+
+- If p-value < $\alpha$, reject $H_0$ in favor of $H_A$: The data provide convincing evidence for the alternative hypothesis.
+
+- If p-value > $\alpha$, fail to reject $H_0$ in favor of $H_A$: The data do not provide convincing evidence for the alternative hypothesis.
+
+$\alpha$ controls the Type I error rate - the probability of falsely rejecting the null hypothesis when it's true (false positive). Often, smaller $\alpha$ may be appropriate (e.g. 0.01, 0.001).
+
+Decreasing $\alpha$ inherently increases Type II error (false negative)
+
+---
+
+## Significance level $\alpha$
+
+```{r, echo = FALSE, fig.height="40%"}
+crit_value99 <- qt(.995, nrow(elmhurst) - 2)
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_halfeye(aes(y = "t(48)", color = "pink",
+                   dist = dist_student_t(df = 48),
+                   fill = after_stat(x < -4 & x > 4)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = -crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+    geom_vline(xintercept = crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  geom_vline(xintercept = -crit_value, linewidth = 1, linetype = 21,
+             color = "pink") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = -crit_value99, y = 2, color = "navyblue") +
+  annotate("label", label = "0.05 Critical\nValue", 
+           x = crit_value, y = 1.75, color = "pink") +
+  annotate("label", label = "0.05 Critical\nValue", 
+           x = -crit_value, y = 1.75, color = "pink") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+
+---
+
+## Setting the hypotheses
+
+.question[
+Which of the following is the correct set of hypotheses?
+]
+
+(a) $H_0: \beta_1 = 0$; $H_A: \beta_1 \neq 0$ <br>
+
+(b) $H_0: \beta_1 = 0$; $H_A: \beta_1 < 0$ <br>
+
+(c) $H_0: \beta_1 = 0$; $H_A: \beta_1 > 0$ <br>
+
+(d) $H_0: b_1 = 0$; $H_A: b_1 \neq 0$ <br>
+
+(e) $H_0: b_1 = 0$; $H_A: b_1 < 0$ <br>
+
+(f) $H_0: b_1 = 0$; $H_A: b_1 > 0$ <br>
+
+---
+
+class: middle
+
+# One vs. two sided hypothesis tests
+
+---
+
+## Types of alternative hypotheses
+
+- One sided (one tailed) alternatives: The parameter is hypothesized to be less than or greater than the null value, < or >
+    - p-value calculated as probability that falls beyond the test statistic in ONE TAIL
+
+--
+
+- Two sided (two tailed) alternatives: The parameter is hypothesized to be not equal to the null value, $\ne$
+    - p-value calculated as two times the tail area beyond the observed test statistic (i.e. probability more extreme in BOTH TAILS)
+    - More objective, and hence more widely preferred
+    
+---
+
+## Confidence Interval vs. Hypothesis test
+
++ 95% confidence interval $\iff$  $\alpha = 0.05$ hypothesis test
++ 99% confidence interval $\iff$  $\alpha = 0.01$ hypothesis test 
++ 90% confidence interval $\iff$  $\alpha = 0.10$ hypothesis test 
+
+$$H_0: \beta_1 = 0$$
+$$H_A: \beta_1 \neq 0$$
+
+Rejecting $H_0$ $\iff$ CI does NOT include 0
+
+Failing to reject $H_0$ $\iff$ CI DOES include 0
+
+---
+
+## Confidence Interval vs. Hypothesis Test
+
+What do you want to do?
+
+- Estimation -> Confidence interval
+    + Magnitude of parameter is of interest
+- Decision -> Hypothesis test
+    + Is there enough evidence to conclude ____? 
+    + E.e. drug works, curriculum is effective, defendant is guilty

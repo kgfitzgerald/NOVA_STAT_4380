@@ -1,0 +1,36 @@
+---
+title: "Prepare: Week 07"
+subtitle: "Data Ethics"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Week 07 will follow a different format, since we will be spending the whole week doing a deep dive into Data Ethics. 
+
+## For Tuesday, October 8
+
+`r emo::ji("memo")` **Values Survey:** Read [this "ethics lab"](https://integratedethicslabs.org/labs/core-values/core-values-worksheet/) and take some time to answer questions 1 - 3. You do not need to turn in your answers, but you should write them down (or type them). You will be discussing your reflections in groups during class on Tuesday.
+
+`r emo::ji("movie_camera")` Watch [Misrepresentation](https://youtu.be/p4Ip0K-h-a8)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/19-misrepresentation.html)
+
+`r emo::ji("movie_camera")` Watch [Algorithmic bias](https://youtu.be/WpKOuUgnvxI)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/21-algorithmic-bias.html)
+
+`r emo::ji("memo")` For Tuesday's "prep quiz", respond to this discussion post in [Campuswire](https://campuswire.com/c/G7C5D99E0/feed/8).
+
+
+## For Thursday, October 10
+
+There is additional ethics material that you should engage with in Perusall (Annotations 05) before class on Thursday.
+
+
+

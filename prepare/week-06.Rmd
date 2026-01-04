@@ -1,0 +1,47 @@
+---
+title: "Prepare: Week 06"
+subtitle: "Data Importing & Cleaning"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For October 1
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required 
+
+`r emo::ji("movie_camera")` Watch [Data classes](https://youtu.be/oQWX5btmtn0)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/13-data-classes.html)
+
+`r emo::ji("movie_camera")` Watch [Importing data](https://youtu.be/3b9Rb6sWiAk)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/14-data-import.html)
+
+`r emo::ji("movie_camera")` Watch [Recoding data](https://youtu.be/GeFKGqPqEwk)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/15-data-recode.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 06 on Canvas
+
+### Optional 
+
+`r emo::ji("book")` [Read R4DS:: Chapter 15 - Factors](https://r4ds.had.co.nz/factors.html)
+
+`r emo::ji("book")` [Read R4DS:: Chapter 11 - Data Import](https://r4ds.had.co.nz/data-import.html)
+
+`r emo::ji("book")` [Read R4DS:: 16.1-16.3 - Dates & Times](https://r4ds.had.co.nz/dates-and-times.html)
+
+
+
+
+
+

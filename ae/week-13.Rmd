@@ -1,0 +1,102 @@
+---
+title: "Week 13"
+subtitle: "Communicating Results II"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Announcements
+
+What's left (assignments):
+
+-   Written report rough draft due tonight
+    -   submit pdf on Canvas AND upload to Google Drive for peer review
+    -   make sure it is written in a .qmd (rendered to a pdf) and all tables/figures are reproducible
+-   For next class: read rough draft of group assigned to you
+-   Tuesday, Dec 3: Formal Peer Review due (will start next class)
+-   Tuesday, Dec 3: Week 14 prep (reading)
+-   Thursday, Dec 5 (classtime): Elevator pitch rough draft
+-   Thursday, Dec 5: Any last stats experience points (5 total for semester)
+    -   can submit up to 10 additional ones for extra credit on lowest lab assignment(s)
+-   Friday, Dec 6: Final poster due (I will send to printer)
+-   Saturday, Dec 7: Final report & repository due
+-   Thursday, Dec 12: Poster presentations / Christmas party
+
+|         | Tue in-class             | Thur in-class                               |
+|-----------------|-----------------|-------------------------------------|
+| Week 13 | Communicating Results II | Peer Review                                 |
+| Week 14 | Project work session     | Elevator pitch / poster peer review         |
+| Week 15 |                          | Poster presentations - invite your friends! |
+
+## Today
+
+-   [Your project questions](https://docs.google.com/document/d/18_9nEQNmi-sd6FHScWyHP_1TKTK8CRQCs_clIwbFlQw/edit?usp=sharing)
+
+-   Data viz crash course
+
+-   (If time) work on rough drafts
+
+### Citation management
+
+-   Download & Install [LaTeX](https://www.latex-project.org/get/#tex-distributions)
+
+-   Download & Install [Zotero](https://www.zotero.org)
+
+-   Install the [Zotero Connector for Chrome](https://www.zotero.org/download/connectors)
+
+-   Install [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/installation/)
+
+-   See `Zotero_demo.qmd` on GitHub (and `references.bib`) for demo of citations in Quarto
+
+-   Open Microsoft Word on your computer and look for the [Zotero tab](https://www.zotero.org/support/word_processor_plugin_usage)
+
+-   Open a Google Doc (in Chrome) and look for the [Zotero tab](https://www.zotero.org/support/google_docs)
+
+Citation tasks:
+
+1.  In Chrome, search for and locate the sources you plan to cite, and click on the Extensions puzzle piece to add them to your Zotero library
+
+    1.  If they are just websites rather than academic papers or books, you may need to manually edit the citation info in Zotero
+
+2.  In a Quarto file (e.g. your written report), create (potentially placeholder) sentences with in-text citations (Insert \> \@ Citation), then Render.
+
+3.  OPTIONAL: Repeat the citation process in Word (or Google Docs)
+
+### Thursday: Rough Draft Peer Review
+
+Why peer review?
+
+-   Giving good feedback is a skill (that we don't often practice)
+
+-   Receiving and incorporating feedback effectively also takes practice
+
+-   Our work is better when we have multiple perspectives speak into it
+
+-   It's one of the only cures to the curse of expertise!
+
+-   Makes us better at self-assessing our own work
+
+-   It's part of the scientific process
+
+## Logistics: 
+
+-   In your project groups, discuss assigned paper and fill out the "FORMAL Rough Draft Peer Feedback - Group X" form in the shared Google Drive folder (located in the folder of the group you're reviewing)
+
+-   Then, you will write up a 1-2 page formal review, which will include:
+
+    -   A summary of the research questions, data context, and findings, as you understand them
+
+    -   Brief comments on strengths of the paper
+
+    -   Constructive criticism, raising questions / points of confusion, and outlining what needs to be changed/improved in order for the report to be exemplary
+
+-   The constructive criticism should make up the bulk of the 1-page review. Remember: the goal is to help them IMPROVE the work. You should NOT simply tell them it's wonderful, and you should NOT simply criticize without offering concrete suggestions for HOW to improve.
+
+### 

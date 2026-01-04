@@ -1,0 +1,158 @@
+---
+title: "Week 04"
+subtitle: "Data wrangling II"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Data Scientist of the Week
+
+[Mike Dairyko](https://hardin47.github.io/CURV/scholars/dairyko.html)
+
+### Thursday announcements
+
++ Lab 03 due now
++ P01 Project Brainstorm due tonight
++ Stats Experience points due Saturday
++ P02 - Choose Project Groups due by Tuesday classtime
++ in-class exam next Thursday + take-home handed out
+    + know the `dplyr` verbs and what they do
+    + know the general format of `ggplot()` code, and what visualizations are appropriate for which variable types
+    + when given a data context and a visualization or table, be able to describe (or fill in the blanks) what code is necessary for producing that result
+    + when given a data context & research question, be able to describe a strategy / write psuedo-code for how to wrangle / visualize that code to answer the research question
+    + when given a series of code w/ pipe operators, be able to describe what each line is doing and how it changes the dimensions of the data
+
+### Quotes on rest / Sabbath
+
++ "Once people feel nourished and refreshed, they cannot help but be kind; just so, the world aches for the generosity of a well-rested people." - Wayne Muller
+
++ "Some of my best thoughts are generated in the stillness of Sabbath keeping, and I frequently experience sudden moments of more complete understanding because resting my mind renews it and because I can think more organically when my thinking isn't forced." - Marva Dawn
+
++ "We are drawn to the words of Jesus about abundant life and his peace that passes understanding, but often we don't know how to access them. The Sabbath is a concrete way to start, a practical and ancient solution to an enduring human need." - Lynne M. Baab
+
++ "I discovered that Sabbath isn't about what is done or left undone as much as breathing in the goodness of God. The more I inhaled, the more I desired another long breath" - Margaret Feinberg
+
++ "Sabbath keeping is a discipline that will mess with you, because once you move beyond just thinking about it and actually begin to practice it, the goodness of it will capture you, body, soul, and spirit" - Ruth Haley Barton
+
++ "If you don't take a Sabbath, something is wrong. You're doing too much, you're being too much in charge. You've got to quit, one day a week, and just watch what God is doing when you're not doing anything." - Eugene H. Peterson
+
++ "Sabbath reminds us that we are loved for who we are, not for what we can produce... Sabbath does not exist for what it gives us, nor for how it helps us, but for the way it equips us to live into our truest identities. We are not 'human doings' but 'human beings'." - David Lomas
+
+<!-- ### Thursday Announcements -->
+
+<!-- -   2 Stats Experience Points due Saturday -->
+<!-- -   Sign up for project groups on Canvas by class-time on Tuesday -->
+<!--     -   choose your own groups of 2 -->
+<!--     -   who will you work well with? -->
+<!--     -   who do you have common (data) interests with? Check out initial Campuswire responses -->
+
+<!-- What's ahead: -->
+
+<!-- -   Weeks 1 - 4, foundational coding techniques -->
+<!-- -   Weeks 5 - 7, Exam/Start Projects/Ethics -->
+<!-- -   Weeks 8 - 11, statistical analysis techniques -->
+<!-- -   Weeks 12 - 15, communicating results / Projects -->
+<!-- -   Only 4 more labs (after Lab 04), 7 project work sessions -->
+
+<!-- ![](images/MATH_talk_Byrant.png) -->
+
+### Announcements
+
+- Due Thursday: Lab 03, Project Brainstorm post, (no annotations this week)
+- First 2 Stats Experience Points due Saturday (remember to post brief reflection on Canvas)
+  -   [Informational Interview resource](https://docs.google.com/document/d/17ESP_xm-kXo3gsRrzmbG0XR37yRqnMCT5TiqPli6Pnc/edit?usp=sharing)
+   -   [Appointment slots](https://calendar.app.google/vciEZtXbBiz4aEWP7) for dinner with me after class
+   -   Exam 1 in-class next Thursday, will have take-home component due the following Tuesday
+
+### Questions / tips from Weekly Check-in
+
++ "helpful during ae/lab when we are given guidance about how particular functions can help us... for example, I've learned `glimpse()`, `?` and `install.packages()`... I'm going to start keeping a record of things I learn during AEs or labs so I can look back on them moving forward"
+
++ "Can we go over the order in which we should intend to start a code?"
+
++ Lots of people (inside and outside this class) asking for prayer for balancing lots of commitments / heavy workload. Tips to share? 
+
+### Tidyverse style guidelines
+
+[Tidyverse style guidelines](https://style.tidyverse.org/pipes.html) for line breaks, white space, etc.
+
+1.  Have space before `|>` and a linebreak after
+
+```{r, eval = FALSE}
+# Good
+iris |>
+  group_by(Species) |>
+  summarize_if(is.numeric, mean) |>
+  ungroup() |>
+  gather(measure, value, -Species) |>
+  arrange(value)
+
+# Bad
+iris |> group_by(Species) |> summarize_all(mean) |>
+ungroup |> gather(measure, value, -Species) |>
+arrange(value)
+```
+
+2.  `ggplot()` layers each go on their own line, space before `+`, all but first layer indented.
+
+```{r, eval = FALSE}
+# Good
+ggplot(aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
+  geom_point() +
+  labs(
+    x = "Sepal width, in cm",
+    y = "Sepal length, in cm",
+    title = "Sepal length vs. width of irises"
+  ) 
+
+# Bad
+ggplot(aes(x = Sepal.Width, y = Sepal.Length, color = Species))+
+  geom_point() + labs(x = "Sepal width, in cm", y = "Sepal length, in cm", title = "Sepal length vs. width of irises") 
+```
+
+3.  If arguments to a function don't fit on one line, put each argument on its own line
+
+```{r, eval = FALSE}
+iris |>
+  group_by(Species) |>
+  summarise(
+    Sepal.Length = mean(Sepal.Length),
+    Sepal.Width = mean(Sepal.Width),
+    Species = n_distinct(Species)
+  )
+
+iris |>
+  group_by(Species) |>
+  summarise(Sepal.Length = mean(Sepal.Length),
+            Sepal.Width = mean(Sepal.Width),
+            Species = n_distinct(Species))
+```
+
+4.  Spaces on each side of all operators (e.g. `+, =, &, <-,`) and after commas
+
+```{r, eval = FALSE}
+# Good
+iris |> 
+  mutate(ratio = Sepal.Length/Sepal.Width) |> 
+  ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
+  geom_point()
+
+# Bad
+iris|> 
+  mutate(ratio=Sepal.Length/Sepal.Width) |> 
+  ggplot(aes(x=Sepal.Width,y = Sepal.Length)) +
+  geom_point()
+```
+
+### Application Exercise
+
+-   The remainder of class will be spent on AE-04.
+-   You can access it from GitHub.
+-   It is due at the end of class today.
+-   To turn it in, you should upload your .html file to Canvas.

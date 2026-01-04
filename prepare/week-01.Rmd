@@ -1,0 +1,33 @@
+---
+title: "Prepare: Week 01"
+subtitle: "Welcome! Meet the Toolkit"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## For Thursday, August 31
+
+**Note:** All required prepare activities are due **by the beginning of class (4:20pm)** on the specified date.
+
+### Required 
+
+`r emo::ji("movie_camera")` Watch [Meet the Toolkit - Programming](https://youtu.be/T9UJ-rWCc-c) 
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/02-toolkit-R.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 01 on Canvas
+
+<!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Canvas -->
+
+### Optional 
+
+`r emo::ji("book")` Read [*R for Data Science (R4DS)*:: Chapter 2 - Introduction](https://r4ds.had.co.nz/explore-intro.html)
+
+<br> 
+

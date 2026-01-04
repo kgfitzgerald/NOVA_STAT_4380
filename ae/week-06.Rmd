@@ -1,0 +1,104 @@
+---
+title: "Week 06"
+subtitle: "Data importing & cleaning"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statistician(s) of the Week
+
+[Sherri Rose](http://drsherrirose.org/biocv)
+
+[Liz Stuart](https://publichealth.jhu.edu/faculty/1792/elizabeth-a-stuart)
+
+### Thursday announcements
+
+- Annotated test corrections due next Thursday for both
+
+  + Identify your mistake / what you misunderstood / got tripped up on
+  + Provide correct solution
+  + For in-class, do separate sheet of paper
+  + For take-home, make a copy of .qmd, leave old answers in and make sure to clearly distinguish new answers
+
+- Next week: Data ethics
+
+-   Prep work is 2 lecture videos (\<40 mins) + mini "ethics lab" (read + reflect - handout provided today)
+
+-   Discussion post in Canvas instead of prep quiz
+
+-   Today: Lab 05 - data cleaning
+
+![](images/real_world_data.jpg)
+
+### Announcements
+
+Take-home exam due tonight
+
+-   will have opportunity for Annotated Test Corrections to get 1/3 of points back on both sections
+
+Annotations due Thursday (1hr video)
+
+[Project Proposal](https://apumath250.netlify.app/project/#project-proposal) due Saturday, 11:59pm
+
+Join [American Statistical Association](https://www.amstat.org/membership/become-a-member/membership-options)
+
+  -   \$30 for one-year subscription
+
+  -   1 stats experience point
+
+  -   Good if you're looking for internship/job opportunities
+
+  -   Consider starting a [student chapter](https://www.amstat.org/membership/asa-communities/student-chapters?utm_source=informz&utm_medium=email&utm_campaign=asa&_zs=cipOe1&_zl=B4kr7) at APU - looks good on a resume!
+  
+
+
+<!-- [U.S. Olympic & Paraolympic Committee Data Challenge](https://statds.org/events/ucsas2024/challenge.html) -->
+
+<!-- -   registration deadline Nov 1 -->
+
+<!-- -   submission deadline January 15 -->
+
+
+
+<!-- Exam due now -->
+
+<!-- -   graded no later than next Tuesday -->
+
+
+
+<!-- [International Day of Women in Statistics & Data Science](https://www.idwsds.org/program/) -->
+
+<!-- -   October 10, 24-hour virtual conference -->
+
+<!-- -   2 stats experience points -->
+
+<!-- [Undergraduate Statistics Class Project Competition](https://www.causeweb.org/usproc/report-template-USCLAP) -->
+
+<!-- ![](images/math_policy.png) -->
+
+<!-- [Electronic Undergraduate Statistics Research Conference](https://www.causeweb.org/usproc/eusr/2023/program) -->
+
+<!-- -   Friday, November 3 -->
+
+<!-- -   Director of Census Bureau, Robert Santos, is keynote speaker -->
+
+<!-- -   Panel discussions on grad school & career -->
+
+<!-- ![](images/MPS_volleyball.png) -->
+
+<!-- ![](images/sickle%20cell%20toy%20drive%20flyer.png) -->
+
+### Questions / Feedback
+
+### Application Exercise
+
+-   The remainder of class will be spent on AE-05.
+-   You can access it from GitHub.
+-   It is due at the end of class today.
+-   To turn it in, you should upload your .html file to Canvas.

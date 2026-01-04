@@ -1,0 +1,121 @@
+---
+title: "Week 07"
+subtitle: "Data Ethics"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statistician(s) of the Week
+
+[Erin Hartman](https://erinhartman.com)
+
+[Wendy Cho](https://pol.illinois.edu/directory/profile/wendycho)
+
+### Thursday announcements
+
++ Test corrections due now
+
++ No AE or Lab this week
+
++ Project EDA & Data cleaning due date extended to next Saturday
+
++ Prep material for next week is ~75mins of lecture
+
+
+### Announcements
+
++ Test corrections due Thursday
+
++ Annotations 05 due Thursday (9 min lecture, 13 min YouTube video, 1 case study article)
+
++ Will talk through feedback on proposals on Thursday. 
+
+### Data Ethics activities
+
++ [Group 1 Google doc](https://docs.google.com/document/d/1LmDx2tFIFefP5PClob8vcMle5RVRSkc_/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true)
+
++ [Group 2 Google doc](https://docs.google.com/document/d/1MuIp6wwUDTVHcfNN2fJKyCV87o32XPSE/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true)
+
+<!-- ### Thursday Announcements -->
+
+<!-- Project: [Data cleaning & Preliminary EDA](https://apumath250.netlify.app/project/#data-cleaning--preliminary-eda) due in 2 weeks: Oct 26 -->
+
+<!-- Next week: back to "regular" schedule w/ prep material, AE, & lab -->
+
+
+
+<!-- Exams graded, annotated test corrections due next Tuesday 10/17 -->
+
+<!-- -   Re-submit html, include old code and corrected code, just make sure to clearly identify which is which -->
+
+<!-- -   For each question you got points off, include a brief statement identifying your mistake / noting where your confusion was -->
+
+<!-- -   Can earn up to 1/3 of points back -->
+
+<!-- Project proposals due tonight at midnight (tomorrow if you come to the volleyball game :)) -->
+
+<!-- -   I'll meet with each group individually on Thursday to discuss your datasets & research questions -->
+
+<!-- -   Create new R project for all project files -->
+
+<!-- -   Should write the proposal in a Quarto (.qmd) document, render to a PDF -->
+
+<!--     -   may need to run `quarto install tinytex` in your Terminal. See [here for info](https://quarto.org/docs/output-formats/pdf-basics.html) on creating PDFs with Quarto. -->
+
+<!-- ```{r, eval = FALSE} -->
+<!-- --- -->
+<!-- title: "Project Proposal" -->
+<!-- author: "YOUR NAMES" -->
+<!-- format: pdf -->
+<!-- --- -->
+<!-- ``` -->
+
+<!-- For Thursday: Annotations on Perusall -->
+
+<!-- -   Short lecture video (9 mins) -->
+
+<!-- -   YouTube video (13 mins) -->
+
+<!-- -   5-page case study - will discuss on Thursday -->
+
+<!-- Sign up for Advising appointments! -->
+
+<!-- What I'm teaching: -->
+
+<!-- -   MATH 350: Statistical Models -->
+
+<!-- -   MATH 451: Data Visualization -->
+
+<!-- -   MATH 361: Introduction to Modeling with Probability -->
+
+<!-- Volleyball tonight after class! -->
+
+<!-- ### ![](images/MPS_volleyball.png) -->
+
+### Questions?
+
+### Faith Integration Discussion
+
+<!-- -   There is no AE this week -->
+<!-- -   The remainder of class will be spent on a Faith Integration Discussion -->
+<!--     -   [Group 1 Google Doc](https://docs.google.com/document/d/1isMkpkuxx5DjUj3cTsBrMqz2icRbpDeD/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) - Leon, Enzo, Dat -->
+<!--     -   [Group 2 Google Doc](https://docs.google.com/document/d/13fM23eg9iX3GdgjkMy56STw8gnKO6yyh/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) - Rachel, Avery, Lauren -->
+<!--     -   [Group 3 Google Doc](https://docs.google.com/document/d/1ZJl6v70bwQO7Nnmzd1VESNX4u_e2M-K_/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) - Evan, Caylee, Angelica, Jason -->
+
+### Statistics for Social Good Resources
+
+-   AMSTAT News special issue: [Data literacy as a tool for community health and social justice](https://magazine.amstat.org/wp-content/uploads/2022/08/AmstatSeptember.pdf)
+
+-   [DataKind](https://www.datakind.org)
+
+-   [Data4SDGs](https://www.data4sdgs.org): Data for Sustainable Development Goals
+
+-   [HRDAG](https://hrdag.org): Human Rights Data Analysis Group
+
+-   [Statistics Without Borders](https://www.statisticswithoutborders.org)

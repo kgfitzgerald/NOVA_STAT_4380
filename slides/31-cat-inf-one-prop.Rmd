@@ -1,0 +1,228 @@
+---
+title: "Inference with Categorical Data, Part 1: One proportion"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(dsbox)
+library(scales)
+library(infer)
+library(distributional)
+library(ggdist)
+```
+
+
+class: middle
+
+# Choosing the right analysis
+
+---
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+Estimation -> Confidence interval
+
+Decision -> Hypothesis test
+
+Assumptions?
+
+---
+
+class: middle
+
+# Case study: What proportion of US adults are married?
+
+---
+
+## What proportion of US adults are married?
+
+```{r, echo = FALSE}
+set.seed(437)
+survey <- data.frame(married = c(rep("yes", 530),
+                                  rep("no", 470))) |> 
+  sample_n(1000)
+```
+
++ How many variables? **1**
++ What type(s) of variable(s)? **categorical (two levels)**
+
+--
+
+This is an **estimation** question, meaning a confidence interval is most appropriate. 
+
+--
+
+The parameter of interest is the **population proportion**, $p$, and the sample statistic is the sample proportion, $\hat{p}$
+
+In 2019, a survey of 1,000 randomly sampled US adults age 25 - 54 found that 53% were married. 
+
+```{r}
+survey |> 
+  count(married) |> 
+  mutate(prop = n/sum(n))
+```
+
+
+---
+
+# What proportion of US adults are married?
+
+`prop_test()` will provide a confidence interval
+
+```{r}
+prop_test(survey, response = married, success = "yes", 
+          conf_level = 0.99)
+```
+
+We are 99% confident that the true proportion of US adults age 25 - 54 is between 0.489 and 0.571. 
+
+**Assumptions?** independence, $np \geq 10, \ \  n(1-p) \geq 10$
+
+---
+
+# Case study: success of fertility treatment
+
+Assisted Reproductive Technology (ART) is a collection of techniques that help facilitate pregnancy (e.g., in vitro fertilization). The 2018 ART Fertility Clinic Success Rates Report published by the Centers for Disease Control and Prevention reports that ART has been successful in leading to a live birth in 48.8% of cases where the patient is under 35 years old. A new fertility clinic claims that their success rate is higher than average for this age group. A random sample of 30 of their patients yielded a success rate of 60%. A consumer watchdog group would like to determine if this provides strong evidence to support the company’s claim.
+
+--
+
++ Research question: **is the true success rate at the new clinic greater than 48.8%?**
++ How many variables? **1**
++ What type(s) of variables? **categorical (2 levels)**
+
+--
+
+This is a **hypothesis test** question about **one proportion**
+
+---
+
+## Hypothesis test for one proportion
+
+```{r, echo = FALSE}
+set.seed(437)
+newclinic <- data.frame(live_birth = c(rep("yes", 18),
+                                       rep("no", 12))) |> 
+  sample_n(n())
+```
+
+
+$$H_0: p = 0.488$$
+$$H_A: p > 0.488$$
+
+Under $H_0, \ \ \hat{p} \approx N\left(p_0, \sqrt{\frac{p_0(1 - p_0)}{n}}\right)$ and the test statistic $$Z = \frac{\hat{p} - p_0}{SE(\hat{p})} \approx N(0,1)$$
+
+So, for $\alpha = 0.01$, we will compare our test statistic $Z$ to the critical value of `qnorm(.99)` = `r round(qnorm(.99),3)`
+
+Assumptions? 
+
+---
+
+## Hypothesis test for one proportion
+
+.panelset[
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, warning = FALSE, out.height = "60%"}
+crit_value99 <- qnorm(.99)
+stat <- prop_test(newclinic, response = live_birth, success = "yes",
+          conf_level = 0.99, z = TRUE)$statistic
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "Z",
+                   dist = dist_normal(),
+                   fill = after_stat(x > stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+]
+.panel[.panel-name[Calculations]
+```{r}
+phat <- 0.6
+p0 <- 0.488
+n <- 30
+SE <- sqrt(p0*(1-p0)/n)
+(Z <- (phat - p0)/SE)
+```
+]]
+
+
+---
+
+# Hypothesis test for one proportion
+
+```{r}
+glimpse(newclinic)
+prop_test(newclinic, response = live_birth, success = "yes", 
+          conf_level = 0.99, z = TRUE, p = 0.488, alternative = "greater")
+```
+
+
+---
+
+# Is the true success rate at the new clinic greater than 48.8%?
+
+.pull-left[
+```{r, echo = FALSE}
+prop_test(newclinic, response = live_birth, success = "yes", 
+          conf_level = 0.99, z = TRUE, p = 0.488, alternative = "greater")
+```
+
+We FAIL TO REJECT $H_0$ because our `statistic` (1.23) is LESS extreme than our critical value (2.33). Equivalently, our p-value (0.11) is greater than $\alpha = 0.01$. 
+
+That is, there is NOT sufficient evidence to claim the new clinic has a higher success rate. 
+]
+.pull-right[
+```{r, echo = FALSE}
+crit_value99 <- qnorm(.99)
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "Z",
+                   dist = dist_normal(),
+                   fill = after_stat(x > stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+
+]
+

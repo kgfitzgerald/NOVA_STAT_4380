@@ -1,0 +1,43 @@
+---
+title: "Prepare: Week 12"
+subtitle: "Communicating Results"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Before class Tuesday November 12 (due 4:20pm)
+
+`r emo::ji("book")` [Read Chapter 7 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061). As you read, keep your project in mind, and take notes on what steps you'll take when writing your rough draft (due in Week 13, Tuesday Nov 20). You will turn in a brief outline / to-do list. 
+
+`r emo::ji("book")` Read the entirety of the [Project page](https://apumath250.netlify.app/project/#rough-draft-report) on the course website, starting with the Rough Draft section. 
+
+`r emo::ji("book")` Read the [Full Project Evaluation Rubric](https://docs.google.com/spreadsheets/d/1C1eaMHB9W-dJFYd0Sw39-IA2BOJ9V90o/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) (in Shared Google Drive) to familiarize yourself with how the (written) project will be evaluated. 
+
+`r emo::ji("memo")` Respond to the Week 12 prep discussion post on Canvas by providing:
+
+1. A brief outline / to-do list for writing your rough draft (you may choose to provide a link to a Google doc if you wish)
+2. 1-2 questions you have about writing the rough draft after reading 
+
+## "In-class" on Tuesday (asynchronous, due 11:59pm)
+
+`r emo::ji("book")` Choose two of the following four written reports to read. These reports scored in the top 3 or honorable mention for the Undergraduate Statistics Class Project Competition in Spring 2023. They can serve as a model for how you might communicate your results. **On Canvas AE-09, state the two reports you chose, a strength of each, and a suggested area of improvement for each.** 
+
++ [Using Healthcare Data to Study the Association Between Pre-existing Respiratory Disease and COVID Death Rate in Massachusetts](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%203005%20-%20using%20healthcare%20data%20to%20study%20the%20association%20between%20preexisting%20respiratory%20disease%20and%20covid%20death%20rate%20in%20massachusetts.pdf)
++ [Analyzing the Influence of Pollutants and Meteorological Conditions on PM2.5 Concentration](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%202941%20-%20analyzing%20the%20influence%20of%20pollutants%20and%20meteorological%20conditions%20on%20pm25%20concentration.pdf)
++ [A comparative analysis of translation performance: ChatGPT vs. Google Translate](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%203010%20-%20a%20comparative%20analysis%20of%20translation%20performance%20chatgpt%20vs%20google%20translate.pdf)
++ [Bring the Heat: Exploring the Relationship between Temperature and Short & Long-
+Distance Running Performance](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%203043%20-%20bring%20the%20heat%20exploring%20the%20relationship%20between%20temperature%20and%20short%20longdistance%20running%20performance.pdf)
+
+
+
+
+
+
+

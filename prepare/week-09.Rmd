@@ -1,0 +1,40 @@
+---
+title: "Prepare: Week 09"
+subtitle: "Quantifying Uncertainty: CIs & HTs"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For October 22
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required
+
+`r emo::ji("book")` [Read Chapter 6 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061)
+
+`r emo::ji("movie_camera")` Watch [Quantifying Uncertainty](https://youtu.be/ZUBq4cMlBjk)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/26-quantify-uncertainty.html)
+
+
+`r emo::ji("movie_camera")` Watch [Hypothesis testing](https://youtu.be/SSEhrGK9-8k)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/27-hypothesis-testing.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 09 on Canvas
+
+### Optional 
+
+`r emo::ji("book")` Read [NUMD: Chapter 10 - Confidence Intervals](https://nustat.github.io/intro-stat-ds/10-CIs.html)
+
+`r emo::ji("book")` Read [NUMD: Chapter 11 - P-values](https://nustat.github.io/intro-stat-ds/11-pvalues.html)
+
+`r emo::ji("book")` Read [NUMD: Chapter 12 - Hypothesis Tests](https://nustat.github.io/intro-stat-ds/12-hypothesis-tests.html)

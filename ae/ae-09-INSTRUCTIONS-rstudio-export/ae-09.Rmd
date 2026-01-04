@@ -1,0 +1,436 @@
+---
+title: "AE 09: Bootstrapping"
+subtitle: "due Thursday, November 10, 4:20pm"
+author: "YOUR NAME HERE"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_section: false
+    highlight: tango
+    theme: "cosmo"
+link-citations: yes
+editor: visual
+editor_options: 
+  markdown: 
+    wrap: sentence
+  chunk_output_type: console
+---
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(infer)
+# install.packages("devtools")
+# devtools::install_github("hadley/emo")
+library(emo)
+library(cowplot)
+```
+
+### The parameter of interest
+
+In November 2020, the voters elected a new president of the United States. Prior to the election, thousands of polls were taken to gauge the popularity of each of the candidates.  
+
+Leaving aside the idea that popular opinion changes over time, a poll can be thought of as a sample of individuals measured so as to estimate the proportion of all voters who will vote for each candidate (i.e. the population parameter).
+
+Consider an election in your home town that will take place in a week's time. You poll a randomly selected subset of 30 voters in your town and ask them if they plan to vote for Candidate X or Candidate Y. In this application exercise, we will focus on *sampling variability* — the variability in sample proportions due to polling different randomly selected individuals from the population.
+
+### Confidence intervals
+
+Because we know there is sampling variability, and the sample proportions will not be exactly equal to the population paramter each time, we report a plausible range of values around the point estimate. We need to know how wide of a range to report, and how likely this interval is to contain the parameter we're trying to estimate. 
+
+The plausible range of values we're trying to construct is called a confidence interval and is computed as:
+
+$$\text{point estimate} \pm \text{margin of error}$$
+
+The margin of error captures the *variability of the point estimate* - that is, it's a measure of how much the point estimate might reasonably deviate from the true population parameter. We need a reasonable way of determining how large of a margin of error to add and subtract from our point estimate so as to ensure we "capture" the parameter with reasonable frequency. 
+
+You may have previously learned mathematical theory (such as the Central Limit Theorem) that provides formulas for the margin of error. For example, the margin of error for a 95% confidence interval of a proportion is given by $1.96\frac{\sqrt{\hat{p}(1-\hat{p})}}{n}$. 
+
+An alternative way of determining the variability of a statistic and computing a confidence interval that does not rely on this mathematical theory is called *bootstrapping*. In this application exercise, you will see how bootstrapping mimics very well the variability we would observe if we took many random samples, but the method is able to do so simply by re-sampling from a *single sample*. 
+
+### Resampling from a sample
+
+To investigate how much the estimates of a population proportion change from sample to sample - and to see how well bootstrapping approximates the many-sample approach - you will set up two sampling experiments.
+
+In the first experiment, you will simulate repeated samples from a population.
+In the second, you will choose a single sample from the first experiment and repeatedly resample from that sample: a method called *bootstrapping*.
+More specifically:
+
+**Experiment 1**: Assume the true proportion of people who will vote for Candidate X is 0.6.
+Repeatedly sample 30 people from the population and measure the variability of $\hat{p}$ (the *sample* proportion).
+
+**Experiment 2**: Take *one* sample of size 30 from the same population.
+Repeatedly sample 30 people (with replacement!) from the original sample and measure the variability of $\hat{p}^*$ (the *resample* (bootstrap) proportion).
+
+It's important to realize that the first experiment relies on knowing the population and is typically impossible in practice.
+The second relies only on the sample of data and is therefore easy to implement for any statistic.
+Fortunately, as you will see, the variability in $\hat{p}$, or the proportion of "successes" in a sample, is approximately the same whether we sample from the population or resample from a sample.
+
+We have created 1000 random samples, each of size 30, from the population.
+The resulting data frame, `all_polls`, is available in your `data` folder.
+Take a look before getting started.
+
+```{r, eval = FALSE}
+all_polls <- read_rds("data/all_polls.rds")
+```
+
+```{r, echo = FALSE}
+all_polls <- read_rds("data/all_polls.rds")
+```
+
+## Exercise 1
+
+-   Compute the sample proportion for each of the 1000 original samples, assigning to `many_sample_props`.
+    -   Group by `poll`.
+    -   Summarize to calculate `stat` as the `mean()` of cases of `vote` that equal `"yes"`.
+
+```{r resampling, eval = FALSE}
+# Compute p-hat for each poll
+many_sample_props <- all_polls |> 
+  # Group by poll
+  ___(___) |> 
+  # Calculate proportion of yes votes
+  ___(stat = ___)
+```
+
+```{r resampling-solutions, echo = FALSE}
+# Compute p-hat for each poll
+many_sample_props <- all_polls |> 
+  # Group by poll
+  group_by(poll) |> 
+  # Calculate proportion of yes votes
+  summarize(stat = mean(vote == "yes"))
+```
+
+## Exercise 2
+
+-   Select one poll from which to resample, as `one_poll`.
+    -   Filter out data for every poll except the first poll. That is, only keep `poll` when `poll` equals `1`.
+    -   Select the `vote` column.
+-   Compute $\hat{p}^*$ for each resampled poll, as `bootstrapped_props`, using tolls from the infer package.
+    -   Specify the `response` as `vote`. The `success` value is `"yes"`.
+    -   Generate `1000` replicates of type `"bootstrap"`.
+    -   Calculate the `"prop"`ortion summary statistic.
+
+```{r resampling2, eval = FALSE}
+# Select one poll from which to resample
+one_poll <- all_polls |>
+  # Filter for the first poll
+  ___(___) |>
+  # Select vote
+  ___(___)
+  
+# Compute p-hat* for each resampled poll
+bootstrapped_props <- one_poll |>
+  # Specify vote as the response, where yes means success
+  ___(response = ___, success = ___) |>
+  # Generate 1000 reps of type bootstrap
+  ___(reps = ___, type = ___) |> 
+  # Calculate the summary stat "prop"
+  ___(stat = ___)
+```
+
+```{r resampling2-solution, echo = FALSE}
+# Select one poll from which to resample
+one_poll <- all_polls |>
+  # Filter for the first poll
+  filter(poll == 1) |>
+  # Select vote
+  select(vote)
+  
+# Compute p-hat* for each resampled poll
+bootstrapped_props <- one_poll |>
+  # Specify vote as the response, where yes means success
+  specify(response = vote, success = "yes") |>
+  # Generate 1000 reps of type bootstrap
+  generate(reps = 1000, type = "bootstrap") |> 
+  # Calculate the summary stat "prop"
+  calculate(stat = "prop")
+```
+
+## Exercise 3
+
+-   Using `many_sample_props`, calculate the variability of $\hat{p}$. In the call to `summarize()`, set `variability` to the standard deviation, `sd()`, of `stat`.
+-   Do the same with `bootstrapped_props` to calculate the variability of $\hat{p}^*$.
+
+```{r resampling3, eval = FALSE}
+# Calculate variability of p-hat
+many_sample_props |> 
+  summarize(variability = ___)
+  
+# Calculate variability of p-hat*
+bootstrapped_props |> 
+  ___
+```
+
+You should notice that the variability in the proportion of "successes" in a sample is approximately the same whether we take many samples from the population (impossible in practice) or resample from a single sample (easy in practice) `r emo::ji("shocked")`.
+
+### Visualizing the Variability in $\hat{p}$
+
+In order to compare the variability of the sampled $\hat{p}$ and bootstrapped $\hat{p}^*$ values in the previous exercises, it is valuable to visualize their distributions.
+
+Note that the curves are quite similar in shape. The sampled $\hat{p}$ values are centered around the true (typically **unknown** parameter) parameter (black); the resampled $\hat{p}^*$ values are centered around the estimate from the very first poll (green). They both will have the same variability (as measured by the standard error) as confirmed above, and here we can see visually that the green bootstrap distribution is approximately the same width as the black distribution, which measured the true variability of $\hat{p}$ values from the population. 
+
+```{r, fig.width=8, echo = FALSE}
+data.frame(samp = dnorm(seq(0.2,1,.01), mean = 0.6, sd = 0.09), boot = dnorm(seq(0.2,1,.01), mean = 0.72, sd = 0.09), ex = seq(0.2,1,.01), col1 = rep(openintro::COL[5,1], length(seq(0.2,1,.01))), col2 = rep(openintro::COL[2,1], length(seq(0.2,1,.01)))) |> 
+ggplot() + 
+  geom_line(aes(x = ex, y = samp, col = "sample from population")) +
+  geom_point(x = 0.6, y = dnorm(0.507, 0.6,0.09), col = openintro::COL[5,1]) +
+  geom_segment(x = 0.51, xend = 0.69, y = dnorm(0.507, 0.6, 0.09), yend = dnorm(0.507, 0.6, 0.09),
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_segment(x = 0.69, xend = 0.69, y = 0, yend = dnorm(0.507, 0.6, 0.09),
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_segment(x = 0.51, xend = 0.51, y = dnorm(0.507, 0.6, 0.09), yend = 0,
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_line(aes(x = ex, y = boot, col = "bootstrap sample")) +
+  geom_point(x = 0.72, y = dnorm(0.807, 0.72, 0.09), col = openintro::COL[2,1]) +
+  geom_segment(x = 0.63, xend = 0.81, y = dnorm(0.807, 0.72, 0.09), yend = dnorm(0.807, 0.72, 0.09),
+               lty = 2, col = openintro::COL[2,1]) +
+  geom_segment(x = 0.81, xend = 0.81, y = 0, yend = dnorm(0.807, 0.72, 0.09),
+               lty = 2, col = openintro::COL[2,1]) + 
+  geom_segment(x = 0.63, xend = 0.63, y = dnorm(0.807, 0.72, 0.09), yend = 0,
+               lty = 2, col = openintro::COL[2,1]) +   
+  xlab("distribution of sample proportions") +
+  theme(axis.title.y = element_blank(), axis.text.y.left = element_blank(),
+        axis.ticks.y = element_blank(), panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(), panel.grid.major.x = element_line()) +
+  scale_color_manual(name="", values = c(openintro::COL[2,1],openintro::COL[5,1])) +
+  scale_x_continuous(breaks = seq(0.2,1,0.1))
+```
+
+### Calculation of CI from theory
+
+The Central Limit Theorem tells us that the distribution of $\hat{p}$ values is symmetric and bell shaped (follows a normal distribution), therefore roughly 95% of samples will produce $\hat{p}$s that are within two standard errors ($z^* = 1.96$) of the center. This idea is called the **empirical rule**.
+
+```{r, fig.width=8, echo = FALSE}
+data.frame(samp = dnorm(seq(0.2,1,.01), mean = 0.6, sd = 0.09), boot = dnorm(seq(0.2,1,.01), mean = 0.72, sd = 0.09), ex = seq(0.2,1,.01), col1 = rep(openintro::COL[5,1], length(seq(0.2,1,.01))), col2 = rep(openintro::COL[2,1], length(seq(0.2,1,.01)))) |> 
+ggplot() + 
+  geom_line(aes(x = ex, y = samp, col = "sample from population")) +
+  geom_point(x = 0.6, y = dnorm(0.507, 0.6,0.09), col = openintro::COL[5,1]) +
+  geom_segment(x = 0.42, xend = 0.78, y = dnorm(0.507, 0.6, 0.09), yend = dnorm(0.507, 0.6, 0.09),
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_segment(x = 0.78, xend = 0.78, y = 0, yend = dnorm(0.507, 0.6, 0.09),
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_segment(x = 0.42, xend = 0.42, y = dnorm(0.507, 0.6, 0.09), yend = 0,
+               lty = 3, col = openintro::COL[5,1]) + 
+  geom_line(aes(x = ex, y = boot, col = "bootstrap sample")) +
+  geom_point(x = 0.72, y = dnorm(0.807, 0.72, 0.09), col = openintro::COL[2,1]) +
+  geom_segment(x = 0.54, xend = 0.90, y = dnorm(0.807, 0.72, 0.09), yend = dnorm(0.807, 0.72, 0.09),
+               lty = 2, col = openintro::COL[2,1]) +
+  geom_segment(x = 0.90, xend = 0.90, y = 0, yend = dnorm(0.807, 0.72, 0.09),
+               lty = 2, col = openintro::COL[2,1]) + 
+  geom_segment(x = 0.54, xend = 0.54, y = dnorm(0.807, 0.72, 0.09), yend = 0,
+               lty = 2, col = openintro::COL[2,1]) +   
+  xlab("distribution of sample proportions") +
+  theme(axis.title.y = element_blank(), axis.text.y.left = element_blank(),
+        axis.ticks.y = element_blank(), panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(), panel.grid.major.x = element_line()) +
+  scale_color_manual(name="", values = c(openintro::COL[2,1],openintro::COL[5,1])) +
+  scale_x_continuous(breaks = seq(0.2,1.2,0.1), limits = c(0.2, 1.2)) +
+  geom_label(label = "approximately 95% of\n samples will produce\n p-hats that are within\n 2SE of the center",
+             x = 1, y = 3.8, color = openintro::COL[5,1])
+```
+
+Here, in red, we see all the sample $\hat{p}$ values that are close to the true parameter.
+If our data is one of the red dots, our confidence interval will correctly capture the true parameter. To understand this, you can imagine drawing a bar that extends $\pm2SE$ from each dot. The red dots are close enough so that their corresponding bars will overlap with 0.6, but the blue dots are farther away than $2SE$, so their bars will not overlap with 0.6. 
+
+```{r, fig.width=6, echo = FALSE}
+set.seed(4747)
+all_polls |>
+  group_by(poll) |>
+  summarize(prop_yes = mean(vote == "yes")) |>
+  sample_n(200) |>
+  arrange(prop_yes) |>
+  mutate(pointer = ifelse(prop_yes <= .42, "col1", ifelse(prop_yes >= 0.78, "col1", "col2"))) |>
+ggplot() + 
+  geom_dotplot(aes(x = prop_yes, fill = pointer, color = pointer), binwidth = 0.01) +
+  xlab("sample p-hat values") +
+  theme(axis.title.y = element_blank(), axis.text.y.left = element_blank(),
+        axis.ticks.y = element_blank(), panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(), panel.grid.major.x = element_line(),
+        legend.position = "none") +
+  scale_x_continuous(breaks = seq(0.2,0.9,0.1), limits = c(0.2,0.9)) +
+  scale_color_manual(values = c(openintro::COL[1,1], openintro::COL[4,1])) +
+  scale_fill_manual(values = c(openintro::COL[1,1], openintro::COL[4,1])) +
+  geom_label(label = "approximately 95% of\n samples will produce\n p-hats that are within\n 2SE of the center",
+             x = .8, y = .8, color = openintro::COL[5,1])
+```
+
+### Bootstrap percentile interval
+
+The previous exercises and illustrations told you two things:
+
+1.  You can measure the variability associated with $\hat{p}$ by resampling from the original sample.\
+2.  Once you know the variability of $\hat{p}$, you can use it as a way to measure how far away the true proportion may be.
+
+Note that the *rate* of closeness (here 95%) refers to how often a sample is chosen so that it is close to the population parameter. You won't ever know if a particular dataset is close to the parameter or far from it, but you do know that in the long run, 95% of the samples you collect should give you estimates that are within $2SE$ of the true population parameter.
+
+If $\hat{p}$ is sufficiently close to the true parameter, then the resampled (or bootstrapped) $\hat{p}^*$ values will vary in such a way that they overlap with the true parameter.
+That is, if we take the middle 95% of the bootstrapped distribution as our range of plausible values, that interval will overlap with (contain) the true parameter 95% of the time. 
+
+To that end, we interpret the interval using a confidence percentage.
+That is, we say "we are 95% confident that the true proportion of people planning to vote for candidate X is between ___ and ___".
+
+You can find the middle of the resampled $\hat{p}^*$ values by removing the upper and lower 2.5%.
+
+Note that this method of constructing bootstrap intervals also gives an intuitive way for making 90% or 99% confidence intervals as well as 95% intervals.
+
+## Exercise 4
+
+-   Calculate the `95` percent interval of the bootstrapped $\hat{p}^*$ values contained in `bootstrapped_props`.
+    -   Summarize to calculate the lower end at the 2.5% `quantile()` of `stat` by setting `p` to `0.025`.
+    -   Calculate the upper 97.5% `quantile()` in a similar way.
+
+```{r bootstrap_percentile, eval = FALSE}
+# manually calculate a 95% percentile interval
+bootstrapped_props |>
+  summarize(
+    lower = ___(stat, p = ___),
+    upper = ___
+  )
+```
+
+## Exercise 5
+
+Perform the same calculation using `infer`'s convenience function, `get_confidence_interval()`.
+This function has two arguments (inputs), (1) a dataset with calculated statistics, and (2) the level to be used to create the confidence interval.
+For the interval call the output `bootstrap_ci`, and use `level = 0.95`.
+
+```{r bootstrap_percentile_2, eval = FALSE}
+
+# Calculate the same interval, more conveniently
+bootstrap_ci <- bootstrapped_props |> 
+  ___
+```
+
+## Exercise 6
+
+Interpret your confidence interval from above.
+
+Does the interval capture the true parameter in this case? *Note we won't know this in real life, because the true parameter is unknown*. 
+
+## Exercise 7
+
+-   Finally, use the `visualize()` function to plot the distribution of bootstrapped proportions and add `shade_confidence_interval()` to highlight the middle 95% of the distribution.
+    -   Set the `endpoints` argument to be `bootstrap_ci`.
+    - Add a red vertical line to denote the true proportion (note this part is unknown in real life)
+
+```{r bootstrap_percentile_3, eval = FALSE}
+bootstrapped_props |> 
+  # Visualize distribution
+  visualize() +
+  # highlight middle 95%
+  shade_confidence_interval(endpoints = ___) +
+  # add vertical line
+  ___(xintercept = ___, color = ___)
+```
+
+```{r bootstrap_percentile_3-solution, echo = FALSE, eval = FALSE}
+# From previous step
+bootstrap_ci <- bootstrapped_props |> 
+  get_confidence_interval(level = 0.95)
+  
+bootstrapped_props |> 
+  # Visualize in-between the endpoints given by bootstrap_ci
+  visualize() +
+  shade_confidence_interval(endpoints = bootstrap_ci)
+```
+
+### Percentile effects on bootstrap CIs
+
+Most scientists use 95% intervals to quantify their uncertainty about an estimate.
+That is, they understand that over a lifetime of creating confidence intervals, only 95% of them will actually contain the parameter that they set out to estimate.
+
+There are studies, however, which warrant either stricter or more lenient confidence intervals (and subsequent error rates).
+
+## Exercise 8
+
+Repeat exercises 6 & 7 for 90% and 99% confidence intervals. 
+Place your three visualizations in a single plot using `plot_grid()` from the `cowplot` package. 
+
+```{r, eval = FALSE}
+# Calculate a 90% bootstrap percentile interval
+bootstrap_ci90 <- ___ |> 
+  ___(___) 
+bootstrap_ci90
+
+# Calculate a 99% bootstrap percentile interval
+bootstrap_ci99 <- ___ |> 
+  ___(___) 
+bootstrap_ci99
+
+# re-compute and save a 95% bootstrap percentile interval
+bootstrap_ci95 <- ___ |> 
+  ___(___) 
+
+# code for 90% CI plot
+p90 <- ___ |> 
+  ___ + 
+  ___
+
+# code for 95% CI plot
+p95 <- ___ |> 
+  ___ + 
+  ___
+
+# code for 99% CI plot
+p99 <- ___ |> 
+  ___ + 
+  ___
+
+plot_grid(p90, p95, p99, ncol = 1)
+```
+
+An alternative way of visualizing the three confidence intervals is below, which illustrates the width of the interval increases as the level of confidence increases.
+
+```{r bootstrap_ci_3-solution}
+p <- c(0.005, 0.025, 0.05, 0.95, 0.975, 0.995) 
+intervals <- paste0(c(99, 95, 90), "%")
+conf_int_data <- tibble(
+  p = p,
+  ci_endpoints = quantile(bootstrapped_props$stat, p),
+  ci_percent = c(intervals, rev(intervals))
+)
+# Plot ci_endpoints vs. ci_percent to compare the intervals
+ggplot(conf_int_data, aes(ci_percent, ci_endpoints)) +
+  # Add a line layer
+  geom_line()
+```
+
+## Exercise 9
+
+Instead of `poll == 1`, select the 5th poll from `all_polls`. Use that sample to compute a bootstrapped 95% confidence interval and visualize it. Does this interval capture the true parameter? 
+
+```{r}
+
+```
+
+Refer to the dotplot between Exercises 3 & 4 - where does the sample proportion for the 5th poll fall in the true sampling distribution of $\hat{p}$ values? Explain what this illustrates regarding your answer above.
+
+```{r, eval = FALSE, echo = FALSE}
+one_poll <- all_polls |>
+  # Filter for the first poll
+  filter(poll == 5) |>
+  # Select vote
+  select(vote)
+  
+# Compute p-hat* for each resampled poll
+bootstrapped_props <- one_poll |>
+  # Specify vote as the response, where yes means success
+  specify(response = vote, success = "yes") |>
+  # Generate 1000 reps of type bootstrap
+  generate(reps = 1000, type = "bootstrap") |> 
+  # Calculate the summary stat "prop"
+  calculate(stat = "prop")
+
+bootstrap_ci <- bootstrapped_props |> 
+  get_confidence_interval(level = 0.90)
+
+bootstrapped_props |> 
+  visualize() +
+  shade_confidence_interval(endpoints = bootstrap_ci)
+```
+
+
+
+

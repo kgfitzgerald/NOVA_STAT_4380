@@ -1,0 +1,355 @@
+---
+title: "Inference for Numerical Data, Part I: One Mean"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from [Intro to Modern Statistics](https://openintro-ims.netlify.app)"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(dsbox)
+library(scales)
+library(infer)
+library(distributional)
+library(ggdist)
+library(gridExtra)
+library(openintro)
+library(broom)
+library(readxl)
+```
+
+
+class: middle
+
+# Choosing the right analysis
+
+---
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+--
+
+Estimation -> Confidence interval
+
+Decision -> Hypothesis test
+
+--
+
+Assumptions met?
+
+---
+
+class: middle
+
+# Case study: Cherry Blossom Race
+
+---
+
+## Is the typical US runner getting faster or slower over time?
+
+Cherry Blossom Race is a 10-mile race in Washington D.C each spring. In 2006, the average time for all runners was 93.29 minutes. 
+
+We have data on 100 participants in the 2017 Cherry Blossom Race. 
+
+```{r, echo = FALSE}
+library(cherryblossom)
+set.seed(437)
+race17 <- run17 |> 
+  sample_n(100)
+```
+
+--
+
++ How many variables? **1**
++ What type(s) of variable(s)? **numerical**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+--
+
+The parameter of interest is the **population mean**, $\mu$, and the sample statistic is the sample mean, $\bar{x}$
+
+---
+
+## Hypothesis test for one mean
+
+$$H_0: \mu_{2017} = 93.29$$
+$$H_A: \mu_{2017} \neq 93.29$$
+--
+
+CLT tells us, $$T = \frac{\overline{x} - \mu}{SE(\overline{x})} = \frac{\overline{x} - \mu}{s/\sqrt{n}} \sim t_{n-1}$$
+
+--
+
+```{r, echo = FALSE}
+race17 <- race17 |> 
+  mutate(time_mins = net_sec/60)
+```
+
+
+```{r}
+t_stat <- (mean(race17$time_mins) - 93.29)/(sd(race17$time_mins)/sqrt(nrow(race17)))
+t_stat
+```
+
+**Assumption:** n > 30, independent observations
+---
+
+## Hypothesis test for one mean
+
+.panelset[
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, warning = FALSE, out.height = "60%"}
+crit_value99 <- qt(.995, df = nrow(race17) - 1)
+stat <-  abs((mean(race17$time_mins) -
+                  93.29)/(sd(race17$time_mins)/sqrt(nrow(race17))))
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = nrow(race17) - 1),
+                   fill = after_stat(x < -stat | x > stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = -crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = -crit_value99, y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  geom_vline(xintercept = -stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = -stat, y = 2.25, color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+]
+.panel[.panel-name[Calculations]
+```{r}
+xbar <- mean(race17$time_mins)
+s <- sd(race17$time_mins)
+n <- nrow(race17)
+SE <- s/sqrt(n)
+(t_stat <- (xbar - 93.29)/SE)
+(crit_value99 <- qt(.995, df = n - 1))
+(p_value <- 2*pt(t_stat, df = n - 1))
+```
+]]
+
+---
+
+## Hypothesis test for one mean
+
+$$H_0: \mu_{2017} = 93.29$$
+$$H_A: \mu_{2017} \neq 93.29$$
+
+```{r}
+t_test(race17, response = time_mins, 
+       mu = 93.29, conf_level = 0.99)
+```
+
+We FAIL TO REJECT H0. That is, there is NOT sufficient evidence to claim that the average time is different in 2017, compared to 2006.
+
+---
+
+## What if we had more data?
+
+We actually have a **census**
+
+```{r}
+library(cherryblossom)
+glimpse(run17)
+```
+
+---
+
+## What if we had more data?
+
+```{r}
+mean(run17$net_sec, na.rm = TRUE)
+mean(run17$net_sec, na.rm = TRUE)/60
+```
+
+Runners ***are*** in fact faster in 2017, on average, compared to 2006, but we did not have enough evidence to support that conclusion based on 100 people. 
+
+---
+
+$$T = \frac{\overline{x} - \mu}{s/\sqrt{n}} = \frac{`r round(xbar, 2)` - 93.29}{`r round(s, 2)`/\sqrt{n}}$$
+
+```{r, echo = FALSE}
+xbar <- mean(race17$time_mins)
+s <- sd(race17$time_mins)
+
+n <- 100
+stat <- abs((xbar - 93.29)/(s/sqrt(100)))
+
+p1 <- ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = n - 1),
+                   fill = after_stat(x < -stat | x > stat)),
+               show.legend = FALSE)  +
+  geom_vline(xintercept = qt(.995, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = qt(.005, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.995, n - 1), y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.005, n - 1), y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  geom_vline(xintercept = -stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = -stat, y = 2.25, color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal() +
+  ggtitle("n = 100")
+
+n <- 1000
+stat <- abs((xbar - 93.29)/(s/sqrt(n)))
+
+p2 <- ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = n - 1),
+                   fill = after_stat(x < -stat | x > stat)),
+               show.legend = FALSE)  +
+  geom_vline(xintercept = qt(.995, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = qt(.005, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.995, n - 1), y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.005, n - 1), y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  geom_vline(xintercept = -stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = -stat, y = 2.25, color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal() +
+  ggtitle("n = 1000")
+
+n <- 5000
+stat <- abs((xbar - 93.29)/(s/sqrt(n)))
+
+p3 <- ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = n - 1),
+                   fill = after_stat(x < -stat | x > stat)),
+               show.legend = FALSE)  +
+  geom_vline(xintercept = qt(.995, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = qt(.005, n - 1), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.995, n - 1), y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.005, n - 1), y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  geom_vline(xintercept = -stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = -stat, y = 2.25, color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal() +
+  ggtitle("n = 5000")
+
+
+grid.arrange(p1, p2, p3, ncol = 1)
+```
+
+---
+
+## Sampling distribution of xbar
+
+$\overline{x} = `r round(xbar, 2)`$ is not discernably different from $\mu = 93.29$ unless we have a large enough sample size. (Black curve: n = 5000; Red curve: n = 1000; Blue curve: n = 100)
+
+```{r, echo = FALSE}
+mu <- 93.29
+ggplot() +
+  stat_function(data = data.frame(x = c(80, 105)), aes(x),
+                fun = dnorm, n = 101, 
+                args = list(mean = mu, sd = s/sqrt(100)),
+                color = "blue") + 
+  stat_function(data = data.frame(x = c(80, 105)), aes(x),
+                fun = dnorm, n = 101, 
+                args = list(mean = mu, sd = s/sqrt(1000)),
+                color = "red") + 
+  stat_function(data = data.frame(x = c(80, 105)), aes(x),
+                fun = dnorm, n = 101, 
+                args = list(mean = mu, sd = s/sqrt(5000)),
+                color = "black") + 
+  geom_vline(xintercept = xbar, linewidth = 1, linetype = 20,
+             color = "purple") +
+  labs(y = "",
+       x = "xbar",
+       title = "Sampling distribution of xbar",
+       subtitle = "when mu = 93.29") +
+  scale_y_continuous(breaks = NULL) +
+  theme_classic()
+```
+
+---
+
+## So how big does n need to be, really?
+
+Recall, we will reject at $\alpha = 0.01$ when $T = \frac{\overline{x} - \mu}{s/\sqrt{n}} \approx `r round(qnorm(.995), 3)`$
+
+```{r}
+qnorm(.995)
+```
+
+Solve for $n$!
+
+$$n = \left(\frac{T*s}{\overline{x} - \mu}\right)^2$$
+
+```{r}
+n <- (2.576*s/(xbar - mu))^2
+n
+```
+

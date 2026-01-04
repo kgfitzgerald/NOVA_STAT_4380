@@ -1,0 +1,103 @@
+---
+title: "Week 03"
+subtitle: "Data wrangling pt. 1"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+### Statistician(s) of the Week
+
+[Edna Paisano](https://hardin47.github.io/CURV/scholars/paisano.html)
+
+[Desi Small-Rodriguez](https://hardin47.github.io/CURV/scholars/small-rodriguez.html)
+
+<!-- ### Thursday announcements -->
+
+<!-- Next week: -->
+
+<!-- -   Week 04 lectures: 60 minutes, 3 videos -->
+
+<!-- -   Annotations: 1hr YouTube video of Cathy O'Neil talking at Google about *Weapons of Math Destruction* -->
+
+<!-- Upcoming: -->
+
+<!-- -   First 2 [Statistics Experience Points](https://kgfitzgerald.github.io/APU_MATH_250/engage/se-01.html) due NEXT Saturday -->
+
+<!-- -   Exam 1 is in Week 5 - made available on Tuesday 9/26, due the following Tuesday 10/3 -->
+
+<!-- -   No class on Thursday 9/28 -->
+
+### Thursday announcements
+
+CEMPS BBQ [RSVP here](https://docs.google.com/forms/d/e/1FAIpQLSdg3jWxFtrZk9ZsNNrPHjmAOhzRgsUlX4UOLEijBEDlL9wLyA/viewform)
+
+Next week: 
+
++ regular Prep due next Tuesday
++ no annotations
++ P01: Project brainstorm due next Thursday
++ Stats Experience points due next Saturday
+
+
+### Announcements
+
+<!-- Due now: Lab 02 -->
+
+Due Thursday: Lab 02, Annotations 03
+
+CEMPS BBQ on Friday (free food!) [RSVP here](https://docs.google.com/forms/d/e/1FAIpQLSdg3jWxFtrZk9ZsNNrPHjmAOhzRgsUlX4UOLEijBEDlL9wLyA/viewform)
+
+Keep up the good work on annotations! Reading your thoughts is one of my favorite parts of my job :)
+
+<!-- ![](images/MPS_BBQ.png) -->
+
+### Questions?
+
+*What's the difference between the `fill` and `color` aesthetics in `ggplot`?*
+
+-   For histograms / things with bars, `color` = outside, `fill` = inside.
+
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(bins = 10, color = "blue")
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(bins = 10, color = "blue", fill = "red")
+```
+
+-   For points, use `color`
+
+```{r}
+ggplot(midwest, aes(x = area, y = poptotal, 
+                    color = state)) +
+  geom_point()
+```
+
+Note how the above examples set `color` inside or outside `aes()` in the global `ggplot()` layer.
+
+-   Put inside `aes()` if you want to map a variable in the data to the color/fill
+-   Put outside `aes()`, usually in the `geom_` layer, if you want to set `color/fill` to a specific color for the whole plot
+-   Later layers will override earlier layers
+
+```{r}
+ggplot(midwest, aes(x = area, y = poptotal, 
+                    color = state)) +
+  geom_point(color = "pink")
+```
+
+### Application Exercise
+
+-   The remainder of class will be spent on AE-03.
+-   You can access it from GitHub.
+-   It is due at the end of class today.
+-   To turn it in, you should upload your .html file to Canvas.

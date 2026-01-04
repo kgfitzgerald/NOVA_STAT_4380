@@ -1,0 +1,62 @@
+---
+title: "Week 05"
+subtitle: "Scientific Practice & Data Storytelling"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+
+### Statistician(s) of the Week
+
+[Maricela Cruz](https://hardin47.github.io/CURV/scholars/cruz.html)
+
+[Alejandra Castillo](https://hardin47.github.io/CURV/scholars/castillo.html)
+
+### Announcements
+
++ Sign up for project group in Canvas if you haven't already - sit with your partner today
++ In-class exam made on Thursday, will also release take-home exam due next Tuesday at midnight
+    + AE solutions have been posted (home page of Canvas)
+    + everything graded - reminder if you submitted on time, can revise & resubmit for up to full credit w/in one week of when assignment was graded
++ No lab or annotations this week, but you will have lecture recordings & prep quiz for Tuesday (~60 mins, 3 videos)
++ Project proposal due next Saturday
+
+
+<!-- ### Exam ground rules -->
+
+<!-- + This is an INDIVIDUAL EXAM. You may NOT work together or consult other people on this exam. -->
+<!-- + You are ENCOURAGED to use your notes, lecture slides/videos, previous assignments, and the internet -->
+<!--     + You may utilize already existing resources on the internet, but you may NOT post to any online forums or ask as AI chat bot for help on the exam.   -->
+<!--     + If you find code online, cite it, and annotate the code to demonstrate understanding.  -->
+<!-- + Failure to adhere to any of the above policies will be considered a violation of academic integrity and will be handled according to university policy. -->
+
+<!-- ### Reminders / Tips -->
+
+<!-- + Make sure you've answered all parts of the question! -->
+<!-- + Make sure to clean up visualizations - add titles, clean axis labels, all text should be readable -->
+<!-- + Use `kbl()` for clean formatting of tables -->
+<!-- + Google your errors -->
+<!-- + Search "how to ____ in tidyverse r" -->
+<!-- + stackoverflow forum is usually particularly helpful -->
+<!-- + Check out textbooks linked in prep material (esp. R for Data Science) -->
+
+### Questions?
+
+<!-- + How does the `if_else()` statement work? -->
+<!-- + When should I save the output of a pipe back into a dataset? -->
+
+<!-- ### Project Work Session -->
+
+<!-- - See [Doing Data Science slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/16-doing-data-science.html#1) for getting started on your [project proposal](https://apumath250.netlify.app/project/#project-proposal) -->
+
+

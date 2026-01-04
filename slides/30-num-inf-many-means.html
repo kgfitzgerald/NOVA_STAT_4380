@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference for Numerical Data, Part III: Many Means</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from Intro to Modern Statistics" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference for Numerical Data, Part III: Many Means
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from <a href="https://openintro-ims.netlify.app">Intro to Modern Statistics</a>
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+---
+
+class: middle
+
+# Case study: MLB batting performance
+
+
+---
+
+## Case study: MLB batting performance
+
+We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (OF), infielder (IF), and catcher (C). We will use a dataset called mlb_players_18, which includes batting records of 429 Major League Baseball (MLB) players from the 2018 season who had at least 100 at bats. 
+
+--
+
++ How many variables? **2**
++ What type(s) of variable(s)? **numerical, categorical (3+ levels)**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+Note: now our categorical variable has more than two levels! So we are comparing **many means**, rather than a difference in two means. 
+
+---
+
+## ANOVA: Analysis of Variance
+
+ANOVA is the statistical method for comparing many means
+
+`$$H_0: \mu_{OF} = \mu_{IF} = \mu_C$$`
+`$$H_A: \text{at least one mean differs from the others}$$`
+
+
+.pull-left[
+
+```
+## # A tibble: 3 × 4
+##   position     n  mean     sd
+##   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 OF         160 0.320 0.0426
+## 2 IF         205 0.318 0.0379
+## 3 C           64 0.302 0.0382
+```
+]
+.pull-right[
+&lt;img src="30-num-inf-many-means_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+ANOVA asks: is the variability in sample means so large that is seems unlikely to be from chance alone?
+
+---
+
+## ANOVA Logic / Test Statistic
+
+Total variability in Y = Variability BETWEEN groups + Variability WITHIN groups
+
+--
+
+MSB = mean square between groups `\(\sum_{j = 1}^k\frac{(\overline{Y}_j - \overline{Y}_{\cdot})^2}{k - 1}\)`
+
+MSE = mean square within groups (mean square error) `\(\sum_{i = 1}^{n_j}\frac{(\overline{Y}_{ij} - \overline{Y}_{j})^2}{n_j - 1}\)`
+
+--
+
+When `\(H_0\)` is true, `\(MSB \approx MSE\)`, but when `\(H_A\)` is true, `\(MSB &gt; MSE\)`
+
+--
+
+Statistical theory tells us when `\(H_0\)` is true (all the means are equal),
+
+`$$F = \frac{MSB}{MSE} \sim F(k - 1, n - k),$$`
+
+where `\(k\)` is the number of groups and `\(n\)` is the (total) sample size `\((n = \sum_{j = 1}^k n_j)\)`.
+
+---
+
+## F-distribution
+
+&lt;img src="./img/F-distribution_pdf.svg" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## ANOVA in R
+
+Syntax is similar to fitting a regression model.
+
+
+``` r
+mlb_model &lt;- lm(OBP ~ position, data = mlb)
+anova(mlb_model)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: OBP
+##            Df  Sum Sq   Mean Sq F value   Pr(&gt;F)   
+## position    2 0.01606 0.0080314  5.0766 0.006624 **
+## Residuals 426 0.67395 0.0015820                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+## ANOVA in R
+
+.pull-left[
+
+``` r
+tidy(anova(mlb_model))
+```
+
+```
+## # A tibble: 2 × 6
+##   term         df  sumsq  meansq statistic  p.value
+##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 position      2 0.0161 0.00803      5.08  0.00662
+## 2 Residuals   426 0.674  0.00158     NA    NA
+```
+
+``` r
+qf(.99, 2, 426) #critical value
+```
+
+```
+## [1] 4.655314
+```
+]
+.pull-right[
+&lt;img src="30-num-inf-many-means_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+`$$H_0: \mu_{OF} = \mu_{IF} = \mu_C$$`
+
+We REJECT H0. There is sufficient evidence to claim that batting performance differs by position. 
+
+---
+
+## Assumptions for ANOVA
+
++ Independence (satisfied if random sample)
++ Approximately normal (satisfied if sample size large enough per group)
++ Constant variance: variance in groups is about equal from one group to the next (examine side-by-side boxplot)
+
+Independence is always important. Normality is important in small sample sizes. Constant variance important when sample sizes differ between groups.
+
+---
+
+# How is this different from linear regression?
+
+
+``` r
+mlb_model &lt;- lm(OBP ~ position, data = mlb)
+summary(mlb_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = OBP ~ position, data = mlb)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.157819 -0.024819 -0.001385  0.027062  0.140181 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.319819   0.003144 101.708  &lt; 2e-16 ***
+## positionIF  -0.001433   0.004196  -0.342  0.73280    
+## positionC   -0.017881   0.005883  -3.040  0.00252 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.03977 on 426 degrees of freedom
+## Multiple R-squared:  0.02328,	Adjusted R-squared:  0.01869 
+## F-statistic: 5.077 on 2 and 426 DF,  p-value: 0.006624
+```
+
+---
+
+
+
+When only comparing two groups (two-level categorical variable), two-sample t-test is equivalent to ANOVA F-test. In fact, `\(t^2 = F\)`, and the p-values will be identical.
+
+
+``` r
+class_model &lt;- lm(m1 ~ lecture, data = classdata)
+tidy(summary(class_model))
+```
+
+```
+## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    75.1       1.81     41.4  2.66e-69
+## 2 lectureb       -3.14      2.60     -1.21 2.30e- 1
+```
+
+``` r
+tidy(anova(class_model))
+```
+
+```
+## # A tibble: 2 × 6
+##   term         df  sumsq meansq statistic p.value
+##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 lecture       1   278.   278.      1.46   0.230
+## 2 Residuals   111 21203.   191.     NA     NA
+```
+
+
+---
+
+## Recap
+
+
+|Parameter of Interest                 |Statistical Method |Point Estimate                    |Reference distribution |R function    |
+|:-------------------------------------|:------------------|:---------------------------------|:----------------------|:-------------|
+|One mean                              |one-sample t-test  |$\overline{x}$                    |$t_{n-1}$              |t_test()      |
+|Difference in two (independent) means |two-sample t-test  |$\overline{x}_1 - \overline{x}_2$ |$t_{n_1 + n_2 -2}$     |t_test()      |
+|Difference in paired means            |paired t-test      |$\overline{x}_{diff}$             |$t_{n-1}$              |t_test()      |
+|Many means                            |ANOVA              |MSB/MSE                           |$F_{k-1, n - k}$       |lm(), anova() |
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+---
+title: "Prepare: Week 08"
+subtitle: "Simple & Multiple Linear Regression"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For October 17
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required
+
+`r emo::ji("movie_camera")` Watch [The language of models](https://youtu.be/bQrR8HFKKhI)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/22-language-of-models.html)
+
+`r emo::ji("movie_camera")` Watch [Fitting and interpreting models](https://youtu.be/QOfbzyANOoU)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/23-fitting-interpreting-models.html)
+
+`r emo::ji("movie_camera")` Watch [Model assumptions & diagnostics](https://youtu.be/hQ1vgCCMLH8)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/24-model-assumptions-diagnostics.html)
+
+`r emo::ji("movie_camera")` Watch [Models with multiple predictors](https://youtu.be/06ncimugf_w)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/25-multiple-predictors-model-selection.html)
+  
+`r emo::ji("memo")` Complete Prep Quiz 08 on Canvas
+
+### Optional 
+
+`r emo::ji("book")` Read [IMS: Chapter 7 - Linear regression with a single predictor](https://openintro-ims.netlify.app/model-slr.html) 
+
+`r emo::ji("book")` Read [IMS Chapter 8 - Linear regression with multiple predictors](https://openintro-ims.netlify.app/model-mlr.html)
+
+
+
+
+
+
+

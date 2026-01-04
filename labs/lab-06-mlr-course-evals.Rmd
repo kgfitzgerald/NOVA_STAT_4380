@@ -1,0 +1,158 @@
+---
+title: "Lab 06 - Grading the professor, Pt. 2"
+subtitle: "Modelling with multiple predictors"
+date: "due Thursday, October 24 at 4:20pm"
+output: 
+  tufte::tufte_html:
+    css: "lab.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+In this lab we revisit the professor evaluations data we modelled in the previous AE.
+Last time, we modeled evaluation scores using a single predictor at a time.
+This time we will use multiple predictors to model evaluation scores.
+
+For context, review the previous AE's introduction before continuing on to the exercises.
+
+# Learning goals
+
+-   Fitting a linear regression with multiple predictors
+-   Interpreting regression output in context of the data
+-   Comparing models
+
+# Getting started
+
++ You will be working in your randomly assigned Lab 07 - 08 Groups. See Canvas.
++ Open our class [GitHub repo](https://github.com/kgfitzgerald/APU_MATH_250/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
+
+All plots should follow the best visualization practices discussed in lecture, including an informative title, labeled axes, and careful consideration ofaesthetic choices.
+
+All code should follow the tidyverse style guidelines.
+
+## Packages
+
+We'll use the **tidyverse** package for much of the data wrangling and visualisation, and the data lives in the **openintro** package.
+
+```{r}
+library(tidyverse) 
+library(openintro)
+library(broom)
+```
+
+## Data
+
+The data can be found in the **openintro** package, and it's called `evals`.
+Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
+You can find out more about the dataset by inspecting its documentation, which you can access by running `?evals` in the Console or using the Help menu in RStudio to search for `evals`.
+You can also find this information [here](https://www.openintro.org/data/index.php?data=evals).
+
+# Exercises
+
+## Simple linear regression
+
+1.  Fit a linear model (one you have fit before): `score_bty_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`) only. Write the linear model, and note the $R^2$ and the adjusted $R^2$.
+
+## Multiple linear regression
+
+2.  Fit a new linear model: `score_bty_gen_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`) and `gender`.
+    Write the linear model, and note the $R^2$ and adjusted $R^2$.
+
+The following code plots the above regression model. Include this plot in your report. 
+
+```{r, echo = FALSE}
+score_bty_gen_fit <- linear_reg() |> 
+  set_engine("lm") |> 
+  fit(score ~ bty_avg + gender, data = evals)
+```
+
+
+```{r}
+#create augmented dataset
+score_bty_gen_fit_aug <- augment(score_bty_gen_fit)
+
+#plot data + regression line
+ggplot(score_bty_gen_fit_aug, aes(y = score, x = bty_avg, 
+                                  color = gender)) +
+  geom_point() +
+  geom_line(aes(y = .fitted), size = 1.5)
+```
+
+
+3.  Interpret the slopes and intercept of `score_bty_gen_fit` in context of the data.
+
+4.  What percent of the variability in `score` is explained by the model `score_bty_gen_fit`? *Use inline code to include your answer in a sentence. Convert to a percentage and then round to 1 decimal place.*
+
+5.  What is the equation of the line corresponding to *just* male professors? What is it for female professors? 
+
+6.  For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?
+
+7.  How do the adjusted $R^2$ values of `score_bty_gen_fit` and `score_bty_fit` compare? What does this tell us about how useful `gender` is in explaining the variability in evaluation scores when we already have information on the beauty score of the professor. *Use inline code to include the numbers in your sentence(s).*
+
+8. Compare the slopes of `bty_avg` under the two models (`score_bty_fit` and `score_bty_gen_fit`). Has the addition of `gender` to the model changed the parameter estimate (slope) for `bty_avg`? Discuss what this might indicate. *Use inline code to include the numbers in your sentence(s).*
+
+9. Create a new model called `score_bty_rank_fit` with `gender` removed and `rank` added in, and provide a visualization of the data with the relevant regression line(s). Write the equation of the linear model, interpret the slopes and intercept in context of the data. *Use inline code to include the numbers in your sentence(s).*
+    
+## Interaction models
+
+How does the relationship between beauty and evaluation score vary between male and female professors? 
+
+10. To answer the above question, do the following:
+
+    + Fit an interaction model (with an interaction between `bty_avg` and `gender`)
+    + Provide a visualization of the data with the relevant regression lines. 
+    + Write the equation of the linear model separately for males and females
+    + Interpret the slopes and intercepts in the context of the data. 
+    + Decide which model is more appropriate in this case - the main effects or interaction model. Justify your choice. 
+
+
+# Submission
+
+Before submitting your assignment on Canvas, Render one last time, then open up your .html in a full window and inspect the following:
+
++ Check your code for neatness - add spaces and line breaks where appropriate to improve readability
+
++ Check any visualizations for informative and clean labels and titles
+
++ Check any tables for clean formatting (e.g. with `kbl() |> kable_minmal()`)
+
++ Check that you've interpreted output as appropriate
+
++ Make sure extraneous warnings and messages are suppressed (e.g. set `#| warning: false`, `#| message: false`)
+
++ Check that Exercises are clearly labeled and your text responses are visually distinguished
+
++ Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
+
+To submit, Render one last time and then upload your .html document to the relevant assignment on Canvas. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+
+# Grading (50pts)
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 2      |
+| Ex 2      | 2    |
+| Ex 3      | 4   |
+| Ex 4      | 2   |
+| Ex 5      | 4      |
+| Ex 6      | 2    |
+| Ex 7      | 4   |
+| Ex 8      | 4   |
+| Ex 9      | 8   |
+| Ex 10  | 8 |
+| Reflection prompts    | 5     |
+| Workflow & formatting | 5     |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having readable code (e.g. adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g. suppress messages & warnings, no extraneous output).

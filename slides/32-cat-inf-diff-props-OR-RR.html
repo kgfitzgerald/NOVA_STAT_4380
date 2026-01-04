@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference with Categorical Data, Part II: Difference in proportions, Odds ratio, Relative risk</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from datasciencebox.org" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference with Categorical Data, Part II: Difference in proportions, Odds ratio, Relative risk
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from datasciencebox.org
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+class: middle
+
+# Case study: Is Cell Shape Associated with Malignancy?
+
+### from Kuiper &amp; Sklar (2013), *Practicing Statistics*
+
+---
+
+## Case study: Is Cell Shape Associated with Malignancy?
+
+*Fine needle aspiration* is a less invasive alternative to a biopsy (surgery) to extract a small sample of a tumor and test for malignancy by visual measurements from a microscope. It is used to assist doctors with the diagnosis of breast cancer. Several measurements are taken such as size, shape, and texture of the cells. 
+
+Below is data collected at the University of Wisconsin on 37 tumors. 
+
+
+
+
+``` r
+cell_data |&gt; 
+  count(type, shape)
+```
+
+```
+##        type   shape  n
+## 1    Benign Concave  4
+## 2    Benign   Round  9
+## 3 Malignant Concave 17
+## 4 Malignant   Round  7
+```
+
+---
+
+## Proportions &amp; risk
+
+The **proportion** of malignant nuclei in this study is 24/37 = 0.6486
+
+
+``` r
+cell_data |&gt; 
+  count(type) |&gt; 
+  mutate(prop = n/sum(n))
+```
+
+```
+##        type  n      prop
+## 1    Benign 13 0.3513514
+## 2 Malignant 24 0.6486486
+```
+
+This overall proportion of malignancy is often called the **risk** or **baseline risk**.
+
+---
+
+## Conditional proportions 
+
+The *conditional proportion* is the proportion of malignant cells for each cell shape.
+
+
+``` r
+cell_data |&gt; 
+  count(type, shape) |&gt; 
+  group_by(shape) |&gt; 
+  mutate(prop = n/sum(n))
+```
+
+```
+## # A tibble: 4 × 4
+## # Groups:   shape [2]
+##   type      shape       n  prop
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+## 1 Benign    Concave     4 0.190
+## 2 Benign    Round       9 0.562
+## 3 Malignant Concave    17 0.810
+## 4 Malignant Round       7 0.438
+```
+
+The round nuclei have a conditional proportion of 7/16 = 0.4375.
+
+The concave nuclei have a conditional proportion of 17/21 = 0.8095.
+
+---
+
+## Test for difference in proportions
+
+**Research question:** Is Cell Shape Associated with Malignancy?
+
+**Research question, redefined:** Is there a difference between the proportion of round vs. concave cells that are malignant?
+
++ How many variables? **2** (shape, malignancy)
++ What type(s) of variables? **categorical (both w/ two levels)**
+
+This is a **hypothesis test** question about **a difference in two proportions**
+
+---
+
+## Test for difference in proportions
+
+`$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$`
+`$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$`
+
+Use `\(\alpha = 0.01\)`. Why? What does Type I / Type II error mean here?
+
+--
+
+Type I = Falsely claim cell shape (round vs. concave) and malignancy are related when they are not. Could lead to adopting a procedure for diagnosing cancer that doesn't work. 
+
+Type II = Fail to detect that cell shape and malignancy are related when they are. Could lead to NOT adopting the less invasive procedure even though it works.
+
+---
+
+## Test for difference in proportions
+
+`$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$`
+`$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$`
+
+
+``` r
+prop_test(cell_data, response = type, explanatory = shape,
+          success = "Malignant", conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 6
+##   statistic chisq_df p_value alternative lower_ci upper_ci
+##       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1      4.00        1  0.0454 two.sided    -0.0713    0.815
+```
+
+Because our p-value &gt; 0.01, we FAIL TO REJECT. We do NOT have sufficient evidence to claim that cell shape and malignancy are related. 
+
+Note also: we are 99% confidence that the difference in proportions between concave and round cells that are malignant is between -0.0659 and 0.867. That is, it's possible the true difference is 0, and the observed difference was just due to chance.
+
+---
+
+## Limitations to analyzing differences in proportions
+
+Consider an example of 2 studies:
+
+**Study 1:**
+
+`$$\hat{p}_1 - \hat{p}_2 = 0.52 - 0.48 = 0.04$$`
+
+**Study 2:**
+
+`$$\hat{p}_1 - \hat{p}_2 = 0.05 - 0.01 = 0.04$$`
+
+Both have difference of 0.01, but in Study 2, the proportion in group 1 `\(\hat{p}_1\)` is 5 times as large as the proportion in group 2 `\(\hat{p}_2\)`
+
+---
+
+## Relative risk
+
+`$$\text{Relative risk } = \frac{\text{proportion of successes in group 1}}{\text{proportion of successes in group 2}} = \frac{\hat{p}_1}{\hat{p}_2}$$`
+
+
+.pull-left[
+In the cell cancer study, the **relative risk** is 0.8095/0.4375 = 1.8503
+
+That is, the risk of malignancy is 1.85 times greater for the Concave group than for the Round group.
+]
+
+.pull-right[
+
+
+``` r
+cell_data |&gt; 
+  count(type, shape) |&gt; 
+  group_by(shape) |&gt; 
+  mutate(prop = n/sum(n))
+```
+
+```
+## # A tibble: 4 × 4
+## # Groups:   shape [2]
+##   type      shape       n  prop
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+## 1 Benign    Concave     4 0.190
+## 2 Benign    Round       9 0.562
+## 3 Malignant Concave    17 0.810
+## 4 Malignant Round       7 0.438
+```
+
+]
+---
+
+## Odds
+
+The **odds** (of success) can also be used to compare proportions and are commonly used in medicine and the social sciences.
+
+`$$\text{Odds } = \frac{\text{number of successes}}{\text{number of failures}}$$`
+The odds of malignancy in the concave group are 17 to 4, meaning that we expect 17 successes (malignant tumors) for every 4 failures (benign tumors).
+
+*"The odds of malignancy in the concave group are 4.25 to 1"* (17/4 = 4.25)
+
+---
+
+## Odds ratio
+
+`$$\text{Odds ratio} = \frac{\text{odds of group 1}}{\text{odds of group 2}} = \frac{\hat{\theta}_1}{\hat{\theta}_2}$$`
+
+The odds ratio in the cancer cell study is `\(\frac{17/4}{7/9} = 5.5\)`
+
+*The odds of malignancy are 5.5 times greater for the concave group than for the round group*
+
+
+
+
+``` r
+cell_data |&gt; 
+  count(shape, type) 
+```
+
+```
+##     shape      type  n
+## 1 Concave    Benign  4
+## 2 Concave Malignant 17
+## 3   Round    Benign  9
+## 4   Round Malignant  7
+```
+
+---
+
+## Relative risk &amp; odds ratio 
+
+Relative risk and odds ratio of 1 indicate no difference between the groups.
+
+In relative risk and odds ratio calculations, the group with the lower proportion (or lower odds) is considered group 2 (the denominator). That way, relative risk and odds ratio are always numbers larger than 1 and easier to interpret.
+
+When proportions are far away from 0.5, inference for difference in proportions may not best represent the question of interest. Odds ratios and relative risk are preferable because they take baseline risk into account. 
+
+**Be careful with absolute risk vs. relative risk reduction interpretations** (same concern as % change versus percentage point change)
+
+---
+
+## Relative risk, odds ratio, &amp; confidence intervals
+
+
+``` r
+library(DescTools)
+
+cell_data &lt;- cell_data |&gt; 
+  mutate(type = factor(type, levels = c("Malignant", "Benign")))
+
+RelRisk(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+```
+
+```
+## rel. risk    lwr.ci    upr.ci 
+## 1.8503401 0.9439074 4.4678079
+```
+
+``` r
+OddsRatio(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+```
+
+```
+## odds ratio     lwr.ci     upr.ci 
+##  5.4642857  0.7912514 37.7356919
+```
+
+Intervals include 1, indicating again we do not have sufficient evidence to conclude that concave cells have higher risk of malignancy. 
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

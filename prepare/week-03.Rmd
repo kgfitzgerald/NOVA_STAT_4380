@@ -1,0 +1,45 @@
+---
+title: "Prepare: Week 03"
+subtitle: "Data wrangling I"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For September 10
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required 
+
+`r emo::ji("movie_camera")` Watch [Tidy Data](https://youtu.be/J8YvhjEHkCM)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/07-tidy-data.html)
+
+`r emo::ji("movie_camera")` Watch [Grammar of data wrangling](https://youtu.be/0jO-5MESCJ4)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/08-grammar-wrangle.html)
+
+`r emo::ji("movie_camera")` Watch [Working with a single data frame](https://youtu.be/EjBTGdiVxvA)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/09-single-df.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 03 on Canvas
+
+### Optional 
+
+`r emo::ji("book")` Read[Journal of Statistical Software: Tidy Data](https://www.jstatsoft.org/article/view/v059i10)
+
+`r emo::ji("book")` Read [R for Data Science (R4DS): Chapter 5 - Data transformation](https://r4ds.had.co.nz/transform.html)
+
+<!-- ## For Thursday, September 15 -->
+
+<!-- ### Required -->
+
+<!-- `r emo::ji("book")` Read the Buzzfeed article titled [*These Nobel Prize Winners Show Why Immigration Is So Important For American Science*](https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science)*.* We will replicate this analysis in-class on Thursday so it's crucial that you're familiar with it ahead of time. -->

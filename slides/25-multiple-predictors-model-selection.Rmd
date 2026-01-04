@@ -1,0 +1,404 @@
+---
+title: "Models with multiple predictors"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(patchwork)
+library(plotly)
+library(widgetframe)
+library(patchwork)
+set.seed(1234)
+options(dplyr.print_min = 10, dplyr.print_max = 6)
+```
+
+class: middle
+
+# The linear model with multiple predictors
+
+---
+
+## Two numeric predictors: Paris paintings data
+
+```{r load-pp, message=FALSE, echo = FALSE}
+pp <- read_csv(
+  "data/paris-paintings.csv",
+  na = c("n/a", "", "NA")
+) |>
+  mutate(log_price = log(price))
+```
+
+- Response variable: `log_price` 
+- Explanatory variables: Width and height
+
+```{r model-price-width-height}
+pp_fit <- lm(log_price ~ Width_in + Height_in, data = pp)
+tidy(pp_fit)
+```
+<br>
+
+$$\widehat{log\_price} = 4.77 + 0.0269 \times width - 0.0133 \times height$$
+
+---
+
+## Interpretation of estimates
+
+```{r echo=FALSE}
+tidy(pp_fit)
+```
+
+--
+- **Slope - Width_in:** *All else held constant*, for each additional inch wider a painting is, we would expect the log price to be higher, on average, by 0.0269. Or, we expect the price (in dollars) to be higher by a factor of `exp(0.0269)` = `r round(exp(0.0269), 2)`.
+
+--
+- **Slope - Height_in:** *All else held constant*, for each additional inch taller a painting is, we would expect the log price to be lower, on average, by 0.0133. Or, we expect the price (in dollars) to be lower by a factor of `exp(-0.0133)` = `r round(exp(-0.0133), 2)`.
+
+--
+- **Intercept:** Paintings with 0 width and 0 height... (Doesn't make sense in context.)
+
+---
+
+## Visualizing models with multiple predictors
+
+.panelset[
+.panel[.panel-name[Plot]
+.pull-left-wide[
+```{r plotly-plot, echo = FALSE, fig.align="center", warning=FALSE}
+p <- plot_ly(pp,
+  x = ~Width_in, y = ~Height_in, z = ~log_price,
+  marker = list(size = 3, color = "lightgray", alpha = 0.5, 
+                line = list(color = "gray", width = 2))) |>
+  add_markers() |>
+  plotly::layout(scene = list(
+    xaxis = list(title = "Width (in)"),
+    yaxis = list(title = "Height (in)"),
+    zaxis = list(title = "log_price")
+  )) |>
+  config(displayModeBar = FALSE)
+frameWidget(p)
+```
+]
+]
+.panel[.panel-name[Code]
+```{r plotly-code, eval=FALSE}
+p <- plot_ly(pp,
+  x = ~Width_in, y = ~Height_in, z = ~log_price,
+  marker = list(size = 3, color = "lightgray", alpha = 0.5, 
+                line = list(color = "gray", width = 2))) |>
+  add_markers() |>
+  plotly::layout(scene = list(
+    xaxis = list(title = "Width (in)"),
+    yaxis = list(title = "Height (in)"),
+    zaxis = list(title = "log_price")
+  )) |>
+  config(displayModeBar = FALSE)
+frameWidget(p)
+```
+]
+]
+
+---
+
+## Data: Book weight and volume
+
+The `allbacks` data frame gives measurements on the volume and weight of 15 books, some of which are paperback and some of which are hardback
+
+.pull-left[
+- Volume - cubic centimetres
+- Area - square centimetres
+- Weight - grams
+]
+.pull-right[
+.small[
+```{r echo=FALSE}
+library(DAAG)
+as_tibble(allbacks) |>
+  print(n = 15)
+```
+]
+]
+
+.footnote[
+.small[
+These books are from the bookshelf of J. H. Maindonald at Australian National University.
+]
+]
+
+---
+
+## Book weight vs. volume
+
+.pull-left[
+```{r}
+lm(weight ~ volume, data = allbacks) |>
+  tidy()
+```
+]
+.pull-right[
+```{r out.width = "75%", echo = FALSE, fig.align = "right"}
+ggplot(allbacks, aes(x = volume, y = weight)) +
+  geom_point(alpha = 0.7, size = 3)
+```
+]
+
+---
+
+## Book weight vs. volume and cover
+
+.pull-left[
+```{r}
+lm(weight ~ volume + cover, data = allbacks) |>
+  tidy()
+```
+]
+.pull-right[
+```{r out.width = "75%", echo = FALSE, fig.align = "right"}
+ggplot(allbacks, aes(x = volume, y = weight, color = cover, shape = cover)) +
+  geom_point(alpha = 0.7, size = 3) +
+  theme(legend.position = "bottom") +
+  scale_color_manual(values = c("#E48957", "#071381"))
+```
+]
+
+---
+
+## Interpretation of estimates
+
+```{r echo=FALSE}
+lm(weight ~ volume + cover, data = allbacks) |>
+  tidy()
+```
+
+--
+- **Slope - volume:** *All else held constant*, for each additional cubic centimetre books are larger in volume, we would expect the weight to be higher, on average, by 0.718 grams.
+
+--
+- **Slope - cover:** *All else held constant*, paperback books are weigh, on average, by 184 grams less than hardcover books.
+
+--
+- **Intercept:** Hardcover books with 0 volume are expected to weigh 198 grams, on average. (Doesn't make sense in context.)
+
+
+
+
+---
+
+## Main vs. interaction effects
+
+.question[
+Suppose we want to predict weight of books from their volume and cover type 
+(hardback vs. paperback). Do you think a model with main effects or 
+interaction effects is more appropriate? Explain your reasoning.
+
+**Hint:** Main effects would mean rate at which weight changes as volume 
+increases would be the same for hardback and paperback books and interaction 
+effects would mean the rate at which weight changes as volume 
+increases would be different for hardback and paperback books.
+]
+
+---
+
+```{r book-main-int, echo=FALSE, out.width="65%", fig.asp = 0.8}
+book_main_fit <- lm(weight ~ volume + cover, 
+                    data = allbacks)
+book_main_fit_aug <- augment(book_main_fit)
+
+book_int_fit <- lm(weight ~ volume + cover + volume*cover, data = allbacks)
+book_int_fit_aug <- augment(book_int_fit)
+
+p_main <- ggplot() +
+  geom_point(book_main_fit_aug, 
+             mapping = aes(x = volume, y = weight, color = cover, shape = cover), alpha = 0.7) +
+  geom_line(book_main_fit_aug, 
+            mapping = aes(x = volume, y = .fitted, color = cover)) +
+  labs(title = "Main effects, parallel slopes", 
+       subtitle = "weight-hat = volume + cover") +
+  scale_color_manual(values = c("#E48957", "#071381"))
+
+p_int <- ggplot() +
+  geom_point(book_int_fit_aug, 
+             mapping = aes(x = volume, y = weight, color = cover, shape = cover), alpha = 0.7) +
+  geom_line(book_int_fit_aug, 
+            mapping = aes(x = volume, y = .fitted, color = cover)) +
+  labs(title = "Interaction effects, not parallel slopes", 
+       subtitle = "weight-hat = volume + cover + volume * cover") +
+  scale_color_manual(values = c("#E48957", "#071381"))
+
+p_main /
+  p_int +
+  plot_layout(guides = "collect")
+```
+
+---
+
+## In pursuit of Occam's razor
+
+- Occam's Razor states that among competing hypotheses that predict equally well, the simplest one should be selected.
+
+--
+- Model selection follows this principle.
+
+--
+- We only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.
+
+--
+- In other words, we prefer the simplest best model, i.e. **parsimonious** model.
+
+---
+
+.pull-left[
+```{r ref.label = "book-main-int", echo = FALSE, out.width="100%", fig.asp = 0.8}
+```
+]
+.pull-right[
+.question[
+Visually, which of the two models is preferable under Occam's razor?
+]
+]
+
+---
+
+## R-squared
+
+- $R^2$ is the percentage of variability in the response variable explained by 
+the regression model.
+
+```{r}
+glance(book_main_fit)$r.squared
+glance(book_int_fit)$r.squared
+```
+
+--
+- Clearly the model with interactions has a higher $R^2$.
+
+--
+- However using $R^2$ for model selection in models with multiple explanatory variables is not a good idea as $R^2$ increases when **any** variable is added to the model.
+
+---
+
+## Adjusted R-squared
+
+... a (more) objective measure for model selection
+
+- Adjusted $R^2$ doesn't increase if the new variable does not provide any new 
+informaton or is completely unrelated, as it applies a penalty for number of 
+variables included in the model.
+- This makes adjusted $R^2$ a preferable metric for model selection in multiple
+regression models.
+
+---
+
+## Comparing models
+
+.pull-left[
+```{r}
+glance(book_main_fit)$r.squared
+glance(book_int_fit)$r.squared
+```
+]
+.pull-right[
+```{r}
+glance(book_main_fit)$adj.r.squared
+glance(book_int_fit)$adj.r.squared
+```
+]
+
+--
+
+.pull-left-wide[
+.small[
+- Is R-sq higher for int model?
+```{r}
+glance(book_int_fit)$r.squared > glance(book_main_fit)$r.squared 
+```
+
+- Is R-sq adj. higher for int model?
+
+```{r}
+glance(book_int_fit)$adj.r.squared > glance(book_main_fit)$adj.r.squared
+```
+]
+]
+
+---
+
+## Model Selection 
+
++ When you have many variables in your dataset, how do you choose which ones best predict/explain your outcome of interest?
+
++ $2^p$ possible models for $p$ predictors. (e.g. $2^{10} = 1024$)
+
++ Forward selection: fit all one-predictor models, choose "best" one, then fit all two-predictor models (with 1st predictor already determined), choose "best" one, etc
+
++ Backward selection: fit model with all possible predictors, drop variables one at a time until you arrive at "best" one
+
++ "Best subsets" selection: uses a combination of forward and backward selection to select a "best" model for each # of possible predictors (e.g. best 1-predictor model, best 2-predictor model, .... best 10-predictor model, ... )
+
+---
+
+## Model selection: Best subsets
+
+```{r, message = FALSE, echo = FALSE}
+library(leaps)
+pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
+pp_subset <- pp |> 
+  select(position, dealer, year, origin_cat, 
+         school_pntg, diff_origin, 
+         logprice, artistliving, Height_in,
+         Width_in, Surface, paired, relig, landsALL,
+         mytho, portrait) |> 
+  mutate(across(where(is.character), factor))
+```
+
+```{r}
+models <- regsubsets(logprice ~ ., data = pp_subset, nvmax = 10, method = "seqrep")
+summary(models)$which[,1:6]
+summary(models)$adjr2
+```
+
+---
+
+## "Best" model
+
+```{r}
+summary(models)$which[7,]
+model_best <- lm(logprice ~ dealer + year + school_pntg + diff_origin + 
+                   Width_in + Surface, data = pp_subset)
+```
+
+---
+
+## "Best" model: Adjusted $R^2 = 0.445$
+
+```{r, echo = FALSE}
+tidy(model_best) |> print(n = 14)
+```
+
+---
+
+## Model diagnostics
+
+```{r}
+model_best <- lm(logprice ~ dealer + year + school_pntg + diff_origin + 
+                   Width_in + Surface, data = pp)
+model_best_aug <- augment(model_best)
+
+ggplot(data = model_best_aug, aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.5)
+```
+

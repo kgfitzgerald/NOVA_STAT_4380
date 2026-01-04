@@ -1,0 +1,80 @@
+---
+title: "Interactive web apps"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+## Shiny
+
+.pull-left[
+- Shiny is an R package that makes it easy to build interactive web apps straight from R
+- You can host standalone apps on a webpage or embed them in Quarto documents or build dashboards
+- You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions
+- Learn more at [shiny.rstudio.com](https://shiny.rstudio.com/)
+]
+.pull-right[
+```{r echo=FALSE, fig.align = "left"}
+knitr::include_graphics("img/shiny.png")
+```
+]
+
+---
+
+## High level view
+
+- Every Shiny app has a webpage that the user visits, and behind this webpage there is a computer that serves this webpage by running R
+
+- When running your app locally, the computer serving your app is your computer
+
+- When your app is deployed, the computer serving your app is a web server
+
+---
+
+.center[
+[https://kgfitz.shinyapps.io/standard_deviation/](https://kgfitz.shinyapps.io/standard_deviation/)
+]
+.center[
+[https://kgfitz.shinyapps.io/confidence_intervals/](https://kgfitz.shinyapps.io/confidence_intervals/)
+]
+.center[
+[https://kgfitz.shinyapps.io/calculate_final_grade_MATH130/](https://kgfitz.shinyapps.io/calculate_final_grade_MATH130/)
+]
+
+.center[
+[Shiny Gallery](https://shiny.rstudio.com/gallery/)
+]
+
+---
+
+# Prep Activity #1
+
+1. Create a folder inside your MATH_250 folder called `hello_shiny`
+2. Copy the `app.R` file in the `hello_shiny` folder on GitHub 
+3. Open the `app.R` file and run the App
+3. Change the title from "Hello Shiny!" to "Hello World!"
+4. Set the minimum value of the slider bar to 5.
+5. Change the histogram border color from `"white"` to `"orange"`.
+6. When you are ready, run the app again and it should appear like the image below
+
+```{r echo=FALSE, out.width="50%", out.height="50%"}
+knitr::include_graphics("img/shiny_hello-modified.png")
+```
+
+---
+
+# Prep Activity #2
+
+Complete [Lesson 2](https://shiny.rstudio.com/tutorial/written-tutorial/lesson2/) of the Shiny Getting Started tutorials. Starter code can be found in the `app.R` file in the `lesson-02` folder on Github.
+
+# Prep Activity #3
+
+`r emo::ji("memo")` Complete Prep Quiz 13 on Campuswire (discussion post)

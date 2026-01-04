@@ -1,0 +1,422 @@
+---
+title: "Exam Correction Practice"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_section: false
+    highlight: tango
+    theme: "cosmo"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This documents provides student answers that received partial credit on the [Exam](https://kgfitzgerald.github.io/APU_MATH_250/exam/exam-01.html). Your job is to identify where reasoning went wrong and/or what could be improved about the answer. Remember, these are your peers' submissions, so be kind when critiquing and recommending improvements :)
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+library(nwslR)
+library(tidyverse)
+library(ggridges)
+library(kableExtra)
+```
+
+```{r, echo = FALSE}
+game <- nwslR::game
+
+portland <- game |>
+  filter(home_team == "POR" | away_team == "POR")
+
+portland <- portland |> 
+  mutate(POR_points = if_else(home_team == "POR", 
+                              home_pts, away_pts),
+      OPP_points = if_else(home_team == "POR" , 
+                           away_pts, home_pts),
+      result = case_when(POR_points > OPP_points ~ "Win",
+                         POR_points < OPP_points ~ "Loss",
+                         POR_points == OPP_points ~ "Tie"))
+
+portland <- portland |>
+  mutate(gamelocation = 
+           case_when(home_team == "POR" ~ "Home",
+                     away_team == "POR" ~ "Away"))
+
+portland <- portland |> 
+  group_by(season) |> 
+  arrange(game_date) |> 
+  mutate(game_number = row_number()) |> 
+  ungroup()
+```
+
+# Exercise 5
+
+*Create an appropriate visualization to examine how the Thorns performed in each individual season (in terms of wins, losses, and ties).*
+
+What could be improved about the following visualizations? What would need to change in the code to improve each one?
+
+### Student A
+
+```{r}
+ggplot(portland, aes(x = result, fill = "season")) +
+  geom_bar() + 
+  labs(
+    x = "Result",
+    y = "Count",
+    title = "Portland W-L-T Analysis By Season",
+    subtitle = "Portland Thorns FC"
+  ) +
+  facet_wrap(~ season, nrow = 5)
+```
+
+### Student B
+
+```{r}
+ggplot(portland, aes(x = result)) + 
+  geom_bar(fill = "green") +
+  facet_grid(result ~ season) +
+  labs(title = "Portland's Results By Season",
+       x = "Results",
+       y = "Count")
+```
+
+### Student C
+
+```{r}
+ggplot(portland, aes(x = fct_infreq(result))) + 
+  geom_bar() + 
+  facet_wrap(~ season, ncol = 1) +
+  labs(title = "Results of Games for Portland Thorns",
+       subtitle = "by season", 
+       x = "Result",
+       y = "Count")
+```
+
+
+# Exercise 6
+
+*Does Portland have a home field advantage?*
+
+What could be improved about the following visualizations? What would need to change in the code to improve each one?
+
+### Student A
+
+```{r}
+ggplot(portland, 
+       aes(x = POR_points,
+           y = gamelocation)) +
+  geom_boxplot() +
+  labs(
+    x = "Points",
+    y = "Placement",
+    title = "Points Based by Position"
+  ) +
+  theme(
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank()
+  ) 
+```
+
+### Student B
+
+```{r}
+portland <- portland |> 
+  group_by(home_team) |> 
+  mutate(portland_home_game = home_team =="POR")
+ggplot(portland, aes(x=POR_points, y=portland_home_game))+
+  geom_boxplot(fill="pink")+
+  labs(title="Proportion of points by Portland Thorns as an Away Or Home Team",
+       x="Points scored by Portland Thorns",
+       y="TYPE of Field
+       TRUE = Home Field, FALSE = Away Field") +
+  coord_flip()+
+  theme_light()
+```
+
+### Student C
+
+```{r}
+ggplot(portland, aes(x = POR_points, fill = gamelocation)) +
+  geom_boxplot() +
+  labs(title = "Points scored by the Portland Thorns", x = "Points")
+```
+
+### Student D
+
+```{r}
+portland_home <- portland |>
+  filter(home_team == "POR", na.rm=TRUE) 
+
+portland_away <- portland |>
+  filter(away_team == "POR", na.rm=TRUE)
+
+ggplot(data = portland_home, mapping = aes(x = home_pts)) + 
+  geom_boxplot()
+
+ggplot(data = portland_away, mapping = aes(x = home_pts)) + 
+  geom_boxplot()
+```
+
+
+# Exercise 7
+
+*Continuing to investigate home-field advantage, produce a nicely formatted summary table that presents the proportion of games won, grouped by whether it was a home or away game.*
+
+Here are 7 examples of (partially) incorrect code. For each, 
+
++ Identify what is being accomplished/computed at each step of the pipe
++ Where reasoning went wrong (if anywhere)
++ How code could be improved and/or simplified
++ Pay particular attention to denominators, and what number R is inserting wherever you see an `n`, `n()`, or `sum(n)`
+
+### Student A
+
+```{r}
+portland |>
+  count(gamelocation, winner == "POR") |>
+  mutate(proportion = n/sum(n)) |>
+  kbl |> 
+  kable_minimal()
+```
+
+### Student B
+
+```{r}
+portland |>
+  group_by(gamelocation) |>
+  count(result) |>
+  filter(result == "Win") |>
+  summarise(n/59) |>
+  kbl() |>
+  kable_minimal()
+```
+
+### Student C
+
+```{r}
+portland |> 
+  group_by(gamelocation) |>
+  mutate(num_games = n()) |> 
+  group_by(gamelocation, result) |> 
+  mutate(num_result = n()) |> 
+  summarise(prop = num_result/num_games) |> 
+  distinct()
+```
+
+### Student D
+
+```{r}
+portland |>
+  group_by(gamelocation) |> 
+  summarise(portland, winner == "POR")|>
+kbl |>
+  kable_minimal()
+```
+
+
+### Student E
+
+```{r}
+portland |>
+  group_by(gamelocation) |>
+  summarise(prop_wins = sum(result == "Win")/118) |>
+  kbl |>
+  kable_minimal()
+```
+
+### Student F
+
+```{r}
+portland |> 
+  group_by(portland_home_game) |> 
+  count(result) |> 
+  mutate(percent=n/118*100) |> 
+  kbl() |>
+  kable_minimal()
+```
+
+### Student G
+
+```{r}
+portland |> 
+  group_by(gamelocation) |>
+  count(result == "Win") |>
+  summarise(prop = n/sum(n)) |>
+  kbl() |>
+  kable_minimal()
+```
+
+
+
+# Exericse 8
+
+*Create a scatterplot of the points Portland scored versus game number. Based on this plot, does there appear to be a general change in number of points scored over the course of the season?*
+
+How could the following visualizations be improved? What is difficult to read/interpret? 
+
+### Student A
+
+```{r}
+ggplot(portland, aes(x = POR_points, y = game_number, 
+                     colour = POR_points)) +
+  geom_jitter() +
+  labs(x = "Portland's Points Scored",
+       y = "Number of Games",
+       title = "Portland's Points Scored VS Game Number",
+       subtitle = "Portland Team") +
+  theme_minimal()
+```
+
+### Student B
+
+```{r}
+ggplot(portland, aes(x = game_number,
+                     y = home_pts == "POR" | away_pts == "POR",
+                     color = gamelocation)) +
+  geom_jitter() +
+  labs(title = "Number of Points Scored Over the Course of the Season",
+       x = "Game Number",
+       y = "Points Scored") +
+  scale_color_viridis_d(end = 0.5)
+```
+
+
+
+# Exericse 9
+
+How could the following visualizations/code be improved? What is difficult to read/interpret? 
+
+```{r}
+ggplot(portland, aes(x = game_number, y = POR_points, factor(season), color = season)) +
+  geom_jitter() +
+   labs(title = "Points scored vs. game number",
+     x = "Number of games played", y = "Portland points scored")
+```
+
+```{r}
+ggplot(portland, aes(x=game_number, y=POR_points, colour = factor(season)))+
+  geom_line()+
+  geom_jitter()+
+  labs(tite="Points per Game in each Season",
+       x="Game Number",
+       y="Points") +
+  theme_light()
+```
+
+
+# Exercise 10
+
++ What is the research question trying to investigate?
++ What does the visualization actually show?
++ Does the visualization match the research question?
++ Is the interpretation appropriate, given the research question and what's shown in the visualization? 
++ How could the research question, visualization, and/or interpretation be improved?
+
+### Student A
+
+```{r}
+ggplot(portland, aes(x = OPP_points, y = game_number, 
+                     colour = OPP_points)) +
+geom_jitter() +
+  labs(x = "Portland's Opponents Points Scored",
+       y = "Number of Games",
+       title = "Portland's Opponents Points Scored VS Game Number",
+       subtitle = "Portlands Opponent Teams") +
+  theme_minimal()
+```
+
+Student Interpretation:
+
+> I thought it would be an interesting idea if we could compare the performance of the teams that played Portland’s team. We can tell that the performance of the rest of the teams is worst compared to Portland’s. The main score in the opponents its between 0-2 but Portland’s is between 1-2.
+
+### Student B
+
+The Portland Thorns tied several games on their home field in the 2015-2019 data. Did they tie because both teams did poorly or because both teams did well?
+
+```{r}
+portland |> 
+  filter(result == "Tie") |> 
+  ggplot(aes(x = POR_points, fill = gamelocation)) +
+  geom_histogram()  +
+  labs(x = "Tie points", y = "Count", title = "Tie points of Portland Thorns", subtitle = "NWSL 2015-2019", fill = "Game") + 
+  scale_color_viridis_d() +
+  theme_bw()
+```
+
+Student Interpretation:
+
+> It is difficult to say whether the teams did poorly or well because there is no data on how many times each team almost made a goal - this would highlight whether or not the defense or offense was successful. What can be observed is that most of the ties achieved by the Portland Thorns came from making 1 or 2 goals. The ties of 3, 4, and 5 goals were mostly scored at home, whereas most of the games on away fields that tied were games of 0, 1, or 2 goals per team.
+
+### Student C
+
+Student Question:
+
+> Do the Thorns tend to win by more or lose by more? Does it change by season?
+
+```{r}
+#How many points the Thorns lost by
+portland |>
+  filter(result == "Loss") |>
+ggplot(aes(x = OPP_points - POR_points, factor(season))) +
+  geom_boxplot() +
+  labs(title = "Number of Points Games Were Lost By",
+       x = "Opponent Points - Portland Points",
+       y = "Season") +
+  theme_light()
+```
+
+```{r}
+#How many points the Thorns won by
+portland |>
+  filter(result == "Win") |>
+ggplot(aes(x = POR_points - OPP_points, factor(season))) +
+  geom_boxplot() +
+  labs(title = "Number of Points Games Were Won By",
+       x = "Portland Points - Opponent Points",
+       y = "Season") +
+  theme_light()
+```
+
+Student Interpretation:
+
+> Generally speaking, the Thorns won by more than they lost. In other words, the games that they lost were closer than the games that they won. In the seasons of 2016 and 2018, however, the differences in points between the Thorns and their opponents were similar regardless of whether they won or lost.
+
+### Student D
+
+Student Question:
+
+> What is the proportion of games per season was won by the different teams?
+
+```{r}
+ggplot(game, aes(x=season, fill = winner)) +
+  geom_bar() +
+  labs(title = "Proportion of wins by each team per season",
+       x="Season",
+       y="Number of Games")+
+  theme_light()
+```
+
+Student Interpretation:
+
+> As seen in the graph, Portland Thorns won the largest proportion of games in the 2017 season as compared to the other teams. The NA represents the number of games tied by all teams in each season. Some of them may include games by Portland Thorns. The only team that comes close to Portland Thorns in the most number of wins in 2017 was the North Carolina Courage. In seasons 2018 annd 2019, the North Carolina Courage won more games than the Portland Thorns. It would be logical to assume that in the seasons 2017 to 2019, both the Portland Thorns and North Carolina Courage dominated the league.
+
+### Student E
+
+Student Question:
+
+> Did every NWSL Team have a home court advantage?
+
+```{r}
+game |>
+  group_by(home_team) |>
+  summarise(mean(home_pts),
+            mean(away_pts),
+            median(home_pts),
+            median(away_pts)) |>
+  kbl() |>
+  kable_minimal()
+```
+
+Student Interpretation:
+
+> You can see here that teams like Boston and New Jersey have a higher average and median in away points showing that they didn’t really have a home court advantage. There are also some teams who have the same median but a higher average of points scored away as well.

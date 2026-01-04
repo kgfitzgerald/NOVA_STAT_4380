@@ -1,0 +1,52 @@
+---
+title: "Project - Part 01"
+subtitle: "Proposal"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+
+
+There are two main purposes of the project proposal:
+
+- To help you think about the project early, so you can get a head start on finding data, reading relevant literature, thinking about the questions you wish to answer, etc.
+- To ensure that the data you wish to analyze, methods you plan to use, and the scope of your analysis are feasible and will help you be successful for this project.
+
+Choose **three** substantially different datasets you are interested in analyzing. For each dataset, include the following 3 sections in the proposal: 
+
+### Data description & background
+
+- Identify the source of the data, 
+- When and how it was originally collected (by the original data curator, not necessarily how you found the data), and 
+- Provide a brief description of the observations 
+
+### Research question
+
+- Describe the research topic along with a concise statement of the research question and hypotheses.
+
+### Data set
+
+- Use the `glimpse` function to provide a glimpse of the data set.
+
+- Place the file containing your data in the `data` folder of the project repo. 
+
+### Submission 
+
+Submit the PDF of your proposal on Canvas by midnight on **Thursday, October 13**. I will provide feedback on your proposal to help you determine a data set to use for the project. 
+
+### Notes 
+
+- Project proposals should have no more than 1-2 pages of **text.** (not including the output from `glimpse`). That is, be concise!
+- You **must** use one of the data sets in the proposal for the final project, unless instructed otherwise by Dr. Fitz. 
+
+### Proposal grading 
+
+The project proposal will be graded as follows:
+
+Total                                                   | 5 pts
+--------------------------------------------------------|-------
+**Data description/background**                                   | 2 pts
+**Research questions**                                  | 2 pts
+**Results**                                             | 1 pts

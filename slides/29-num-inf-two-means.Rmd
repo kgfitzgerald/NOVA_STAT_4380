@@ -1,0 +1,354 @@
+---
+title: "Inference for Numerical Data, Part II: Two Means"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from [Intro to Modern Statistics](https://openintro-ims.netlify.app)"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(dsbox)
+library(scales)
+library(infer)
+library(distributional)
+library(ggdist)
+library(gridExtra)
+library(openintro)
+library(broom)
+library(readxl)
+```
+
+
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+Estimation -> Confidence interval
+
+Decision -> Hypothesis test
+
+Assumptions met?
+
+---
+
+class: middle
+
+# Case study: Difficulty of two exams
+
+---
+
+## Case study: Difficulty of two exams
+
+An instructor decided to run two slight variations of the same exam. Prior to passing out the exams, they shuffled the exams together to ensure each student received a random version. Anticipating complaints from students who took Version B, they would like to evaluate whether the difference observed in the groups is so large that it provides convincing evidence that Version B was more difficult (on average) than Version A.
+
+--
+
++ How many variables? **2** (Exam score, Exam version)
+
+--
+
++ What type(s) of variable(s)? **numerical, categorical (two levels)**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+--
+
+The parameter of interest is the **difference in population means**, $\mu_A - \mu_B$, and the sample statistic is the difference in sample means, $\bar{x}_A - \bar{x}_B$
+
+---
+
+## Hypothesis test for two (independent) means
+
+```{r, echo = FALSE}
+classdata <- classdata |> 
+  filter(lecture != "c")
+```
+
+```{r}
+classdata |> group_by(lecture) |> summarize(xbar = mean(m1), s = sd(m1), n = n())
+```
+
+$$H_0: \mu_{A} = \mu_B \ \ \ \Rightarrow \mu_A - \mu_B = 0$$
+$$H_A: \mu_{A} > \mu_B \ \ \ \Rightarrow \mu_A - \mu_B > 0$$
+
+--
+
+$$\text{by CLT:   } T = \frac{(\bar{x}_A - \bar{x}_B) - (\mu_A - \mu_B)}{SE(\bar{x}_A - \bar{x}_B)}  = \frac{(\bar{x}_A - \bar{x}_B) - 0}{\sqrt{s_A^2/n_A + s_B^2/n_B}}\sim t_{n_A +n_B -2}$$
+--
+
+**Assumption:** $n_A, n_B > 30$, independent observations within and between groups
+
+
+
+
+---
+
+## Hypothesis test for two (independent) means
+
+```{r}
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99, alternative = "greater")
+```
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, warning = FALSE, out.height = "60%"}
+nA <- 58
+nB <- 55 
+df <-  t_test(classdata, response = m1, 
+                explanatory = lecture, 
+                conf_level = 0.99)$t_df
+crit_value99 <- qt(.99, df)
+stat <-  t_test(classdata, response = m1, 
+                explanatory = lecture, 
+                conf_level = 0.99)$statistic
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = df),
+                   fill = after_stat(x > stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+]
+.panel[.panel-name[Calculations (by hand)]
+
+```{r}
+lectureA <- classdata |> filter(lecture == "a")
+xbarA <- mean(lectureA$m1)
+sA <- sd(lectureA$m1)
+lectureB <- classdata |> filter(lecture == "b")
+xbarB <- mean(lectureB$m1)
+sB <- sd(lectureB$m1)
+(t_stat <- (xbarA - xbarB)/sqrt(sA^2/nrow(lectureA) + sB^2/nrow(lectureB)))
+(crit_value99 <- qt(.99, df = nrow(lectureA) + nrow(lectureB) - 2))
+(p_value <- 2*pt(t_stat, df = nrow(lectureA) + nrow(lectureB) - 2, lower.tail = FALSE))
+```
+]
+
+.panel[.panel-name[Calculations (t_test)]
+```{r, warning = FALSE}
+t_test_results <- t_test(classdata, response = m1, 
+                explanatory = lecture, 
+                conf_level = 0.99)
+t_test_results
+t_stat <- t_test_results$statistic
+df <- t_test_results$t_df
+qt(.99, df) #critical value
+```
+]]
+
+---
+
+## Conclusions
+
+$$H_0: \mu_{A} = \mu_B \ \ \ \Rightarrow \mu_A - \mu_B = 0$$
+$$H_A: \mu_{A} > \mu_B \ \ \ \Rightarrow \mu_A - \mu_B > 0$$
+
+```{r, warning = FALSE}
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99, alternative = "greater")
+```
+
+We FAIL TO REJECT H0.
+
+---
+
+## What is the average difference in scores?
+
+This is an **estimation** question
+
+```{r, warning = FALSE}
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99)
+```
+
+
+We are 99% confident that the true difference in scores between version A and version B of the exam is between -3.68 and 9.96. 
+
+
+---
+
+class: middle
+
+# Case study: textbook prices
+
+---
+
+## Case study: textbook prices
+
+**Research question:** Are required textbooks at UCLA cheaper in the UCLA bookstore, or on Amazon?
+
++ How many variables? **2** (textbook price, seller)
++ What type(s) of variable(s)? **numerical, categorical (two levels)**
+
+```{r}
+ucla_textbooks_f18 |> 
+  select(subject, textbook_isbn, amazon_used, bookstore_used) |> 
+  glimpse()
+```
+
+Note: These two samples of 201 prices are not independent! They're **paired** 
+
+---
+
+## Hypothesis test for paired means
+
+```{r, echo = FALSE, out.height="70%"}
+textbooks_long <- ucla_textbooks_f18 |> 
+  select(textbook_isbn, amazon_used, bookstore_used) |> 
+  na.omit() |> 
+  pivot_longer(cols = 2:3, names_to = "type", values_to = "price") 
+ggplot(textbooks_long, aes(x = type, y = price)) +
+  geom_boxplot() +
+  geom_point(aes(color = type, group = textbook_isbn)) +
+  geom_line(aes(group = textbook_isbn))
+```
+
+---
+
+## Hypothesis test for paired means
+
+Really interested in the **average difference** 
+
+$$\overline{x}_{diff} = \sum_{i = 1}^n \frac{\text{Bookstore price}_i - \text{Amazon price}_i}{n}$$
+
+$$H_0: \mu_{diff} = 0$$
+
+$$H_A: \mu_{diff} \neq 0$$
+
+$$T = \frac{\overline{x}_{diff} - 0}{s_{diff}/\sqrt{n}} \sim t_{n - 1},$$
+n = number of pairs
+
+---
+
+## Hypothesis test for paired means
+
+```{r}
+ucla_textbooks_f18 <- ucla_textbooks_f18 |> 
+  select(textbook_isbn, amazon_used, bookstore_used) |>
+  na.omit() |> 
+  mutate(diff = bookstore_used - amazon_used)
+
+t_test(ucla_textbooks_f18, response = diff, conf_level = 0.99)
+```
+
+$$T = 4.60$$
+$$\overline{x}_{diff} = \$12.20$$
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, warning = FALSE, out.height = "60%"}
+df <-  t_test(ucla_textbooks_f18, response = diff, conf_level = 0.99)$t_df
+crit_value99 <- qt(.995, df)
+stat <-  t_test(ucla_textbooks_f18, response = diff, 
+                conf_level = 0.99)$statistic
+ggplot() +
+  xlim(c(-5,5)) + 
+  stat_slab(aes(y = "T",
+                   dist = dist_student_t(df = df),
+                   fill = after_stat(x > stat | x < -stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = qt(.995, df), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  geom_vline(xintercept = qt(.005, df), linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.995, df), y = 2, color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = qt(.005, df), y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  geom_vline(xintercept = -stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = -stat, y = 2.25, color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+]
+.panel[.panel-name[Calculations (by hand)]
+
+```{r}
+xbar_diff <- mean(ucla_textbooks_f18$diff)
+s_diff <- sd(ucla_textbooks_f18$diff)
+n <- nrow(ucla_textbooks_f18)
+(t_stat <- (xbar_diff)/(s_diff/sqrt(n)))
+qt(.995, df = n - 1)
+```
+]
+
+.panel[.panel-name[Calculations (t_test)]
+```{r, warning = FALSE}
+t_test_results <- t_test(ucla_textbooks_f18, response = diff,
+                         conf_level = 0.99)
+t_test_results
+t_stat <- t_test_results$statistic
+df <- t_test_results$t_df
+qt(.99, df) #critical value
+```
+]]
+
+---
+
+## Paired t-test with t.test()
+
+```{r}
+t.test(x = ucla_textbooks_f18$bookstore_used,
+       y = ucla_textbooks_f18$amazon_used, 
+       paired = TRUE)
+```
+
+---
+
+## Conclusions
+
+$$H_0: \mu_{diff} = 0$$
+
+$$H_A: \mu_{diff} \neq 0$$
+```{r}
+t_test(ucla_textbooks_f18, response = diff,
+                         conf_level = 0.99)
+```
+
+We REJECT H0. There is sufficient evidence to claim that used textbooks on Amazon are cheaper, on average, compared to UCLA Bookstore (used) prices.
+
+We are 99% confident that the bookstore prices are between $5.14 and \$19.2 more expensive than Amazon prices, on average. 
+

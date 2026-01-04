@@ -1,0 +1,42 @@
+---
+title: "Prepare: Week 05"
+subtitle: "Scientific Practice & Data Science Workflow"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## For Tuesday, September 24
+
++ Sign up for a project group on Canvas.
+
++ Complete the following prep exercises:
+
+`r emo::ji("movie_camera")` Watch [Scientific studies and confounding](https://youtu.be/4_tellSmARQ)
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/17-studies-confounding.html)
+
+`r emo::ji("book")` [Read Chapters 2 & 3 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061)
+
+- Only need to read 2.1 - 2.4 and 3.1 - 3.4 (~30 pages)
+- This is freely available through APU's library as an ebook.
+
+<!-- `r emo::ji("movie_camera")` Watch [Doing data science](https://youtu.be/b9lSW0kyqBg) -->
+
+<!-- - [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/16-doing-data-science.html) -->
+
+`r emo::ji("memo")` Complete Prep Quiz 05 on Canvas
+
+### Optional
+
+`r emo::ji("book")` [Read IMS:: Chapter 2 - Study design](https://openintro-ims.netlify.app/data-design.html)
+
+`r emo::ji("book")` [Read R4DS:: Chapter 7 - Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
+
+
+

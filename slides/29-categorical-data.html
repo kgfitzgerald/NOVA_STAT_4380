@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference with Categorical Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from datasciencebox.org" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference with Categorical Data
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from datasciencebox.org
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+class: middle
+
+# Choosing the right analysis
+
+---
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+Estimation -&gt; Confidence interval
+
+Decision -&gt; Hypothesis test
+
+---
+
+class: middle
+
+# Case study: What proportion of US adults are married?
+
+---
+
+## What proportion of US adults are married?
+
+
+
++ How many variables? **1**
++ What type(s) of variable(s)? **categorical**
+
+This is an **estimation** question, meaning a confidence interval is most appropriate. 
+
+The parameter of interest is the **population proportion**, `\(p\)`, and the sample statistic is the sample proportion, `\(\hat{p}\)`
+
+In 2019, a survey of 1,000 US adults age 25 - 54 found that 53% were married. 
+
+
+```r
+survey %&gt;% 
+  count(married) %&gt;% 
+  mutate(prop = n/sum(n))
+```
+
+```
+##   married   n prop
+## 1      no 470 0.47
+## 2     yes 530 0.53
+```
+
+
+---
+
+# What proportion of US adults are married?
+
+`prop_test()` will provide a confidence interval
+
+
+```r
+glimpse(survey)
+```
+
+```
+## Rows: 1,000
+## Columns: 1
+## $ married &lt;chr&gt; "yes", "no", "no", "yes", "yes", "yes", "no", "…
+```
+
+```r
+prop_test(survey, response = married, success = "yes", 
+          conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 6
+##   statistic chisq_df p_value alternative lower_ci upper_ci
+##       &lt;dbl&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1      3.48        1  0.0621 two.sided      0.489    0.571
+```
+
+We are 99% confident that the true proportion of US adults age 25 - 54 is between 0.489 and 0.571. 
+
+---
+
+# Case study: success of fertility treatment
+
+Assisted Reproductive Technology (ART) is a collection of techniques that help facilitate pregnancy (e.g., in vitro fertilization). The 2018 ART Fertility Clinic Success Rates Report published by the Centers for Disease Control and Prevention reports that ART has been successful in leading to a live birth in 48.8% of cases where the patient is under 35 years old. A new fertility clinic claims that their success rate is higher than average for this age group. A random sample of 30 of their patients yielded a success rate of 60%. A consumer watchdog group would like to determine if this provides strong evidence to support the company’s claim.
+
++ Research question: **is the true success rate at the new clinic greater than 48.8%?**
++ How many variables? **1**
++ What type(s) of variables? **categorical**
+
+This is a **hypothesis test** question about **one proportion**
+
+---
+
+## Hypothesis test for one proportion
+
+
+
+
+`$$H_0: p = 0.488$$`
+`$$H_A: p &gt; 0.488$$`
+
+Under `\(H_0, \ \ \hat{p} \approx N\left(p_0, \sqrt{\frac{p_0(1 - p_0)}{n}}\right)\)` and the test statistic `$$Z = \frac{\hat{p} - p_0}{SE(\hat{p})} \approx N(0,1)$$`
+
+So, for `\(\alpha = 0.01\)`, we will compare our test statistic `\(Z\)` to the critical value of `qnorm(.995)` = 2.576
+
+---
+
+## Hypothesis test for one proportion
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="29-categorical-data_files/figure-html/unnamed-chunk-6-1.png" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Calculations]
+
+```r
+phat &lt;- 0.6
+p0 &lt;- 0.488
+n &lt;- 30
+SE &lt;- sqrt(p0*(1-p0)/n)
+(Z &lt;- (phat - p0)/SE)
+```
+
+```
+## [1] 1.227252
+```
+]]
+
+
+---
+
+# Hypothesis test for one proportion
+
+
+```r
+glimpse(newclinic)
+```
+
+```
+## Rows: 30
+## Columns: 1
+## $ live_birth &lt;chr&gt; "yes", "no", "no", "no", "no", "yes", "no", …
+```
+
+```r
+prop_test(newclinic, response = live_birth, success = "yes", 
+          conf_level = 0.99, z = TRUE, p = 0.488)
+```
+
+```
+## # A tibble: 1 × 3
+##   statistic p_value alternative
+##       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+## 1      1.23   0.220 two.sided
+```
+
+
+---
+
+# Is the true success rate at the new clinic greater than 48.8%?
+
+.pull-left[
+
+```
+## # A tibble: 1 × 3
+##   statistic p_value alternative
+##       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+## 1      1.23   0.220 two.sided
+```
+
+We FAIL TO REJECT `\(H_0\)` because our `statistic` (1.23) is LESS extreme than our critical value (2.576). Equivalently, our p-value (0.220) is greater than `\(\alpha = 0.01\)`. 
+
+That is, there is NOT sufficient evidence to claim the new clinic has a higher success rate. 
+]
+.pull-right[
+&lt;img src="29-categorical-data_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+class: middle
+
+# Case study: Is Cell Shape Associated with Malignancy?
+
+### from Kuiper &amp; Sklar (2013), *Practicing Statistics*
+
+---
+
+## Case study: Is Cell Shape Associated with Malignancy?
+
+*Fine needle aspiration* is a less invasive alternative to a biopsy (surgery) to extract a small sample of a tumor and test for malignancy by visual measurements from a microscope. It is used to assist doctors with the diagnosis of breast cancer. Several measurements are taken such as size, shape, and texture of the cells. 
+
+Below is data collected at the University of Wisconsin on 37 tumors. 
+
+
+
+
+```r
+cell_data %&gt;% 
+  count(type, shape)
+```
+
+```
+##        type   shape  n
+## 1    Benign Concave  4
+## 2    Benign   Round  9
+## 3 Malignant Concave 17
+## 4 Malignant   Round  7
+```
+
+---
+
+## Proportions &amp; risk
+
+The **proportion** of malignant nuclei in this study is 24/37 = 0.6486
+
+
+```r
+cell_data %&gt;% 
+  count(type) %&gt;% 
+  mutate(prop = n/sum(n))
+```
+
+```
+##        type  n      prop
+## 1    Benign 13 0.3513514
+## 2 Malignant 24 0.6486486
+```
+
+This overall proportion of malignancy is often called the **risk** or **baseline risk**.
+
+---
+
+## Conditional proportions 
+
+The *conditional proportion* is the proportion of malignant cells for each cell shape.
+
+
+```r
+cell_data %&gt;% 
+  count(type, shape) %&gt;% 
+  group_by(shape) %&gt;% 
+  mutate(prop = n/sum(n))
+```
+
+```
+## # A tibble: 4 × 4
+## # Groups:   shape [2]
+##   type      shape       n  prop
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+## 1 Benign    Concave     4 0.190
+## 2 Benign    Round       9 0.562
+## 3 Malignant Concave    17 0.810
+## 4 Malignant Round       7 0.438
+```
+
+The round nuclei have a conditional proportion of 7/16 = 0.4375.
+
+The concave nuclei have a conditional proportion of 17/21 = 0.8095.
+
+---
+
+## Test for difference in proportions
+
+**Research question:** Is Cell Shape Associated with Malignancy?
+
+**Research question, redefined:** Is there a difference between the proportion of round vs. concave cells that are malign?
+
++ How many variables? **2** (shape, malignancy)
++ What type(s) of variables? **categorical**
+
+This is a **hypothesis test** question about **a difference in two proportions**
+
+---
+
+## Test for difference in proportions
+
+`$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$`
+`$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$`
+
+Use `\(\alpha = 0.01\)`. Why? What does Type I / Type II error mean here?
+
+--
+
+Type I = Falsely claim cell shape (round vs. concave) and malignancy are related when they are not. Could lead to adopting a procedure for diagnosing cancer that doesn't work. 
+
+Type II = Fail to detect that cell shape and malignancy are related when they are. Could lead to NOT adopting the less invasive procedure even though it works.
+
+---
+
+## Test for difference in proportions
+
+`$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$`
+`$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$`
+
+
+```r
+prop_test(cell_data, response = type, explanatory = shape,
+          success = "Malignant", conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 6
+##   statistic chisq_df p_value alternative lower_ci upper_ci
+##       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1      4.00        1  0.0454 two.sided    -0.0659    0.867
+```
+
+Because our p-value &gt; 0.01, we FAIL TO REJECT. We do NOT have sufficient evidence to claim that cell shape and malignancy are related. 
+
+Note also: we are 99% confidence that the difference in proportions between concave and round cells that are malignant is between -0.0659 and 0.867. That is, it's possible the true difference is 0, and the observed difference was just due to chance.
+
+---
+
+## Limitations to analyzing differences in proportions
+
+Consider an example of 2 studies:
+
+**Study 1:**
+
+`$$\hat{p}_1 - \hat{p}_2 = 0.52 - 0.48 = 0.04$$`
+
+**Study 2:**
+
+`$$\hat{p}_1 - \hat{p}_2 = 0.05 - 0.01 = 0.04$$`
+
+Both have difference of 0.01, but in Study 2, the proportion in group 1 `\(\hat{p}_1\)` is 5 times as large as the proportion in group 2 `\(\hat{p}_2\)`
+
+---
+
+## Relative risk
+
+`$$\text{Relative risk } = \frac{\text{proportion of successes in group 1}}{\text{proportion of successes in group 2}} = \frac{\hat{p}_1}{\hat{p}_2}$$`
+
+
+.pull-left[
+In the cell cancer study, the **relative risk** is 0.8095/0.4375 = 1.8503
+
+That is, the risk of malignancy is 1.85 times greater for the Concave group than for the Round group.
+]
+
+.pull-right[
+
+
+```r
+cell_data %&gt;% 
+  count(type, shape) %&gt;% 
+  group_by(shape) %&gt;% 
+  mutate(prop = n/sum(n))
+```
+
+```
+## # A tibble: 4 × 4
+## # Groups:   shape [2]
+##   type      shape       n  prop
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+## 1 Benign    Concave     4 0.190
+## 2 Benign    Round       9 0.562
+## 3 Malignant Concave    17 0.810
+## 4 Malignant Round       7 0.438
+```
+
+]
+---
+
+## Odds
+
+The **odds** (of success) can also be used to compare proportions and are commonly used in medicine and the social sciences.
+
+`$$\text{Odds } = \frac{\text{number of successes}}{\text{number of failures}}$$`
+The odds of malignancy in the concave group are 17 to 4, meaning that we expect 17 successes (malignant tumors) for every 4 failures (benign tumors).
+
+*"The odds of malignancy in the concave group are 4.25 to 1"* (17/4 = 4.25)
+
+---
+
+## Odds ratio
+
+`$$\text{Odds ratio} = \frac{\text{odds of group 1}}{\text{odds of group 2}} = \frac{\hat{\theta}_1}{\hat{\theta}_2}$$`
+
+The odds ratio in the cancer cell study is `\(\frac{17/4}{7/9} = 5.5\)`
+
+*The odds of malignancy are 5.5 times greater for the concave group than for the round group*
+
+
+
+
+```r
+cell_data %&gt;% 
+  count(shape, type) 
+```
+
+```
+##     shape      type  n
+## 1 Concave    Benign  4
+## 2 Concave Malignant 17
+## 3   Round    Benign  9
+## 4   Round Malignant  7
+```
+
+---
+
+## Relative risk &amp; odds ratio 
+
+Relative risk and odds ratio of 1 indicate no difference between the groups.
+
+In relative risk and odds ratio calculations, the group with the lower proportion (or lower odds) is considered group 2 (the denominator). That way, relative risk and odds ratio are always numbers larger than 1 and easier to interpret.
+
+When proportions are far away from 0.5, inference for difference in proportions may not best represent the question of interest. Odds ratios and relative risk are preferable because they take baseline risk into account. 
+
+**Be careful with absolute risk vs. relative risk reduction interpretations** (same concern as % change versus percentage point change)
+
+---
+
+## Relative risk, odds ratio, &amp; confidence intervals
+
+
+```r
+library(DescTools)
+
+cell_data &lt;- cell_data %&gt;% 
+  mutate(type = factor(type, levels = c("Malignant", "Benign")))
+
+RelRisk(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+```
+
+```
+## rel. risk    lwr.ci    upr.ci 
+## 1.8503401 0.9439074 4.4678079
+```
+
+```r
+OddsRatio(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+```
+
+```
+## odds ratio     lwr.ci     upr.ci 
+##  5.4642857  0.7912514 37.7356919
+```
+
+Intervals include 1, indicating again we do not have sufficient evidence to conclude that concave cells have higher risk of malignancy. 
+
+---
+
+## Case Study: Is Kristen Gilbert a serial killer?
+
+.pull-left[
+Proportions aren't close to 0.5, odds ratio is more appropriate here.
+
+
+```r
+gilbert &lt;- matrix(c(40, 34, 217, 1350), 
+                  nrow = 2, byrow = TRUE)
+gilbert
+```
+
+```
+##      [,1] [,2]
+## [1,]   40   34
+## [2,]  217 1350
+```
+
+```r
+OddsRatio(gilbert, conf.level = 0.99)
+```
+
+```
+## odds ratio     lwr.ci     upr.ci 
+##   7.319057   3.899287  13.738049
+```
+]
+
+.pull-right[
+&lt;img src="./img/gilbert.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Hypothesis tests for two-way tables (Chi-squared test)
+
+.pull-left[
+`$$H_0: \text{two variables are independent}$$`
+`$$H_A: \text{two variables are NOT independent}$$`
+How many deaths would we expect in each column if `\(H_0\)` is true?
+
+
+```r
+baseline_risk &lt;- 74/1641 
+baseline_risk*257 #gilbert shifts
+```
+
+```
+## [1] 11.58927
+```
+
+```r
+baseline_risk*1384 #non-gilbert shifts
+```
+
+```
+## [1] 62.41073
+```
+
+
+]
+.pull-right[
+&lt;img src="./img/gilbert.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Expected vs. Observed Counts
+
+In general, we can compute the expected counts for the `\(i^{th}\)` row and `\(j^{th}\)` column by:
+
+`$$\text{Expected Count}_{\text{row i, col j}} = \frac{\text{(row i total) x (column j total)}}{\text{table total}}$$`
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Gilbert worked &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Gilbert did NOT work &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Death occured &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 40   (11.59) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 34   (62.4) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Death did NOT occur &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 217   (245.4) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1350   (1321.6) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1567 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 257 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1384 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1641 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Chi-square test-statistic
+
+.pull-left[
+Want some way to summarize how far off observed counts are from expected counts
+
+`$$X^2 = \sum_{k = 1}^K \frac{(O - E)^2}{E},$$`
++ K is the number of cells (in this case 4)
+
+Note: when independent, `\(O \approx E\)`, so we expect `\(X^2\)` to be small when `\(H_0\)` is true.
+]
+.pull-right[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Gilbert worked &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Gilbert did NOT work &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Death occured &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 40   (11.59) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 34   (62.4) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Death did NOT occur &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 217   (245.4) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1350   (1321.6) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1567 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 257 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1384 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1641 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+`$$\begin{aligned}
+X^2_1 &amp;= \frac{(40 - 11.59)^2}{11.59} + \frac{(34 - 62.4)^2}{62.4} \\
+&amp;+ \frac{(217 - 245.4)^2}{245.4} + \frac{(1350 - 1321.6)^2}{1321.6} \\
+&amp;= 86.5
+\end{aligned}$$`
+
+]
+
+---
+
+## Chi-square test-statistic
+
+Statistical theory tells us that when `\(H_0\)` is true, 
+
+`$$X^2 =\sum_{k = 1}^K \frac{(O - E)^2}{E} \sim\chi^2_{df},$$`
+
+where `\(df = (I - 1)(J - 1)\)`, I = # of rows, J = # of columns (in this case df = 1)
+
+&lt;img src="./img/chi-square.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Compare observed statistic to chi-square distribution
+
+.pull-left[
+For the Kristen Gilbert data, `\(X^2 = 86.5\)`
+
+Critical value for `\(\alpha = 0.01\)`:
+
+
+```r
+qchisq(0.99, df = 1)
+```
+
+```
+## [1] 6.634897
+```
+
+Because 86.5 &gt; 6.63, there is sufficient evidence to REJECT H0 and claim that shifts Gilbert worked and whether a death occured are NOT independent. 
+
+What will our p-value be?
+
+]
+
+.pull-right[
+
+&lt;img src="29-categorical-data_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Chi-squared test in R
+
+
+```r
+gilbert
+```
+
+```
+##      [,1] [,2]
+## [1,]   40   34
+## [2,]  217 1350
+```
+
+```r
+chisq.test(gilbert)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test with Yates' continuity
+## 	correction
+## 
+## data:  gilbert
+## X-squared = 83.464, df = 1, p-value &lt; 2.2e-16
+```
+
+Note: Yates' continuity correction is used. Set `correct = FALSE` to match our by-hand calculation (though in general, keep continuity correction on). 
+
+---
+
+## Chi-squared test in R (with raw data)
+
+
+
+
+```r
+glimpse(gilbert_raw)
+```
+
+```
+## Rows: 1,641
+## Columns: 2
+## $ shift &lt;chr&gt; "Gilbert", "Gilbert", "Gilbert", "Gilbert", "Gilb…
+## $ death &lt;chr&gt; "death", "death", "death", "death", "death", "dea…
+```
+
+```r
+chisq_test(gilbert_raw, response = death, explanatory = shift)
+```
+
+```
+## # A tibble: 1 × 3
+##   statistic chisq_df  p_value
+##       &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
+## 1      83.5        1 6.49e-20
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

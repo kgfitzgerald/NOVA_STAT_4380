@@ -1,0 +1,85 @@
+---
+title: "Week 10"
+subtitle: "Inference for Numerical Data"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statisticians of the Week
+
+[Tyler Vanderwheele](https://www.hsph.harvard.edu/tyler-vanderweele/)
+
+[Tyler McCormick](https://thmccormick.github.io)
+
+## Announcements
+
++ Week 10 lecture videos - weren't attached to a prep quiz, so you may not have watched them -  go back and watch sometime before next week :)
++ EXAM 2 CANCELLED
++ Today / Tuesday: Lab 07 (last one!)
++ Rest of semester prioritizes project
++ Sign up for meeting with me next week
+
+### What's due before Thanksgiving:
+
++ Week 11
+    + Prep Week 11 (lecture videos + discussion post)
+    + Preliminary Data Story due Tuesday 11/5 
+    + Annotations 09 (2 videos on posters, in preparation for Thursday work session)
+    + Lab 07 due Thursday 11/7
+    + Meet w/ Dr. Fitz Wed - Fri to discuss data story
++ Week 12
+    + Prep Week 12 (reading)
+    + AE-09 
+    + Poster Rough Draft
++ Week 13
+    + Prep Week 13 (reading)
+    + Paper Rough Draft
+    
+
+<!-- ### Thursday announcements -->
+
+<!-- -   Today: continue Lab 08, will meet with each project group -->
+
+<!-- -   Project next steps: -->
+
+<!--     -   Actually analyze your data! -->
+<!--     -   Rough draft report due Tuesday Nov 14 -->
+<!--     -   Next Thursday will be a work session -->
+<!--     -   Peer review of rough drafts on Thursday Nov 16 -->
+
+<!-- -   For those of you taking my class(es) next semester: -->
+
+<!--     -   MATH 361 MWF 12:50 - 1:45 -->
+<!--     -   MATH 350 MW 4:20 - 5:45 -->
+<!--     -   MATH 451 / STAT 551 Th 6 - 9 -->
+
+<!-- -   [eUSR tomorrow](https://www.causeweb.org/usproc/eusr/2023/program) -->
+
+<!--     -   11am PT: Keynote by Director of Census Bureau, Rob Santos -->
+
+<!--     -   12pm PT: Grad school info session -->
+
+<!--     -   12:45 PT: Career info session -->
+
+<!-- ### Announcements -->
+
+<!-- -   Annotations due Thursday -->
+<!-- -   AE-07 / Lab 07 due now -->
+<!-- -   This week: AE-08 / Lab 08, due next Tuesday -->
+<!-- -   Thursday: will continue working on Lab 08, and will meet with each group to discuss EDA / analysis plans -->
+<!-- -   Note: no prep quizzes for the next couple of weeks, but still important to watch the lecture videos -->
+
+### Questions?
+
+<!-- ### Application Exercise -->
+
+<!-- -   This week, the Application Exercise & Lab are combined into one larger Lab 08, which you will work on during both class sessions. -->
+<!-- -   You can access it from GitHub. -->
+<!-- -   It is due by class-time next Tuesday. -->
+<!-- -   To turn it in, you should upload your .html file to Canvas. -->

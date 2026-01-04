@@ -1,0 +1,236 @@
+---
+title: "Inference for Numerical Data, Part III: Many Means"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from [Intro to Modern Statistics](https://openintro-ims.netlify.app)"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(dsbox)
+library(scales)
+library(infer)
+library(distributional)
+library(ggdist)
+library(gridExtra)
+library(openintro)
+library(broom)
+library(readxl)
+```
+
+
+---
+
+class: middle
+
+# Case study: MLB batting performance
+
+
+---
+
+## Case study: MLB batting performance
+
+We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (OF), infielder (IF), and catcher (C). We will use a dataset called mlb_players_18, which includes batting records of 429 Major League Baseball (MLB) players from the 2018 season who had at least 100 at bats. 
+
+--
+
++ How many variables? **2**
++ What type(s) of variable(s)? **numerical, categorical (3+ levels)**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+Note: now our categorical variable has more than two levels! So we are comparing **many means**, rather than a difference in two means. 
+
+---
+
+## ANOVA: Analysis of Variance
+
+ANOVA is the statistical method for comparing many means
+
+$$H_0: \mu_{OF} = \mu_{IF} = \mu_C$$
+$$H_A: \text{at least one mean differs from the others}$$
+
+```{r, echo = FALSE}
+mlb <- mlb_players_18 |>
+  filter(
+    AB >= 100, 
+    !position %in% c("P", "DH")
+  ) |>
+  mutate(
+    position = case_when(
+      position %in% c("LF", "CF", "RF")       ~ "OF",
+      position %in% c("1B", "2B", "3B", "SS") ~ "IF",
+      TRUE                                    ~ position
+    ),
+    position = fct_relevel(position, "OF", "IF", "C")
+  )
+```
+.pull-left[
+```{r, echo = FALSE}
+mlb |> 
+  group_by(position) |> 
+  summarize(n = n(),
+            mean = mean(OBP),
+            sd = sd(OBP))
+```
+]
+.pull-right[
+```{r, echo = FALSE}
+ggplot(mlb, aes(x = position, y = OBP)) +
+  geom_boxplot()
+```
+]
+
+ANOVA asks: is the variability in sample means so large that is seems unlikely to be from chance alone?
+
+---
+
+## ANOVA Logic / Test Statistic
+
+Total variability in Y = Variability BETWEEN groups + Variability WITHIN groups
+
+--
+
+MSB = mean square between groups $\sum_{j = 1}^k\frac{(\overline{Y}_j - \overline{Y}_{\cdot})^2}{k - 1}$
+
+MSE = mean square within groups (mean square error) $\sum_{i = 1}^{n_j}\frac{(\overline{Y}_{ij} - \overline{Y}_{j})^2}{n_j - 1}$
+
+--
+
+When $H_0$ is true, $MSB \approx MSE$, but when $H_A$ is true, $MSB > MSE$
+
+--
+
+Statistical theory tells us when $H_0$ is true (all the means are equal),
+
+$$F = \frac{MSB}{MSE} \sim F(k - 1, n - k),$$
+
+where $k$ is the number of groups and $n$ is the (total) sample size $(n = \sum_{j = 1}^k n_j)$.
+
+---
+
+## F-distribution
+
+```{r, echo = FALSE}
+knitr::include_graphics("./img/F-distribution_pdf.svg")
+```
+
+---
+
+## ANOVA in R
+
+Syntax is similar to fitting a regression model.
+
+```{r}
+mlb_model <- lm(OBP ~ position, data = mlb)
+anova(mlb_model)
+```
+
+---
+
+## ANOVA in R
+
+.pull-left[
+```{r}
+tidy(anova(mlb_model))
+qf(.99, 2, 426) #critical value
+```
+]
+.pull-right[
+```{r, echo = FALSE, fig.height="50%"}
+anova_results <- tidy(anova(mlb_model))
+stat <-  anova_results[1,5] |> pull()
+df1 <- anova_results[1,2] |> pull()
+df2 <- anova_results[2,2] |> pull()
+crit_value99 <- qf(.99, df1, df2)
+
+ggplot() +
+  xlim(c(0,8)) + 
+  stat_slab(aes(y = "F",
+                   dist = dist_f(df1 = df1, df2 = df2),
+                   fill = after_stat(x > stat)),
+               show.legend = FALSE) +
+  geom_vline(xintercept = crit_value99, linewidth = 1, linetype = 21,
+             color = "navyblue") +
+  annotate("label", label = "0.01 Critical\nValue", 
+           x = crit_value99, y = 2, color = "navyblue") +
+    geom_vline(xintercept = stat, linewidth = 1, linetype = 19,
+             color = "purple") +
+  annotate("label", label = "Test\nStatistic", 
+           x = stat, y = 2.25, color = "purple") +
+  coord_cartesian(expand = FALSE, ylim = c(0.9, 2.5)) +
+  labs(y = "", x = "x") +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+
+]
+
+
+$$H_0: \mu_{OF} = \mu_{IF} = \mu_C$$
+
+We REJECT H0. There is sufficient evidence to claim that batting performance differs by position. 
+
+---
+
+## Assumptions for ANOVA
+
++ Independence (satisfied if random sample)
++ Approximately normal (satisfied if sample size large enough per group)
++ Constant variance: variance in groups is about equal from one group to the next (examine side-by-side boxplot)
+
+Independence is always important. Normality is important in small sample sizes. Constant variance important when sample sizes differ between groups.
+
+---
+
+# How is this different from linear regression?
+
+```{r}
+mlb_model <- lm(OBP ~ position, data = mlb)
+summary(mlb_model)
+```
+
+---
+
+```{r, echo = FALSE}
+classdata <- classdata |> 
+  filter(lecture != "c")
+```
+
+When only comparing two groups (two-level categorical variable), two-sample t-test is equivalent to ANOVA F-test. In fact, $t^2 = F$, and the p-values will be identical.
+
+```{r}
+class_model <- lm(m1 ~ lecture, data = classdata)
+tidy(summary(class_model))
+tidy(anova(class_model))
+```
+
+
+---
+
+## Recap
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+tab <- read_excel("./data/recap.xlsx")
+
+kable(tab)
+
+```
+
+
+
+

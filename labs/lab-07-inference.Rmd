@@ -1,0 +1,205 @@
+---
+title: "Lab 07 - Inference for numeric data"
+subtitle: "General Social Survey, Hotels, & Diets"
+date: "due Thursday, November 7 at 4:20pm"
+output: 
+  tufte::tufte_html:
+    css: "lab.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Learning goals
+
++ Conduct inference procedures for numerical data, including:
+    + inference for one mean
+    + inference for two independent means
+    + inference for paired means
+    + ANOVA for many means
++ Discern which inference procedures are appropriate for a given research question and dataset
++ Discern whether or not assumptions are met for particular inference procedures
+
+
+# Getting started
+
++ This week, the Application Exercise & Lab are combined into one larger Lab which you will work on during both class sessions.
++ You may choose your groups for this lab.
++ Open our class [GitHub repo](https://github.com/kgfitzgerald/APU_MATH_250/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
+
+All plots should follow the best visualization practices discussed in lecture, including an informative title, labeled axes, and careful consideration of aesthetic choices.
+
+All code should follow the tidyverse style guidelines.
+
+## Packages
+
+We'll use the **tidyverse** package for much of the data wrangling and visualization, and the **infer** package for the inference function `t_test()`, and some data resides in `WRS2`.
+
+```{r}
+library(tidyverse) 
+library(infer)
+library(WRS2)
+```
+
+## Data
+
+This lab will involve analyses on three different datasets:
+
++ `gss` from the `infer` package: a sample of 500 responses from the General Social Survey
++ `hotels` from a provided .csv file: data on hotel reservations around the world
++ `diet` from the `WRS2` package: data from a University of Sheffield study evaluating 3 diets
+
+
+```{r}
+gss <- infer::gss
+hotels <- read_csv("./data/hotels.csv")
+diet <- WRS2::diet
+```
+
+
+## Important Note About Analyses
+
+Unless stated otherwise, you should use $\alpha = 0.01$ for the inferences on this lab.
+
+# Analysis 1: General Social Survey
+
+**RESEARCH QUESTION: Does the average US adult work more than 40 hours per week?**
+
+1. Produce a visualization to help you explore this question. Add a vertical line (using `geom_vline()`) to mark the sample mean for this sample, and another line to mark the value 40. Visually distinguish the two lines in some way.  
+
+```{r}
+
+```
+
+2. State the hypotheses (using mathematical symbols) you could use to answer this research question. Then, conduct the analysis using `t_test()`. Are the assumptions met for this analysis? Briefly explain why or why not.
+
+```{r}
+
+```
+
++ Explain briefly what each of the 7 components of the output is telling you. `statistic`, `t_df`, `p_value`, `alternative`, `estimate`, `lower_ci`, `upper_ci`
+
++ State your conclusion about the hypothesis test.
+
+# Analysis 2: Hotel Reservations
+
+Below are descriptions of a some of the variables you will use from the `hotels` data:
+
+-   `hotel` = whether the hotel reservation is at a City or Resort Hotel
+-   `adr` = average daily rate (\$), i.e., average cost per night for the reservation
+-   `arrival_date_month` = month of guest arrival (first day of reservation)
+-   `lead_time` = number of days in advance hotel reservation was made
+-   `country` = country the hotel is located in
+
+These data come from reservations made at hotels located all around the world from July 2015 to September 2017. For the purposes of this lab, **we will only use data from the US, and you may consider these data to be a random sample of all US hotel reservations.**
+
+3. Filter the data to only keep US hotel reservations. Then, inspect the data to gain a general sense of what is contained in it. Provide a quick overview/summary of the data set.
+
+## Reservation lead time
+
+**RESEARCH QUESTION: How far in advance do people book their hotels, on average?**
+
+4. Provide an appropriate visualization to investigate the distribution of the lead time for reservations in this dataset.
+
+5. Construct a 90% confidence interval for the average number of days in advance hotel reservations are made. Interpret the confidence interval in context.
+
+6. Suppose someone claims that people book their reservations at least two months in advance on average. Is there sufficient evidence to support this claim? Justify your answer using your confidence interval.
+
+7. State the hypotheses you would use to evaluate the above claim. If you were to conduct this hypothesis test, would you expect to get a p-value \< 0.1? Explain. *Note: you do not need to actually conduct the test or find the p-value.*
+
+## Peak Summer Months
+
+**RESEARCH QUESTION: Do hotels cost more in the summer?**
+
+8. Provide an appropriate visualization to investigate the distribution of the average daily rate (\$) for reservations in this dataset. Describe this shape of this distribution.
+
+9. Conventional wisdom is that travel costs more during the "peak" summer months when demand is high. Create a new variable called `summer` that is "yes" if the reservation is for June, July, or August, and "no" otherwise.
+
+10. Provide an appropriate visualization to explore the distribution of `adr` for summer vs. non-summer reservations in this sample. Also compute the average daily rate for each group.. 
+
+11. State appropriate hypotheses to answer this research question. Use `t_test()` to conduct the hypothesis test. What conclusion do you draw? 
+
+**RESEARCH QUESTION: How much more do hotels cost in summer, on average?**
+
+12. What type of analysis is appropriate for answering this question? Conduct the analysis and interpret your results. 
+
+# Analysis 3: Diets
+
+13. Give a brief summary of what's in the `diet` dataset.
+
+14. Create a new dataset `diet_lbs` with the three weights (currenlty in kg) converted to pounds. Note, 1kg = 2.20462262185 lbs. 
+
+```{r}
+
+```
+
+**RESEARCH QUESTION: Did participants lose weight, on average?**
+
+15. Create a visualization to help you explore this research question.
+
+16. State the set of hypotheses you could use to test this question. Use `t_test()` to conduct this hypothesis. State your conclusion. Are the assumptions met for this analysis? Briefly explain why or why not.
+
+17. Use `t.test()` to conduct an equivalent analysis, but using a paired t-test with `initial.weight` and `final.weight`. Comment on why this data is considered paired, and why we didn't need to use a paired t-test in Exercise 16. 
+
+**RESEARCH QUESTION: Did weight loss differ between males and females?**
+
+18. Create a visualization to help you explore this research question.
+
+19. State the appropriate hypotheses for this analysis, and use appropriate R code to conduct it. State your conclusion.
+
+**RESEARCH QUESTION: Did weight loss differ between the three diet types?**
+
+20. Create a visualization to help you explore this research question.
+
+21. State the appropriate hypotheses for this analysis, and use appropriate R code to conduct it. State your conclusion. Are the assumptions met for this analysis? Briefly explain why or why not.
+
+```{r}
+
+```
+
+# Wrapping up
+
+22. Write a brief paragraph discussing what limitations might exist to the data/analyses in this lab, and what additional data you would like to have to explore further questions.
+
+23. State one research question regarding your project data that you could investigate using one of the inference procedures used in this lab. 
+
+# Submission
+
+Before submitting your assignment on Canvas, Render one last time, then open up your .html in a full window and inspect the following:
+
++ Check your code for neatness - add spaces and line breaks where appropriate to improve readability
+
++ Check any visualizations for informative and clean labels and titles
+
++ Check any tables for clean formatting (e.g. with `kbl() |> kable_minmal()`)
+
++ Check that you've interpreted output as appropriate
+
++ Make sure extraneous warnings and messages are suppressed (e.g. set `#| warning: false`, `#| message: false`)
+
++ Check that Exercises are clearly labeled and your text responses are visually distinguished
+
++ Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
+
+To submit, Render one last time and then upload your .html document to the relevant assignment on Canvas. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+
+# Grading (75pts)
+
+| Component | Points |
+|:----------|:-------|
+| All 23 exercises | 3 each|
+| Reflection prompts    | 5     |
+| Workflow & formatting | 1     |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having readable code (e.g. adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g. suppress messages & warnings, no extraneous output).

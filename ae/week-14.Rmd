@@ -1,0 +1,66 @@
+---
+title: "Week 14"
+subtitle: "Project Wrap-Up"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+### Thursday Announcements
+
+-   Final draft of poster - upload to Canvas AND email to me by noon tomorrow
+
+-   IDEA survey - need three more people - closes tomorrow
+
+-   [Final project repo](https://canvas.apu.edu/courses/55797/assignments/997114) - make game plan for what docs you still need
+
+-   Next Thursday: Presentations 4:05 - 5:55
+    + Try to arrive \~10 mins early to hang poster
+    + Will be starting in Physics Lab to watch their presentations (~1hr), then everyone outside for poster session
+- [End of Course Reflection](https://canvas.apu.edu/courses/55797/assignments/997098) (\~1 page), due next Thursday
+    + Meta-cognition important for learning
+    + More nitty gritty feedback / course-specific suggestions for how to improve
+    + Concrete things changed based on previous year's feedback:
+      -   No HW assignments (reduced work-load)
+      -   No Posit Cloud (web-based version of RStudio)
+      -   In-class group work but individual submissions -->
+      -   More focus on interpreting results (re-did middle 3rd of the course to be more stats-focused, added more interpretation Qs & reflection prompts) 
+
+### Questions?
+
+### Poster Tips / Guidelines
+
+-   What is your main / most interesting finding? What succinct & catchy sentence will you use to communicate it?
+-   Identify your best 2 - 3 visualizations
+-   [#betterposter templates](https://osf.io/ef53g/)
+-   Examples in our Google Drive also
+-   Be careful with font size and image quality!
+-   Update slide size to be 48" wide x 36" tall
+-   In elevator pitch:
+    -   beware of the curse of expertise
+    -   use gestures to guide where they should be looking
+    -   don't need to tell them EVERYTHING - best pitches are interesting discussion starters
+    -   help them connect to something they already know
+
+### Poster Evaluation Criteria & Rubric
+
+The poster presentations will be rated on a scale from 1 - 4 (weak, basic, solid, exceptional) on each of the following 4 criteria:
+
+-   **Research questions & data relevance**: Is the overall research question(s) / objective(s) of the analysis clearly communicated? Is it clear how the data used is relevant to investigating the question(s)?
+-   **Methods & statistical communication** - Is it clear what statistical procedures were used to analyze the data? Are appropriate statistical procedures carried out and explained correctly?
+-   **Data visualization / results presentation** - Are the data and main results displayed effectively, in visualizations and/or tables?
+-   **Creativity and Critical Thought** - Is the project carefully thought out? Are insightful conclusions reached? Does it appear that time and effort went into the planning and implementation of the project?
+
+## Today
+
+- Take about 15 mins in your groups to practice elevator pitch, upload latest version of poster to Google Drive
+- Each group will give elevator pitch, all of us will provide feedback on poster and pitch (10 - 15 mins per group)
+- Make game plan of next steps
+

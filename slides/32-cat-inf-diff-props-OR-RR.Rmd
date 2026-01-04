@@ -1,0 +1,233 @@
+---
+title: "Inference with Categorical Data, Part II: Difference in proportions, Odds ratio, Relative risk"
+subtitle: "MATH 250"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(dsbox)
+library(scales)
+library(infer)
+library(distributional)
+library(ggdist)
+```
+
+
+
+class: middle
+
+# Case study: Is Cell Shape Associated with Malignancy?
+
+### from Kuiper & Sklar (2013), *Practicing Statistics*
+
+---
+
+## Case study: Is Cell Shape Associated with Malignancy?
+
+*Fine needle aspiration* is a less invasive alternative to a biopsy (surgery) to extract a small sample of a tumor and test for malignancy by visual measurements from a microscope. It is used to assist doctors with the diagnosis of breast cancer. Several measurements are taken such as size, shape, and texture of the cells. 
+
+Below is data collected at the University of Wisconsin on 37 tumors. 
+
+```{r, echo = FALSE}
+cell_data <- data.frame(type = c(rep("Benign", 13), rep("Malignant", 24)),
+                        shape = c(rep("Round", 9), rep("Concave", 4),
+                                  rep("Round", 7), rep("Concave", 17)))
+```
+
+```{r}
+cell_data |> 
+  count(type, shape)
+```
+
+---
+
+## Proportions & risk
+
+The **proportion** of malignant nuclei in this study is 24/37 = `r round(24/37, 4)`
+
+```{r}
+cell_data |> 
+  count(type) |> 
+  mutate(prop = n/sum(n))
+```
+
+This overall proportion of malignancy is often called the **risk** or **baseline risk**.
+
+---
+
+## Conditional proportions 
+
+The *conditional proportion* is the proportion of malignant cells for each cell shape.
+
+```{r}
+cell_data |> 
+  count(type, shape) |> 
+  group_by(shape) |> 
+  mutate(prop = n/sum(n))
+```
+
+The round nuclei have a conditional proportion of 7/16 = `r round(7/16, 4)`.
+
+The concave nuclei have a conditional proportion of 17/21 = `r round(17/21, 4)`.
+
+---
+
+## Test for difference in proportions
+
+**Research question:** Is Cell Shape Associated with Malignancy?
+
+**Research question, redefined:** Is there a difference between the proportion of round vs. concave cells that are malignant?
+
++ How many variables? **2** (shape, malignancy)
++ What type(s) of variables? **categorical (both w/ two levels)**
+
+This is a **hypothesis test** question about **a difference in two proportions**
+
+---
+
+## Test for difference in proportions
+
+$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$
+$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$
+
+Use $\alpha = 0.01$. Why? What does Type I / Type II error mean here?
+
+--
+
+Type I = Falsely claim cell shape (round vs. concave) and malignancy are related when they are not. Could lead to adopting a procedure for diagnosing cancer that doesn't work. 
+
+Type II = Fail to detect that cell shape and malignancy are related when they are. Could lead to NOT adopting the less invasive procedure even though it works.
+
+---
+
+## Test for difference in proportions
+
+$$H_0: p_R = p_C \ \ \ \Rightarrow p_R - p_C = 0$$
+$$H_A: p_R \neq p_C \ \ \ \Rightarrow p_R - p_C \neq 0$$
+
+```{r, warning = FALSE}
+prop_test(cell_data, response = type, explanatory = shape,
+          success = "Malignant", conf_level = 0.99)
+```
+
+Because our p-value > 0.01, we FAIL TO REJECT. We do NOT have sufficient evidence to claim that cell shape and malignancy are related. 
+
+Note also: we are 99% confidence that the difference in proportions between concave and round cells that are malignant is between -0.0659 and 0.867. That is, it's possible the true difference is 0, and the observed difference was just due to chance.
+
+---
+
+## Limitations to analyzing differences in proportions
+
+Consider an example of 2 studies:
+
+**Study 1:**
+
+$$\hat{p}_1 - \hat{p}_2 = 0.52 - 0.48 = 0.04$$
+
+**Study 2:**
+
+$$\hat{p}_1 - \hat{p}_2 = 0.05 - 0.01 = 0.04$$
+
+Both have difference of 0.01, but in Study 2, the proportion in group 1 $\hat{p}_1$ is 5 times as large as the proportion in group 2 $\hat{p}_2$
+
+---
+
+## Relative risk
+
+$$\text{Relative risk } = \frac{\text{proportion of successes in group 1}}{\text{proportion of successes in group 2}} = \frac{\hat{p}_1}{\hat{p}_2}$$
+```{r, echo = FALSE}
+summary <- cell_data |> 
+  count(type, shape) |> 
+  group_by(shape) |> 
+  mutate(prop = n/sum(n))
+phat_1 <- summary |> filter(type == "Malignant", shape == "Concave") |> pull(prop)
+phat_2 <- summary |> filter(type == "Malignant", shape == "Round") |> pull(prop)
+```
+
+.pull-left[
+In the cell cancer study, the **relative risk** is `r round(phat_1, 4)`/`r round(phat_2, 4)` = `r round(phat_1/phat_2, 4)`
+
+That is, the risk of malignancy is 1.85 times greater for the Concave group than for the Round group.
+]
+
+.pull-right[
+
+```{r}
+cell_data |> 
+  count(type, shape) |> 
+  group_by(shape) |> 
+  mutate(prop = n/sum(n))
+```
+
+]
+---
+
+## Odds
+
+The **odds** (of success) can also be used to compare proportions and are commonly used in medicine and the social sciences.
+
+$$\text{Odds } = \frac{\text{number of successes}}{\text{number of failures}}$$
+The odds of malignancy in the concave group are 17 to 4, meaning that we expect 17 successes (malignant tumors) for every 4 failures (benign tumors).
+
+*"The odds of malignancy in the concave group are 4.25 to 1"* (17/4 = 4.25)
+
+---
+
+## Odds ratio
+
+$$\text{Odds ratio} = \frac{\text{odds of group 1}}{\text{odds of group 2}} = \frac{\hat{\theta}_1}{\hat{\theta}_2}$$
+
+The odds ratio in the cancer cell study is $\frac{17/4}{7/9} = 5.5$
+
+*The odds of malignancy are 5.5 times greater for the concave group than for the round group*
+
+
+
+```{r}
+cell_data |> 
+  count(shape, type) 
+```
+
+---
+
+## Relative risk & odds ratio 
+
+Relative risk and odds ratio of 1 indicate no difference between the groups.
+
+In relative risk and odds ratio calculations, the group with the lower proportion (or lower odds) is considered group 2 (the denominator). That way, relative risk and odds ratio are always numbers larger than 1 and easier to interpret.
+
+When proportions are far away from 0.5, inference for difference in proportions may not best represent the question of interest. Odds ratios and relative risk are preferable because they take baseline risk into account. 
+
+**Be careful with absolute risk vs. relative risk reduction interpretations** (same concern as % change versus percentage point change)
+
+---
+
+## Relative risk, odds ratio, & confidence intervals
+
+```{r, warning = FALSE, message = FALSE}
+library(DescTools)
+
+cell_data <- cell_data |> 
+  mutate(type = factor(type, levels = c("Malignant", "Benign")))
+
+RelRisk(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+
+OddsRatio(x = cell_data$shape, y = cell_data$type, conf.level = 0.99)
+```
+
+Intervals include 1, indicating again we do not have sufficient evidence to conclude that concave cells have higher risk of malignancy. 
+

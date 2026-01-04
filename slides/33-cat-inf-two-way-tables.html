@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference with Categorical Data, Part III: Two-way tables, Chi-squared tests</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from datasciencebox.org" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference with Categorical Data, Part III: Two-way tables, Chi-squared tests
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from datasciencebox.org
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+---
+
+class: middle
+
+# Case study: Is Kristen Gilbert a serial killer?
+
+---
+
+## Case study: Is Kristen Gilbert a serial killer?
+
+
+&lt;img src="./img/gilbert.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Case study: Is Kristen Gilbert a serial killer?
+
+Proportions aren't close to 0.5, odds ratio is more appropriate here.
+
+
+``` r
+gilbert &lt;- matrix(c(40, 34, 217, 1350), 
+                  nrow = 2, byrow = TRUE)
+gilbert
+```
+
+```
+##      [,1] [,2]
+## [1,]   40   34
+## [2,]  217 1350
+```
+
+``` r
+OddsRatio(gilbert, conf.level = 0.99)
+```
+
+```
+## odds ratio     lwr.ci     upr.ci 
+##   7.319057   3.899287  13.738049
+```
+
+---
+
+## Hypothesis tests for two-way tables (Chi-squared test)
+
+.pull-left[
+`$$H_0: \text{two variables are independent}$$`
+`$$H_A: \text{two variables are NOT independent}$$`
+How many deaths would we expect in each column if `\(H_0\)` is true?
+
+
+``` r
+baseline_risk &lt;- 74/1641 
+baseline_risk*257 #gilbert shifts
+```
+
+```
+## [1] 11.58927
+```
+
+``` r
+baseline_risk*1384 #non-gilbert shifts
+```
+
+```
+## [1] 62.41073
+```
+
+
+]
+.pull-right[
+&lt;img src="./img/gilbert.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Expected vs. Observed Counts
+
+In general, we can compute the expected counts for the `\(i^{th}\)` row and `\(j^{th}\)` column by:
+
+`$$\text{Expected Count}_{\text{row i, col j}} = \frac{\text{(row i total) x (column j total)}}{\text{table total}}$$`
+
+
+|                    |Gilbert worked |Gilbert did NOT work |Total |
+|:-------------------|:--------------|:--------------------|:-----|
+|Death occured       |40   (11.59)   |34   (62.4)          |74    |
+|Death did NOT occur |217   (245.4)  |1350   (1321.6)      |1567  |
+|Total               |257            |1384                 |1641  |
+
+---
+
+## Chi-square test-statistic
+
+.pull-left[
+Want some way to summarize how far off observed counts are from expected counts
+
+`$$X^2 = \sum_{k = 1}^K \frac{(O - E)^2}{E},$$`
++ K is the number of cells (in this case 4)
+
+Note: when independent, `\(O \approx E\)`, so we expect `\(X^2\)` to be small when `\(H_0\)` is true.
+]
+.pull-right[
+
+|                    |Gilbert worked |Gilbert did NOT work |Total |
+|:-------------------|:--------------|:--------------------|:-----|
+|Death occured       |40   (11.59)   |34   (62.4)          |74    |
+|Death did NOT occur |217   (245.4)  |1350   (1321.6)      |1567  |
+|Total               |257            |1384                 |1641  |
+
+
+`$$\begin{aligned}
+X^2_1 &amp;= \frac{(40 - 11.59)^2}{11.59} + \frac{(34 - 62.4)^2}{62.4} \\
+&amp;+ \frac{(217 - 245.4)^2}{245.4} + \frac{(1350 - 1321.6)^2}{1321.6} \\
+&amp;= 86.5
+\end{aligned}$$`
+
+]
+
+---
+
+## Chi-square test-statistic
+
+Statistical theory tells us that when `\(H_0\)` is true, 
+
+`$$X^2 =\sum_{k = 1}^K \frac{(O - E)^2}{E} \sim\chi^2_{df},$$`
+
+where `\(df = (I - 1)(J - 1)\)`, I = # of rows, J = # of columns (in this case df = 1)
+
+&lt;img src="./img/chi-square.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Compare observed statistic to chi-square distribution
+
+.pull-left[
+For the Kristen Gilbert data, `\(X^2 = 86.5\)`
+
+Critical value for `\(\alpha = 0.01\)`:
+
+
+``` r
+qchisq(0.99, df = 1)
+```
+
+```
+## [1] 6.634897
+```
+
+Because 86.5 &gt; 6.63, there is sufficient evidence to REJECT H0 and claim that shifts Gilbert worked and whether a death occured are NOT independent. 
+
+What will our p-value be?
+
+]
+
+.pull-right[
+
+&lt;img src="33-cat-inf-two-way-tables_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+**Assumptions?** Independence, large sample (at least 5 expected counts in each cell)
+
+]
+
+---
+
+## Chi-squared test in R
+
+
+``` r
+gilbert
+```
+
+```
+##      [,1] [,2]
+## [1,]   40   34
+## [2,]  217 1350
+```
+
+``` r
+chisq.test(gilbert)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test with Yates' continuity
+## 	correction
+## 
+## data:  gilbert
+## X-squared = 83.464, df = 1, p-value &lt; 2.2e-16
+```
+
+Note: Yates' continuity correction is used. Set `correct = FALSE` to match our by-hand calculation (though in general, keep continuity correction on). 
+
+---
+
+## Chi-squared test in R (with raw data)
+
+
+
+
+``` r
+glimpse(gilbert_raw)
+```
+
+```
+## Rows: 1,641
+## Columns: 2
+## $ shift &lt;chr&gt; "Gilbert", "Gilbert", "Gilbert", "Gilbert", "Gilb…
+## $ death &lt;chr&gt; "death", "death", "death", "death", "death", "dea…
+```
+
+``` r
+chisq_test(gilbert_raw, response = death, explanatory = shift)
+```
+
+```
+## # A tibble: 1 × 3
+##   statistic chisq_df  p_value
+##       &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
+## 1      83.5        1 6.49e-20
+```
+
+CONCLUSION: We REJECT H0. That is, we have sufficient evidence to claim that the deaths were NOT independent of whether or not Kristen Gilbert was working the shift. That is, this is evidence in favor of her being a serial killer. 
+
+---
+
+## Couldn't I have just used `prop_test()`?
+
+
+``` r
+prop_test(gilbert_raw, response = death, explanatory = shift)
+```
+
+```
+## # A tibble: 1 × 6
+##   statistic chisq_df  p_value alternative lower_ci upper_ci
+##       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1      83.5        1 6.49e-20 two.sided     0.0837    0.178
+```
+
+``` r
+prop_test(gilbert_raw, response = death, explanatory = shift, z = TRUE)
+```
+
+```
+## # A tibble: 1 × 5
+##   statistic  p_value alternative lower_ci upper_ci
+##       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1      9.30 1.41e-20 two.sided     0.0860    0.176
+```
+
+---
+
+## When to use `prop_test()` vs. `chisq_test()`
+
++ A chi-squared test is the more general/flexible option that works for any two-way table
++ Difference in proportions only appropriate with two-level categorical variables
++ Use difference in proportions if your research question truly is an estimation question, rather than a hypothesis test question
+
+---
+
+class: middle
+
+# Case study: Disaggregating Asian American tobacco use
+
+---
+
+## Case study: tobacco use
+
+Understanding cultural differences in tobacco use across different demographic groups can lead to improved health care education and treatment. A recent study disaggregated tobacco use across Asian American ethnic groups including Asian-Indian (n = 4,373), Chinese (n = 4,736), and Filipino (n = 4,912). The number of current smokers in each group was reported as Asian-Indian (n = 223), Chinese (n = 279), and Filipino (n = 609). (Rao et al. 2021)
+
+In order to assess whether there is a difference in current smoking rates across three Asian American ethnic groups, the observed data is compared to the data that would be expected if there were no association between the variables.
+
+
+``` r
+tobacco &lt;- matrix(c(4150, 223, 
+                    4457, 279, 
+                    4303, 609), 
+                  nrow = 3, byrow = TRUE)
+```
+
+---
+
+## Case study: tobacco use
+
+**Research question:** is there a difference in current smoking rates across three Asian American ethnic groups? In other words, are smoking rates and ethnic group independent?
+
+--
+
+**How many variables?** 2
+
+**What type of variables?** Categorical, more than two levels
+
+--
+
+This is a hypothesis test question, and a chi-square test is appropriate.
+
+**Assumptions?** Independence, at least 5 expected counts per cell
+
+---
+
+## Chi-square test
+
+`$$H_0: \text{smoking rates are the same for each ethnic group (two variables indep.)}$$`
+
+`$$H_A: \text{smoking rates are NOT the same for each ethnic group (two variables NOT indep.)}$$`
+
+
+``` r
+chisq.test(tobacco)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  tobacco
+## X-squared = 209.42, df = 2, p-value &lt; 2.2e-16
+```
+
+``` r
+qchisq(.99, 2)
+```
+
+```
+## [1] 9.21034
+```
+
+There is sufficient evidence to REJECT H0 and claim smoking rates differ by ethnic group (they are NOT independent).
+
+---
+
+## Chi-square test
+
+&lt;img src="33-cat-inf-two-way-tables_files/figure-html/unnamed-chunk-17-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Descriptive analysis to contextualize
+
+A recent study disaggregated tobacco use across Asian American ethnic groups including Asian-Indian (n = 4,373), Chinese (n = 4,736), and Filipino (n = 4,912). The number of current smokers in each group was reported as Asian-Indian (n = 223), Chinese (n = 279), and Filipino (n = 609). (Rao et al. 2021)
+
+
+``` r
+prop.table(tobacco, margin = 1)
+```
+
+```
+##           [,1]       [,2]
+## [1,] 0.9490053 0.05099474
+## [2,] 0.9410895 0.05891047
+## [3,] 0.8760179 0.12398208
+```
+
+---
+
+## Recap
+
+&lt;table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variable(s) of interest &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Hypothesis Test &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Parameter for CI &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Point Estimate &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Reference distribution &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; R function &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; One 2-level categorical variable &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; One proportion z-test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(p\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\hat{p}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(N(0,1)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; prop_test() &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Two 2-level categorical variables &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Two proportion z-test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(p_1 - p_2\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\hat{p}_1 - \hat{p}_2\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(N(0,1)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; prop_test() &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Two 2+ level categorical variables &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Chi-square test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(X^2\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\chi^2_{(I-1)(J-1)}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; chisq_test() or chisq.test() &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+---
+title: "Week 11"
+subtitle: "Inference for Categorical Data\nCommunicating Results I"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statisticians of the Week
+
+[Beth Tipton](https://www.ipr.northwestern.edu/news/2019/faculty-spotlight-beth-tipton.html)
+
+[Larry Hedges](https://www.ipr.northwestern.edu/who-we-are/faculty-experts/hedges.html)
+
+### Tuesday announcements
+
+#### What's due before Thanksgiving:
+
++ Week 11 (this week)
+    + Today: continue Lab 07 (due Thursday 11/7)
+    + Due tonight: Preliminary Data Story
+    + Due Thursday by class-time: Annotations 09 (2 videos on posters, in preparation for Thursday work session)
+    + Meet w/ Dr. Fitz Wed - Th to discuss data story
++ Week 12
+    + Prep Week 12 (reading)
+    + AE-09 
+    + Poster Rough Draft due next Thursday
++ Week 13
+    + Prep Week 13 (reading)
+    + Paper Rough Draft due Tuesday 11/19
+
+
+<!-- ### Thursday announcements -->
+
+<!-- + Due now: Lab 08 -->
+<!-- + Today: project work session -->
+<!-- + Rough draft due next Tuesday -->
+<!--     + upload to [Google Drive folder](https://drive.google.com/drive/folders/1bqjf3mHkhmMNeb8h4Ql710O88rMnttqr?usp=sharing) (link also posted on Canvas) -->
+<!--     + This is where you will access each other's reports to read before peer review session next Thursday -->
+<!--     + Can also see Project rubric I will use to evaluate your final project -->
+<!-- + [Prep work for Tuesday](https://kgfitzgerald.github.io/APU_MATH_250/prepare/week-12.html). -->
+
+
+<!-- ### Peer review assignments (for next Thursday) -->
+
+<!-- + Group 1 (Avery & Rachel) - read Groups 2 & 3 -->
+<!-- + Group 2 (Evan & Jason) - read Groups 3 & 4 -->
+<!-- + Group 3 (Dat & Leon) - read Groups 1 & 4 -->
+<!-- + Group 4 (Angie & Caylee) - read Groups 2 & 5 -->
+<!-- + Group 5 (Enzo & Lauren) - read Groups 1 & 2 -->
+
+
+
+
+<!-- ### Project comments -->
+
+<!-- - If you haven't already, make sure to save your clean data as a .RDS file (e.g. using `saveRDS()`), and place it in your `data` folder. Your written report should start by reading in this data file.  -->
+<!-- - Check out [from Data to Viz](https://www.data-to-viz.com) website for suggestions on creative visualizations to use (includes R code!) -->
+<!-- - Don't need to run every imaginable analysis on your data, but do want you to demonstrate a thorough investigation of your dataset.  -->
+<!--     + What insight can you glean from these data?  -->
+<!--     + What (interesting) questions can be answered from these data? -->
+<!--     + Should do more exploring than what ends up in your final report  -->
+<!--     + Explore to death - become an expert on these data!  -->
+<!-- - May want to create a new file called `analysis.qmd` for all the analyses you're going to explore that may or may not end up in your written report.  -->
+<!-- - Comment your code - someone else should be able to follow exactly what your code is doing and why -->
+<!-- - Start creating a codebook that describes what each variable in your dataset is -->
+<!-- - Tips on multiple linear regression: -->
+<!--     + To choose a "best" model, use `regsubsets()` function from `leaps` package (see 4th set of slides from Week 08) -->
+<!--     + Don't forget to check for model diagnostics at the end (see 3rd & 4th set of slides from Week 08) -->
+
+    
+### Questions?
+
+
+<!-- ### Tuesday Announcements -->
+
+<!-- + Today: continue working on Lab 08, due class-time Thursday -->
+<!-- + Thursday: project work session -->
+<!-- + Rough draft due next Tuesday at midnight, early submission encouraged -->
+<!--     + Will read two groups' reports prior to class that Thursday -->
+

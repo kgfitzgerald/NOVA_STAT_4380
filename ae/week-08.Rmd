@@ -1,0 +1,47 @@
+---
+title: "Week 08"
+subtitle: "Simple & Multiple Linear Regression"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statistician of the Week
+
+[Kristian Lum](https://hrdag.org/people/kristian-lum-phd/)
+
+[Kira Radinsky](https://en.wikipedia.org/wiki/Kira_Radinsky)
+
+### Announcements
+
++ Annotations due Thursday
++ Data Cleaning & EDA due Saturday - don't save for last minute, can take a while
+
+<!-- + Sign up for advising -->
+<!--   + Update: MATH 350 (Statistical Models) will be MW 4:20 - 5:45 -->
+
+<!-- + Feedback on mid-semester check-ins -->
+<!--   + "Sometimes I feel like I have to rush through the exercises because the people around me are moving so fast but that's probably just a me thing" (multiple people said variations of this) -->
+
+<!-- 
+
+<!-- + Data cleaning & Preliminary EDA due next Thursday (don't wait until then to start) -->
+
+<!-- + Today: AE-06, Thursday: Lab 06 -->
+
+
+
+### Questions?
+
+
+### Application Exercise
+
+- The remainder of class will be spent on AE-07. 
+- You can access it from GitHub. 
+- It is due at the end of class today. 
+- To turn it in, you should upload your .html file to Canvas.

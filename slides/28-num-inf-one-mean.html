@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference for Numerical Data, Part I: One Mean</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from Intro to Modern Statistics" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference for Numerical Data, Part I: One Mean
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from <a href="https://openintro-ims.netlify.app">Intro to Modern Statistics</a>
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+class: middle
+
+# Choosing the right analysis
+
+---
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+--
+
+Estimation -&gt; Confidence interval
+
+Decision -&gt; Hypothesis test
+
+--
+
+Assumptions met?
+
+---
+
+class: middle
+
+# Case study: Cherry Blossom Race
+
+---
+
+## Is the typical US runner getting faster or slower over time?
+
+Cherry Blossom Race is a 10-mile race in Washington D.C each spring. In 2006, the average time for all runners was 93.29 minutes. 
+
+We have data on 100 participants in the 2017 Cherry Blossom Race. 
+
+
+
+--
+
++ How many variables? **1**
++ What type(s) of variable(s)? **numerical**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+--
+
+The parameter of interest is the **population mean**, `\(\mu\)`, and the sample statistic is the sample mean, `\(\bar{x}\)`
+
+---
+
+## Hypothesis test for one mean
+
+`$$H_0: \mu_{2017} = 93.29$$`
+`$$H_A: \mu_{2017} \neq 93.29$$`
+--
+
+CLT tells us, `$$T = \frac{\overline{x} - \mu}{SE(\overline{x})} = \frac{\overline{x} - \mu}{s/\sqrt{n}} \sim t_{n-1}$$`
+
+--
+
+
+
+
+
+``` r
+t_stat &lt;- (mean(race17$time_mins) - 93.29)/(sd(race17$time_mins)/sqrt(nrow(race17)))
+t_stat
+```
+
+```
+## [1] -0.4338636
+```
+
+**Assumption:** n &gt; 30, independent observations
+---
+
+## Hypothesis test for one mean
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="28-num-inf-one-mean_files/figure-html/unnamed-chunk-5-1.png" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Calculations]
+
+``` r
+xbar &lt;- mean(race17$time_mins)
+s &lt;- sd(race17$time_mins)
+n &lt;- nrow(race17)
+SE &lt;- s/sqrt(n)
+(t_stat &lt;- (xbar - 93.29)/SE)
+```
+
+```
+## [1] -0.4338636
+```
+
+``` r
+(crit_value99 &lt;- qt(.995, df = n - 1))
+```
+
+```
+## [1] 2.626405
+```
+
+``` r
+(p_value &lt;- 2*pt(t_stat, df = n - 1))
+```
+
+```
+## [1] 0.6653315
+```
+]]
+
+---
+
+## Hypothesis test for one mean
+
+`$$H_0: \mu_{2017} = 93.29$$`
+`$$H_A: \mu_{2017} \neq 93.29$$`
+
+
+``` r
+t_test(race17, response = time_mins, 
+       mu = 93.29, conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1    -0.434    99   0.665 two.sided       92.2     85.3     99.0
+```
+
+We FAIL TO REJECT H0. That is, there is NOT sufficient evidence to claim that the average time is different in 2017, compared to 2006.
+
+---
+
+## What if we had more data?
+
+We actually have a **census**
+
+
+``` r
+library(cherryblossom)
+glimpse(run17)
+```
+
+```
+## Rows: 19,961
+## Columns: 9
+## $ bib       &lt;int&gt; 6, 22, 16, 4, 20, 8, 18, 24, 44, 30, 38, 2305…
+## $ name      &lt;chr&gt; "Hiwot G.", "Buze D.", "Gladys K.", "Mamitu D…
+## $ sex       &lt;chr&gt; "F", "F", "F", "F", "F", "F", "F", "F", "F", …
+## $ age       &lt;int&gt; 21, 22, 31, 33, 35, 33, 27, 21, 26, 26, 25, 2…
+## $ city      &lt;chr&gt; "Ethiopia", "Ethiopia", "Kenya", "Ethiopia", …
+## $ net_sec   &lt;dbl&gt; 3217, 3232, 3276, 3285, 3288, 3316, 3334, 335…
+## $ clock_sec &lt;dbl&gt; 3217, 3232, 3276, 3285, 3288, 3316, 3334, 335…
+## $ pace_sec  &lt;dbl&gt; 321, 323, 327, 328, 328, 331, 333, 335, 335, …
+## $ event     &lt;chr&gt; "10 Mile", "10 Mile", "10 Mile", "10 Mile", "…
+```
+
+---
+
+## What if we had more data?
+
+
+``` r
+mean(run17$net_sec, na.rm = TRUE)
+```
+
+```
+## [1] 5427.947
+```
+
+``` r
+mean(run17$net_sec, na.rm = TRUE)/60
+```
+
+```
+## [1] 90.46579
+```
+
+Runners ***are*** in fact faster in 2017, on average, compared to 2006, but we did not have enough evidence to support that conclusion based on 100 people. 
+
+---
+
+`$$T = \frac{\overline{x} - \mu}{s/\sqrt{n}} = \frac{92.15 - 93.29}{26.22/\sqrt{n}}$$`
+
+&lt;img src="28-num-inf-one-mean_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Sampling distribution of xbar
+
+`\(\overline{x} = 92.15\)` is not discernably different from `\(\mu = 93.29\)` unless we have a large enough sample size. (Black curve: n = 5000; Red curve: n = 1000; Blue curve: n = 100)
+
+&lt;img src="28-num-inf-one-mean_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## So how big does n need to be, really?
+
+Recall, we will reject at `\(\alpha = 0.01\)` when `\(T = \frac{\overline{x} - \mu}{s/\sqrt{n}} \approx 2.576\)`
+
+
+``` r
+qnorm(.995)
+```
+
+```
+## [1] 2.575829
+```
+
+Solve for `\(n\)`!
+
+`$$n = \left(\frac{T*s}{\overline{x} - \mu}\right)^2$$`
+
+
+``` r
+n &lt;- (2.576*s/(xbar - mu))^2
+n
+```
+
+```
+## [1] 3525.212
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

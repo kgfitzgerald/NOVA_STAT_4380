@@ -1,0 +1,31 @@
+---
+title: "Prepare: Week 14"
+subtitle: "Communicating Results III"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For December 3
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required
+
+`r emo::ji("book")` [Read Chapter 9.3 - Chapter 10 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061). As you read, keep your project in mind, and create a checklist of things you'll check for when writing /editing your rough draft (due Tuesday Nov 19 also). 
+
+`r emo::ji("memo")` Respond to the Week 14 prep discussion post on Canvas by providing:
+
+1. A brief checklist for editing your draft (you can provide a screenshot or link to a Google doc of the notes you took while reading if you want)
+2. 1-2 questions you have about editing your draft after reading
+
+
+
+
+

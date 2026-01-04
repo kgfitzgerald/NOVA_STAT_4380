@@ -1,0 +1,58 @@
+---
+title: "Week 09"
+subtitle: "Uncertainty Quantification & Statistical Inference"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Statistician of the Week
+
+[Maria Cuellar](https://crim.sas.upenn.edu/people/maria-cuellar)
+
+[Abby Smith](https://abbylsmith.me)
+
+### Thursday announcements
+
++ Today: project work session
++ Bumped due date for Preliminary Data story to be Tuesday Nov 5
+
+### Announcements
+
++ Today: AE-08 / Lab 6.5 - due next Thursday, graded for correctness (not just completion)
+
++ Thursday: Project work session (start conducting analyses to answer your research questions & discern the emerging "data story")
+
+<!-- No class Thursday -->
+
+<!-- Project Data Cleaning & EDA due Thursday  -->
+
+<!-- + Make sure to turn in .zip folder with all appropriate files -->
+
+<!-- Annotations due Saturday (in case you want extra time to focus on project) -->
+
+<!-- Next week: Inference for Numerical Data -->
+
+<!-- + 3 videos, 51 mins total -->
+
+<!-- Today: AE-07 / Lab 07  -->
+
+<!-- + Points wise counts as 2 AEs (20 points instead of 10) but will be graded for correctness (not just completion) -->
+
+<!-- + Due Tuesday by class-time, like a lab -->
+
+### Questions?
+
+
+
+### Application Exercise
+
+-   The remainder of class will be spent on AE-09.
+- You can access it from GitHub. 
+- It is due at the end of class today. 
+-   To turn it in, you should upload your .html file to Canvas.

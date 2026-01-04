@@ -1,0 +1,50 @@
+---
+title: "Prepare: Week 02"
+subtitle: "Data Visualization"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## For September 3
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+
+### Required 
+
+`r emo::ji("movie_camera")` Watch [Data and visualization](https://youtu.be/R1UGnork_Gs) 
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/03-data-viz.html)
+
+`r emo::ji("movie_camera")` Watch [Visualizing data with ggplot2](https://youtu.be/u8pIsAhvYsY)  
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/04-ggplot2.html)
+
+`r emo::ji("movie_camera")` Watch [Visualizing numeric data](https://youtu.be/c0i50_M-PUQ)  
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/05-viz-num.html)
+
+`r emo::ji("movie_camera")` Watch [Visualizing categorical data](https://youtu.be/ZMECwyhjctU)  
+
+- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/06-viz-cat.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 02 on Canvas
+
+
+### Optional 
+
+`r emo::ji("book")` Read [R4DS:: Chapter 3 - Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
+
+`r emo::ji("book")` Read [Introduction to Modern Data Science (IMS):: Chapter 4 - Exploring Numerical Data](https://openintro-ims.netlify.app/explore-numerical.html)
+
+`r emo::ji("book")` Read [IMS:: Chapter 5 - Exploring Categorical Data](https://openintro-ims.netlify.app/explore-categorical.html)
+
+
+
+

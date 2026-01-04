@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference for Numerical Data, Part II: Two Means</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Katie Fitzgerald, adpated from Intro to Modern Statistics" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference for Numerical Data, Part II: Two Means
+]
+.subtitle[
+## MATH 250
+]
+.author[
+### Katie Fitzgerald, adpated from <a href="https://openintro-ims.netlify.app">Intro to Modern Statistics</a>
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://apumath250.netlify.app" target="_blank"&gt;apumath250.netlify.app&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+## What do you want to do?
+
+First step: Ask the following questions
+  - What is the research question?
+  - How many variables?
+  - What type(s) of variable(s)?
+
+Estimation -&gt; Confidence interval
+
+Decision -&gt; Hypothesis test
+
+Assumptions met?
+
+---
+
+class: middle
+
+# Case study: Difficulty of two exams
+
+---
+
+## Case study: Difficulty of two exams
+
+An instructor decided to run two slight variations of the same exam. Prior to passing out the exams, they shuffled the exams together to ensure each student received a random version. Anticipating complaints from students who took Version B, they would like to evaluate whether the difference observed in the groups is so large that it provides convincing evidence that Version B was more difficult (on average) than Version A.
+
+--
+
++ How many variables? **2** (Exam score, Exam version)
+
+--
+
++ What type(s) of variable(s)? **numerical, categorical (two levels)**
+
+--
+
+This is an **(dichotomous) decision** question, meaning a hypothesis test is most appropriate. 
+
+--
+
+The parameter of interest is the **difference in population means**, `\(\mu_A - \mu_B\)`, and the sample statistic is the difference in sample means, `\(\bar{x}_A - \bar{x}_B\)`
+
+---
+
+## Hypothesis test for two (independent) means
+
+
+
+
+``` r
+classdata |&gt; group_by(lecture) |&gt; summarize(xbar = mean(m1), s = sd(m1), n = n())
+```
+
+```
+## # A tibble: 2 × 4
+##   lecture  xbar     s     n
+##   &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 a        75.1  13.9    58
+## 2 b        72.0  13.8    55
+```
+
+`$$H_0: \mu_{A} = \mu_B \ \ \ \Rightarrow \mu_A - \mu_B = 0$$`
+`$$H_A: \mu_{A} &gt; \mu_B \ \ \ \Rightarrow \mu_A - \mu_B &gt; 0$$`
+
+--
+
+`$$\text{by CLT:   } T = \frac{(\bar{x}_A - \bar{x}_B) - (\mu_A - \mu_B)}{SE(\bar{x}_A - \bar{x}_B)}  = \frac{(\bar{x}_A - \bar{x}_B) - 0}{\sqrt{s_A^2/n_A + s_B^2/n_B}}\sim t_{n_A +n_B -2}$$`
+--
+
+**Assumption:** `\(n_A, n_B &gt; 30\)`, independent observations within and between groups
+
+
+
+
+---
+
+## Hypothesis test for two (independent) means
+
+
+``` r
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99, alternative = "greater")
+```
+
+```
+## Warning: The statistic is based on a difference or ratio; by default, for
+## difference-based statistics, the explanatory variable is
+## subtracted in the order "a" - "b", or divided in the order "a" /
+## "b" for ratio-based statistics. To specify this order yourself,
+## supply `order = c("a", "b")`.
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      1.21  111.   0.115 greater         3.14    -3.00      Inf
+```
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="29-num-inf-two-means_files/figure-html/unnamed-chunk-5-1.png" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Calculations (by hand)]
+
+
+``` r
+lectureA &lt;- classdata |&gt; filter(lecture == "a")
+xbarA &lt;- mean(lectureA$m1)
+sA &lt;- sd(lectureA$m1)
+lectureB &lt;- classdata |&gt; filter(lecture == "b")
+xbarB &lt;- mean(lectureB$m1)
+sB &lt;- sd(lectureB$m1)
+(t_stat &lt;- (xbarA - xbarB)/sqrt(sA^2/nrow(lectureA) + sB^2/nrow(lectureB)))
+```
+
+```
+## [1] 1.207263
+```
+
+``` r
+(crit_value99 &lt;- qt(.99, df = nrow(lectureA) + nrow(lectureB) - 2))
+```
+
+```
+## [1] 2.360412
+```
+
+``` r
+(p_value &lt;- 2*pt(t_stat, df = nrow(lectureA) + nrow(lectureB) - 2, lower.tail = FALSE))
+```
+
+```
+## [1] 0.229897
+```
+]
+
+.panel[.panel-name[Calculations (t_test)]
+
+``` r
+t_test_results &lt;- t_test(classdata, response = m1, 
+                explanatory = lecture, 
+                conf_level = 0.99)
+t_test_results
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      1.21  111.   0.230 two.sided       3.14    -3.68     9.96
+```
+
+``` r
+t_stat &lt;- t_test_results$statistic
+df &lt;- t_test_results$t_df
+qt(.99, df) #critical value
+```
+
+```
+## [1] 2.360487
+```
+]]
+
+---
+
+## Conclusions
+
+`$$H_0: \mu_{A} = \mu_B \ \ \ \Rightarrow \mu_A - \mu_B = 0$$`
+`$$H_A: \mu_{A} &gt; \mu_B \ \ \ \Rightarrow \mu_A - \mu_B &gt; 0$$`
+
+
+``` r
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99, alternative = "greater")
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      1.21  111.   0.115 greater         3.14    -3.00      Inf
+```
+
+We FAIL TO REJECT H0.
+
+---
+
+## What is the average difference in scores?
+
+This is an **estimation** question
+
+
+``` r
+t_test(classdata, response = m1, explanatory = lecture, 
+       conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      1.21  111.   0.230 two.sided       3.14    -3.68     9.96
+```
+
+
+We are 99% confident that the true difference in scores between version A and version B of the exam is between -3.68 and 9.96. 
+
+
+---
+
+class: middle
+
+# Case study: textbook prices
+
+---
+
+## Case study: textbook prices
+
+**Research question:** Are required textbooks at UCLA cheaper in the UCLA bookstore, or on Amazon?
+
++ How many variables? **2** (textbook price, seller)
++ What type(s) of variable(s)? **numerical, categorical (two levels)**
+
+
+``` r
+ucla_textbooks_f18 |&gt; 
+  select(subject, textbook_isbn, amazon_used, bookstore_used) |&gt; 
+  glimpse()
+```
+
+```
+## Rows: 201
+## Columns: 4
+## $ subject        &lt;fct&gt; "American Indian Studies", "Anthropology…
+## $ textbook_isbn  &lt;chr&gt; "9781138477858", "9780307741806", NA, "9…
+## $ amazon_used    &lt;dbl&gt; 51.20, 7.10, NA, NA, 24.83, 47.75, NA, N…
+## $ bookstore_used &lt;dbl&gt; 44.97, 10.96, NA, 11.00, 43.26, 67.00, N…
+```
+
+Note: These two samples of 201 prices are not independent! They're **paired** 
+
+---
+
+## Hypothesis test for paired means
+
+&lt;img src="29-num-inf-two-means_files/figure-html/unnamed-chunk-11-1.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Hypothesis test for paired means
+
+Really interested in the **average difference** 
+
+`$$\overline{x}_{diff} = \sum_{i = 1}^n \frac{\text{Bookstore price}_i - \text{Amazon price}_i}{n}$$`
+
+`$$H_0: \mu_{diff} = 0$$`
+
+`$$H_A: \mu_{diff} \neq 0$$`
+
+`$$T = \frac{\overline{x}_{diff} - 0}{s_{diff}/\sqrt{n}} \sim t_{n - 1},$$`
+n = number of pairs
+
+---
+
+## Hypothesis test for paired means
+
+
+``` r
+ucla_textbooks_f18 &lt;- ucla_textbooks_f18 |&gt; 
+  select(textbook_isbn, amazon_used, bookstore_used) |&gt;
+  na.omit() |&gt; 
+  mutate(diff = bookstore_used - amazon_used)
+
+t_test(ucla_textbooks_f18, response = diff, conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df  p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      4.60    63  2.11e-5 two.sided       12.2     5.14     19.2
+```
+
+`$$T = 4.60$$`
+$$\overline{x}_{diff} = \$12.20$$
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="29-num-inf-two-means_files/figure-html/unnamed-chunk-13-1.png" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Calculations (by hand)]
+
+
+``` r
+xbar_diff &lt;- mean(ucla_textbooks_f18$diff)
+s_diff &lt;- sd(ucla_textbooks_f18$diff)
+n &lt;- nrow(ucla_textbooks_f18)
+(t_stat &lt;- (xbar_diff)/(s_diff/sqrt(n)))
+```
+
+```
+## [1] 4.597531
+```
+
+``` r
+qt(.995, df = n - 1)
+```
+
+```
+## [1] 2.656145
+```
+]
+
+.panel[.panel-name[Calculations (t_test)]
+
+``` r
+t_test_results &lt;- t_test(ucla_textbooks_f18, response = diff,
+                         conf_level = 0.99)
+t_test_results
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df  p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      4.60    63  2.11e-5 two.sided       12.2     5.14     19.2
+```
+
+``` r
+t_stat &lt;- t_test_results$statistic
+df &lt;- t_test_results$t_df
+qt(.99, df) #critical value
+```
+
+```
+## [1] 2.387008
+```
+]]
+
+---
+
+## Paired t-test with t.test()
+
+
+``` r
+t.test(x = ucla_textbooks_f18$bookstore_used,
+       y = ucla_textbooks_f18$amazon_used, 
+       paired = TRUE)
+```
+
+```
+## 
+## 	Paired t-test
+## 
+## data:  ucla_textbooks_f18$bookstore_used and ucla_textbooks_f18$amazon_used
+## t = 4.5975, df = 63, p-value = 2.111e-05
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##   6.876802 17.451011
+## sample estimates:
+## mean difference 
+##        12.16391
+```
+
+---
+
+## Conclusions
+
+`$$H_0: \mu_{diff} = 0$$`
+
+`$$H_A: \mu_{diff} \neq 0$$`
+
+``` r
+t_test(ucla_textbooks_f18, response = diff,
+                         conf_level = 0.99)
+```
+
+```
+## # A tibble: 1 × 7
+##   statistic  t_df  p_value alternative estimate lower_ci upper_ci
+##       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1      4.60    63  2.11e-5 two.sided       12.2     5.14     19.2
+```
+
+We REJECT H0. There is sufficient evidence to claim that used textbooks on Amazon are cheaper, on average, compared to UCLA Bookstore (used) prices.
+
+We are 99% confident that the bookstore prices are between $5.14 and \$19.2 more expensive than Amazon prices, on average. 
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
