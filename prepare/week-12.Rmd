@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("book")` [Read Chapter 7 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061). As you read, keep your project in mind, and take notes on what steps you'll take when writing your rough draft (due in Week 13, Tuesday Nov 20). You will turn in a brief outline / to-do list. 
 
-`r emo::ji("book")` Read the entirety of the [Project page](https://apumath250.netlify.app/project/#rough-draft-report) on the course website, starting with the Rough Draft section. 
+`r emo::ji("book")` Read the entirety of the [Project page](https://nova-stat-4380.netlify.app/project/#rough-draft-report) on the course website, starting with the Rough Draft section. 
 
 `r emo::ji("book")` Read the [Full Project Evaluation Rubric](https://docs.google.com/spreadsheets/d/1C1eaMHB9W-dJFYd0Sw39-IA2BOJ9V90o/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) (in Shared Google Drive) to familiarize yourself with how the (written) project will be evaluated. 
 

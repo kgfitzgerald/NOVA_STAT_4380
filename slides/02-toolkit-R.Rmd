@@ -30,7 +30,7 @@ library(lubridate)
 .pull-left[
 ### .gray[Course operation]
 .gray[
-- apumath250.netlify.app
+- nova-stat-4380.netlify.app
 - Blackboard
 ]
 ]

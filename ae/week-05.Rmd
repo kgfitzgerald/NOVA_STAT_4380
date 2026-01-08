@@ -57,6 +57,6 @@ library(tidyverse)
 
 <!-- ### Project Work Session -->
 
-<!-- - See [Doing Data Science slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/16-doing-data-science.html#1) for getting started on your [project proposal](https://apumath250.netlify.app/project/#project-proposal) -->
+<!-- - See [Doing Data Science slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/16-doing-data-science.html#1) for getting started on your [project proposal](https://nova-stat-4380.netlify.app/project/#project-proposal) -->
 
 

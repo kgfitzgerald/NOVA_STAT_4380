@@ -196,7 +196,7 @@ fav_food |> clean_names()
 
 # Project requirements
 
-Let's look at [course website](https://apumath250.netlify.app/project/#data-sources) together
+Let's look at [course website](https://nova-stat-4380.netlify.app/project/#data-sources) together
 
 ---
 
@@ -207,11 +207,11 @@ Let's look at [course website](https://apumath250.netlify.app/project/#data-sour
 + Review each other's P01 brainstorm post to identify topic(s) of common interest. 
     + Start by ranking the other's 3 in order of interest
     + Together decide on a top 3, with at least one from each person
-+ Browse [data sources](https://apumath250.netlify.app/project/#data-sources) on course website
++ Browse [data sources](https://nova-stat-4380.netlify.app/project/#data-sources) on course website
     + This is a good task for ChatGPT! Give it your 3 interests and ask for publically available data
 + Locate a dataset
 + Determine observational units, variables, and a research question that could be answered with that data
-+ Settle on three substantially different datasets, and start working on [project proposal](https://apumath250.netlify.app/project/#project-proposal)
++ Settle on three substantially different datasets, and start working on [project proposal](https://nova-stat-4380.netlify.app/project/#project-proposal)
 + Proposal due Saturday October 5, 11:59pm
     + See course website for details - in part, will involve identifying the three Ws from Ch 2 of book
 

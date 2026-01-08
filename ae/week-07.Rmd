@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!-- ### Thursday Announcements -->
 
-<!-- Project: [Data cleaning & Preliminary EDA](https://apumath250.netlify.app/project/#data-cleaning--preliminary-eda) due in 2 weeks: Oct 26 -->
+<!-- Project: [Data cleaning & Preliminary EDA](https://nova-stat-4380.netlify.app/project/#data-cleaning--preliminary-eda) due in 2 weeks: Oct 26 -->
 
 <!-- Next week: back to "regular" schedule w/ prep material, AE, & lab -->
 
