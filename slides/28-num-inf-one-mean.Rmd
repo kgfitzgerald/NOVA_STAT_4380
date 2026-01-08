@@ -1,6 +1,6 @@
 ---
 title: "Inference for Numerical Data, Part I: One Mean"
-subtitle: "MATH 250"
+subtitle: "STAT 4380"
 author: "Katie Fitzgerald, adpated from [Intro to Modern Statistics](https://openintro-ims.netlify.app)"
 output:
   xaringan::moon_reader:

@@ -1,6 +1,6 @@
 ---
 title: "Inference with Categorical Data, Part 1: One proportion"
-subtitle: "MATH 250"
+subtitle: "STAT 4380"
 author: "Katie Fitzgerald, adpated from datasciencebox.org"
 output:
   xaringan::moon_reader:
