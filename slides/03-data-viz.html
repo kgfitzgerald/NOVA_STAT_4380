@@ -46,11 +46,310 @@ layout: true
 
 class: middle
 
+# Data basics in R
+
+---
+
+# Creating objects 
+
+To create an object `x` in your Environment that has the value 5...
+
+
+``` r
+x &lt;- 5 #preferred method
+
+5 -&gt; x #useful in some cases
+
+x = 5 #works but discouraged
+```
+
+--
+
+To print the object...
+
+
+``` r
+x #one of rare instances that doesn't need ()
+```
+
+```
+## [1] 5
+```
+
+``` r
+print(x) #works but unnecessary
+```
+
+```
+## [1] 5
+```
+
+---
+
+# Most manipulations in R are done using vectors
+
++ Vectors are used for (statistical) random variables
++ Vectors are created by combining values using the `c()` function
+
+
+``` r
+height &lt;- c(59, 62, 55, 68)
+height/12
+```
+
+```
+## [1] 4.916667 5.166667 4.583333 5.666667
+```
+
+``` r
+gender &lt;- c("F","M","F","F")
+```
+
++ For character data, you can use either single or double quotes, but you can’t mix them
++ REMINDER: everything in R, including variable names, is case sensitive
+
+---
+
+# Creating dataframes
+
+Can combine multiple vectors into a data frame
+.pull-left[
+
+``` r
+height &lt;- c(59, 62, 55, 68)
+gender &lt;- c("F","M","F","F")
+
+data &lt;- data.frame(height, gender)
+data
+```
+
+```
+##   height gender
+## 1     59      F
+## 2     62      M
+## 3     55      F
+## 4     68      F
+```
+]
+
+.pull-right[
+
+``` r
+data2 &lt;- data.frame(height = c(59, 62, 55, 68),
+                    gender = c("F","M","F","F"))
+data2
+```
+
+```
+##   height gender
+## 1     59      F
+## 2     62      M
+## 3     55      F
+## 4     68      F
+```
+]
+
+---
+
+# Useful commands for data entry
+
+
+``` r
+60:72
+```
+
+```
+##  [1] 60 61 62 63 64 65 66 67 68 69 70 71 72
+```
+
+``` r
+seq(60, 72, by = 2)   
+```
+
+```
+## [1] 60 62 64 66 68 70 72
+```
+
+``` r
+seq(60, 70, length = 3) 
+```
+
+```
+## [1] 60 65 70
+```
+
+---
+
+# Extracting data using []
+
+
+
+
+``` r
+height &lt;- c(59, 62, 55, 68)
+gender &lt;- c("F","M","F","F")
+data &lt;- data.frame(height, gender)
+
+height[2]
+```
+
+```
+## [1] 62
+```
+
+``` r
+data[2,]
+```
+
+```
+##   height gender
+## 2     62      M
+```
+
+``` r
+data[,2]
+```
+
+```
+## [1] "F" "M" "F" "F"
+```
+
+---
+
+# Useful commands for data entry
+
+
+``` r
+rep(60, 5)
+```
+
+```
+## [1] 60 60 60 60 60
+```
+
+``` r
+rep(c(60, 72), 3)   
+```
+
+```
+## [1] 60 72 60 72 60 72
+```
+
+``` r
+rep(c(60, 66, 72), c(1, 2, 3))  
+```
+
+```
+## [1] 60 66 66 72 72 72
+```
+
+---
+
+# Missing data
+
++ Missing data in R is denoted by NA
++ Some functions produce NA when any data are missing
+
+``` r
+mean(c(1, 2, NA))
+```
+
+```
+## [1] NA
+```
+
+``` r
+mean(c(1, 2, NA), na.rm = TRUE)
+```
+
+```
+## [1] 1.5
+```
+
+---
+
+# Summary statistics
+
+.pull-left[
+
+``` r
+summary(data)
+```
+
+```
+##      height        gender         
+##  Min.   :55.0   Length:4          
+##  1st Qu.:58.0   Class :character  
+##  Median :60.5   Mode  :character  
+##  Mean   :61.0                     
+##  3rd Qu.:63.5                     
+##  Max.   :68.0
+```
+
+``` r
+data$gender &lt;- factor(data$gender)
+summary(data)
+```
+
+```
+##      height     gender
+##  Min.   :55.0   F:3   
+##  1st Qu.:58.0   M:1   
+##  Median :60.5         
+##  Mean   :61.0         
+##  3rd Qu.:63.5         
+##  Max.   :68.0
+```
+
+]
+
+.pull-right[
++ `mean()`
++ `var()`
++ `sd()`
++ `min()`
++ `max()`
++ `length()`
++ `quantile(x, c(0.25, 0.75))`
+
+
+
+``` r
+table(data$gender)
+```
+
+```
+## 
+## F M 
+## 3 1
+```
+
+]
+---
+
+# Statistical inference
+
+
+``` r
+t.test() #one and two-sample t-tests
+chisq.test() #Chi-squared GOF or Indep 
+wilcox.test() #signed rank or rank sum test
+binom.test() #exact test for binomial/bernoulli
+aov() #ANOVA
+lm() #linear models
+glm() #generalized linear models
+lmer() #linear mixed effects models 
+```
+
+---
+
+class: middle
+
 # What is in a dataset?
 
 ---
 
-## Dataset terminology
+## Data frames / Tibbles in R
 
 - Each row is an **observation**
 - Each column is a **variable**
@@ -188,13 +487,13 @@ What other variables would help us understand data points that don't follow the 
 Who is the not so tall but really chubby character?
 ]
 
-&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Jabba!
 
-&lt;img src="img/jabbaplot.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -412,23 +711,1418 @@ quartet |&gt;
 
 &lt;img src="03-data-viz_files/figure-html/quartet-plot-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
+
 ---
 
-## Facebook visits
+## Data: Palmer Penguins
 
-.question[ 
-How are people reporting lower vs. higher values of FB visits?
+Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+.pull-left-narrow[
+&lt;img src="img/penguins.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right-wide[
+
+``` r
+library(palmerpenguins)
+penguins &lt;- palmerpenguins::penguins
+glimpse(penguins)
+```
+
+```
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adeli…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torg…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 362…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, mal…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2…
+```
 ]
 
-&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-28-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+
+``` r
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species")
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
+```
+]
+]
+
+---
+
+class: middle
+
+# Coding out loud
+
+---
+
+.midi[
+&gt; **Start with the `penguins` data frame**
+]
+
+.pull-left[
+
+``` r
+*ggplot(data = penguins)
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; **map bill depth to the x-axis**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+*      mapping = aes(x = bill_depth_mm))
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; **and map bill length to the y-axis.**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+*                    y = bill_length_mm))
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; **Represent each observation with a point**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) + 
+* geom_point()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; **and map species to the colour of each point.**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+*                    colour = species)) +
+  geom_point()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; **Title the plot "Bill depth and length"**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+* labs(title = "Bill depth and length")
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; Title the plot "Bill depth and length", 
+&gt; **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+*      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins")
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; Title the plot "Bill depth and length", 
+&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+&gt; **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+*      x = "Bill depth (mm)", y = "Bill length (mm)")
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; Title the plot "Bill depth and length", 
+&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+&gt; **label the legend "Species"**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+*      colour = "Species")
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; Title the plot "Bill depth and length", 
+&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+&gt; label the legend "Species", 
+&gt; **and add a caption for the data source.**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species",
+*      caption = "Source: Palmer Station LTER / palmerpenguins package")
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.midi[
+&gt; Start with the `penguins` data frame,
+&gt; map bill depth to the x-axis
+&gt; and map bill length to the y-axis. 
+&gt; Represent each observation with a point
+&gt; and map species to the colour of each point.
+&gt; Title the plot "Bill depth and length", 
+&gt; add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+&gt; label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+&gt; label the legend "Species", 
+&gt; and add a caption for the data source.
+&gt; **Finally, use a discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness.**
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+* scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_colour_viridis_d()
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
+```
+]
+.panel[.panel-name[Narrative]
+.pull-left-wide[
+.midi[
+Start with the `penguins` data frame,
+map bill depth to the x-axis
+and map bill length to the y-axis. 
+
+Represent each observation with a point
+and map species to the colour of each point.
+
+Title the plot "Bill depth and length", 
+add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+label the legend "Species", 
+and add a caption for the data source.
+
+Finally, use a discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness.
+]
+]
+]
+]
+
+---
+
+## Argument names
+
+.tip[
+You can omit the names of first two arguments when building plots with `ggplot()`.
+]
+
+.pull-left[
+
+``` r
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+
+---
+
+class: middle
+
+# Aesthetics
+
+---
+
+## Aesthetics options
+
+Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
+
+- `colour`
+- `shape`
+- `size`
+- `alpha` (transparency)
+
+---
+
+## Colour
+
+.pull-left[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+*          colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Shape
+
+Mapped to a different variable than `colour`
+
+.pull-left[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           colour = species,
+*          shape = island)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Shape
+
+Mapped to same variable as `colour`
+
+.pull-left[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           colour = species,
+*          shape = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Size
+
+.pull-left[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           colour = species,
+           shape = species,
+*          size = body_mass_g)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Alpha
+
+.pull-left[
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           colour = species,
+           shape = species,
+           size = body_mass_g,
+*          alpha = flipper_length_mm)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+.pull-left[
+**Mapping**
+
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+*          size = body_mass_g,
+*          alpha = flipper_length_mm)) +
+  geom_point()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-46-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+**Setting**
+
+
+``` r
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) + 
+* geom_point(size = 2, alpha = 0.5)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Mapping vs. setting
+
+- **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
+  - goes into `aes()`
+
+- **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
+  - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
+  
+---
+
+class: middle
+
+# Faceting
+
+---
+
+## Faceting
+
+- Smaller plots that display different subsets of the data
+- Useful for exploring conditional relationships and large data
+
+---
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-48-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_grid(species ~ island)
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
+```
+]
+]
+
+---
+
+## Various ways to facet
+
+.question[
+In the next few slides describe what each plot displays. Think about how the code relates to the output.
+
+**Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
+But you should always label your plots!
+]
+
+---
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_grid(species ~ sex)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-49-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_grid(sex ~ species)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-50-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_wrap(~ species)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-51-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_grid(. ~ species)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-52-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+``` r
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+* facet_wrap(~ species, ncol = 2)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-53-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Faceting summary
+
+- `facet_grid()`:
+    - 2d grid
+    - `rows ~ cols`
+    - use `.` for no split
+- `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
+
+---
+
+## Facet and color
+
+.pull-left-narrow[
+
+``` r
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+*     color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+* scale_color_viridis_d()
+```
+]
+.pull-right-wide[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Facet and color, no legend
+
+.pull-left-narrow[
+
+``` r
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() +
+* guides(color = FALSE)
+```
+]
+
+
+---
+
+class: middle
+
+# Terminology
+
+---
+
+## Number of variables involved
+
+- Univariate data analysis - distribution of single variable
+- Bivariate data analysis - relationship between two variables
+- Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
+
+---
+
+## Types of variables
+
+- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
+- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+
+---
+
+class: middle
+
+# Data
+
+---
+
+## Data: Lending Club
+
+.pull-left-wide[
+
+- Thousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals
+
+- Not all loans are created equal -- ease of getting a loan depends on (apparent) ability to pay back the loan
+
+- Data includes loans *made*, these are not loan applications
+]
+.pull-right-narrow[
+&lt;img src="img/lending-club.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Take a peek at data
+
+
+``` r
+library(openintro)
+glimpse(loans_full_schema)
+```
+
+```
+## Rows: 10,000
+## Columns: 55
+## $ emp_title                        &lt;chr&gt; "global config enginee…
+## $ emp_length                       &lt;dbl&gt; 3, 10, 3, 1, 10, NA, 1…
+## $ state                            &lt;fct&gt; NJ, HI, WI, PA, CA, KY…
+## $ homeownership                    &lt;fct&gt; MORTGAGE, RENT, RENT, …
+## $ annual_income                    &lt;dbl&gt; 90000, 40000, 40000, 3…
+## $ verified_income                  &lt;fct&gt; Verified, Not Verified…
+## $ debt_to_income                   &lt;dbl&gt; 18.01, 5.04, 21.15, 10…
+## $ annual_income_joint              &lt;dbl&gt; NA, NA, NA, NA, 57000,…
+## $ verification_income_joint        &lt;fct&gt; , , , , Verified, , No…
+## $ debt_to_income_joint             &lt;dbl&gt; NA, NA, NA, NA, 37.66,…
+## $ delinq_2y                        &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 1…
+## $ months_since_last_delinq         &lt;int&gt; 38, NA, 28, NA, NA, 3,…
+## $ earliest_credit_line             &lt;dbl&gt; 2001, 1996, 2006, 2007…
+## $ inquiries_last_12m               &lt;int&gt; 6, 1, 4, 0, 7, 6, 1, 1…
+## $ total_credit_lines               &lt;int&gt; 28, 30, 31, 4, 22, 32,…
+## $ open_credit_lines                &lt;int&gt; 10, 14, 10, 4, 16, 12,…
+...
+```
+
+---
+
+## Selected variables
+
+
+``` r
+loans &lt;- loans_full_schema |&gt;
+  select(loan_amount, interest_rate, term, grade, 
+         state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+```
+## Rows: 10,000
+## Columns: 8
+## $ loan_amount    &lt;int&gt; 28000, 5000, 2000, 21600, 23000, 5000, 2…
+## $ interest_rate  &lt;dbl&gt; 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, …
+## $ term           &lt;dbl&gt; 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, …
+## $ grade          &lt;ord&gt; C, C, D, A, C, A, C, B, C, A, C, B, C, B…
+## $ state          &lt;fct&gt; NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, …
+## $ annual_income  &lt;dbl&gt; 90000, 40000, 40000, 30000, 35000, 34000…
+## $ homeownership  &lt;fct&gt; MORTGAGE, RENT, RENT, RENT, RENT, OWN, M…
+## $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, …
+```
+
+---
+
+## Selected variables
+
+&lt;br&gt;
+
+.midi[
+variable        | description
+----------------|-------------
+`loan_amount`   |	Amount of the loan received, in US dollars
+`interest_rate` |	Interest rate on the loan, in an annual percentage
+`term`	        | The length of the loan, which is always set as a whole number of months
+`grade`	        | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid
+`state`         |	US state where the borrower resides
+`annual_income` |	Borrower’s annual income, including any second income, in US dollars
+`homeownership`	| Indicates whether the person owns, owns but has a mortgage, or rents
+`debt_to_income` | Debt-to-income ratio
+]
+
+---
+
+## Variable types
+
+&lt;br&gt;
+
+variable        | type
+----------------|-------------
+`loan_amount`   |	numerical, continuous
+`interest_rate` |	numerical, continuous
+`term`	        | numerical, discrete
+`grade`	        | categorical, ordinal
+`state`         |	categorical, not ordinal
+`annual_income` |	numerical, continuous
+`homeownership`	| categorical, not ordinal
+`debt_to_income` | numerical, continuous
+
+---
+
+class: middle
+
+# Visualizing numerical data
+
+---
+
+## Describing shapes of numerical distributions
+
+- shape:
+    - skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
+    - modality: unimodal, bimodal, multimodal, uniform
+- center: mean (`mean`), median (`median`), mode (not always useful)
+- spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
+- unusual observations
+
+---
+
+class: middle
+
+# Histogram
+
+---
+
+## Histogram
+
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-58-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Histograms and binwidth
+
+.panelset[
+.panel[.panel-name[binwidth = 1000]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 1000)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-59-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[binwidth = 5000]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 5000)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-60-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[binwidth = 20000]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 20000)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-61-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Customizing histograms
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-62-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 5000,
+                 color = "white") +
+* labs(
+*   x = "Loan amount ($)",
+*   y = "Frequency",
+*   title = "Amounts of Lending Club loans"
+* )
+```
+]
+]
+
+---
+
+## Fill with a categorical variable
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-63-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = loan_amount, 
+*                 fill = homeownership)) +
+  geom_histogram(binwidth = 5000,
+*                alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  )
+```
+]
+]
+
+---
+
+## Facet with a categorical variable
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-64-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) + 
+  geom_histogram(binwidth = 5000) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  ) +
+* facet_wrap(~ homeownership, nrow = 3)
+```
+]
+]
+
+---
+
+class: middle
+
+# Density plot
+
+---
+
+## Density plot
+
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-65-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Density plots and adjusting bandwidth
+
+.panelset[
+.panel[.panel-name[adjust = 0.5]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 0.5)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-66-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[adjust = 1]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 1) # default bandwidth
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-67-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[adjust = 2]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 2)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-68-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Customizing density plots
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-69-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 2) +
+* labs(
+*   x = "Loan amount ($)",
+*   y = "Density",
+*   title = "Amounts of Lending Club loans"
+* )
+```
+]
+]
+
+---
+
+## Adding a categorical variable
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-70-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = loan_amount, 
+*                 fill = homeownership)) +
+  geom_density(adjust = 2, 
+*              alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Density",
+    title = "Amounts of Lending Club loans", 
+*   fill = "Homeownership"
+  )
+```
+]
+]
+
+---
+
+class: middle
+
+# Box plot
+
+---
+
+## Box plot
+
+
+``` r
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-71-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Box plot and outliers
+
+
+``` r
+ggplot(loans, aes(x = annual_income)) +
+  geom_boxplot()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-72-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Customizing box plots
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-73-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot() +
+  labs(
+    x = "Interest rate (%)",
+    y = NULL,
+    title = "Interest rates of Lending Club loans"
+  ) +
+* theme(
+*   axis.ticks.y = element_blank(),
+*   axis.text.y = element_blank()
+* )
+```
+]
+]
+
+---
+
+## Adding a categorical variable
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-74-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+ggplot(loans, aes(x = interest_rate,
+*                 y = grade)) +
+  geom_boxplot() +
+  labs(
+    x = "Interest rate (%)",
+    y = "Grade",
+    title = "Interest rates of Lending Club loans",
+*   subtitle = "by grade of loan"
+  )
+```
+]
+]
+
+---
+
+class: middle
+
+# Relationships numerical variables
+
+---
+
+## Scatterplot
+
+
+``` r
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
+  geom_point()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-75-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Hex plot
+
+
+``` r
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
+  geom_hex()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-76-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Hex plot
+
+
+``` r
+ggplot(loans |&gt; filter(debt_to_income &lt; 100), 
+       aes(x = debt_to_income, y = interest_rate)) +
+  geom_hex()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-77-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+.pull-right-wide[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-78-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle
+
+# Plotting Categorical data
+
+---
+
+### Data 
+
+
+``` r
+library(openintro)
+loans &lt;- loans_full_schema |&gt;
+  select(loan_amount, interest_rate, term, grade, 
+         state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+```
+## Rows: 10,000
+## Columns: 8
+## $ loan_amount    &lt;int&gt; 28000, 5000, 2000, 21600, 23000, 5000, 2…
+## $ interest_rate  &lt;dbl&gt; 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, …
+## $ term           &lt;dbl&gt; 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, …
+## $ grade          &lt;ord&gt; C, C, D, A, C, A, C, B, C, A, C, B, C, B…
+## $ state          &lt;fct&gt; NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, …
+## $ annual_income  &lt;dbl&gt; 90000, 40000, 40000, 30000, 35000, 34000…
+## $ homeownership  &lt;fct&gt; MORTGAGE, RENT, RENT, RENT, RENT, OWN, M…
+## $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, …
+```
+
+---
+
+class: middle
+
+# Bar plot
+
+---
+
+## Bar plot
+
+
+``` r
+ggplot(loans, aes(x = homeownership)) +
+  geom_bar()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-80-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Segmented bar plot
+
+
+``` r
+ggplot(loans, aes(x = homeownership, 
+*                 fill = grade)) +
+  geom_bar()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-81-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Segmented bar plot
+
+
+``` r
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+* geom_bar(position = "fill")
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-82-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+.question[
+Which bar plot is a more useful representation for visualizing the relationship between homeownership and grade?
+]
+
+.pull-left[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-83-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-84-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Customizing bar plots
+
+.panelset[
+.panel[.panel-name[Plot]
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-85-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+``` r
+*ggplot(loans, aes(y = homeownership,
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+* labs(
+*   x = "Proportion",
+*   y = "Homeownership",
+*   fill = "Grade",
+*   title = "Grades of Lending Club loans",
+*   subtitle = "and homeownership of lendee"
+* )
+```
+]
+]
+
+---
+
+class: middle
+
+# Relationships between numerical and categorical variables
+
+---
+
+## Already talked about...
+
+- Colouring and faceting histograms and density plots
+- Side-by-side box plots
+
+---
+
+## Violin plots
+
+
+``` r
+ggplot(loans, aes(x = homeownership, y = loan_amount)) +
+  geom_violin()
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-86-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Ridge plots
+
+
+``` r
+library(ggridges)
+ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) + 
+  geom_density_ridges(alpha = 0.5)
+```
+
+&lt;img src="03-data-viz_files/figure-html/unnamed-chunk-87-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
