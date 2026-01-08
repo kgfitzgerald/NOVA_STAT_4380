@@ -20,17 +20,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [Data classes](https://youtu.be/oQWX5btmtn0)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/13-data-classes.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/13-data-classes.html)
 
 `r emo::ji("movie_camera")` Watch [Importing data](https://youtu.be/3b9Rb6sWiAk)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/14-data-import.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/14-data-import.html)
 
 `r emo::ji("movie_camera")` Watch [Recoding data](https://youtu.be/GeFKGqPqEwk)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/15-data-recode.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/15-data-recode.html)
 
-`r emo::ji("memo")` Complete Prep Quiz 06 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 06 on Blackboard
 
 ### Optional 
 

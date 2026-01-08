@@ -20,21 +20,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [The language of models](https://youtu.be/bQrR8HFKKhI)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/22-language-of-models.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/22-language-of-models.html)
 
 `r emo::ji("movie_camera")` Watch [Fitting and interpreting models](https://youtu.be/QOfbzyANOoU)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/23-fitting-interpreting-models.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/23-fitting-interpreting-models.html)
 
 `r emo::ji("movie_camera")` Watch [Model assumptions & diagnostics](https://youtu.be/hQ1vgCCMLH8)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/24-model-assumptions-diagnostics.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/24-model-assumptions-diagnostics.html)
 
 `r emo::ji("movie_camera")` Watch [Models with multiple predictors](https://youtu.be/06ncimugf_w)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/25-multiple-predictors-model-selection.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/25-multiple-predictors-model-selection.html)
   
-`r emo::ji("memo")` Complete Prep Quiz 08 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 08 on Blackboard
 
 ### Optional 
 

@@ -44,4 +44,4 @@ knitr::opts_chunk$set(echo = TRUE)
 - The remainder of class will be spent on AE-07. 
 - You can access it from GitHub. 
 - It is due at the end of class today. 
-- To turn it in, you should upload your .html file to Canvas.
+- To turn it in, you should upload your .html file to Blackboard.

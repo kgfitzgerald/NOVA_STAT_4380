@@ -24,9 +24,9 @@ library(tidyverse)
 
 ### Announcements
 
-+ Sign up for project group in Canvas if you haven't already - sit with your partner today
++ Sign up for project group in Blackboard if you haven't already - sit with your partner today
 + In-class exam made on Thursday, will also release take-home exam due next Tuesday at midnight
-    + AE solutions have been posted (home page of Canvas)
+    + AE solutions have been posted (home page of Blackboard)
     + everything graded - reminder if you submitted on time, can revise & resubmit for up to full credit w/in one week of when assignment was graded
 + No lab or annotations this week, but you will have lecture recordings & prep quiz for Tuesday (~60 mins, 3 videos)
 + Project proposal due next Saturday
@@ -57,6 +57,6 @@ library(tidyverse)
 
 <!-- ### Project Work Session -->
 
-<!-- - See [Doing Data Science slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/16-doing-data-science.html#1) for getting started on your [project proposal](https://apumath250.netlify.app/project/#project-proposal) -->
+<!-- - See [Doing Data Science slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/16-doing-data-science.html#1) for getting started on your [project proposal](https://apumath250.netlify.app/project/#project-proposal) -->
 
 

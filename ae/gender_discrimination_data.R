@@ -60,22 +60,22 @@ gender_discrimination_new_perm <- gender_discrimination_new |>
 # Save everything --------------------------------------------------------------
 
 write_rds(gender_discrimination_big, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_big.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_big.rds")
 
 write_rds(gender_discrimination_big_perm, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_big_perm.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_big_perm.rds")
 
 write_rds(gender_discrimination_new, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_new.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_new.rds")
 
 write_rds(gender_discrimination_new_perm, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_new_perm.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_new_perm.rds")
 
 write_rds(gender_discrimination_small, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_small.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_small.rds")
 
 write_rds(gender_discrimination_small_perm, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_small_perm.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_small_perm.rds")
 
 write_rds(gender_discrimination_perm, 
-          path = "/Volumes/GoogleDrive/My Drive/MATH250/APU_MATH_250_public/ae/data/gender_discrimination_perm.rds")
+          path = "/Volumes/GoogleDrive/My Drive/MATH250/NOVA_STAT_4380_public/ae/data/gender_discrimination_perm.rds")

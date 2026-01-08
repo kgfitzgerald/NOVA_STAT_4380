@@ -24,8 +24,8 @@ In this lab, you will...
 
 ## Getting started 
 
-+ Open our class [GitHub repo](https://github.com/kgfitzgerald/APU_MATH_250/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
-+ You will be working in your randomly assigned Lab 01 - 02 Groups. See Canvas.
++ Open our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
++ You will be working in your randomly assigned Lab 01 - 02 Groups. See Blackboard.
 
 # Packages
 
@@ -110,7 +110,7 @@ You can read more about ridge plots [here](https://cran.r-project.org/web/packag
 
 # Submission
 
-Before submitting your assignment on Canvas, Render one last time, then open up your .html in a full window and inspect the following:
+Before submitting your assignment on Blackboard, Render one last time, then open up your .html in a full window and inspect the following:
 
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 
@@ -126,7 +126,7 @@ Before submitting your assignment on Canvas, Render one last time, then open up 
 
 + Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
 
-To submit, Render one last time and then upload your .html document to the relevant assignment on Canvas. Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+To submit, Render one last time and then upload your .html document to the relevant assignment on Blackboard. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
 
 # Grading (50 pts)
 

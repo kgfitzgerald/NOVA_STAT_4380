@@ -20,25 +20,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [Working with multiple data frames](https://youtu.be/IK_uxavp7k8)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/10-multi-df.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/10-multi-df.html)
 
 `r emo::ji("movie_camera")` Watch [Tidying data](https://youtu.be/e4aCwwLgAfo)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/11-tidying.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/11-tidying.html)
 
 `r emo::ji("movie_camera")` Watch [Simpson's paradox](https://youtu.be/bgIn65yX66g)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/18-simpsons-paradox.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/18-simpsons-paradox.html)
 
 <!-- `r emo::ji("movie_camera")` Watch [Data types](https://youtu.be/WQYKkfj1bOg) -->
 
-<!-- - [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/12-data-types.html) -->
+<!-- - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/12-data-types.html) -->
 
 <!-- `r emo::ji("movie_camera")` Watch [Visualizing Spatial Data](https://warpwire.duke.edu/w/Yw4GAA/). -->
 
-<!-- - [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/02-meet-toolkit-r.html) -->
+<!-- - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/02-meet-toolkit-r.html) -->
 
-`r emo::ji("memo")` Complete Prep Quiz 04 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 04 on Blackboard
 
 ### Optional 
 

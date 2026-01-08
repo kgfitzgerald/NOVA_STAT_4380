@@ -380,8 +380,8 @@ Before submitting, open up your .html in a full window and inspect the following
 
 -   Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
 
-To submit, you need to export your .html document from RStudio Cloud and then upload it to the AE 10 assignment on Canvas.
-Refer back to [Lab 01](https://kgfitzgerald.github.io/APU_MATH_250/labs/lab-01-hello-r.html) for detailed instructions on how to export and submit your assignment.
+To submit, you need to export your .html document from RStudio Cloud and then upload it to the AE 10 assignment on Blackboard.
+Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to export and submit your assignment.
 
 ## Grading (10 pts)
 

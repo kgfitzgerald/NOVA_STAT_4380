@@ -13,13 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## For Tuesday, September 24
 
-+ Sign up for a project group on Canvas.
++ Sign up for a project group on Blackboard.
 
 + Complete the following prep exercises:
 
 `r emo::ji("movie_camera")` Watch [Scientific studies and confounding](https://youtu.be/4_tellSmARQ)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/17-studies-confounding.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/17-studies-confounding.html)
 
 `r emo::ji("book")` [Read Chapters 2 & 3 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061)
 
@@ -28,9 +28,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!-- `r emo::ji("movie_camera")` Watch [Doing data science](https://youtu.be/b9lSW0kyqBg) -->
 
-<!-- - [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/16-doing-data-science.html) -->
+<!-- - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/16-doing-data-science.html) -->
 
-`r emo::ji("memo")` Complete Prep Quiz 05 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 05 on Blackboard
 
 ### Optional
 

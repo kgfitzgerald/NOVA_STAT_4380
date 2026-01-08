@@ -31,7 +31,7 @@ library(tidyverse)
 
 <!-- Upcoming: -->
 
-<!-- -   First 2 [Statistics Experience Points](https://kgfitzgerald.github.io/APU_MATH_250/engage/se-01.html) due NEXT Saturday -->
+<!-- -   First 2 [Statistics Experience Points](https://kgfitzgerald.github.io/NOVA_STAT_4380/engage/se-01.html) due NEXT Saturday -->
 
 <!-- -   Exam 1 is in Week 5 - made available on Tuesday 9/26, due the following Tuesday 10/3 -->
 
@@ -100,4 +100,4 @@ ggplot(midwest, aes(x = area, y = poptotal,
 -   The remainder of class will be spent on AE-03.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Canvas.
+-   To turn it in, you should upload your .html file to Blackboard.

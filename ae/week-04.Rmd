@@ -47,7 +47,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- ### Thursday Announcements -->
 
 <!-- -   2 Stats Experience Points due Saturday -->
-<!-- -   Sign up for project groups on Canvas by class-time on Tuesday -->
+<!-- -   Sign up for project groups on Blackboard by class-time on Tuesday -->
 <!--     -   choose your own groups of 2 -->
 <!--     -   who will you work well with? -->
 <!--     -   who do you have common (data) interests with? Check out initial Campuswire responses -->
@@ -65,7 +65,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Announcements
 
 - Due Thursday: Lab 03, Project Brainstorm post, (no annotations this week)
-- First 2 Stats Experience Points due Saturday (remember to post brief reflection on Canvas)
+- First 2 Stats Experience Points due Saturday (remember to post brief reflection on Blackboard)
   -   [Informational Interview resource](https://docs.google.com/document/d/17ESP_xm-kXo3gsRrzmbG0XR37yRqnMCT5TiqPli6Pnc/edit?usp=sharing)
    -   [Appointment slots](https://calendar.app.google/vciEZtXbBiz4aEWP7) for dinner with me after class
    -   Exam 1 in-class next Thursday, will have take-home component due the following Tuesday
@@ -155,4 +155,4 @@ iris|>
 -   The remainder of class will be spent on AE-04.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Canvas.
+-   To turn it in, you should upload your .html file to Blackboard.

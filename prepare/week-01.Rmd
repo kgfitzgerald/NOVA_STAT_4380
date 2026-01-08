@@ -19,11 +19,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [Meet the Toolkit - Programming](https://youtu.be/T9UJ-rWCc-c) 
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/02-toolkit-R.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/02-toolkit-R.html)
 
-`r emo::ji("memo")` Complete Prep Quiz 01 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 01 on Blackboard
 
-<!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Canvas -->
+<!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Blackboard -->
 
 ### Optional 
 

@@ -40,10 +40,10 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- + Due now: Lab 08 -->
 <!-- + Today: project work session -->
 <!-- + Rough draft due next Tuesday -->
-<!--     + upload to [Google Drive folder](https://drive.google.com/drive/folders/1bqjf3mHkhmMNeb8h4Ql710O88rMnttqr?usp=sharing) (link also posted on Canvas) -->
+<!--     + upload to [Google Drive folder](https://drive.google.com/drive/folders/1bqjf3mHkhmMNeb8h4Ql710O88rMnttqr?usp=sharing) (link also posted on Blackboard) -->
 <!--     + This is where you will access each other's reports to read before peer review session next Thursday -->
 <!--     + Can also see Project rubric I will use to evaluate your final project -->
-<!-- + [Prep work for Tuesday](https://kgfitzgerald.github.io/APU_MATH_250/prepare/week-12.html). -->
+<!-- + [Prep work for Tuesday](https://kgfitzgerald.github.io/NOVA_STAT_4380/prepare/week-12.html). -->
 
 
 <!-- ### Peer review assignments (for next Thursday) -->

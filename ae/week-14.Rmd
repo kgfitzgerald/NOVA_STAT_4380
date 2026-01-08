@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Thursday Announcements
 
--   Final draft of poster - upload to Canvas AND email to me by noon tomorrow
+-   Final draft of poster - upload to Blackboard AND email to me by noon tomorrow
 
 -   IDEA survey - need three more people - closes tomorrow
 

@@ -463,7 +463,7 @@ Before submitting, open up your .html in a full window and inspect the following
 
 -   Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
 
-To submit, upload your .html file to the AE 08 assignment on Canvas.
+To submit, upload your .html file to the AE 08 assignment on Blackboard.
 
 ## Grading (10 pts)
 

@@ -20,14 +20,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("book")` Read the [Full Project Evaluation Rubric](https://docs.google.com/spreadsheets/d/1C1eaMHB9W-dJFYd0Sw39-IA2BOJ9V90o/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) (in Shared Google Drive) to familiarize yourself with how the (written) project will be evaluated. 
 
-`r emo::ji("memo")` Respond to the Week 12 prep discussion post on Canvas by providing:
+`r emo::ji("memo")` Respond to the Week 12 prep discussion post on Blackboard by providing:
 
 1. A brief outline / to-do list for writing your rough draft (you may choose to provide a link to a Google doc if you wish)
 2. 1-2 questions you have about writing the rough draft after reading 
 
 ## "In-class" on Tuesday (asynchronous, due 11:59pm)
 
-`r emo::ji("book")` Choose two of the following four written reports to read. These reports scored in the top 3 or honorable mention for the Undergraduate Statistics Class Project Competition in Spring 2023. They can serve as a model for how you might communicate your results. **On Canvas AE-09, state the two reports you chose, a strength of each, and a suggested area of improvement for each.** 
+`r emo::ji("book")` Choose two of the following four written reports to read. These reports scored in the top 3 or honorable mention for the Undergraduate Statistics Class Project Competition in Spring 2023. They can serve as a model for how you might communicate your results. **On Blackboard AE-09, state the two reports you chose, a strength of each, and a suggested area of improvement for each.** 
 
 + [Using Healthcare Data to Study the Association Between Pre-existing Respiratory Disease and COVID Death Rate in Massachusetts](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%203005%20-%20using%20healthcare%20data%20to%20study%20the%20association%20between%20preexisting%20respiratory%20disease%20and%20covid%20death%20rate%20in%20massachusetts.pdf)
 + [Analyzing the Influence of Pollutants and Meteorological Conditions on PM2.5 Concentration](https://www.causeweb.org/usproc/sites/default/files/usclap/2023-1/usclap%202941%20-%20analyzing%20the%20influence%20of%20pollutants%20and%20meteorological%20conditions%20on%20pm25%20concentration.pdf)

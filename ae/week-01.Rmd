@@ -1,7 +1,7 @@
 ---
 title: "Week 01"
 subtitle: "Meet the Toolkit"
-output: 
+output:
   prettydoc::html_pretty:
     theme: hpstr
     highlight: github
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Questions?
 
-+ RMarkdown vs. Quarto??
+
 
 ### Social Identity Activity
 
@@ -35,7 +35,7 @@ Author of this activity: Dr. Missy Crosby
 
 Write down: 
 
-+ a specific off-campus location you go to (semi-)regularly out in the community (e.g. gym, grocery store, church, theater, hiking trails, but NOT your home)
++ a specific off-campus location you go to (semi-)regularly out in the community (e.g. gym, grocery store, place of worship, theater, hiking trails, but NOT your home)
 
 Each on a separate notecard, write down:
 
@@ -49,5 +49,5 @@ Each on a separate notecard, write down:
 - The remainder of class will be spent on Lab 01. 
 - You can access the INSTRUCTIONS on the course website
 - You can access the template for your report on GitHub. 
-- Work in Lab 01 - 02 groups (see Canvas), submit individually 
-- To turn it in, you should upload your .html file to Canvas.
+- Work in Lab 01 - 02 groups (see Blackboard), submit individually 
+- To turn it in, you should upload your .html file (exported to pdf) on Blackboard.

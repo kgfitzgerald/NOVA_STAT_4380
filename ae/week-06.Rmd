@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 -   Prep work is 2 lecture videos (\<40 mins) + mini "ethics lab" (read + reflect - handout provided today)
 
--   Discussion post in Canvas instead of prep quiz
+-   Discussion post in Blackboard instead of prep quiz
 
 -   Today: Lab 05 - data cleaning
 
@@ -101,4 +101,4 @@ Join [American Statistical Association](https://www.amstat.org/membership/become
 -   The remainder of class will be spent on AE-05.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Canvas.
+-   To turn it in, you should upload your .html file to Blackboard.

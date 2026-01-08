@@ -82,4 +82,4 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- -   This week, the Application Exercise & Lab are combined into one larger Lab 08, which you will work on during both class sessions. -->
 <!-- -   You can access it from GitHub. -->
 <!-- -   It is due by class-time next Tuesday. -->
-<!-- -   To turn it in, you should upload your .html file to Canvas. -->
+<!-- -   To turn it in, you should upload your .html file to Blackboard. -->

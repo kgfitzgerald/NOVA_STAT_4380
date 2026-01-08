@@ -57,7 +57,7 @@ knitr::include_graphics("img/shiny.png")
 
 # Prep Activity #1
 
-1. Create a folder inside your MATH_250 folder called `hello_shiny`
+1. Create a folder inside your STAT_4380 folder called `hello_shiny`
 2. Copy the `app.R` file in the `hello_shiny` folder on GitHub 
 3. Open the `app.R` file and run the App
 3. Change the title from "Hello Shiny!" to "Hello World!"

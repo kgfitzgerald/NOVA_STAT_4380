@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This documents provides student answers that received partial credit on the [Exam](https://kgfitzgerald.github.io/APU_MATH_250/exam/exam-01.html). Your job is to identify where reasoning went wrong and/or what could be improved about the answer. Remember, these are your peers' submissions, so be kind when critiquing and recommending improvements :)
+This documents provides student answers that received partial credit on the [Exam](https://kgfitzgerald.github.io/NOVA_STAT_4380/exam/exam-01.html). Your job is to identify where reasoning went wrong and/or what could be improved about the answer. Remember, these are your peers' submissions, so be kind when critiquing and recommending improvements :)
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE}
 library(nwslR)

@@ -31,7 +31,7 @@ library(lubridate)
 ### .gray[Course operation]
 .gray[
 - apumath250.netlify.app
-- Canvas
+- Blackboard
 ]
 ]
 .pull-right[
@@ -316,8 +316,8 @@ Mitchell O'Hara-Wild, [useR! 2018 feature wall](https://www.mitchelloharawild.co
 .your-turn[
 .light-blue[.hand[Your turn: ]] ` AE 01b - Bechdel + Quarto`
 - [The Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test) asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
-- Go to our [Github repo ](https://github.com/kgfitzgerald/APU_MATH_250/tree/main/assignment_templates) and navigate to AE > AE-01b-bechdel.qmd
+- Go to our [Github repo ](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and navigate to AE > AE-01b-bechdel.qmd
 - Click to "Download raw file"
-- Place the downloaded .qmd document in your MATH_250 folder on your computer
-- From inside your MATH_250 RStudio Project, open and render the Quarto document `AE-01b-bechdel.qmd`, review the document, and fill in the blanks.
+- Place the downloaded .qmd document in your STAT_4380 folder on your computer
+- From inside your STAT_4380 RStudio Project, open and render the Quarto document `AE-01b-bechdel.qmd`, review the document, and fill in the blanks.
 ]

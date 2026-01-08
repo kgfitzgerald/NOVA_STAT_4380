@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 What's left (assignments):
 
 -   Written report rough draft due tonight
-    -   submit pdf on Canvas AND upload to Google Drive for peer review
+    -   submit pdf on Blackboard AND upload to Google Drive for peer review
     -   make sure it is written in a .qmd (rendered to a pdf) and all tables/figures are reproducible
 -   For next class: read rough draft of group assigned to you
 -   Tuesday, Dec 3: Formal Peer Review due (will start next class)

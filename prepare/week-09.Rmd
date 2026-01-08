@@ -22,14 +22,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [Quantifying Uncertainty](https://youtu.be/ZUBq4cMlBjk)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/26-quantify-uncertainty.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/26-quantify-uncertainty.html)
 
 
 `r emo::ji("movie_camera")` Watch [Hypothesis testing](https://youtu.be/SSEhrGK9-8k)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/27-hypothesis-testing.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/27-hypothesis-testing.html)
 
-`r emo::ji("memo")` Complete Prep Quiz 09 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 09 on Blackboard
 
 ### Optional 
 

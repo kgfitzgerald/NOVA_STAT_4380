@@ -19,11 +19,11 @@ Week 07 will follow a different format, since we will be spending the whole week
 
 `r emo::ji("movie_camera")` Watch [Misrepresentation](https://youtu.be/p4Ip0K-h-a8)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/19-misrepresentation.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/19-misrepresentation.html)
 
 `r emo::ji("movie_camera")` Watch [Algorithmic bias](https://youtu.be/WpKOuUgnvxI)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/21-algorithmic-bias.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/21-algorithmic-bias.html)
 
 `r emo::ji("memo")` For Tuesday's "prep quiz", respond to this discussion post in [Campuswire](https://campuswire.com/c/G7C5D99E0/feed/8).
 

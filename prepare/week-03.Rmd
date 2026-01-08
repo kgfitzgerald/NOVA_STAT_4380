@@ -20,17 +20,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch [Tidy Data](https://youtu.be/J8YvhjEHkCM)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/07-tidy-data.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/07-tidy-data.html)
 
 `r emo::ji("movie_camera")` Watch [Grammar of data wrangling](https://youtu.be/0jO-5MESCJ4)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/08-grammar-wrangle.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/08-grammar-wrangle.html)
 
 `r emo::ji("movie_camera")` Watch [Working with a single data frame](https://youtu.be/EjBTGdiVxvA)
 
-- [Slides](https://kgfitzgerald.github.io/APU_MATH_250/slides/09-single-df.html)
+- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/09-single-df.html)
 
-`r emo::ji("memo")` Complete Prep Quiz 03 on Canvas
+`r emo::ji("memo")` Complete Prep Quiz 03 on Blackboard
 
 ### Optional 
 

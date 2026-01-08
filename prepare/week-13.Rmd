@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("book")` [Read Chapter 8 - 9.2 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061). As you read, keep your project in mind, and create a checklist of things you'll check for when writing / editing your rough draft (due Tuesday Nov 19 also). 
 
-`r emo::ji("memo")` Respond to the Week 13 prep discussion post on Canvas by providing:
+`r emo::ji("memo")` Respond to the Week 13 prep discussion post on Blackboard by providing:
 
 1. A brief checklist of things you'll look for when writing / editing your draft (you can provide a screenshot or link to a Google doc of the notes you took while reading if you want)
 2. 1-2 questions you have about writing / editing the rough draft after reading

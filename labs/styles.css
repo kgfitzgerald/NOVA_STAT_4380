@@ -1,0 +1,16 @@
+:root {
+  --quarto-margin-width: 350px;
+}
+
+.column-margin {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+
+.figure .quarto-figure-caption,
+figcaption {
+  display: none;
+}
+
+

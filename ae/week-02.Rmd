@@ -198,4 +198,4 @@ plot_grid(p1, p2, nrow = 1)
 -   The remainder of class will be spent on AE-02.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Canvas.
+-   To turn it in, you should upload your .html file to Blackboard.
