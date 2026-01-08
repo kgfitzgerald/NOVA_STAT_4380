@@ -388,16 +388,6 @@ knitr::include_graphics("img/grammar-of-graphics.png")
 
 ---
 
-## Mass vs. height
-
-```{r mass-height, fig.width = 8, out.width = "50%"}
-ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
-  geom_point() +
-  labs(title = "Mass vs. height of Starwars characters",
-       x = "Height (cm)", y = "Weight (kg)")
-```
-
----
 
 .question[ 
 - What are the functions doing the plotting?
@@ -406,7 +396,11 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 - What does the warning mean?<sup>+</sup>
 ]
 
-```{r ref.label="mass-height", fig.show = "hide"}
+```{r mass-height, eval = FALSE}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)")
 ```
 
 .footnote[
@@ -455,12 +449,12 @@ quartet
 
 .pull-left[
 ```{r quartet-view1, echo = FALSE}
-quartet[1:22,]
+quartet[1:20,]
 ```
 ] 
 .pull-right[
 ```{r quartet-view2, echo = FALSE}
-quartet[23:44,]
+quartet[23:42,]
 ```
 ]
 
