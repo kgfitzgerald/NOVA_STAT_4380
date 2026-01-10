@@ -1,7 +1,7 @@
 ---
 title: "AE 10: Hypothesis Testing with Randomization"
 subtitle: "INSTRUCTIONS"
-author: "due Thursday, November 17, 4:20pm"
+author: "due Thursday, November 17, 4pm"
 output: 
   html_document:
     toc: true

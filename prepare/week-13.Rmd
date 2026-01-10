@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Before class Tuesday November 19 (due 4:20pm)
+## Before class Tuesday November 19 (due 4pm)
 
 `r emo::ji("book")` [Read Chapter 8 - 9.2 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061). As you read, keep your project in mind, and create a checklist of things you'll check for when writing / editing your rough draft (due Tuesday Nov 19 also). 
 

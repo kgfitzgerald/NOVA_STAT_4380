@@ -1,7 +1,7 @@
 ---
 title: "AE 09: Bootstrapping"
 subtitle: "INSTRUCTIONS"
-author: "due Thursday, November 10, 4:20pm"
+author: "due Thursday, November 10, 4pm"
 output: 
   html_document:
     toc: true

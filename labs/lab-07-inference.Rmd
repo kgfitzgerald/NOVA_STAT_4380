@@ -1,7 +1,7 @@
 ---
 title: "Lab 07 - Inference for numeric data"
 subtitle: "General Social Survey, Hotels, & Diets"
-date: "due Thursday, November 7 at 4:20pm"
+date: "due Thursday, November 7 at 4pm"
 output: 
   tufte::tufte_html:
     css: "lab.css"

@@ -1,6 +1,6 @@
 ---
 title: "AE 09: Bootstrapping"
-subtitle: "due Thursday, November 10, 4:20pm"
+subtitle: "due Thursday, November 10, 4pm"
 author: "SOLUTIONS"
 output: 
   html_document:

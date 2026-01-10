@@ -1,6 +1,6 @@
 ---
 title: "Lab 05: Importing & Cleaning"
-subtitle: "due Thursday, October 10 at 4:20pm"
+subtitle: "due Thursday, October 10 at 4pm"
 output: 
   tufte::tufte_html:
     css: "lab.css"

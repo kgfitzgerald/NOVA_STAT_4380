@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## For October 31
 
-**Note:** All required prepare activities are due **<u>by the beginning of class (4:20pm)</u>** on the specified date.
+**Note:** All required prepare activities are due **<u>by the beginning of class (4pm)</u>** on the specified date.
 
 ### Required
 
