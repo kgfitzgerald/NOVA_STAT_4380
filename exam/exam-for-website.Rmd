@@ -1,0 +1,7 @@
+---
+title: "Exam 1"
+output: 
+  tufte::tufte_html
+---
+
+Exam 1 will be made available [on Blackboard](https://canvas.apu.edu/courses/49307/assignments/837760) at 5:45pm on September 26.

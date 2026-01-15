@@ -11,43 +11,55 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Statistician of the Week 
+### Statistician / Data Scientist of the Week 
 
 [David Blackwell](https://hardin47.github.io/CURV/scholars/blackwell.html)
 
 [C.R. Rao](https://en.wikipedia.org/wiki/C._R._Rao)
 
-### Announcements
+### Thursday Announcements
 
-+ Due Thursday (class-time): Watch Week 01 lecture videos + complete Prep Quiz 01
-+ Due Saturday (usually Thursdays): Annotations 01
++ Due Saturday (usually Thursdays): Annotations 01 (watch ONLY the first 15 minutes of the video + 2 brief articles)
 
++ Today in class: Lab 01 - see your assigned group in Blackboard (under Groups)
+
++ Due Tuesday: Watch Week 02 Lecture video - can you access them now? 
+
++ I'm relatively flexible with due dates - they're there for a reason, but up to a 5 day extension is usually granted (with the exception of some project due dates).
+    + "Extension request form" link on Blackboard home page
+
++ Notecards for attendance. What to put on it:
+    + Name
+    + Date
+    + OPTIONAL but ENCOURAGED: 
+        + what questions do you have? what was confusing or unclear (i.e. "muddiest point")
+        + anything going on in your life you'd like me to be aware of? (e.g. overwhelmed/stressed, big interview coming up, family member sick) I'm a praying person :) and can also point you to support resources if/when helpful
 
 ### Questions?
 
++ "Not sure I understand the difference between Environment of your Quarto document & the Console"
 
+<!-- ### Social Identity Activity -->
 
-### Social Identity Activity
+<!-- Author of this activity: Dr. Missy Crosby  -->
 
-Author of this activity: Dr. Missy Crosby 
+<!-- *Crosby, M. (2022). Becoming: Considering social and personal identities for mathematics teaching and learning. Presentation at Mathematical Association of America’s Project NExT 2022.* -->
 
-*Crosby, M. (2022). Becoming: Considering social and personal identities for mathematics teaching and learning. Presentation at Mathematical Association of America’s Project NExT 2022.*
+<!-- Write down:  -->
 
-Write down: 
+<!-- + a specific off-campus location you go to (semi-)regularly out in the community (e.g. gym, grocery store, place of worship, theater, hiking trails, but NOT your home) -->
 
-+ a specific off-campus location you go to (semi-)regularly out in the community (e.g. gym, grocery store, place of worship, theater, hiking trails, but NOT your home)
+<!-- Each on a separate notecard, write down: -->
 
-Each on a separate notecard, write down:
-
-+ your gender
-+ your race/ethnicity
-+ your religious/spiritual identity or affiliation
-+ another aspect that reflects something about who you are (e.g. major, hobby, familial identity)
+<!-- + your gender -->
+<!-- + your race/ethnicity -->
+<!-- + your religious/spiritual identity or affiliation -->
+<!-- + another aspect that reflects something about who you are (e.g. major, hobby, familial identity) -->
 
 ### Lab 01
 
 - The remainder of class will be spent on Lab 01. 
 - You can access the INSTRUCTIONS on the course website
-- You can access the template for your report on GitHub. 
+- You can access the TEMPLATE Quarto file for your report on GitHub. 
 - Work in Lab 01 - 02 groups (see Blackboard), submit individually 
-- To turn it in, you should upload your .html file (exported to pdf) on Blackboard.
+- To turn it in, you should upload your .html file (converted to .zip) on Blackboard.

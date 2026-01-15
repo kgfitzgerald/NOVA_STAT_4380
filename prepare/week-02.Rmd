@@ -12,38 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## For September 3
+## For Tuesday January 20
 
 **Note:** All required prepare activities are due **<u>by the beginning of class (4pm)</u>** on the specified date.
 
 ### Required 
 
-`r emo::ji("movie_camera")` Watch [Data and visualization](https://youtu.be/R1UGnork_Gs) 
+`r emo::ji("movie_camera")` Watch the [Week 02 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5865307_1) on Perusall (accessible via Blackboard)
 
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/03-data-viz.html)
+- [Slides - 03 Data Viz Intro](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/03-data-viz-intro.html)
 
-`r emo::ji("movie_camera")` Watch [Visualizing data with ggplot2](https://youtu.be/u8pIsAhvYsY)  
-
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/04-ggplot2.html)
-
-`r emo::ji("movie_camera")` Watch [Visualizing numeric data](https://youtu.be/c0i50_M-PUQ)  
-
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/05-viz-num.html)
-
-`r emo::ji("movie_camera")` Watch [Visualizing categorical data](https://youtu.be/ZMECwyhjctU)  
-
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/06-viz-cat.html)
-
-`r emo::ji("memo")` Complete Prep Quiz 02 on Blackboard
-
+- [Slides - 04 Variable Types & Visualization Types](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/04-viz-types.html)
 
 ### Optional 
 
+`r emo::ji("book")` Read [MDSR:: Chapter 2 - Data visualization](https://mdsr-book.github.io/mdsr3e/02-datavizI.html)
+
+`r emo::ji("book")` Read [MDSR:: Chapter 3 - A grammar for graphics](https://mdsr-book.github.io/mdsr3e/03-datavizII.html)
+
 `r emo::ji("book")` Read [R4DS:: Chapter 3 - Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
-
-`r emo::ji("book")` Read [Introduction to Modern Data Science (IMS):: Chapter 4 - Exploring Numerical Data](https://openintro-ims.netlify.app/explore-numerical.html)
-
-`r emo::ji("book")` Read [IMS:: Chapter 5 - Exploring Categorical Data](https://openintro-ims.netlify.app/explore-categorical.html)
 
 
 
