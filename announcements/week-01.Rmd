@@ -34,10 +34,20 @@ knitr::opts_chunk$set(echo = TRUE)
     + OPTIONAL but ENCOURAGED: 
         + what questions do you have? what was confusing or unclear (i.e. "muddiest point")
         + anything going on in your life you'd like me to be aware of? (e.g. overwhelmed/stressed, big interview coming up, family member sick) I'm a praying person :) and can also point you to support resources if/when helpful
+        
+### Let's talk about AI :) 
+
+** Disclaimer: your professors are all figuring this out as we go – your input is really valuable!** 
+
++ What’s not important anymore?
++ What’s still important?
++ How do you use it currently? What have you found it to be good at / not so good at?
++ [Course AI policy](https://nova-stat-4380.netlify.app/syllabus/#ai--llm-policy-ie-usage-of-chatgpt-gemini-etc)
 
 ### Questions?
 
 + "Not sure I understand the difference between Environment of your Quarto document & the Console"
+
 
 <!-- ### Social Identity Activity -->
 
