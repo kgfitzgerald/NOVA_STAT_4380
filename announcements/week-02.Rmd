@@ -18,15 +18,11 @@ library(ggthemes)
 library(cowplot)
 ```
 
-### Thursday Announcements
+<!-- ### Thursday Announcements -->
 
- - Save the Date: CEMPS BBQ Next Friday (free food!), 5 - 7pm
- - Save the Date: APU STEM Research Symposium Saturday, Sept 21
-    + counts as 2 Stats Experience points!
+  <!-- - For next week: lecture videos a little shorter (3 videos, 50 mins), but annotation content longer  -->
+  <!--   + Content warning: racism in science  -->
 
-
-  - For next week: lecture videos a little shorter (3 videos, 50 mins), but annotation content longer 
-    + Content warning: racism in science 
 
 ### Statistician(s) of the Week
 
@@ -44,6 +40,11 @@ Check out his [book](https://www.amazon.com/W-Boiss-Data-Portraits-Visualizing/d
 
 + Annotations due Thursday
 + Lab 01 due Thursday
++ First quiz on Thursday. To prepare,
+    + Week 01 & 02 lecture slides
+    + Lab 01
+    + AE in class today
+
 
 ### A few notes / tips
 
@@ -189,13 +190,13 @@ plot_grid(p1, p2, nrow = 1)
 <!--     -   websites using the `blogdown` package (see [here](https://www.silviacanelon.com) and [here](https://katie-fitzgerald.netlify.app)), and -->
 <!--     -   interactive web apps using the `shiny` package (see [here](https://gallery.shinyapps.io/freedom-press-index/?_ga=2.81315735.1827555729.1662265788-1653842836.1662265788#home) and [here](https://kgfitz.shinyapps.io/confidence_intervals/?_ga=2.165073215.1872464027.1644259610-1518862278.1644259610))! -->
 
-### Live coding demo
+<!-- ### Live coding demo -->
 
-- Download week-02-live-code.qmd to follow along
+<!-- - Download week-02-live-code.qmd to follow along -->
 
 ### Application Exercise
 
 -   The remainder of class will be spent on AE-02.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Blackboard.
+-   To turn it in, you should upload your .html (as a .zip file) to Blackboard.

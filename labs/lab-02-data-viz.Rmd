@@ -1,31 +1,36 @@
 ---
-title: "Lab 02: Data Visualization"
-subtitle: "due Thursday, September 12 at 4pm"
-output: 
-  tufte::tufte_html:
-    css: "lab.css"
-    tufte_variant: "envisioned"
-    highlight: pygments
-    toc: true
-    toc_depth: 1
-link-citations: yes
-editor_options: 
-  markdown: 
-    wrap: sentence
+title: "Lab 02 – Data Visualization"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - Data visualization
+  - Tidyverse
+  - Ridge plots
+  - ANES
+editor_options:
+  chunk_output_type: console
+callout-icon: false
 ---
 
-## Goals
+# Goals
 
-In this lab, you will...
+In this lab, you will:
 
-- Gain proficiency in data visualization
-- Apply principles of effective data visualization to a real dataset
-- Continue developing a workflow for reproducible data analysis.
++ Gain proficiency in data visualization
++ Apply principles of effective visualization to a real dataset
++ Continue developing a workflow for reproducible data analysis
 
-## Getting started 
+# Getting Started
 
-+ Open our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
-+ You will be working in your randomly assigned Lab 01 - 02 Groups. See Blackboard.
++ Go to our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the `.qmd` file for this lab.
++ Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for instructions on how to get started on a lab.
++ You will work in your Lab 01–02 groups (see Blackboard).
 
 # Packages
 
@@ -39,7 +44,8 @@ library(ggridges)
 
 # Data: 2020 American National Election Study
 
-The data for this homework assignment comes from the [2020 American National Election Study](https://electionstudies.org/data-center/2020-time-series-study/).
+The dataset comes from the
+[2020 American National Election Study](https://electionstudies.org/data-center/2020-time-series-study/).
 
 ```{r, eval = FALSE}
 anes <- read_csv("data/anes2020_subset.csv")
@@ -59,94 +65,142 @@ A subset of variables are provided here. Some of them have been recoded, while o
 
 - `urbanrural`: a variable indicating how rural or urban the respondent’s home community is with four possible values: rural, small town, suburb, or city.
 
-# Exercises 
+# Exercises
 
 All plots should follow the best visualization practices discussed in lecture. Plots should include an informative title, axes should be labeled, and careful consideration should be given to aesthetic choices.
 
-Remember that continuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course. You should provide adequate comments to your code and narrative text interpreting your results.  
+Remember that continuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course. You should provide adequate comments to your code and narrative text interpreting your results. 
 
-1. Provide a brief description of the data collection process - who collected the data, when was it collected, who was surveyed, and anything else you find relevant/interesting. 
+::: callout-note
+### Exercise 1
+Provide a brief description of the data collection process — who collected the data, when, who was surveyed, and anything else you find relevant/interesting.
+:::
 
-2. How many rows are in the `anes` dataset? How many columns? Please include code and output to support your response. 
+::: callout-note
+### Exercise 2
+How many rows and columns are in the `anes` dataset?
+Include code and output.
+:::
 
-3. Create a bar chart showing the `ideology` of the respondents, with the count on the y-axis. 
-  - Please remember to include labels. 
+::: callout-note
+### Exercise 3
+
+Create a bar chart of `ideology` (counts on y-axis).
+
+  - Include axis labels and an informative title.
   - What is the most common ideology? 
   - Do respondents tend to be moderate or more ideologically extreme?
 
-4. Now, let’s examine whether ideologies are different based upon where people live. Please make a filled bar plot, showing one bar for each `ideology`, with the percentage of respondents on the y-axis going from 0-1, and the fill determined by `urbanrural`. 
-  - You are encouraged but not required to use `viridis` colors. 
-  - Please remember to include labels. 
-  - Where do people of different ideologies tend to live? 
-  - Does the percentage of non-responses (i.e., people who said NA) vary much by ideology?
-  
-5. How do people view scientists? Please make a histogram with the feeling thermometer on the x-axis and the number of respondents on the y-axis. Then, please comment on features of the histogram such as skewness and peaks.
+:::
 
-6. Does the ideology of those who have gone hunting or fishing in the past year differ from those who haven’t? Please make side-by-side boxplots of these two groups.
-  - You should start your code with:
+::: callout-note
+### Exercise 4
+Now, let’s examine whether ideologies are different based upon where people live. Please make a filled bar plot, showing one bar for each `ideology`, with the proportion of respondents on the y-axis going from 0-1, and the `fill` determined by `urbanrural`.
+
+- Include labels
+- Encouraged to use `viridis` colors
+
+- Where do people of each ideology tend to live?
+- Does the level of non-response vary by ideology?
+
+:::
+
+::: callout-note
+### Exercise 5
+*How do people view scientists?* 
+
++ Make a histogram of the `scientists` feeling thermometer. 
++ Comment on the distribution, including features such as skewness and peaks. Interpret in context.
+:::
+
+---
+
+::: callout-note
+### Exercise 6
+*Does the ideology of those who have gone hunting or fishing in the past year differ from those who haven’t?* Explore this using **side-by-side boxplots**.
+
+Start your code with:
 
 ```{r, eval = FALSE}
 anes |>
   drop_na(hunt_fish) |>
-  mutate(hunted_fished = ifelse(hunt_fish == 0, "Did Not Hunt or Fish",  
-                                "Hunted or Fished")) |>
+  mutate(hunted_fished = ifelse(hunt_fish == 0,
+                                "Did Not Hunt or Fish",
+                                "Hunted or Fished"))
 ```
 
-```{marginfigure}
-You can read more about ridge plots [here](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
-```
+:::
 
-7. Explore the same question as in Exercise 6, this time using `geom_density_ridges()` to construct a ridge plot as an alternative to side-by-side box plots.  
+::: callout-note
+### Exercise 7
+Explore the same question as in Exercise 6, this time using `geom_density_ridges()` to construct a ridge plot as an alternative to side-by-side box plots.
+:::
 
-8. Describe what you observe in both plots from Exercises 6 & 7 and what you learn from one plot that you do not see in the other or that adds additional context to the other.
+::: {.marginfigure}
+You can read more about ridge plots
+[here](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
+:::
 
-9. Is there a relationship between a respondent’s education level and how they view scientists? Please make a scatterplot of these two variables with education on the x-axis and view of scientists on the y-axis. 
-  - Include a line of best fit using a `geom_smooth()` layer with the option `method = "lm"`. 
-  - Do you think this is an especially useful visualization? Why or why not?
+::: callout-note
+### Exercise 8
+Describe what you observe in the boxplots (Ex 6) and ridge plots (Ex 7).
+What can you learn from one plot that you do not see in the other or that adds additional context to the other?
+:::
 
-10. What is an additional question you could investigate using this data? State the question, provide a visualization that investigates it, and comment on what your visualization shows. 
+::: callout-note
+### Exercise 9
+Is education related to views of scientists? Create a scatterplot with:
 
-11. Write a brief paragraph summarizing what you found in this lab, what limitations might exist to the data/analyses, and what additional data you would like to have to explore further questions. 
+- education on x-axis
+- scientists feeling thermometer on y-axis
+- add a best-fit line layer: `geom_smooth(method = "lm")`
+
+Is this visualization useful? Why or why not?
+
+:::
+
+::: callout-note
+### Exercise 10
+What is an additional question you could investigate using this data? State the question, provide a visualization that investigates it, and comment on what your visualization shows.
+:::
+
+::: callout-note
+### Exercise 11
+
+Write a brief paragraph summarizing what you found in this lab, what limitations might exist to the data/analyses, and what additional data you would like to have to explore further questions.
+
+:::
+
 
 # Submission
 
-Before submitting your assignment on Blackboard, Render one last time, then open up your .html in a full window and inspect the following:
+Before submitting your `.html` (as a .zip file to Blackboard):
 
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
++ Check visualizations for clean titles and labels
++ Suppress extraneous messages/warnings (e.g. set `#| warning: false`, `#| message: false` inside code chunks)
++ Ensure exercises are clearly labeled and your text responses are visually distinguished 
++ Confirm neat organization and readable structure
 
-+ Check any visualizations for informative and clean labels and titles
-
-+ Check any tables for clean formatting (e.g. with `kbl() |> kable_minmal()`)
-
-+ Check that you've interpreted output as appropriate
-
-+ Make sure extraneous warnings and messages are suppressed (e.g. set `#| warning: false`, `#| message: false`)
-
-+ Check that Exercises are clearly labeled and your text responses are visually distinguished
-
-+ Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
-
-To submit, Render one last time and then upload your .html document to the relevant assignment on Blackboard. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Blackboard.
 
 # Grading (50 pts)
 
-<br>
-
-| Component | Points |
-|:----------|:-------|
-| Ex 1      | 2      |
-| Ex 2      | 2    |
-| Ex 3      | 4    |
-| Ex 4      | 4     |
-| Ex 5      | 4      |
-| Ex 6      | 4    |
-| Ex 7      | 4    |
-| Ex 8      | 4    |
-| Ex 9      | 4    |
-| Ex 10      | 4    |
-| Ex 11     | 4    |
-| Reflection prompts    | 5     |
-| Workflow & formatting | 5     |
+| Component              | Points |
+|------------------------|--------|
+| Exercise 1             | 2      |
+| Exercise 2             | 2      |
+| Exercise 3             | 4      |
+| Exercise 4             | 4      |
+| Exercise 5             | 4      |
+| Exercise 6             | 4      |
+| Exercise 7             | 4      |
+| Exercise 8             | 4      |
+| Exercise 9             | 4      |
+| Exercise 10            | 4      |
+| Exercise 11            | 4      |
+| Reflection prompts     | 5      |
+| Workflow & formatting  | 5      |
 
 **Grading notes**:
 
