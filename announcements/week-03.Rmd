@@ -37,31 +37,35 @@ library(tidyverse)
 
 <!-- -   No class on Thursday 9/28 -->
 
-### Thursday announcements
+<!-- ### Thursday announcements -->
 
-CEMPS BBQ [RSVP here](https://docs.google.com/forms/d/e/1FAIpQLSdg3jWxFtrZk9ZsNNrPHjmAOhzRgsUlX4UOLEijBEDlL9wLyA/viewform)
+<!-- CEMPS BBQ [RSVP here](https://docs.google.com/forms/d/e/1FAIpQLSdg3jWxFtrZk9ZsNNrPHjmAOhzRgsUlX4UOLEijBEDlL9wLyA/viewform) -->
 
-Next week: 
+<!-- Next week:  -->
 
-+ regular Prep due next Tuesday
-+ no annotations
-+ P01: Project brainstorm due next Thursday
-+ Stats Experience points due next Saturday
+<!-- + regular Prep due next Tuesday -->
+<!-- + no annotations -->
+<!-- + P01: Project brainstorm due next Thursday -->
+<!-- + Stats Experience points due next Saturday -->
 
 
 ### Announcements
 
-<!-- Due now: Lab 02 -->
++ Lab 02 optional (full credit if you turn it in completed, exempt if you don't)
 
-Due Thursday: Lab 02, Annotations 03
++ Annotations due Thursday
 
-CEMPS BBQ on Friday (free food!) [RSVP here](https://docs.google.com/forms/d/e/1FAIpQLSdg3jWxFtrZk9ZsNNrPHjmAOhzRgsUlX4UOLEijBEDlL9wLyA/viewform)
-
-Keep up the good work on annotations! Reading your thoughts is one of my favorite parts of my job :)
++ First quiz in class Thursday - will focus on Week 01 & 02 (basics + data viz, not new data wrangling stuff yet)
 
 <!-- ![](images/MPS_BBQ.png) -->
 
 ### Questions?
+
++ See Perusall for answers to your questions! 
+
+    + all answered as of 8pm Monday
+    + others will be answered later this week
+    + follow up in class or on Piazza if urgent!
 
 *What's the difference between the `fill` and `color` aesthetics in `ggplot`?*
 
