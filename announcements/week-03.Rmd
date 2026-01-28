@@ -15,6 +15,12 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+### Thursday announcements
+
++ Quiz 01 to start class today
++ Then Lab 03 in groups (see Blackboard)
++ Week 04 lecture posted - shorter this week! 
+
 ### Statistician(s) of the Week
 
 [Edna Paisano](https://hardin47.github.io/CURV/scholars/paisano.html)

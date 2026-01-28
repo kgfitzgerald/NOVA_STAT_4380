@@ -1,55 +1,53 @@
 ---
-title: "Lab 03 - What should I major in?"
-subtitle: "due Thursday, September 19 at 4pm"
-output: 
-  tufte::tufte_html:
-    css: "lab.css"
-    tufte_variant: "envisioned"
-    highlight: pygments
-    toc: true
-    toc_depth: 1
-link-citations: yes
-editor_options: 
-  markdown: 
-    wrap: sentence
+title: "Lab 03 – What should I major in?"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - Data wrangling
+  - Data visualization
+  - College majors
+  - FiveThirtyEight
+editor_options:
+  chunk_output_type: console
+callout-icon: false
 ---
 
-```{r include = FALSE}
-knitr::opts_chunk$set(
-  eval = FALSE,
-  out.width = "80%",
-  fig.asp = 0.618,
-  fig.width = 10,
-  dpi = 300
-)
-```
+# Goals
 
-```{r photo, fig.margin = TRUE, echo = FALSE, fig.width = 3, fig.cap = "Photo by Marleena Garris on Unsplash", eval = TRUE}
-knitr::include_graphics("img/graduate.jpg")
-```
+In this lab, you will:
 
-The first step in the process of turning information into knowledge is to summarize and describe the raw information - the data.
-In this assignment we explore data on college majors and earnings, specifically the data in the FiveThirtyEight story ["The Economic Guide To Picking A College Major"](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
++ Explore relationships between college majors, earnings, and employment
++ Practice data wrangling and visualization skills
++ Continue developing a reproducible data analysis workflow
 
-These data originally come from the American Community Survey (ACS) 2010-2012 Public Use Microdata Series.
-While this is outside the scope of this assignment, if you are curious about how raw data from the ACS were cleaned and prepared, see [the code](https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R) FiveThirtyEight authors used. This data is over a decade old at this point, but you could pull and analyze more recent ACS data for your project! The ACS includes many more survey topics than those in this analysis. 
+---
 
-We should also note that there are many considerations that go into picking a college major. Earnings potential and employment prospects are two of them, and they are important, but they don't tell the whole story. Keep this in mind as you analyze the data.
+# Getting Started
 
-# Getting started
-
-+ You will be working in your randomly assigned Lab 03 - 04 Groups. See Blackboard.
-+ Open our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab. 
-
++ You will be working in your Lab 03–04 Groups (see Blackboard).
++ Download the `.qmd` file for this lab from our class
+  [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates).
++ Refer back to
+  [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html)
+  for detailed workflow and submission instructions.
 
 ## Packages
 
-We'll use the **tidyverse** package for much of the data wrangling and visualization, the **scales** package for better formatting of labels on visualizations, the `ggridges` package for creating ridge plots, the `kableExtra` package for formatting tables, and the data lives in the **fivethirtyeight** package.
+We will use the following packages:
 
-These packages are already installed for you.
-You can load them by running the following in your Console:
+- **tidyverse**: data wrangling and visualization
+- **scales**: formatting labels
+- **ggridges**: ridge plots
+- **kableExtra**: table formatting
+- **fivethirtyeight**: data source
 
-```{r load-packages, message = FALSE, eval = TRUE}
+```{r load-packages, message = FALSE, echo = FALSE}
 library(tidyverse)
 library(scales)
 library(fivethirtyeight)
@@ -57,11 +55,20 @@ library(ggridges)
 library(kableExtra)
 ```
 
-## Data
+## Data: College Majors and Earnings
 
-The data can be found in the **fivethirtyeight** package, and it's called `college_recent_grads`. Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package. 
+In this assignment we explore data on college majors and earnings, specifically the data in the FiveThirtyEight story ["The Economic Guide To Picking A College Major"](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
 
-You can find out more about the dataset by inspecting its documentation, which you can access by running `?college_recent_grads` in the Console or using the Help menu in RStudio to search for `college_recent_grads`. You can also find this information [here](https://fivethirtyeight-r.netlify.app/reference/college_recent_grads.html).
+These data originally come from the American Community Survey (ACS) 2010-2012 Public Use Microdata Series. While this is outside the scope of this assignment, if you are curious about how raw data from the ACS were cleaned and prepared, see [the code](https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R) FiveThirtyEight authors used. This data is over a decade old at this point, but you could pull and analyze more recent ACS data for your project! The ACS includes many more survey topics than those in this analysis. 
+
+We should also note that there are many considerations that go into picking a college major. Earnings potential and employment prospects are two of them, and they are important, but they don't tell the whole story. Keep this in mind as you analyze the data.
+
+The dataset is included in the **fivethirtyeight** package and is called
+`college_recent_grads`.
+
+```{r, eval = FALSE}
+?college_recent_grads
+```
 
 The `college_recent_grads` data frame is a trove of information.
 Let's think about some questions we might want to answer with these data:
@@ -73,81 +80,136 @@ Let's think about some questions we might want to answer with these data:
 
 In the next section we aim to answer these questions.
 
+---
+
 # Exercises
 
-1. How many observations and variables are in this data? What does each row represent?
+Respond to each exercise with clearly labeled code and written interpretation.
 
-2.  Which major category is the least popular in this sample? Meaning, which major category has the fewest number of total graduates? Use the partial code below, filling it in with the appropriate function and relevant variable. Also note that we are looking for the least popular major, so make sure to arrange in the correct direction.
+---
 
-```{r eval=FALSE}
+::: callout-note
+### Exercise 1
+How many observations and variables are in this dataset?
+What does each row represent?
+:::
+
+::: callout-note
+### Exercise 2
+Which major category is the least popular (fewest total graduates)?
+
+Use the following scaffold:
+
+```{r, eval = FALSE}
 college_recent_grads |>
   group_by(major_category) |>
   summarise(total_per_category = ___(___)) |>
   arrange(___)
 ```
+:::
 
-## Which majors have the lowest unemployment rate? 
+::: callout-note
+### Exercise 3
+Which majors have the lowest unemployment rates? Create a neatly formatted table to answer this question, keeping in mind the following:
 
-```{marginfigure}
++ Make a decision about how many rows to display in your output
++ Make sure to sort your data in a reasonable way
++ Choose only a small subset of variables to display in your output to improve readability. 
++ Add `kbl() |> kable_minimal()` to the end of your pipeline to clean up how your table appears in your html.
+:::
+
+::: {.column-margin}
+\
 The function `slice` and/or its variations might be helpful in displaying only a subset of rows. Check out the help documentation by runing `?slice` in the console.
-```
+:::
 
-```{marginfigure}
+::: {.column-margin}
 You can check out more table formatting options using the `kableExtra` package [here](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
-```
+:::
 
-3. Using what you've learned so far, put together a pipeline of code to answer the above question. Make sure to sort your data in a reasonable way, and choose only a small subset of variables to display in your output to improve readability. Make a decision about how many rows to display in your output. Add `kbl() |> kable_minimal()` to the end of your pipeline to clean up how your table appears in your html.
 
-```{marginfigure}
+::: callout-note
+### Exercise 4
+Recreate the table from Exercise 3, but display unemployment as percentages
+rounded to two decimal places.
+To do this, create a new variable called `unemployment_perc` that uses the `percent()` function to convert the proportions to percentages. 
+:::
+
+
+::: {.column-margin}
+\
 Hint: read the `?percent()` documentation to see how the `accuracy` argument works.
-```
+:::
 
-4. Re-create the same table from Exercise 3, but display the unemployment rate as percentages, rounded to 2 decimal places. To do this, create a new variable called `unemployment_perc` that uses the `percent()` function to convert the proportions to percentages.  
+::: callout-note
+### Exercise 5
+Which majors have the highest percentage of women?
+Create a nicely formatted table and comment on what you see.
+:::
 
-## Which majors have the highest percentage of women? 
-
-5. Using what you've learned so far, put together a pipeline of code that produces a nicely formatted table to investigate the above question. Comment on what your results show.
-
-6. Include a similar table for the majors that have the lowest percentage of women. 
+::: callout-note
+### Exercise 6
+Create a similar table for majors with the **lowest** percentage of women.
+:::
 
 ## How do the distributions of median income compare across major categories?
 
-```{marginfigure}
-A percentile is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations fall. For example, the 20th percentile is the value below which 20% of the observations may be found. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Percentile))
-```
+
 
 There are three income variables reported in this data frame: `p25th`, `median`, and `p75th`.
 These correspond to the 25th, 50th, and 75th percentiles of the income distribution of sampled individuals for a given major.
 
-7.  Why do we often choose the median, rather than the mean, to describe the typical income of a group of people?
+::: {.column-margin}
+A percentile is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations fall. For example, the 20th percentile is the value below which 20% of the observations may be found. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Percentile))
+:::
+
+::: callout-note
+### Exercise 7
+Why do we often use the **median** rather than the mean to describe income?
+:::
 
 The question we want to answer is "How do the distributions of median income compare across major categories?" We need to do a few things to answer this question: First, we need to group the data by `major_category`. Then, we need a way to summarize the distributions of median income within these groups. This decision will depend on the shapes of these distributions.
 So first, we need to visualize the data.
 
-8. Start simple and take a look at the distribution of median incomes for all majors, without considering the major categories. Choose a reasonable binwidth and justify your choice. You might ask yourself: "What would be a meaningful difference in median incomes?" \$1 is obviously too little, \$10000 might be too high. Describe what the visualization reveals. 
+::: callout-note
+### Exercise 8
+Create a histogram of median income for all majors (ignore categories).
 
-We can also calculate summary statistics for this distribution using the `summary` function:
+- Choose a reasonable binwidth and justify your choice. You might ask yourself: "What would be a meaningful difference in median incomes?" \$1 is obviously too little, \$10000 might be too high. Describe what the visualization reveals. 
+- Describe what the distribution reveals
 
-```{r}
+Also include the following code to produce summary statistics for the median income:
+
+```{r, eval = FALSE}
 summary(college_recent_grads$median)
 ```
+:::
 
-9.  Plot the distribution of `median` income by `major_category` using a ridge plot. Comment on what the visualization reveals.
 
-Now that we've seen the shapes of the distributions of median incomes for each major category, we should have a better idea for which summary statistic to use to quantify the typical median income - the mean or the median? (Yes, we are talking about the mean/median of medians!).
+::: callout-note
+### Exercise 9
+Use a ridge plot to compare the distribution of median income across
+major categories.
+Comment on what you observe.
+:::
 
-```{marginfigure}
-Hint: This will require a `group_by()` and a `summarize()`
-```
+Now that we've seen the shapes of the distributions of median incomes for each major category, we should have a better idea which summary statistic to use to quantify the typical median income - the mean or the median? (Yes, we are talking about the mean/median of medians!).
 
-10.  Which major category has the highest typical (you'll need to decide what this means) median income? 
+::: callout-note
+### Exercise 10
+Which major category has the highest *typical* median income?
+Explain how you defined “typical.”
+:::
 
 ## All STEM fields aren't the same
 
 One of the sections of the [FiveThirtyEight story](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) is "All STEM fields aren't the same".
 Let's see if this is true.
 
-First, let's create a new vector called `stem_categories` that lists the major categories that are considered STEM fields.
+::: callout-note
+### Exercise 11
+
+Use the following to create a new vector called `stem_categories` that lists the major categories that are considered STEM fields.
 
 ```{r}
 stem_categories <- c("Biology & Life Science",
@@ -156,14 +218,25 @@ stem_categories <- c("Biology & Life Science",
                      "Physical Sciences")
 ```
 
-Then, we can use this to create a new variable in our data frame indicating whether a major is STEM or not.
+Then, use this to create a new variable in our data frame indicating whether a major is STEM or not.
 
 ```{r}
 college_recent_grads <- college_recent_grads |>
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
+:::
 
-Let's unpack this: with `mutate` we create a new variable called `major_type`, which is defined as `"stem"` if the `major_category` is in the vector called `stem_categories` we created earlier, and as `"not stem"` otherwise.
+::: {.column-margin}
+\
+\
+\
+\
+\
+\
+\
+\
+\
+Let's unpack this code: with `mutate` we create a new variable called `major_type`, which is defined as `"stem"` if the `major_category` is in the vector called `stem_categories` we created earlier, and as `"not stem"` otherwise.
 
 `%in%` is a **logical operator**.
 Other logical operators that are commonly used are
@@ -180,67 +253,62 @@ Other logical operators that are commonly used are
 | <code>x \| y</code> | or                       |
 | `x & y`             | and                      |
 | `!x`                | not                      |
+:::
 
-We can use the logical operators to also `filter` our data for STEM majors whose median earnings is less than median for all majors' median earnings, which we found to be \$36,000 earlier.
+::: callout-note
+### Exercise 12
+Which STEM majors have median earnings less than or equal to the overall
+median of medians (which we found earlier to be \$36k?
 
-11.  Which STEM majors have median salaries equal to or less than the median for all majors' median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major and should be sorted such that the major with the highest median earning is on top.
+Show only the major name and income percentiles. Sort from highest to lowest
+median income.
+:::
 
-## What types of majors do women tend to major in?
+::: callout-note
+### Exercise 13
+What types of majors do women tend to major in? Create a scatterplot of:
 
-12.  Create a scatterplot of median income vs. proportion of women in that major, coloured by whether the major is in a STEM field or not. Describe the association between these three variables.
+- median income (y-axis)
+- proportion of women (x-axis)
 
-13. Write a brief paragraph summarizing what you found through this analysis, what limitations might exist to the data/analyses, and what additional data you would like to have to explore further questions.
+Color points by STEM vs non-STEM.
+Describe the relationships you observe.
+:::
 
-## BONUS
+::: callout-note
+### Exercise 14
+Write a brief reflection summarizing:
 
-What is an additional question you could investigate using this data? State the question, provide a visualization that investigates it, and comment on what your visualization shows. 
+- key findings
+- limitations of the data
+- additional data you would want to explore further questions
+:::
 
- 
+::: callout-note
+### Bonus
+
+Propose an additional question you could explore using these data.
+Provide a visualization and comment on what it shows.
+:::
 
 # Submission
 
-Before submitting your assignment on Blackboard, Render one last time, then open up your .html in a full window and inspect the following:
+Before submitting your `.html`:
 
-+ Check your code for neatness - add spaces and line breaks where appropriate to improve readability
++ Check code readability
++ Suppress unnecessary warnings and messages
++ Ensure figures and tables have clear labels
++ Confirm exercises are clearly labeled
 
-+ Check any visualizations for informative and clean labels and titles
+Convert the final `.html` file to a .zip file and upload to Blackboard.
 
-+ Check any tables for clean formatting (e.g. with `kbl() |> kable_minmal()`)
-
-+ Check that you've interpreted output as appropriate
-
-+ Make sure extraneous warnings and messages are suppressed (e.g. set `#| warning: false`, `#| message: false`)
-
-+ Check that Exercises are clearly labeled and your text responses are visually distinguished
-
-+ Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
-
-To submit, Render one last time and then upload your .html document to the relevant assignment on Blackboard. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+---
 
 # Grading (50 pts)
 
-<br>
-
-| Component | Points |
-|:----------|:-------|
-| Ex 1      | 3      |
-| Ex 2      | 3    |
-| Ex 3      | 3    |
-| Ex 4      | 3     |
-| Ex 5      | 3      |
-| Ex 6      | 3    |
-| Ex 7      | 3   |
-| Ex 8      | 3   |
-| Ex 9      | 3    |
-| Ex 10      | 3    |
-| Ex 11     | 3    |
-| Ex 12     | 3    |
-| Ex 13     | 3    |
-| Workflow & formatting | 6 |
-| Reflection prompts    | 5     |
-| BONUS     | 2    |
-
-**Grading notes**:
-
--   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having readable code (e.g. adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g. suppress messages & warnings, no extraneous output).
-
+| Component              | Points |
+|------------------------|--------|
+| Exercises 1–14         | 42 (3 each)     |
+| Workflow & formatting  | 5       |
+| Reflection             | 3      |
+| Bonus                  | 2      |

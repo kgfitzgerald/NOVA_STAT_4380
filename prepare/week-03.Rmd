@@ -20,10 +20,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` Watch the [Week 03 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5868816_1) on Perusall (accessible via Blackboard)
 
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/07-tidy-data.html)
-
-`r emo::ji("movie_camera")` Watch [Grammar of data wrangling](https://youtu.be/0jO-5MESCJ4)
-
 - [Slides - 05 Data Wrangling 1a](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/05-data-wrangling-1a.html)
 
 - [Slides - 06 Data Wrangling 1b](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/06-data-wrangling-1b.html)
