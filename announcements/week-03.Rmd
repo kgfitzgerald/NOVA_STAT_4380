@@ -20,6 +20,7 @@ library(tidyverse)
 + Quiz 01 to start class today
 + Then Lab 03 in groups (see Blackboard)
 + Week 04 lecture posted - shorter this week! 
++ One week from today: [project brainstorm due](https://nova-stat-4380.netlify.app/project/#choosing-a-topic-project-brainstorm)
 
 ### Statistician(s) of the Week
 
