@@ -18,6 +18,10 @@ editor_options:
 callout-icon: false
 ---
 
+```{r photo, fig.margin = TRUE, echo = FALSE, fig.width = 3, fig.cap = "Photo by Marleena Garris on Unsplash", eval = TRUE}
+knitr::include_graphics("img/graduate.jpg")
+```
+
 # Goals
 
 In this lab, you will:
