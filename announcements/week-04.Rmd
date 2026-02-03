@@ -80,6 +80,14 @@ Once again, thanks for great engagement on Annotations
 
 ### Questions?
 
+Will all the quizzes be one week behind after missing the first quiz? 
+
+> Let's take a vote! 
+
+1) quizzes cover new material covered in lecture videos & Tuesday AE 
+
+2) quizzes cover material from the previous week, so you've had more time practicing on the lab
+
 Can we work on the project independently?
 
 > Short answer, no.
@@ -89,6 +97,8 @@ Can we work on the project independently?
 1. Data science is collaborative in most workplaces
 2. Especially in light of many of the readings, it's important to have multiple people speak into an analysis. We all have blind spots - collaboration & intentionaly seeking feedback make us better!
 3. Less important substantively, but helpful logistically: having less groups will allow us to NOT have to say here until May 11 :) 
+
+
 
 ### Application Exercise
 
