@@ -64,7 +64,7 @@ Which of the following allows you to keep specified columns?
 
 # A quick refresh of `dplyr` verbs in R
 
-Recall the `midwest` dataset you used for homework (dimensions: 437 x 2), where each row is a `county`, and there is data on counties from 5 Midwestern states.
+Think back to the `midwest` dataset you we used previously (dimensions: 437 x 2), where each row is a `county`, and there is data on counties from 5 Midwestern states.
 
 How many rows and columns will the following code produce?
 
@@ -154,7 +154,7 @@ You want to find out which state has the highest average percentage of people in
 
 ```{r, eval = FALSE}
 #A
-midwest |> summarize(max(perpoverty))
+midwest |> summarize(max(percbelowpoverty))
 
 #B
 midwest |> 
@@ -171,7 +171,7 @@ midwest |> count(percbelowpoverty) |> arrange()
 
 ---
 
-# Your turn: week_09.qmd
+# Your turn: AE-04
 
 Recall: `flights` contains data about every flight that departed La Guardia, JFK, or Newark airports in 2013
 
