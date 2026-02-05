@@ -1,6 +1,6 @@
 ---
 title: "Prepare: Week 05"
-subtitle: "Scientific Practice & Data Science Workflow"
+subtitle: "Data Wrangling III"
 output: 
   prettydoc::html_pretty:
     theme: cayman
@@ -11,32 +11,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## For Tuesday, September 24
+## For Tuesday, February 10
 
-+ Sign up for a project group on Blackboard.
++ Choose your partner for the project and email me your choice no later than class-time on Tuesday Feb 10. Only one person per group needs to email, but make sure to the other partner. 
 
-+ Complete the following prep exercises:
+### Required 
 
-`r emo::ji("movie_camera")` Watch [Scientific studies and confounding](https://youtu.be/4_tellSmARQ)
+`r emo::ji("movie_camera")` Watch the [Week 05 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5868816_1) on Perusall (accessible via Blackboard)
 
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/17-studies-confounding.html)
+- [Slides - 08 Data Wrangling III](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/08-data-wrangling-3.html)
 
-`r emo::ji("book")` [Read Chapters 2 & 3 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061)
+`r emo::ji("book")` [Read 2.1 - 2.4 of Communicating with Data](https://academic.oup.com/book/40034)
 
-- Only need to read 2.1 - 2.4 and 3.1 - 3.4 (~30 pages)
-- This is freely available through APU's library as an ebook.
+- PDF Provided in Week 05 Lecture + CWD Reading in Perusall
+- Full book freely available through Villanova's library as an ebook.
 
-<!-- `r emo::ji("movie_camera")` Watch [Doing data science](https://youtu.be/b9lSW0kyqBg) -->
+**Looking ahead [project proposal](https://nova-stat-4380.netlify.app/project/#choosing-a-topic-project-brainstorm) is due Saturday February 21.**
 
-<!-- - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/16-doing-data-science.html) -->
+### Optional 
 
-`r emo::ji("memo")` Complete Prep Quiz 05 on Blackboard
+`r emo::ji("book")` Read [R4DS - Chapter 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
 
-### Optional
-
-`r emo::ji("book")` [Read IMS:: Chapter 2 - Study design](https://openintro-ims.netlify.app/data-design.html)
-
-`r emo::ji("book")` [Read R4DS:: Chapter 7 - Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
-
+`r emo::ji("book")` Read [MDSR - Chapter 6: Tidy Data](https://mdsr-book.github.io/mdsr3e/06-dataII.html)
 
 

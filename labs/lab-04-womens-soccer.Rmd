@@ -1,202 +1,279 @@
 ---
-title: "Lab 04: Data Wrangling & Joins"
-subtitle: "due Tuesday, September 26 at 4pm"
-output: 
-  tufte::tufte_html:
-    css: "lab.css"
-    tufte_variant: "envisioned"
-    highlight: pygments
-    toc: true
-    toc_depth: 1
-link-citations: yes
-editor_options: 
-  markdown: 
-    wrap: sentence
+title: "Lab 04 - National Women's Soccer"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - Data wrangling
+  - Joins
+  - Sports analytics
+  - National Women's Soccer League
+editor_options:
+  chunk_output_type: console
+callout-icon: false
 ---
 
 # Goals
 
-In this lab, you will...
+In this lab, you will:
 
--   Develop proficiency with data-wrangling functions
--   Answer real research questions using related data sets
++ Develop proficiency with data-wrangling functions
++ Join multiple datasets from the National Women's Soccer League
++ Use wrangling and visualization to answer questions about team and player performance for the Portland Thorns FC
 
-# Getting started
+::: {.column-margin}
+Joins allow us to combine information from multiple data sources into a single analytical workflow.
+:::
 
--   You will be working in your randomly assigned Lab 03 - 04 Groups. See Blackboard.
--   Open our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the .qmd file for this lab. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to get started on a lab.
+---
 
-All plots should follow the best visualization practices discussed in lecture, including an informative title, labeled axes, and careful consideration of aesthetic choices.
+# Getting Started
 
-All code should follow the [tidyverse style guidelines](https://style.tidyverse.org/pipes.html).
++ You will be working in your Lab 03–04 Groups (see Blackboard).
++ Download the `.qmd` file for this lab from our class
+  [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main/labs).
++ Refer back to
+  [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html)
+  for detailed workflow and submission instructions.
 
 # Packages
 
-We will use the **tidyverse** package for this assignment.
-If you wish to use the viridis color palettes, you will need the **viridis** package as well.
+We will primarily use the **tidyverse** package.
+Additional packages provide color palettes, table formatting,
+ridge plots, and access to NWSL data.
 
-```{r load-package, message = FALSE, warning = FALSE}
+```{r load-packages, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(viridis)
 library(kableExtra)
 library(ggridges)
-#library(scales)
-# install.packages("devtools")
-devtools::install_github("nwslR/nwslR", 
-                         ref = "v0.0.0.9002")
+library(devtools)
+devtools::install_github("nwslR/nwslR", ref = "v0.0.0.9002")
 library(nwslR)
 ```
 
 # Data: The Portland Thorns FC
 
-For this lab, you will be working with data about the [Portland Thorns FC](https://www.nwslsoccer.com/team/portland-thorns-fc/stats), a National Women's Soccer League (NWSL) Team in Portland, OR. In 2021, the Thorns won the NWSL Challenge Cup, the Women's International Champions Cup, and the NWSL Shield.
-Data for this lab was sourced from the [nwslR package](https://github.com/adror1/nwslR).
+For this lab, you will work with data about the
+[Portland Thorns FC](https://www.nwslsoccer.com/team/portland-thorns-fc/stats),
+a National Women’s Soccer League (NWSL) team.
 
-The package comes with built-in functions that allow you to pull data from a Github repo:
+In 2021, the Thorns won the:
 
--   load_matches(): All matches from 2016-present with information and match IDs
--   load_players(): All players rostered from 2016-present with information and player IDs
--   load_teams(): All teams active from 2016-present with information and team IDs
--   load_metrics() All metrics available from scrapers with definitions. Not all metrics are available for all players/matches/teams/etc.
++ NWSL Challenge Cup
++ Women’s International Champions Cup
++ NWSL Shield
 
-Running the following code will make four datasets appear in your Environment.
+The data come from the
+[nwslR package](https://github.com/adror1/nwslR),
+which provides tools to scrape and organize publicly available NWSL data.
+
+The following functions pull different types of data:
+
++ `load_matches()` – match-level data
++ `load_players()` – player-level data
++ `load_teams()` – team information
++ `load_metrics()` – metric definitions
+
+Running the code below will load four datasets into your environment.
 
 ```{r}
 matches <- load_matches()
 players <- load_players()
-teams <- load_teams()
+teams   <- load_teams()
 metrics <- load_metrics()
 ```
 
+---
+
 # Exercises
 
-All plots should follow the best visualization practices discussed in lecture, including an informative title, labeled axes, and careful consideration of aesthetic choices.
-You're encouraged (but not required) to use the viridis color palette.
+All plots should follow best visualization practices discussed in lecture, including clear titles, labeled axes, and thoughtful aesthetic choices.
 
-All code should follow the tidyverse style guidelines.
+All code should follow the
+[tidyverse style guidelines](https://style.tidyverse.org/pipes.html).
 
 ```{r, echo = FALSE}
 portland_matches <- matches |> 
   filter(home_team_id == 8 | away_team_id == 8)
-
 ```
-
 
 ## Data Wrangling
 
-Before beginning the analysis, you will need to conduct some data wrangling to look only at the Portland Thorns data.
+Before beginning the analysis, you will need to wrangle the data to focus only on Portland Thorns matches.
 
-1.  Inspect the `teams` data to determine the `team_id` for the Portland Thorns. Filter the `matches` dataset to only keep matches where Portland was playing. Save this as a new dataset called `portland_matches`. *Confirm that your new data has `r nrow(portland_matches)` observations before proceeding.*
+::: callout-note
+### Exercise 1
++ Inspect the `teams` data to determine the `external_team_id` for the Portland Thorns.
++ Filter `matches` to keep only games in which Portland played (as the home or away team).
++ Save the result as `portland_matches`.
 
-We want to add in information from the `teams` data into the `matches` data so we can have the team name and abbreviation in addition to just the numeric team id.
-However, we will have to join the `teams` information twice: once for home team and once for away team.
-We want to end up with the following four variables added to the `portland_matches` data:
+Confirm that the dataset has `r nrow(portland_matches)` observations before proceeding.
+:::
 
--   `home_team_name`
+To add team names and abbreviations, we need to join the `teams` data twice:
 
--   `home_team_abbr`
++ once for the home team
++ once for the away team
 
--   `away_team_name`
+We want the following new variables:
 
--   `away_team_abbr`
+- `home_team_name`
+- `home_team_abbr`
+- `away_team_name`
+- `away_team_abbr`
 
-The following code creates a new dataset called `home_team_info` that `selects` the relevant columns from `teams` and renames them to include the prefix `home_` .
-It then joins these columns to the `portland_matches` data.
+The code below creates `home_team_info` and joins it to `portland_matches`.
 
 ```{r, eval = FALSE}
 home_team_info <- teams |> 
-  select(home_team_id = team_id, 
-         home_team_name = team_name, 
+  select(home_team_id = external_team_id,
+         home_team_name = team_name,
          home_team_abbr = team_abbreviation)
 
 portland_matches <- portland_matches |> 
   left_join(home_team_info)
 ```
 
-2.  Include the code above in your lab report. Then, following the above code as a template, create a similar `away_team_info` dataset that renames the columns with the prefix `away_`. Then, join those columns to `portland_matches`. *Confirm `portland_matches` has dimensions `r nrow(portland_matches)` x 19 before continuing.*
 
-3.  Create three new variables, `POR_points` (the number of points Portland scored), `OPP_points` (the number of points the opponent scored), and `result` (a categorical variable for whether the result was a `Win`, `Loss`, or `Tie` for Portland). *Hint: the code below provides the scaffolding, you just need to fill in each blank appropriately.*
+```{r, echo = FALSE}
+away_team_info <- teams |> 
+  select(away_team_id = external_team_id,
+         away_team_name = team_name,
+         away_team_abbr = team_abbreviation)
+
+portland_matches <- portland_matches |> 
+  left_join(away_team_info)
+```
+
+::: callout-note
+### Exercise 2
++ Include the code above in your lab.
++ Then create an analogous `away_team_info` dataset with an `away_` prefix and join it to `portland_matches`.
+
+Confirm the dimensions are `r nrow(portland_matches)` × 19 before continuing.
+:::
+
+::: callout-note
+### Exercise 3
+Create three new variables:
+
+- `POR_points`
+- `OPP_points`
+- `result` (Win, Loss, or Tie for Portland)
+
+Use the scaffold below and fill in the blanks.
 
 ```{r, eval = FALSE}
 ___ <- ___ |> 
-  ___(POR_points = if_else(home_team_abbr == "POR", 
+  ___(POR_points = if_else(home_team_abbr == "POR",
                            home_team_score, away_team_score),
       OPP_points = if_else(___ ___ ___, ___, ___),
       result = case_when(POR_points  >  OPP_points ~ "Win",
-                         POR_points ___ OPP_points ~ "Loss",
-                         POR_points ___ OPP_points ~ "Tie"))
+                         POR_points  <  OPP_points ~ "Loss",
+                         POR_points == OPP_points ~ "Tie"))
 ```
+:::
 
+## Match Analysis
 
+::: callout-note
+### Exercise 4
++ Create a bar chart showing the distribution of `result`.
++ Include clear axis labels and a title.
++ Interpret the results.
+:::
 
-## Match analysis
+::: callout-note
+### Exercise 5
++ Create a visualization examining Portland’s performance by season (wins, losses, and ties).
 
-4.  Create a bar chart to visualize the distribution of the `result` of the games. Include a clear title and axis labels. What outcome occurred most frequently?
++ Describe 2–3 patterns you observe.
+:::
 
+::: callout-note
+### Exercise 6
+*Does Portland have a home-field advantage?*
 
+To investigate this question, 
 
-5.  Create an appropriate visualization to examine how the Thorns performed in each individual season (in terms of wins, losses, and ties). Include a clear title and axis labels. Describe 2-3 things you observe from the visualization.
++ Create a variable indicating whether Portland was the home or away team
++ Make side-by-side boxplots of points scored
++ Create a ridge plot using `geom_density_ridges()`
 
-6.  *Does Portland have a home field advantage?* To explore this question:
+Describe 2–3 observations.
+:::
 
--   Create a new variable indicating whether Portland was the \"home\" or \"away\" team for each game.
+::: callout-note
+### Exercise 7
++ Create a formatted summary table showing the proportion of games won by whether the game was home or away.
++ Do the Thorns perform better at home or away?
+:::
 
--   Create side-by-side box plots of the number of points scored by the Thorns based on whether or not they were the home team.
+## Player Stats
 
--   Then create a ridge plot using `geom_density_ridges()`.
-
--   Describe 2-3 things you observe from the visualizations.
-
-
-
-7.  Continuing to investigate home-field advantage, produce a nicely formatted summary table that presents the proportion of games won, grouped by whether it was a home or away game. Do they do better at home or away?
-
-
-
-## Player stats
-
-The code below loads data for players' individual stats for the matches in `portland_matches`. Don't worry too much about how this code is working, it is provided by the `nwslR` package. Note, it takes a few minutes to run!
+The following code loads match-level player statistics.
+This step may take several minutes. 
 
 ```{r, eval = FALSE}
-# * A small number of matches do not have data, so we wrap this in a safe call to ensure this runs without error 
-safe_load_pms <- purrr::possibly(load_player_match_stats, otherwise = data.frame())
+#| eval: false
+safe_load_pms <- purrr::possibly(load_player_match_stats,
+                                 otherwise = data.frame())
 
-player_stats <- purrr::map_df(portland_matches$match_id, safe_load_pms, .progress = TRUE)
+player_stats <- purrr::map_df(portland_matches$match_id,
+                              safe_load_pms,
+                              .progress = TRUE)
 ```
 
-```{r, echo = FALSE}
-#saveRDS(player_stats, "./labs/data/player_stats.rds")
+In order to avoid loading the data everytime you render, add `#| eval: false` to the beginning of the above code chunk. After it has loaded, you can save the `player_stats` data by running `saveRDS(player_stats, "data/player_stats.rds")`. Then, include the following code in a new code chunk:
+
+```{r}
+# Load saved version
+# avoids lengthy re-loading from package on each Render
 player_stats <- readRDS("./data/player_stats.rds")
 ```
 
-### Which Portland players had the highest percentage of shots outside the box? 
+The research questions:
 
-### Which Portland players made the highest percentage of their shots?
++ Which Portland players took the highest **percentage of shots outside the box**?
++ Which Portland players **converted the highest percentage of shots**?
 
-8. This is one big open-ended exercise to answer the two research questions above. It's up to you to determine the appropriate wrangling necessary to answer the questions. A few tips for getting started:
+::: callout-note
+### Exercise 8
+This is one big open-ended exercise to answer the two research questions above. It’s up to you to determine the appropriate wrangling necessary to answer the questions. 
 
+A few tips for getting started:
+
++ Examine `player_stats` using `View()` to determine what each row represents. Are there multiple rows per player? If so, what does each row represent?
++ You’ll only need the`player_id`, `team_id`, `shots_total`, `shots_outside_box`, and `goals` variables to answer these questions
 + Filter the data to only keep Portland players
-+ You'll only need the `player_id`, `team_id`, `shots_total`, `shots_outside_box`, and `goals` variables to answer these questions
++ Restrict your analysis to only players that took at least 15 shots across all matches
 + You will eventually need to join in info from the `players` data so that your end result will display the players names and not just their numerical id
-+ Only display data for players that took at least 15 shots
-+ Your end result should be either a nicely formatted table, or a nicely formatted visualization, like the ones below. Use these end results to help you decide what wrangling will help you build up to this information.
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-summary_data <- player_stats |> 
-  filter(team_id == 8) |> 
-  select(player_id, team_id, shots_total, shots_outside_box, goals) |> 
-  group_by(player_id) |> 
+**Your final result for each question should be either a nicely formatted table, or a nicely formatted visualization, like the ones below. Use these end results to help you decide what wrangling will help you build up to this information.**
+:::
+
+```{r, echo = FALSE, message = FALSE}
+summary_data <- player_stats %>% 
+  filter(team_id == 8) %>% 
+  select(player_id, team_id, shots_total, shots_outside_box, goals) %>% 
+  group_by(player_id) %>% 
   summarize(shots_total = sum(shots_total),
             shots_outside_box = sum(shots_outside_box, na.rm = TRUE),
-            goals = sum(goals, na.rm = TRUE)) |>
-  filter(shots_total >= 15) |> 
+            goals = sum(goals, na.rm = TRUE)) %>%
+  filter(shots_total >= 15) %>% 
   mutate(prop_outside_box = shots_outside_box/shots_total,
-         prop_shots_made = goals/shots_total) 
+         prop_goals = goals/shots_total) 
 
-summary_data |> 
-  arrange(desc(prop_outside_box)) |> 
-  left_join(players) |> 
-  slice(1:10) |> 
+summary_data %>% 
+  arrange(desc(prop_outside_box)) %>% 
+  left_join(players) %>% 
+  slice(1:10) %>% 
   ggplot(aes(x = prop_outside_box, 
              y = reorder(player_match_name, prop_outside_box))) +
   geom_col(fill = "purple") +
@@ -207,51 +284,49 @@ summary_data |>
        title = "Portland players with Highest % of shots taken outside the box",
        subtitle = "Minimum 15 shots")
 
-summary_data |> 
-  arrange(desc(prop_shots_made)) |> 
-  left_join(players) |> 
-  slice(1:10) |> 
-  select(player_match_name, shots_total, goals, prop_shots_made) |> 
-  kable(format = "html", table.attr = "style='width:50%;'") |> 
-  kableExtra::kable_styling(position = "left")
+summary_data %>% 
+  arrange(desc(prop_goals)) %>% 
+  left_join(players) %>% 
+  slice(1:10) %>% 
+  select(player_match_name, shots_total, goals, prop_goals) %>% 
+  kable(format = "html", table.attr = "style='width:50%;'") %>% 
+  kableExtra::kable_styling()
 ```
 
-## BONUS (2pts)
 
-What is an additional question you could investigate using this data? State the question, provide a visualization and/or table that investigates it, and comment on what your output shows.
+---
+
+## Bonus (2 pts)
+
+Propose an additional question you could investigate using these data.
+Provide a visualization or table and briefly interpret the result.
+
+---
 
 # Submission
 
-Before submitting your assignment on Blackboard, Render one last time, then open up your .html in a full window and inspect the following:
+Before submitting your `.html`:
 
--   Check your code for neatness - add spaces and line breaks where appropriate to improve readability
++ Check code readability
++ Check visualization labels and titles
++ Ensure tables are cleanly formatted
++ Suppress unnecessary warnings and messages
++ Clearly label all exercises
 
--   Check any visualizations for informative and clean labels and titles
+Render one final time and submit the `.html` file to Blackboard.
 
--   Check any tables for clean formatting (e.g. with `kbl() |> kable_minmal()`)
+---
 
--   Check that you've interpreted output as appropriate
-
--   Make sure extraneous warnings and messages are suppressed (e.g. set `#| warning: false`, `#| message: false`)
-
--   Check that Exercises are clearly labeled and your text responses are visually distinguished
-
--   Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
-
-To submit, Render one last time and then upload your .html document to the relevant assignment on Blackboard.
-Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment.
-
-# Grading
+# Grading (50 pts)
 
 | Component          | Points |
-|:-------------------|:-------|
-| Ex 1               | 5      |
-| Ex 2               | 5      |
-| Ex 3               | 5      |
-| Ex 4               | 5      |
-| Ex 5               | 5      |
-| Ex 6               | 5      |
-| Ex 7               | 5      |
-| Ex 8               | 10     |
-| Reflection prompts | 5      |
-
+|-------------------|--------|
+| Exercise 1        | 5      |
+| Exercise 2        | 5      |
+| Exercise 3        | 5      |
+| Exercise 4        | 5      |
+| Exercise 5        | 5      |
+| Exercise 6        | 5      |
+| Exercise 7        | 5      |
+| Exercise 8        | 10     |
+| Reflection        | 5      |

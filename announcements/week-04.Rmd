@@ -11,6 +11,89 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Thursday announcements
+
++ Project brainstorm due today
++ Choose your partner by Tuesday class-time - email me your choice
++ Project proposal will be due Saturday Feb 21
++ Next two weeks, the Lecture Recording on Perusall will include short readings from Communicating with Data: The Art of Writing For Data Science
+    + For next week, there is ~30 minutes of lecture + ~15pages
+
+
+### Tidyverse style guidelines
+
+[Tidyverse style guidelines](https://style.tidyverse.org/pipes.html) for line breaks, white space, etc.
+
+1.  Have space before `|>` and a linebreak after
+
+```{r, eval = FALSE}
+# Good
+iris |>
+  group_by(Species) |>
+  summarize_if(is.numeric, mean) |>
+  ungroup() |>
+  gather(measure, value, -Species) |>
+  arrange(value)
+
+# Bad
+iris |> group_by(Species) |> summarize_all(mean) |>
+ungroup |> gather(measure, value, -Species) |>
+arrange(value)
+```
+
+2.  `ggplot()` layers each go on their own line, space before `+`, all but first layer indented.
+
+```{r, eval = FALSE}
+# Good
+ggplot(aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
+  geom_point() +
+  labs(
+    x = "Sepal width, in cm",
+    y = "Sepal length, in cm",
+    title = "Sepal length vs. width of irises"
+  ) 
+
+# Bad
+ggplot(aes(x = Sepal.Width, y = Sepal.Length, color = Species))+
+  geom_point() + labs(x = "Sepal width, in cm", y = "Sepal length, in cm", title = "Sepal length vs. width of irises") 
+```
+
+3.  If arguments to a function don't fit on one line, put each argument on its own line
+
+```{r, eval = FALSE}
+iris |>
+  group_by(Species) |>
+  summarise(
+    Sepal.Length = mean(Sepal.Length),
+    Sepal.Width = mean(Sepal.Width),
+    Species = n_distinct(Species)
+  )
+
+iris |>
+  group_by(Species) |>
+  summarise(Sepal.Length = mean(Sepal.Length),
+            Sepal.Width = mean(Sepal.Width),
+            Species = n_distinct(Species))
+```
+
+4.  Spaces on each side of all operators (e.g. `+, =, &, <-,`) and after commas
+
+```{r, eval = FALSE}
+# Good
+iris |> 
+  mutate(ratio = Sepal.Length/Sepal.Width) |> 
+  ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
+  geom_point()
+
+# Bad
+iris|> 
+  mutate(ratio=Sepal.Length/Sepal.Width) |> 
+  ggplot(aes(x=Sepal.Width,y = Sepal.Length)) +
+  geom_point()
+```
+
+
+
 ### Data Scientist of the Week
 
 [Mike Dairyko](https://hardin47.github.io/CURV/scholars/dairyko.html)

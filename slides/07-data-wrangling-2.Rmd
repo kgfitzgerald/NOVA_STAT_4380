@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling II"
-subtitle: "STAT 7500"
+subtitle: "STAT 4380"
 author: "Katie Fitzgerald, adpated from datasciencebox.org"
 output:
   xaringan::moon_reader:

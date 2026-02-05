@@ -1,0 +1,233 @@
+---
+title: "Lab: Simpson’s Paradox and Berkeley Admissions"
+format: html
+---
+
+## Learning goals
+
+By the end of this lab, you should be able to:
+
+- Compute conditional proportions using `count()`, `group_by()`, and `summarise()`
+- Explain Simpson’s paradox in words using real data
+- Reshape data between long and wide formats using `pivot_longer()` and `pivot_wider()`
+- Interpret how an omitted variable can reverse an apparent association
+
+---
+
+## The Berkeley admissions study
+
+In the early 1970s, the Graduate Division of the University of California, Berkeley conducted a study to investigate whether there was gender bias in graduate admissions.
+
+The dataset contains application outcomes from six departments (labeled A–F for confidentiality). For each applicant, we observe:
+
+- `gender`: Male or Female  
+- `admit`: Admitted or Rejected  
+- `dept`: Department (A–F)
+
+We will begin by examining overall admission rates, then investigate how department-level differences complicate the story.
+
+---
+
+## Data setup
+
+```{r}
+library(tidyverse)
+library(dsbox)
+ucbadmit
+```
+
+---
+
+## Step 1: Overall admission rates by gender
+
+### Exploring the raw counts
+
+Start by examining the number of applicants by gender and admission outcome.
+
+```{r}
+ucbadmit |>
+  count(gender, admit)
+```
+
+### Computing conditional admission probabilities
+
+Using the output above, compute:
+
+- \(P(\text{Admitted} \mid \text{Female})\)
+- \(P(\text{Admitted} \mid \text{Male})\)
+
+```{r}
+ucbadmit |>
+  count(gender, admit) |>
+  group_by(gender) |>
+  mutate(prop = n / sum(n))
+```
+
+#### Question 1
+
+1. Which gender appears to have a higher probability of admission overall?
+2. Based on these results alone, what conclusion might someone draw about gender bias?
+
+Write your answer in complete sentences.
+
+---
+
+## Step 2: Admission rates by department
+
+The overall comparison ignores the fact that applicants apply to different departments with different admission rates.
+
+### Counting by department, gender, and admission
+
+```{r}
+ucbadmit |>
+  count(dept, gender, admit)
+```
+
+---
+
+### Practice: computing department-level admission rates
+
+Compute the proportion admitted *within each department and gender*.
+
+```{r}
+ucbadmit |>
+  count(dept, gender, admit) |>
+  group_by(dept, gender) |>
+  mutate(prop = n / sum(n))
+```
+
+Filter your results to keep only admitted students.
+
+```{r}
+ucbadmit |>
+  count(dept, gender, admit) |>
+  group_by(dept, gender) |>
+  mutate(prop = n / sum(n)) |>
+  filter(admit == "Admitted")
+```
+
+#### Question 2
+
+Compare admission rates for men and women **within departments**.
+
+- Is the overall gender pattern still present?
+- Are there departments where women are admitted at *higher* rates than men?
+
+---
+
+## Step 3: Reshaping data (long → wide)
+
+To make comparisons easier, we will reshape the data so that admission outcomes are columns instead of rows.
+
+### Wide format by admission outcome
+
+```{r}
+ucbadmit |>
+  count(dept, gender, admit) |>
+  pivot_wider(
+    names_from = admit,
+    values_from = n
+  )
+```
+
+Add columns for:
+
+- total number of applicants
+- proportion admitted
+
+```{r}
+ucbadmit |>
+  count(dept, gender, admit) |>
+  pivot_wider(
+    names_from = admit,
+    values_from = n
+  ) |>
+  mutate(
+    n_applied = Admitted + Rejected,
+    prop_admitted = Admitted / n_applied
+  )
+```
+
+#### Question 3
+
+Why is the wide format helpful for computing admission proportions?
+What calculations are easier here than in the long format?
+
+---
+
+## Step 4: Department composition and application behavior
+
+Simpson’s paradox often arises when groups differ in *where* observations come from.
+
+### Application volume by department and gender
+
+```{r}
+ucbadmit |>
+  count(dept, gender)
+```
+
+Convert this table to wide format.
+
+```{r}
+ucbadmit |>
+  count(dept, gender) |>
+  pivot_wider(
+    names_from = gender,
+    values_from = n
+  )
+```
+
+Add a column giving the proportion of female applicants in each department.
+
+```{r}
+ucbadmit |>
+  count(dept, gender) |>
+  pivot_wider(
+    names_from = gender,
+    values_from = n
+  ) |>
+  mutate(
+    total = Female + Male,
+    prop_female = Female / total
+  )
+```
+
+#### Question 4
+
+Which departments receive a higher proportion of female applicants?
+How do those departments compare in terms of overall admission rates?
+
+---
+
+## Step 5: Simpson’s paradox
+
+We now have three key facts:
+
+1. Overall, men have a higher admission rate than women
+2. Within most departments, women are admitted at similar or higher rates than men
+3. Women tend to apply to more competitive departments
+
+This pattern is known as **Simpson’s paradox**.
+
+#### Question 5
+
+In your own words:
+
+- Explain how Simpson’s paradox appears in the Berkeley admissions data
+- Identify the “lurking variable” that reverses the overall association
+- Explain why analyzing only aggregated data can be misleading
+
+---
+
+## Reflection
+
+Suppose the admissions committee had only reported overall admission rates by gender.
+
+- What important information would be missing?
+- How does this lab change how you think about fairness and data aggregation?
+
+Write 3–5 sentences.
+
+---
+
+

@@ -163,6 +163,88 @@ code span.ot { color: #007020; }
 
 <div class="entry-content">
 
+<div id="thursday-announcements" class="section level2">
+<h2>Thursday announcements</h2>
+<ul>
+<li>Project brainstorm due today</li>
+<li>Choose your partner by Tuesday class-time - email me your
+choice</li>
+<li>Project proposal will be due Saturday Feb 21</li>
+<li>Next two weeks, the Lecture Recording on Perusall will include short
+readings from Communicating with Data: The Art of Writing For Data
+Science
+<ul>
+<li>For next week, there is ~30 minutes of lecture + ~15pages</li>
+</ul></li>
+</ul>
+<div id="tidyverse-style-guidelines" class="section level3">
+<h3>Tidyverse style guidelines</h3>
+<p><a href="https://style.tidyverse.org/pipes.html">Tidyverse style
+guidelines</a> for line breaks, white space, etc.</p>
+<ol style="list-style-type: decimal">
+<li>Have space before <code>|&gt;</code> and a linebreak after</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="fu">summarize_if</span>(is.numeric, mean) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">arrange</span>(value)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> <span class="fu">summarize_all</span>(mean) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>ungroup <span class="sc">|&gt;</span> <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">arrange</span>(value)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><code>ggplot()</code> layers each go on their own line, space before
+<code>+</code>, all but first layer indented.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  ) </span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species))<span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span>) </span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>If arguments to a function don’t fit on one line, put each argument
+on its own line</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>            <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>            <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species))</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Spaces on each side of all operators
+(e.g. <code>+, =, &amp;, &lt;-,</code>) and after commas</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio =</span> Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>iris<span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio=</span>Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Width,<span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+</div>
 <div id="data-scientist-of-the-week" class="section level3">
 <h3>Data Scientist of the Week</h3>
 <p><a href="https://hardin47.github.io/CURV/scholars/dairyko.html">Mike
@@ -263,73 +345,74 @@ groups will allow us to NOT have to say here until May 11 :)</li>
 <li>To turn it in, you should upload your .html file to Blackboard.</li>
 </ul>
 </div>
-<div id="tidyverse-style-guidelines" class="section level3">
+<div id="tidyverse-style-guidelines-1" class="section level3">
 <h3>Tidyverse style guidelines</h3>
 <p><a href="https://style.tidyverse.org/pipes.html">Tidyverse style
 guidelines</a> for line breaks, white space, etc.</p>
 <ol style="list-style-type: decimal">
 <li>Have space before <code>|&gt;</code> and a linebreak after</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="fu">summarize_if</span>(is.numeric, mean) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">arrange</span>(value)</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> <span class="fu">summarize_all</span>(mean) <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>ungroup <span class="sc">|&gt;</span> <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">arrange</span>(value)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">summarize_if</span>(is.numeric, mean) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="fu">arrange</span>(value)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> <span class="fu">summarize_all</span>(mean) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>ungroup <span class="sc">|&gt;</span> <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="fu">arrange</span>(value)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><code>ggplot()</code> layers each go on their own line, space before
 <code>+</code>, all but first layer indented.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  ) </span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species))<span class="sc">+</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  ) </span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">color =</span> Species))<span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sepal width, in cm&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal length, in cm&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Sepal length vs. width of irises&quot;</span>) </span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>If arguments to a function don’t fit on one line, put each argument
 on its own line</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species)</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  )</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>            <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>            <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>    <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  )</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length),</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>            <span class="at">Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width),</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>            <span class="at">Species =</span> <span class="fu">n_distinct</span>(Species))</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Spaces on each side of all operators
 (e.g. <code>+, =, &amp;, &lt;-,</code>) and after commas</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio =</span> Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>iris<span class="sc">|&gt;</span> </span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio=</span>Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Width,<span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio =</span> Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>iris<span class="sc">|&gt;</span> </span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio=</span>Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Width,<span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+</div>
 </div>
 </div><!-- /.entry-content -->
 </article>
