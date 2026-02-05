@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Thursday announcements
 
 + Project brainstorm due today
-+ Reminder that your project topic does need to be tied loosely to "data for social good." Sports is not off limits, but should look different from a typical "sports analytics" project that. Some ideas:
++ Reminder that your project topic does need to be tied loosely to "data for social good." Sports is not off limits, but should look different from a typical "sports analytics" project. Some ideas:
     + Pay equity in sports
     + Does participation in sports predict desirable social outcomes? E.g., higher likelihood of graduating, lower likelihood of committing crimes, long-term health outcomes, etc
     + CTE among football (or other) athletes
