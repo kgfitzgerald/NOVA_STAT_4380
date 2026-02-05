@@ -14,6 +14,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Thursday announcements
 
 + Project brainstorm due today
++ Reminder that your project topic does need to be tied loosely to "data for social good." Sports is not off limits, but should look different from a typical "sports analytics" project that. Some ideas:
+    + Pay equity in sports
+    + Does participation in sports predict desirable social outcomes? E.g., higher likelihood of graduating, lower likelihood of committing crimes, long-term health outcomes, etc
+    + CTE among football (or other) athletes
+    + Societal effects of sports betting
+    + How does access to / participation in various sports differ across socio-economic lines?
+    + Etc etc.
+    
 + Choose your partner by Tuesday class-time - email me your choice
 + Project proposal will be due Saturday Feb 21
 + Next two weeks, the Lecture Recording on Perusall will include short readings from Communicating with Data: The Art of Writing For Data Science
