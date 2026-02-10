@@ -28,6 +28,7 @@ library(tidyverse)
     + One group of 3 allowed
     + If you do not have a partner, email me, and I will randomly pair remaining students
 + Looking ahead: project proposal due next Saturday. Will use a little bit of class time on Thursday for you to start collaborating with your partner. 
++ On Thursday, student hours will be 1:15 - 2:15 (this week only)
 
 ### AE-05
 
