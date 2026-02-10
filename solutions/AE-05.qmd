@@ -1,0 +1,110 @@
+---
+title: "AE-05: Data Wrangling III"
+subtitle: "submit at end of class (exit ticket)"
+author: "YOUR NAME HERE"
+date: today
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc_float: true
+    number_section: false
+    highlight: "tango"
+    theme: "cosmo"
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+## Load packages
+
+Load `tidyverse`, `nycflights13`, `maps`, `mapdata`
+
+```{r}
+
+```
+
+## Flight map
+
+We're going to re-receate the image below.
+
+ *Note, to view the image in your html, download the "flights_map.png" file and place it in the images subfolder of your STAT_7500 folder.*
+
+![](images/flights_map.png)
+
+Some starter code is provided below for creating a basic US map.
+
+```{r}
+#| warning: false
+#| message: false
+
+state <- map_data("state")
+
+ggplot() + 
+  geom_polygon(data = state, 
+               aes(x = long, y = lat, group = group),
+               fill = 'lightblue', color = "white") +
+  theme_void() +
+  coord_fixed(1.3)
+```
+
+Adding on the flight trajectories will require some creative data wrangling. You can use a `geom_curve()` layer to create the flight curves; the above plot has `curvature = 0.2`. Note, you can use different datasets and aesthetic mappings in different `geom` layers (see `geom_polygon()` layer above).
+
+```{r}
+dest_locations <- flights |> 
+  left_join(airports, by = c("dest" = "faa")) |> 
+  select(dest, lat_dest = lat, lon_dest = lon) |> 
+  distinct()
+
+dest_locations <- airports |> 
+  semi_join(flights, by = c("faa" = "dest")) |> 
+  select(dest = faa, lat_dest = lat, lon_dest = lon)
+
+origin_locations <- airports |> 
+  semi_join(flights, by = c("faa" = "origin")) |> 
+  select(origin = faa, lat_origin = lat, lon_origin = lon)
+
+flights <- flights |> 
+  left_join(dest_locations) |> 
+  left_join(origin_locations)
+
+path_counts <- flights |> 
+  count(origin, dest)
+
+map_data <- path_counts |> 
+  left_join(dest_locations) |> 
+  left_join(origin_locations) |> 
+  filter(!(dest %in% c("HNL", "ANC")))
+
+ggplot() + 
+  geom_polygon(data = state, 
+               aes(x = long, y = lat, group = group),
+               fill = 'lightblue', color = "white") +
+  theme_void() +
+  coord_fixed(1.3) +
+  geom_curve(data = map_data,
+             aes(x = lon_origin, xend = lon_dest,
+                 y = lat_origin, yend = lat_dest,
+                 alpha = n),
+             curvature = 0.2) +
+  geom_point(data = map_data,
+             aes(x = lon_dest, y = lat_dest,
+                 size = n)) +
+  guides(alpha = "none") +
+  theme(legend.position = "bottom")
+```
+
+Need:
+
++ lat_dest, lon_dest, lat_origin, lon_origin
++ counts of number of flights for each path
+
+## Submission & Grading
+
+At the end of class, you should submit your (zipped) .html file to the appropriate AE assignment on Blackboard. This serves as your "exit ticket" for today's class.
+
+It is okay if you did not complete all the exercises - it is helpful for me to see your progress, and you will receive full credit (10pts) if you made a good faith effort on the assignment.
+
+You are encouraged to complete any remaining exercises on your own, but you do not need to re-submit your assignment to Blackboard.
+
+If you were unable to attend class, you may still submit your AE for half credit (5pts). The two lowest AE scores will be dropped at the end of the semester to accommodate occasional absences.

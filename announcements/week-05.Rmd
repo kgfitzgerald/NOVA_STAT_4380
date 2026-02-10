@@ -1,6 +1,6 @@
 ---
 title: "Week 05"
-subtitle: "Scientific Practice & Data Storytelling"
+subtitle: "Data Wrangling III"
 output: 
   prettydoc::html_pretty:
     theme: hpstr
@@ -24,13 +24,19 @@ library(tidyverse)
 
 ### Announcements
 
-+ Sign up for project group in Blackboard if you haven't already - sit with your partner today
-+ In-class exam made on Thursday, will also release take-home exam due next Tuesday at midnight
-    + AE solutions have been posted (home page of Blackboard)
-    + everything graded - reminder if you submitted on time, can revise & resubmit for up to full credit w/in one week of when assignment was graded
-+ No lab or annotations this week, but you will have lecture recordings & prep quiz for Tuesday (~60 mins, 3 videos)
-+ Project proposal due next Saturday
++ Email me with your project partner today if you haven't already
+    + One group of 3 allowed
+    + If you do not have a partner, email me, and I will randomly pair remaining students
++ Looking ahead: project proposal due next Saturday. Will use a little bit of class time on Thursday for you to start collaborating with your partner. 
 
+### AE-05
+
+Today will look a little different! 
+
++ Live-coding flights map together
++ UC Berkley Admissions activity
+
+![](images/flights_map.png)
 
 <!-- ### Exam ground rules -->
 
