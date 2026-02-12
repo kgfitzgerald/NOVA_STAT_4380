@@ -1,0 +1,205 @@
+---
+title: "Lab 05 - Pivot & Proportions Practice"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - Data wrangling
+  - Re-shaping / pivoting
+editor_options:
+  chunk_output_type: console
+callout-icon: false
+---
+
+# Goals
+
+In this lab, you will 
+
++ practice reshaping data using `pivot_longer()` and `pivot_wider()` 
++ compute marginal and conditional proportions from count data, and 
++ present tidy outputs suitable for analysis and visualization.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Part 1: toy data
+
+## Data 1: `scores`
+
+To start, you will work with the following data called `scores`, which has three variables (`student_id`, `math`, and `english`) and four rows (one for each student).
+
+```{r}
+scores <- tribble(
+  ~student_id, ~math, ~english,
+  "S1",        90,    92,
+  "S2",        85,    80,
+  "S3",        88,    85,
+  "S4",        95,    74
+)
+scores
+```
+
+::: {.column-margin}
+\
+Note: The `tribble()` function is helpful for creating small data frames (tibbles) with an easier to read row-by-row layout.
+:::
+
+::: callout-note
+### Exercise 1
+
+Suppose you want to reshape the data so there is **one row per student per subject**. Answer the following questions BEFORE attempting any code.
+
++ What function would you use?
+
++ How many rows would the resulting data frame have?
+
++ How many columns would it have, and what would the column names be?
+
+Now, write code to re-shape the data and confirm the number of rows and columns is as expected.
+
+:::
+
+## Data 2: `patients`
+
+Now consider a second dataset called `patients`, which has three variables (`patient_id`, `measurement_time_`, and `systolic_bp` -- short for systolic blood pressure) and five rows (one per patient per measurement time).
+
+```{r}
+patients <- tribble(
+  ~patient_id, ~measurement_time_, ~systolic_bp,
+  "P1",        "Morning",          120,
+  "P1",        "Noon",             115,
+  "P1",        "Evening",          123,
+  "P2",        "Morning",          118,
+  "P2",        "Evening",          121
+)
+patients
+```
+
+
+::: callout-note
+### Exercise 2
+
+Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns. 
+
+Before writing any code, answer the following questions:
+
++ What function would you use to do this?
+
++ How many rows would the resulting data frame have?
++ How many columns would the resulting data frame have and what would the column names be?
+
+Now, write the code to reshape the data frame as described above. 
+
++ What does the `NA` value mean in the resulting data frame? 
+
+:::
+
+
+
+# Part 2: D1 opinion data
+
+In this part you'll investigate the relationship between age and opinion on the impact of the many changes taking place in Division I college athletics (e.g, transfer portal, athlete name, image and likeness (NIL) compensation, conference realignments).
+
+YouGov, in collaboration with Elon University Poll and the Knight Commission on Intercollegiate Athletics, polled 1,500 US adults (aged 18 and older) between July 7-11, 2025.[^1] The following question was asked to these 1,500 adults:
+
+[^1]: Full survey results can be found at <https://eloncdn.blob.core.windows.net/eu3/sites/819/2025/07/Elon-Knight-Commission-survey-TOPLINE.pdf>.
+
+> Overall, how would you describe the impact of the many changes (transfer portal, athlete name, image and likeness (NIL) compensation, conference realignments[^2]) taking place in Division I college athletics?
+
+[^2]: The transfer portal is an online database for college student-athletes who wish to transfer to a different school. Name, image, and likeness (NIL) compensation allows college athletes to earn money from third-party companies for using their "name, image, and likeness" through activities like endorsements, social media promotions, and public appearances. Conference realignments refer to the shifting of colleges and universities between athletic conferences, which can affect competition levels, revenue distribution, and media exposure.
+
+Responses were broken down into the following categories:
+
+| Variable | Levels |
+|:---------------|:-------------------------------------------------------|
+| Age | 18-44; 45+ |
+| Opinion | Very positive; Somewhat positive; Neutral; Somewhat negative; Very negative; Unsure |
+
+The counts for each age level and opinion are given in the dataset `survey_counts` below.
+
+```{r}
+survey_counts <- tribble(
+  ~age,    ~opinion,            ~n,
+  "18-44", "Very positive",     78,
+  "18-44", "Somewhat positive", 176,
+  "18-44", "Neutral",           162,
+  "18-44", "Somewhat negative", 50,
+  "18-44", "Very negative",     36,
+  "18-44", "Unsure",            197,
+  "45+",   "Very positive",     41,
+  "45+",   "Somewhat positive", 121,
+  "45+",   "Neutral",           186,
+  "45+",   "Somewhat negative", 146,
+  "45+",   "Very negative",     97,
+  "45+",   "Unsure",            210
+) |>
+  mutate(opinion = factor(opinion, levels = c(
+    "Very positive", "Somewhat positive", "Neutral",
+    "Somewhat negative", "Very negative", "Unsure"
+  )))
+```
+
+
+::: {.callout-important}
+For each exercise below, 
+
++ use a single pipeline starting with `survey_counts`, 
++ calculate the desired proportions, and 
++ make sure the result is an **ungrouped** data frame with
+    + a column for relevant counts, 
+    + a column for relevant proportions, and 
+    + a column for the groups you're interested in.
+:::
+
+
+::: callout-note
+### Exercise 3
+**Marginal proportions of age**: Calculate the proportions of individuals who are 18-44 year olds and 45+ year-olds in this sample.
+:::
+
+::: callout-note
+### Exercise 4
+**Marginal proportions of opinion:** Calculate the proportions of individuals who are Very positive, Somewhat positive, Neutral, Somewhat negative, Very negative, and Unsure.
+:::
+
+::: callout-note
+### Exercise 5
+**Conditional proportions of opinion based on age:** Calculate the proportions of individuals who are Very positive, Somewhat positive, Neutral, Somewhat negative, Very negative, and Unsure
+
+-   among those who are 18-44 years old and
+-   among those who are 45+ years old.
+
+:::
+
+::: callout-note
+### Exercise 6
+Adapt your code from Exercise 5 to instead display your proportions as a 6x3 data frame where the first column lists the opinion category, and the 2nd and 3rd columns give the proportions for the `18-44` and `45+` age categories, respectively.
+:::
+
+# Submission
+
+Before submitting your `.html` (as .zip file)
+
+- [ ] Check code readability
+- [ ] Suppress warnings/messages
+- [ ] Label exercises clearly
+- [ ] Ensure tables are cleanly formatted
+
+# Grading (50 pts)
+
+| Component   | Points |
+|------------|--------|
+| Exercise 1 | 7 |
+| Exercise 2 | 7 |
+| Exercise 3 | 7 |
+| Exercise 4 | 7 |
+| Exercise 5 | 7 |
+| Exercise 6 | 7 |
+| Reflection | 3 |
+| Neatness & Organization | 5| 
