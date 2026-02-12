@@ -15,6 +15,17 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+### Thursday Announcements
+
++ Sit with your project partner(s) today
+
++ Quiz to start class (covers last week's material: joins)
+
++ Lab 05 today + time to start game planning on project
+
++ [Project Proposal](https://nova-stat-4380.netlify.app/project/#project-proposal) due NEXT Saturday
+
++ Heads up: No class (or student hours) next Thursday (2/19)
 
 ### Statistician(s) of the Week
 
@@ -22,7 +33,7 @@ library(tidyverse)
 
 [Alejandra Castillo](https://hardin47.github.io/CURV/scholars/castillo.html)
 
-### Announcements
+### Tuesday Announcements
 
 + Email me with your project partner today if you haven't already
     + One group of 3 allowed
