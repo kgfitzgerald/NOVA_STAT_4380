@@ -383,7 +383,8 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = fct_rev(income))) +
   scale_fill_viridis_d() +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) 
+  guides(fill = guide_legend(reverse = TRUE))
+
 ```
 ]
 
@@ -407,7 +408,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = fct_rev(income))) +
   scale_fill_viridis_d() +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
   labs(
     x = "Proportion", y = "", 
     title = "Income distribution by religious group", 
