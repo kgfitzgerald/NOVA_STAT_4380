@@ -1,5 +1,5 @@
 ---
-title: "R HW 05: Data Importing & Cleaning"
+title: "Lab 06: Data Importing & Cleaning"
 subtitle: "Intro Survey"
 format:
   html:
