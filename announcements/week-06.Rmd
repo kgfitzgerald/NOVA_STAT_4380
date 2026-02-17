@@ -19,6 +19,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Tuesday Announcements
 
+Quiz corrections to get 1/2 points back. Turn in hard copy next Tuesday, or email document to me. 
+
++ Create toy data that mimics the three datasets provided
++ Run the code you wrote, line-by-line, and provide a brief explanation of the error / issue (on each line)
++ Provide the correct code/answer
+
+
 [Project Proposal](https://nova-stat-4380.netlify.app/project/#project-proposal) due Saturday, 11:59pm
 
 Two competitions to put on your radar:
