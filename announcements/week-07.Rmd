@@ -1,6 +1,6 @@
 ---
 title: "Week 07"
-subtitle: "Data Ethics"
+subtitle: "Review / Projects"
 output: 
   prettydoc::html_pretty:
     theme: hpstr
@@ -11,36 +11,35 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Statistician(s) of the Week
+### Data scientist(s) / Statistician(s) of the Week
 
 [Erin Hartman](https://erinhartman.com)
 
 [Wendy Cho](https://pol.illinois.edu/directory/profile/wendycho)
 
-### Thursday announcements
+### Tuesday announcements
 
-+ Test corrections due now
++ Quiz corrections due now (email or hard copy)
 
-+ No AE or Lab this week
++ Fill out extra credit survey if you haven't already (link sent in email via Piazza on Monday)
 
-+ Project EDA & Data cleaning due date extended to next Saturday
++ Quiz to start class today
 
-+ Prep material for next week is ~75mins of lecture
++ This week:
+
+    + Lab 07 (midterm / reivew)
+    + Project work session(s)
+
++ Project EDA & data cleaning due Thursday after spring break
 
 
-### Announcements
 
-+ Test corrections due Thursday
 
-+ Annotations 05 due Thursday (9 min lecture, 13 min YouTube video, 1 case study article)
+<!-- ### Data Ethics activities -->
 
-+ Will talk through feedback on proposals on Thursday. 
+<!-- + [Group 1 Google doc](https://docs.google.com/document/d/1LmDx2tFIFefP5PClob8vcMle5RVRSkc_/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) -->
 
-### Data Ethics activities
-
-+ [Group 1 Google doc](https://docs.google.com/document/d/1LmDx2tFIFefP5PClob8vcMle5RVRSkc_/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true)
-
-+ [Group 2 Google doc](https://docs.google.com/document/d/1MuIp6wwUDTVHcfNN2fJKyCV87o32XPSE/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true)
+<!-- + [Group 2 Google doc](https://docs.google.com/document/d/1MuIp6wwUDTVHcfNN2fJKyCV87o32XPSE/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) -->
 
 <!-- ### Thursday Announcements -->
 
@@ -100,7 +99,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Questions?
 
-### Faith Integration Discussion
+<!-- ### Faith Integration Discussion -->
 
 <!-- -   There is no AE this week -->
 <!-- -   The remainder of class will be spent on a Faith Integration Discussion -->
@@ -108,14 +107,14 @@ knitr::opts_chunk$set(echo = TRUE)
 <!--     -   [Group 2 Google Doc](https://docs.google.com/document/d/13fM23eg9iX3GdgjkMy56STw8gnKO6yyh/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) - Rachel, Avery, Lauren -->
 <!--     -   [Group 3 Google Doc](https://docs.google.com/document/d/1ZJl6v70bwQO7Nnmzd1VESNX4u_e2M-K_/edit?usp=sharing&ouid=106967575594472014629&rtpof=true&sd=true) - Evan, Caylee, Angelica, Jason -->
 
-### Statistics for Social Good Resources
+<!-- ### Statistics for Social Good Resources -->
 
--   AMSTAT News special issue: [Data literacy as a tool for community health and social justice](https://magazine.amstat.org/wp-content/uploads/2022/08/AmstatSeptember.pdf)
+<!-- -   AMSTAT News special issue: [Data literacy as a tool for community health and social justice](https://magazine.amstat.org/wp-content/uploads/2022/08/AmstatSeptember.pdf) -->
 
--   [DataKind](https://www.datakind.org)
+<!-- -   [DataKind](https://www.datakind.org) -->
 
--   [Data4SDGs](https://www.data4sdgs.org): Data for Sustainable Development Goals
+<!-- -   [Data4SDGs](https://www.data4sdgs.org): Data for Sustainable Development Goals -->
 
--   [HRDAG](https://hrdag.org): Human Rights Data Analysis Group
+<!-- -   [HRDAG](https://hrdag.org): Human Rights Data Analysis Group -->
 
--   [Statistics Without Borders](https://www.statisticswithoutborders.org)
+<!-- -   [Statistics Without Borders](https://www.statisticswithoutborders.org) -->
