@@ -17,6 +17,39 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Wendy Cho](https://pol.illinois.edu/directory/profile/wendycho)
 
+### Thursday announcements
+
++ Offering another round of quiz corrections (1/2 points back). 
+    + quiz4.csv is available in the data folder on Github
+    + write code to read it in
+    + use `glimpse()` to show the data types for each variable
+    + try to create a bar plot of `Measurement Time`, see what happens
+    + try to create a scatterplot with `Date` on x-axis and `Diastolic BP` on y-axis, see what happens. 
+    + conduct necessary cleaning steps so that you can produce appropriate versions of the two plots above
+    
++ What have we done so far?
+    + Data visualization w/ `ggplot()`
+    + Data wrangling w/ `tidyverse` 
+    + Data summarization 
+    + Data importing & cleaning
++ What's coming after the break?
+    + Data ethics
+    + Working with strings
+    + Web scraping
+    + Communicating results
+    + Miscellaneous topics - anything you want to cover?? Put it on your notecard and/or come talk to me
+    + PROJECTS!
+    + 8 weeks left, but only 3 more labs
+    
++ Today: work on data cleaning & EDA for your project 
+    + Recommend creating a new R project with a data subfolder
+    + create `cleaning.qmd` file
+    + load packages + read in data (pipe into `clean_names()` immediately)
+    + `glimpse()` the data
+    + plot each variable one-by-one (categorical variable = bar plot, numeric variable = histogram)
+        + if you have a lot, ask AI to write you a function that will loop through and create a bar-plot/histogram for each categorical/numeric variable
+    + Plotting will illuminate data cleaning needs
+
 ### Tuesday announcements
 
 + Quiz corrections due now (email or hard copy)
