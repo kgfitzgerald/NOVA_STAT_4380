@@ -183,7 +183,7 @@ happiness <- read_excel("data/World Happiness 2023.xlsx")
 + For each of the following variables (by themselves), produce an appropriate visualization: 
 
     + `happiness`
-    + `logGDP`
+    + `logGDPpc`
     + `life_exp` 
     + `social_support`
     + `freedom_choices_cat`
