@@ -1,6 +1,6 @@
 ---
 title: "Week 08"
-subtitle: "Simple & Multiple Linear Regression"
+subtitle: "Data Ethics"
 output: 
   prettydoc::html_pretty:
     theme: hpstr
@@ -19,8 +19,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Announcements
 
-+ Annotations due Thursday
-+ Data Cleaning & EDA due Saturday - don't save for last minute, can take a while
++ No quiz today!
++ Project data cleaning & EDA due tonight
++ Today: continue data ethics discussion, then time to work on projects
+
 
 <!-- + Sign up for advising -->
 <!--   + Update: MATH 350 (Statistical Models) will be MW 4:20 - 5:45 -->
@@ -39,9 +41,3 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Questions?
 
 
-### Application Exercise
-
-- The remainder of class will be spent on AE-07. 
-- You can access it from GitHub. 
-- It is due at the end of class today. 
-- To turn it in, you should upload your .html file to Blackboard.
