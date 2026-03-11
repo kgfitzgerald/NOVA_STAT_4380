@@ -1,0 +1,195 @@
+---
+title: "Data Ethics"
+subtitle: "STAT 4380 (in-class)"
+author: "Katie Fitzgerald"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+
+
+## Warm-up
+
+We've encountered several data ethics issues so far in this class. Which one(s) are you most concerned about? Why?
+
++ Bias & Representation
+  + Gender data gap
+  + Algorithmic bias 
+  + Missing datasets (some groups/issues never measured)
++ Data privacy
++ (mis)use of hacked data
++ (mis)use of data by corporations, surveillance
++ (mis)use of data by government, surveillance
++ Visual misrepresentation of data
++ Weakening federal data infrastructure
+
+---
+
+class: middle
+
+## Why might different people worry about different issues?
+
+---
+
+## Social Identity Activity
+
+On your four notecards, write your:
+
+1. gender
+1. race/ethnicity
+1. religious/spiritual affiliation
+1. an additional aspect of your choosing that reflects something about who you are (e.g., major, hobby, familial identity). 
+      
+On a separate piece of paper, identify a place off-campus that you go regularly (e.g., grocery store, coffee shop, bar, park, place of worship, concert venue, etc)
+
+---
+
+class: middle
+
+## When you are at HOME, which of your identities are you most aware of / which is most important in that context? 
+
+Order your cards from most aware to least aware
+
+---
+
+class: middle
+
+## When you are on Villanova's campus (but outside class)?
+
+---
+
+class: middle
+
+## What about when you are in a MATH/STAT class?
+
+---
+
+class: middle
+
+## What about when you are at [the location of your choosing]?
+
+---
+
+## Social Identity Debrief
+
++ Did the order of your identities change across spaces?
++ Were there places where you felt more visible or less visible? In positive or negative ways?
++ Did you notice any identities that rarely came to mind? 
+
+---
+
+## Our identities shape our perspectives, experiences, worldviews
+
++ It's important to work on diverse teams! 
++ Data is collected, analyzed, and interpreted by people whose perspectives and identities shape what they notice, measure, and optimize.
+
+---
+
+## How do we talk about ethics? How do we make ethical decisions?
+
+It's helpful to move beyond vague notions of "this seems bad" or "this seems okay" and be able to **articulate why**. This skill will serve you well in your future (data science) careers, especially as you navigate decisions within teams and organizations.
+
++ Virtue ethics 
++ Deontological ethics 
++ Utilitarian ethics
+
+Sometimes these lead to different decisions! 
+
+---
+
+## Values activity
+
++ Begin by circling the values in the list that are most important to you. 
+
+    + One way to start to do this is to look back on your life to identify when you felt good or confident about a choice. For example, learning to play a sport, instrument or some other skill that involve practice- then maybe you value physical activity, competition or challenge.
+    + Try to choose 20-25 top values.
+    
+--
+    
++ After you have circled your 20-25 top values, put a W next to the circled values that might inform where you would choose to work when you graduate.
+
+---
+
+class: middle
+
+## Case studies
+
+---
+
+class: middle
+
+## Data Ethics Day 2: your careers & lives
+
+Go to this padlet: [padlet.com/kfitzg24/data_ethics_4380](https://padlet.com/kfitzg24/data_ethics_4380)
+
+---
+
+## Let's brainstorm with AI
+
+Go to your preferred AI platform, and brainstorm with it using the following prompts:
+
+1. I'm a student in a data science course. I am interested in pursuing a career in ______. How is data typically used in this field? What kinds of decisions do data and data scientists influence in this field?
+2. What ethical risks or controversies have arisen in this field related to data, algorithms, or analytics? Give concrete examples.
+3. Imagine I am a data scientist working in this field. What kinds of ethical dilemmas might I realistically encounter in my job?
+4. If I wanted to practice responsible data science in this field, what safeguards or habits should I adopt?
+
+---
+
+## Small Group discussion
+
++ Compare AI's ideas with your own - what did it add? What did it miss? 
++ What ethical issue(s) surprised you?
++ What types of decisions do data (scientists) actually influence in your field?
++ What safeguards seemed most important?
+
+---
+
+## Whole class reflection 
+
+This semester we’ve seen that:
+
++ governments collect and use enormous datasets
++ corporations track huge amounts of behavior
++ algorithms influence decisions about jobs, credit, policing, etc
+
+**The question is not whether data will be used.**
+**The question is: what structures make its use responsible?**
+
+*What would need to exist in society for this power to be used responsibly?*
+
+---
+
+## (at least) three layers of responsibility
+
+
+
+1. Inside organizations (companies, government agencies)
+
+  + What safeguards should exist before & after data is collected, or data systems are built & deployed?
+  
+2. Societal infrastructure 
+
+  + What broader systems are needed?
+  
+3. Individual responsibility
+
+  + What can data scientists and citizens actually do? 
+
+Discuss in groups and add your ideas to this padlet: [padlet.com/kfitzg24/ethical_brainstorm](https://padlet.com/kfitzg24/ethical_brainstorm)
+
+---
+
+
+class: middle
+
+## Ethical data science doesn't happen by default - it's done intentionally by people who take responsibility for building better systems 
