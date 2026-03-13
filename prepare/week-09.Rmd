@@ -1,6 +1,6 @@
 ---
 title: "Prepare: Week 09"
-subtitle: "Quantifying Uncertainty: CIs & HTs"
+subtitle: "Working with Strings"
 output: 
   prettydoc::html_pretty:
     theme: cayman
@@ -12,29 +12,19 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## For October 22
+## For March 17
 
 **Note:** All required prepare activities are due **<u>by the beginning of class (4pm)</u>** on the specified date.
 
-### Required
 
-`r emo::ji("book")` [Read Chapter 6 of Communicating with Data](https://apu.on.worldcat.org/oclc/1261275061)
+### Required 
 
-`r emo::ji("movie_camera")` Watch [Quantifying Uncertainty](https://youtu.be/ZUBq4cMlBjk)
+`r emo::ji("movie_camera")` Watch the [Week 09 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5917265_1) on Perusall (accessible via Blackboard)
 
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/26-quantify-uncertainty.html)
-
-
-`r emo::ji("movie_camera")` Watch [Hypothesis testing](https://youtu.be/SSEhrGK9-8k)
-
-- [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/27-hypothesis-testing.html)
-
-`r emo::ji("memo")` Complete Prep Quiz 09 on Blackboard
+- [Slides - 10 Data Importing & Cleaning](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/13-strings.html)
 
 ### Optional 
 
-`r emo::ji("book")` Read [NUMD: Chapter 10 - Confidence Intervals](https://nustat.github.io/intro-stat-ds/10-CIs.html)
+`r emo::ji("book")` Read [R4DS - Chapter 14: Strings](https://r4ds.had.co.nz/strings.html)
 
-`r emo::ji("book")` Read [NUMD: Chapter 11 - P-values](https://nustat.github.io/intro-stat-ds/11-pvalues.html)
-
-`r emo::ji("book")` Read [NUMD: Chapter 12 - Hypothesis Tests](https://nustat.github.io/intro-stat-ds/12-hypothesis-tests.html)
+`r emo::ji("book")` Read [MDSR - Chapter 19: Text as data](https://mdsr-book.github.io/mdsr3e/19-text.html)
