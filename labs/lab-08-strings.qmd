@@ -1,0 +1,142 @@
+---
+title: "Lab 08 - Working with Strings"
+subtitle: "Babynames"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - strings
+  - counts & proportions
+  - data wrangling
+  - data visualization
+editor_options:
+  chunk_output_type: console
+callout-icon: false
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Introduction
+
+In this lab, you will use string functions to investigate meaningful questions about naming patterns in the United States over time. 
+
+## Learning goals
+
+By the end of this lab, you should be able to:
+
++ Use `stringr` verbs such as `str_detect()`, `str_starts()`, `str_ends()`, `str_sub()`, `str_length()`
++ Create new variables based on string patterns
++ Distinguish between different units of observation
++ Decide when to use counts versus proportions
++ Create visualization to communicate trends over time
+
+## Load packages and data
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(babynames)
+
+data(babynames)
+```
+
+We will be using the `babynames` data from the `babynames` package, which includes counts of babynames in the United States from 1880 to 2017. A name is included if it occurs at least 5 times in that calendar year. The data come from the U.S. Social Security Administration. 
+
+**Note: each row contains COUNTS and PROPORTIONS for a name\*sex\*year combination. Each row does NOT represent one baby. Keep this in mind as you analyze the data.**
+
+# Exercises
+
+::: callout-note
+### Exercise 1
+
+Create four new variables in the `babynames` data:
+
++ `name_length` (counts the number of letters in the name)
++ `first_letter` 
++ `last_letter`
++ `name_ending` (extract the last three letters)
+
+:::
+
+::: callout-note
+### Exercise 2
+
++ How many unique names contain the string "liz"?
++ Produce a table with counts of the top 10 variations of "liz". *Hint: you should sum over all years first*
+
+:::
+
+::: callout-note
+
+### Exercise 3
+
+*Are girl names more likely to end in vowels (aeiouy)?*
+
++ Create a variable indicating whether the name ends in a vowel
++ For each year and sex, what proportion of babies received a vowel-ending name? Has that changed over time? Is the pattern different for boys and girls?
+    + Create a line plot to investigate
+    + Briefly comment on your results
+:::
+
+::: callout-note
+### Exercise 4
+*Have names starting with K become more common?*
+
++ Produce a visualization that investigates this by sex. Comment on your results. 
++ Choose two additional letters to investigate, and provide a 2nd plot that shows the trends over time for the three letters. 
+
+:::
+
+::: callout-note
+### Exercise 5
+*Are longer names becoming more common?*
+
++ Plot the average name length by sex over time
+
+:::
+
+::: callout-note
+### Exercise 6
+
+*What is the most common letter of first names? Has this changed over time? Does this differ by sex?*
+
+Produce an appropriate visualization to explore this. Briefly comment on your results. *Hint: it may be helpful to brainstorm a useful visualization by sketching by hand first*
+
+:::
+
+::: callout-note
+### Exercise 7
+
+*Which name endings (last three letters) are most popular among boys versus girls?* 
+
+Produce a table that shows the top 5 name endings for each sex. 
+
+:::
+
+::: callout-note
+### Exercise 8
+
+Create a visualization that explores the popularity of your name over time. Briefly comment on the results.
+
+:::
+
+::: callout-note
+### BONUS
+
+Propose one additional question that can be investigated with these data, and provide a visualization that investigates it.
+
+:::
+
+
+
+
+
+
+
+
