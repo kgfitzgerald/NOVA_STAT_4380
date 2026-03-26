@@ -17,6 +17,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Tyler McCormick](https://thmccormick.github.io)
 
+## Thursday announcements 
+
++ Lab 08 (babynames) due Tuesday 
++ Quiz on Tuesday
++ Today: project work session - work towards 10+ visualizations (tables okay, too) sent to me by Tuesday morning
++ Data viz resources:
+    + [R Graph Gallery](https://r-graph-gallery.com)
+    + [Directory of visualizations](https://clauswilke.com/dataviz/directory-of-visualizations.html)
+    + [1 dataset 100 visualizations](https://100.datavizproject.com)
++ Should be driven by your research questions / curiosity. Don't just make a cool looking graph unless it's contributing to your story :) 
+
 ## Announcements
 
 + Quiz to start class today
