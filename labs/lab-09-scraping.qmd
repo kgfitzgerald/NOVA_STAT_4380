@@ -19,7 +19,7 @@ callout-icon: false
 
 # Introduction
 
-In this lab, you will use `rvest` functions to scrape data from the internet, and employ data visualization best practices to communicate insights. Several of the web-scraping steps will be done together in class.
+In this lab, you will use `rvest` functions to scrape data from the internet, and employ data visualization best practices to communicate insights. Several of the web-scraping steps will be done together in class. We will discuss ideas for presentation-ready visualizations in class in Week 12. 
 
 ## Learning goals
 
@@ -74,7 +74,8 @@ Repeat the steps in Exercise 1 for the Villanova Reddit data.
 ::: callout-note
 ### Exercise 5
 
-Scrape the [100m Olympic record progression tables](https://en.wikipedia.org/wiki/100_metres_at_the_Olympics) and create the following plot  
++ Scrape the [100m Olympic record progression tables](https://en.wikipedia.org/wiki/100_metres_at_the_Olympics) and create the following plot. 
++ Make additional adjustments to make the plot presentation-ready
 
 
 ```{r, echo = FALSE}
