@@ -1,0 +1,94 @@
+---
+title: "Lab 09 - Web Scraping & Data Communication"
+format:
+  html:
+    css: styles.css
+    grid:
+      margin-width: 350px
+fig-numbering: false
+toc: true
+toc-location: right
+categories:
+  - web scraping
+  - data wrangling
+  - data visualization
+editor_options:
+  chunk_output_type: console
+callout-icon: false
+---
+
+# Introduction
+
+In this lab, you will use `rvest` functions to scrape data from the internet, and employ data visualization best practices to communicate insights. Several of the web-scraping steps will be done together in class.
+
+## Learning goals
+
+By the end of this lab, you should be able to:
+
++ Use `rvest` functions to read html tables from the internet 
++ Write and read data files
++ Create presentation-ready visualizations 
+
+## Load packages
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+# Exercises
+
+::: callout-note
+### Exercise 1: Social Security Example
+
+Note, we scraped this data together in class. You can re-use your scraping code, but the visualization should explore something different or additional to what was created in class.
+
++ In an R script, write code to scrape this table of Social Security data from [this website](https://www.ssa.gov/oact/babynames/numberUSbirths.html)
++ Use code to save the file (.csv, .rds, or .xlsx)
++ In a .qmd, read in the saved data file
++ Produce a presentation-ready visualization that illustrates a key insight from the data.
+
+:::
+
+::: callout-note
+### Exercise 2: State populations
+
+Repeat the steps in Exercise 1 for the state population data on [this webpage](https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population). 
+
+:::
+
+::: callout-note
+
+### Exercise 3
+
+Repeat the steps in Exercise 1 for the Pennsylvania System of School Assessment data on [this webpage](https://www.education.pa.gov/DataAndReporting/Assessments/Pages/PSSA-Results.aspx). 
+
+:::
+
+::: callout-note
+### Exercise 4
+
+Repeat the steps in Exercise 1 for the Villanova Reddit data. 
+
+:::
+
+::: callout-note
+### Exercise 5
+
+Scrape the [100m Olympic record progression tables](https://en.wikipedia.org/wiki/100_metres_at_the_Olympics) and create the following plot  
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("./img/olympics.png")
+```
+
+:::
+
+::: callout-note
+### Exercise 6
+
++ Choose one additional website to scrape data from and provide a presentation-ready visualization that demonstrates insight gleaned from the data. 
++ You are encouraged to choose a topic you are personally interested in. Wikipedia pages often have tables to scrape, or Googling "top 25/50/100 _______" will often return websites that have rankings displayed in tables. 
++ For example, top 50 movies, YouTube channels, podcasts, books, happiest countries, causes of death, high-satisfaction jobs, highest-scoring athletes, etc etc.
+
+:::
+
