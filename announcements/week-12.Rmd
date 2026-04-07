@@ -17,95 +17,53 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Mine Cetinkaya-Rundel](https://mine-cr.com)
 
-<!-- ### Thursday announcements -->
+### Upcoming schedule
 
-<!-- -   Due now: Rough draft .zip uploaded to Google Drive -->
+What's left:
 
-<!-- -   WEEK 13 (AFTER THANKSGIVING) -->
++ You've finished annotations - thanks for excellent engagement :) 
++ Lab 09 due next Thursday (started today)
++ Quiz 07 next Thursday - communicating results
++ Presentation rough draft (Th April 16)
++ Written report rough draft (Tue April 21)
++ Formal peer review (Sat April 25)
++ Final deliverables (report + repository) (Mon May 4)
 
-<!--     -   For Tuesday class-time: Read two assigned rough drafts -->
+The last four bullet points are hard deadlines - your timeliness affects your peers! 
 
-<!--         -   Group 1 (Avery & Rachel) - read Groups 2 & 3 -->
+| Week | Tue in-class | Thur in-class |
+|-----------|----------------|---------------|
+| Week 12 (April 7, 9) | Web scraping | Communicating Results |
+| Week 13 (April 14, 16) | Communicating results / Project work session | Quiz 07 + Project work session |
+| Week 14 (April 21, 23) | Peer review (presentations) | Peer review (written reports) |
+| Week 15 (April 28, 30) | Presentations | Presentations |
 
-<!--         -   Group 2 (Evan & Jason) - read Groups 3 & 4 -->
+```{r}
+groups <- c("Hannah & Briell", "Sophie & Claire", "Catherine, Deana & Perry",
+            "Jay & Ryan", "Alex & Andrew", "Will & Zach", "Mei & Nixie")
 
-<!--         -   Group 3 (Dat & Leon) - read Groups 1 & 4 -->
+set.seed(437)
+sample(groups)
+```
 
-<!--         -   Group 4 (Angie & Caylee) - read Groups 2 & 5 -->
-
-<!--         -   Group 5 (Enzo & Lauren) - read Groups 1 & 2 -->
-
-<!--     -   For Thursday class-time: Prep Quiz 13 (10 min lecture, then 3 Prep Activities with Shiny Apps) -->
-
-<!--     -   Any last stats experience points (5 total for semester) due Thursday -->
-
-<!-- -   Today: -->
-
-<!--     -   wrap up Lab corrections together -->
-
-<!--     -   Mini-lecture on communicating results part 2 -->
-
-<!--     -   I like / I wish data viz activity -->
-
-<!--     -   Start brainstorming / drafting poster design -->
-
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- |              | Tue in-class                         | Thur in-class                               | -->
-<!-- +==============+======================================+=============================================+ -->
-<!-- | Week 12      | Communicating Results Part 1 (no AE) | Communicating Results Part 2 (no Lab)       | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 13      | Peer Review                          | Shiny Apps (Lab 09)                         | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 14      | Poster work session                  | Poster peer review                          | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 15      |                                      | Poster presentations - invite your friends! | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-
-### Announcements
-
-<!-- ### ![](images/ms_stem.png) -->
-
-<!-- ![](images/Stats%20talk.PNG) -->
-
-<!-- -   2 extra credit points on your final project (b/c relevant to communicating data!) -->
-
-<!-- -   Attending grad info session could be 1 stats experience point -->
-
-<!-- -   Register for Putnam Exam! Saturday, December 1. Talk to Dr. Mathews. -->
-
-<!-- -   THIS WEEK -->
-
-<!--     -   Rough drafts due Thursday by classtime! Upload .zip to Google Drive -->
-
-<!--     -   BEFORE CLASS THURSDAY: Watch 2 YouTube videos on Perusall (see note about starting partway through video 1) -->
-
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- |              | Tue in-class                         | Thur in-class                               | -->
-<!-- +==============+======================================+=============================================+ -->
-<!-- | Week 12      | Communicating Results Part 1 (no AE) | Communicating Results Part 2 (no Lab)       | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 13      | Peer Review                          | Shiny Apps (Lab 09)                         | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 14      | Poster work session                  | Poster peer review                          | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
-<!-- | Week 15      |                                      | Poster presentations - invite your friends! | -->
-<!-- +--------------+--------------------------------------+---------------------------------------------+ -->
++ Presentations will be 10-12 minutes each, with 5 minutes for questions. 
++ Will be required to submit at least 1 question per presentation (have to be present for both class sessions)
 
 ### Questions?
 
-### Rough Draft Peer Review
+<!-- ### Rough Draft Peer Review -->
 
-Why peer review?
+<!-- Why peer review? -->
 
--   Giving good feedback is a skill (that we don't often practice)
+<!-- -   Giving good feedback is a skill (that we don't often practice) -->
 
--   Receiving and incorporating feedback effectively also takes practice
+<!-- -   Receiving and incorporating feedback effectively also takes practice -->
 
--   Our work is better when we have multiple perspectives speak into it
+<!-- -   Our work is better when we have multiple perspectives speak into it -->
 
--   Makes us better at self-assessing our own work
+<!-- -   Makes us better at self-assessing our own work -->
 
--   It's part of the scientific process
+<!-- -   It's part of the scientific process -->
 
 <!-- Logistics: -->
 
