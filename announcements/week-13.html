@@ -29,6 +29,98 @@ document.addEventListener('DOMContentLoaded', function(e) {
 </script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+
+a.sourceLine {
+pointer-events: auto;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -73,140 +165,156 @@ code span.ot { color: #007020; }
 
 <div id="announcements" class="section level3">
 <h3>Announcements</h3>
-<p>What’s left (assignments):</p>
+</div>
+<div id="upcoming-schedule" class="section level3">
+<h3>Upcoming schedule</h3>
+<p>What’s left:</p>
 <ul>
-<li>Written report rough draft due tonight
+<li>Lab 09 due Thursday (last one!) - “presentation ready” means it
+incorporates the tips we talked about last week!
 <ul>
-<li>submit pdf on Canvas AND upload to Google Drive for peer review</li>
-<li>make sure it is written in a .qmd (rendered to a pdf) and all
-tables/figures are reproducible</li>
+<li>Declutter - reduce to essentials</li>
+<li>What’s your story? What data tells it?</li>
+<li>Choose a visual to make your key point / comparison salient</li>
+<li>Use highlights, annotations, and informative titles to SHOW your
+story</li>
 </ul></li>
-<li>For next class: read rough draft of group assigned to you</li>
-<li>Tuesday, Dec 3: Formal Peer Review due (will start next class)</li>
-<li>Tuesday, Dec 3: Week 14 prep (reading)</li>
-<li>Thursday, Dec 5 (classtime): Elevator pitch rough draft</li>
-<li>Thursday, Dec 5: Any last stats experience points (5 total for
-semester)
+<li>Quiz 07 Thursday - communicating results</li>
+</ul>
+</div>
+<div id="project-deadlines-important-dates" class="section level3">
+<h3>Project deadlines / important dates</h3>
 <ul>
-<li>can submit up to 10 additional ones for extra credit on lowest lab
-assignment(s)</li>
+<li>Th April 16 (11:59pm): Presentation rough draft</li>
+<li>Tue April 21 (4pm): Written report rough draft - BRING 3 HARD COPIES
+TO CLASS WITH YOU! Must be on time, must read assigned groups’ paper
+before class Thursday</li>
+<li>Tue April 21 (in-class): Peer review of presentations - must be in
+class!</li>
+<li>Th April 23 (in class): Peer review of rough drafts - must be in
+class!</li>
+<li>Sat April 25 (11:59pm): Formal peer review submitted</li>
+<li>Tue &amp; Th April 28 &amp; 30: Presentations - must be in class
+both days!</li>
+<li>Monday May 4: Final deliverables (report + repository)</li>
+</ul>
+<p>Upcoming deadlines are hard deadlines - your timeliness affects your
+peers! Points are associated with all of the above.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hannah &amp; Briell&quot;</span>, <span class="st">&quot;Sophie &amp; Claire&quot;</span>, <span class="st">&quot;Catherine, Deana &amp; Perry&quot;</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>            <span class="st">&quot;Jay &amp; Ryan&quot;</span>, <span class="st">&quot;Alex &amp; Andrew&quot;</span>, <span class="st">&quot;Will &amp; Zach&quot;</span>, <span class="st">&quot;Mei &amp; Nixie&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">437</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">sample</span>(groups)</span></code></pre></div>
+<pre><code>## [1] &quot;Sophie &amp; Claire&quot;          &quot;Catherine, Deana &amp; Perry&quot;
+## [3] &quot;Jay &amp; Ryan&quot;               &quot;Will &amp; Zach&quot;             
+## [5] &quot;Hannah &amp; Briell&quot;          &quot;Mei &amp; Nixie&quot;             
+## [7] &quot;Alex &amp; Andrew&quot;</code></pre>
+<ul>
+<li>Presentations will be 10-12 minutes each, with 5 minutes for
+questions.</li>
+<li>Will be required to submit at least 1 question per presentation
+(have to be present for both class sessions)</li>
+</ul>
+</div>
+<div id="today-project-work-session" class="section level2">
+<h2>Today: Project work session</h2>
+<div id="part-1-brainstorm-in-your-project-groups-10-mins" class="section level3">
+<h3>Part 1: brainstorm in your project groups (10 mins)</h3>
+<ul>
+<li>What is our story missing at the moment?</li>
+<li>What additional analyses need to be conducted?</li>
+<li>What are possible counter-arguments to our story?</li>
+</ul>
+<p><br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</p>
+</div>
+<div id="part-2-have-ai-stress-test-your-argument-10-minutes" class="section level3">
+<h3>Part 2: have AI stress-test your argument (10 minutes)</h3>
+<ul>
+<li>Ask AI for feedback / stress test your argument!
+<ul>
+<li>What new questions could be answered with my existing data that I
+haven’t considered? Why do they matter?</li>
+<li>Which variables or patterns in my data deserve deeper analysis? What
+relationships should I explore further?</li>
+<li>What am I missing? Where is my evidence insufficient,
+misinterpreted, or potentially biased?</li>
+<li>What are the weakest parts of my argument and why?</li>
+<li>What are the strongest counter-arguments to my claims? Rank them by
+how difficult they are to respond to.</li>
+<li>How would someone with a different worldview or who fundamentally
+disagrees with my assumptions interpret this argument? What would they
+say I’m overlooking?</li>
 </ul></li>
-<li>Friday, Dec 6: Final poster due (I will send to printer)</li>
-<li>Saturday, Dec 7: Final report &amp; repository due</li>
-<li>Thursday, Dec 12: Poster presentations / Christmas party</li>
-</ul>
-<table>
-<colgroup>
-<col width="23%" />
-<col width="23%" />
-<col width="52%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>Tue in-class</th>
-<th>Thur in-class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Week 13</td>
-<td>Communicating Results II</td>
-<td>Peer Review</td>
-</tr>
-<tr class="even">
-<td>Week 14</td>
-<td>Project work session</td>
-<td>Elevator pitch / poster peer review</td>
-</tr>
-<tr class="odd">
-<td>Week 15</td>
-<td></td>
-<td>Poster presentations - invite your friends!</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="today" class="section level2">
-<h2>Today</h2>
-<ul>
-<li><p><a href="https://docs.google.com/document/d/18_9nEQNmi-sd6FHScWyHP_1TKTK8CRQCs_clIwbFlQw/edit?usp=sharing">Your
-project questions</a></p></li>
-<li><p>Data viz crash course</p></li>
-<li><p>(If time) work on rough drafts</p></li>
-</ul>
-<div id="citation-management" class="section level3">
-<h3>Citation management</h3>
-<ul>
-<li><p>Download &amp; Install <a href="https://www.latex-project.org/get/#tex-distributions">LaTeX</a></p></li>
-<li><p>Download &amp; Install <a href="https://www.zotero.org">Zotero</a></p></li>
-<li><p>Install the <a href="https://www.zotero.org/download/connectors">Zotero Connector for
-Chrome</a></p></li>
-<li><p>Install <a href="https://retorque.re/zotero-better-bibtex/installation/">Better
-BibTeX for Zotero</a></p></li>
-<li><p>See <code>Zotero_demo.qmd</code> on GitHub (and
-<code>references.bib</code>) for demo of citations in Quarto</p></li>
-<li><p>Open Microsoft Word on your computer and look for the <a href="https://www.zotero.org/support/word_processor_plugin_usage">Zotero
-tab</a></p></li>
-<li><p>Open a Google Doc (in Chrome) and look for the <a href="https://www.zotero.org/support/google_docs">Zotero
-tab</a></p></li>
-</ul>
-<p>Citation tasks:</p>
-<ol style="list-style-type: decimal">
-<li><p>In Chrome, search for and locate the sources you plan to cite,
-and click on the Extensions puzzle piece to add them to your Zotero
-library</p>
-<ol style="list-style-type: decimal">
-<li>If they are just websites rather than academic papers or books, you
-may need to manually edit the citation info in Zotero</li>
-</ol></li>
-<li><p>In a Quarto file (e.g. your written report), create (potentially
-placeholder) sentences with in-text citations (Insert &gt; @ Citation),
-then Render.</p></li>
-<li><p>OPTIONAL: Repeat the citation process in Word (or Google
-Docs)</p></li>
-</ol>
-</div>
-<div id="thursday-rough-draft-peer-review" class="section level3">
-<h3>Thursday: Rough Draft Peer Review</h3>
-<p>Why peer review?</p>
-<ul>
-<li><p>Giving good feedback is a skill (that we don’t often
-practice)</p></li>
-<li><p>Receiving and incorporating feedback effectively also takes
-practice</p></li>
-<li><p>Our work is better when we have multiple perspectives speak into
-it</p></li>
-<li><p>It’s one of the only cures to the curse of expertise!</p></li>
-<li><p>Makes us better at self-assessing our own work</p></li>
-<li><p>It’s part of the scientific process</p></li>
+<li>What will you do / add / change in light of this brainstorming &amp;
+stress testing?</li>
 </ul>
 </div>
-</div>
-<div id="logistics" class="section level2">
-<h2>Logistics:</h2>
+<div id="part-3-planning-work-session" class="section level3">
+<h3>Part 3: planning &amp; work session</h3>
 <ul>
-<li><p>In your project groups, discuss assigned paper and fill out the
-“FORMAL Rough Draft Peer Feedback - Group X” form in the shared Google
-Drive folder (located in the folder of the group you’re
-reviewing)</p></li>
-<li><p>Then, you will write up a 1-2 page formal review, which will
-include:</p>
+<li>Create a to-do list - be specific, and include a timeline!
 <ul>
-<li><p>A summary of the research questions, data context, and findings,
-as you understand them</p></li>
-<li><p>Brief comments on strengths of the paper</p></li>
-<li><p>Constructive criticism, raising questions / points of confusion,
-and outlining what needs to be changed/improved in order for the report
-to be exemplary</p></li>
+<li>Printed version of project website info provided</li>
 </ul></li>
-<li><p>The constructive criticism should make up the bulk of the 1-page
-review. Remember: the goal is to help them IMPROVE the work. You should
-NOT simply tell them it’s wonderful, and you should NOT simply criticize
-without offering concrete suggestions for HOW to improve.</p></li>
+<li>Start by creating a to-do list - be specific, and include a
+timeline!
+<ul>
+<li>Printed version of project website info provided</li>
+</ul></li>
+<li>What updates do you need to make to your visualizations in light of
+Thursday’s lecture? What new visualizations / iterations should you try?
+Don’t get pigeon holed into your first idea.
+<ul>
+<li><a href="https://r-graph-gallery.com/package/ggtext.html"><code>ggtext</code>
+package</a> to add color to your plot titles</li>
+<li>Make your font sizes much bigger than you think you need to! Your
+audience will be viewing from the back of the room.</li>
+</ul></li>
+<li>Identify 3 - 5 (or more) external sources that you will incorporate
+into your data story. To provide background, context, supplementary
+evidence, etc.
+<ul>
+<li>You are not the first person to investigate this issue!</li>
+<li>What have others had to say about it?</li>
+</ul></li>
 </ul>
-<div id="section" class="section level3">
-<h3></h3>
+<!-- ### Citation management -->
+<!-- -   Download & Install [LaTeX](https://www.latex-project.org/get/#tex-distributions) -->
+<!-- -   Download & Install [Zotero](https://www.zotero.org) -->
+<!-- -   Install the [Zotero Connector for Chrome](https://www.zotero.org/download/connectors) -->
+<!-- -   Install [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/installation/) -->
+<!-- -   See `Zotero_demo.qmd` on GitHub (and `references.bib`) for demo of citations in Quarto -->
+<!-- -   Open Microsoft Word on your computer and look for the [Zotero tab](https://www.zotero.org/support/word_processor_plugin_usage) -->
+<!-- -   Open a Google Doc (in Chrome) and look for the [Zotero tab](https://www.zotero.org/support/google_docs) -->
+<!-- Citation tasks: -->
+<!-- 1.  In Chrome, search for and locate the sources you plan to cite, and click on the Extensions puzzle piece to add them to your Zotero library -->
+<!--     1.  If they are just websites rather than academic papers or books, you may need to manually edit the citation info in Zotero -->
+<!-- 2.  In a Quarto file (e.g. your written report), create (potentially placeholder) sentences with in-text citations (Insert \> \@ Citation), then Render. -->
+<!-- 3.  OPTIONAL: Repeat the citation process in Word (or Google Docs) -->
+<!-- ### Thursday: Rough Draft Peer Review -->
+<!-- Why peer review? -->
+<!-- -   Giving good feedback is a skill (that we don't often practice) -->
+<!-- -   Receiving and incorporating feedback effectively also takes practice -->
+<!-- -   Our work is better when we have multiple perspectives speak into it -->
+<!-- -   It's one of the only cures to the curse of expertise! -->
+<!-- -   Makes us better at self-assessing our own work -->
+<!-- -   It's part of the scientific process -->
+<!-- ## Logistics:  -->
+<!-- -   In your project groups, discuss assigned paper and fill out the "FORMAL Rough Draft Peer Feedback - Group X" form in the shared Google Drive folder (located in the folder of the group you're reviewing) -->
+<!-- -   Then, you will write up a 1-2 page formal review, which will include: -->
+<!--     -   A summary of the research questions, data context, and findings, as you understand them -->
+<!--     -   Brief comments on strengths of the paper -->
+<!--     -   Constructive criticism, raising questions / points of confusion, and outlining what needs to be changed/improved in order for the report to be exemplary -->
+<!-- -   The constructive criticism should make up the bulk of the 1-page review. Remember: the goal is to help them IMPROVE the work. You should NOT simply tell them it's wonderful, and you should NOT simply criticize without offering concrete suggestions for HOW to improve. -->
+<!-- ###  -->
 </div>
 </div>
 </div><!-- /.entry-content -->

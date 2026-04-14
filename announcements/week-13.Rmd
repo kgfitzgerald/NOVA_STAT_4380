@@ -14,89 +14,135 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Announcements
 
-What's left (assignments):
+### Upcoming schedule
 
--   Written report rough draft due tonight
-    -   submit pdf on Blackboard AND upload to Google Drive for peer review
-    -   make sure it is written in a .qmd (rendered to a pdf) and all tables/figures are reproducible
--   For next class: read rough draft of group assigned to you
--   Tuesday, Dec 3: Formal Peer Review due (will start next class)
--   Tuesday, Dec 3: Week 14 prep (reading)
--   Thursday, Dec 5 (classtime): Elevator pitch rough draft
--   Thursday, Dec 5: Any last stats experience points (5 total for semester)
-    -   can submit up to 10 additional ones for extra credit on lowest lab assignment(s)
--   Friday, Dec 6: Final poster due (I will send to printer)
--   Saturday, Dec 7: Final report & repository due
--   Thursday, Dec 12: Poster presentations / Christmas party
+What's left:
 
-|         | Tue in-class             | Thur in-class                               |
-|-----------------|-----------------|-------------------------------------|
-| Week 13 | Communicating Results II | Peer Review                                 |
-| Week 14 | Project work session     | Elevator pitch / poster peer review         |
-| Week 15 |                          | Poster presentations - invite your friends! |
++ Lab 09 due Thursday (last one!) - "presentation ready" means it incorporates the tips we talked about last week! 
+    + Declutter - reduce to essentials
+    + What's your story? What data tells it?
+    + Choose a visual to make your key point / comparison salient
+    + Use highlights, annotations, and informative titles to SHOW your story
++ Quiz 07 Thursday - communicating results
 
-## Today
+### Project deadlines / important dates
 
--   [Your project questions](https://docs.google.com/document/d/18_9nEQNmi-sd6FHScWyHP_1TKTK8CRQCs_clIwbFlQw/edit?usp=sharing)
++ Th April 16 (11:59pm): Presentation rough draft
++ Tue April 21 (4pm): Written report rough draft - BRING 3 HARD COPIES TO CLASS WITH YOU! Must be on time, must read assigned groups' paper before class Thursday
++ Tue April 21 (in-class): Peer review of presentations - must be in class!
++ Th April 23 (in class): Peer review of rough drafts - must be in class!
++ Sat April 25 (11:59pm): Formal peer review submitted
++ Tue & Th April 28 & 30: Presentations - must be in class both days!
++ Monday May 4: Final deliverables (report + repository)
 
--   Data viz crash course
+Upcoming deadlines are hard deadlines - your timeliness affects your peers! Points are associated with all of the above.
 
--   (If time) work on rough drafts
+```{r}
+groups <- c("Hannah & Briell", "Sophie & Claire", "Catherine, Deana & Perry",
+            "Jay & Ryan", "Alex & Andrew", "Will & Zach", "Mei & Nixie")
 
-### Citation management
+set.seed(437)
+sample(groups)
+```
 
--   Download & Install [LaTeX](https://www.latex-project.org/get/#tex-distributions)
++ Presentations will be 10-12 minutes each, with 5 minutes for questions. 
++ Will be required to submit at least 1 question per presentation (have to be present for both class sessions)
 
--   Download & Install [Zotero](https://www.zotero.org)
+## Today: Project work session
 
--   Install the [Zotero Connector for Chrome](https://www.zotero.org/download/connectors)
+### Part 1: brainstorm in your project groups (10 mins)
 
--   Install [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/installation/)
++ What is our story missing at the moment? 
++ What additional analyses need to be conducted?
++ What are possible counter-arguments to our story?
 
--   See `Zotero_demo.qmd` on GitHub (and `references.bib`) for demo of citations in Quarto
+\
+\
+\
+\
+\
+\
+\
+\
 
--   Open Microsoft Word on your computer and look for the [Zotero tab](https://www.zotero.org/support/word_processor_plugin_usage)
+### Part 2: have AI stress-test your argument (10 minutes)
 
--   Open a Google Doc (in Chrome) and look for the [Zotero tab](https://www.zotero.org/support/google_docs)
++ Ask AI for feedback / stress test your argument! 
+    + What new questions could be answered with my existing data that I haven’t considered? Why do they matter?
+    + Which variables or patterns in my data deserve deeper analysis? What relationships should I explore further?
+    + What am I missing? Where is my evidence insufficient, misinterpreted, or potentially biased?
+    + What are the weakest parts of my argument and why?
+    + What are the strongest counter-arguments to my claims? Rank them by how difficult they are to respond to. 
+    + How would someone with a different worldview or who fundamentally disagrees with my assumptions interpret this argument? What would they say I'm overlooking?
++ What will you do / add / change in light of this brainstorming & stress testing? 
+    
+### Part 3: planning & work session
+ 
++ Create a to-do list - be specific, and include a timeline! 
+    + Printed version of project website info provided
++ Start by creating a to-do list - be specific, and include a timeline! 
+    + Printed version of project website info provided
++ What updates do you need to make to your visualizations in light of Thursday's lecture? What new visualizations / iterations should you try? Don't get pigeon holed into your first idea.
+    + [`ggtext` package](https://r-graph-gallery.com/package/ggtext.html) to add color to your plot titles
+    + Make your font sizes much bigger than you think you need to! Your audience will be viewing from the back of the room. 
++ Identify 3 - 5 (or more) external sources that you will incorporate into your data story. To provide background, context, supplementary evidence, etc.
+    + You are not the first person to investigate this issue! 
+    + What have others had to say about it? 
 
-Citation tasks:
+<!-- ### Citation management -->
 
-1.  In Chrome, search for and locate the sources you plan to cite, and click on the Extensions puzzle piece to add them to your Zotero library
+<!-- -   Download & Install [LaTeX](https://www.latex-project.org/get/#tex-distributions) -->
 
-    1.  If they are just websites rather than academic papers or books, you may need to manually edit the citation info in Zotero
+<!-- -   Download & Install [Zotero](https://www.zotero.org) -->
 
-2.  In a Quarto file (e.g. your written report), create (potentially placeholder) sentences with in-text citations (Insert \> \@ Citation), then Render.
+<!-- -   Install the [Zotero Connector for Chrome](https://www.zotero.org/download/connectors) -->
 
-3.  OPTIONAL: Repeat the citation process in Word (or Google Docs)
+<!-- -   Install [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/installation/) -->
 
-### Thursday: Rough Draft Peer Review
+<!-- -   See `Zotero_demo.qmd` on GitHub (and `references.bib`) for demo of citations in Quarto -->
 
-Why peer review?
+<!-- -   Open Microsoft Word on your computer and look for the [Zotero tab](https://www.zotero.org/support/word_processor_plugin_usage) -->
 
--   Giving good feedback is a skill (that we don't often practice)
+<!-- -   Open a Google Doc (in Chrome) and look for the [Zotero tab](https://www.zotero.org/support/google_docs) -->
 
--   Receiving and incorporating feedback effectively also takes practice
+<!-- Citation tasks: -->
 
--   Our work is better when we have multiple perspectives speak into it
+<!-- 1.  In Chrome, search for and locate the sources you plan to cite, and click on the Extensions puzzle piece to add them to your Zotero library -->
 
--   It's one of the only cures to the curse of expertise!
+<!--     1.  If they are just websites rather than academic papers or books, you may need to manually edit the citation info in Zotero -->
 
--   Makes us better at self-assessing our own work
+<!-- 2.  In a Quarto file (e.g. your written report), create (potentially placeholder) sentences with in-text citations (Insert \> \@ Citation), then Render. -->
 
--   It's part of the scientific process
+<!-- 3.  OPTIONAL: Repeat the citation process in Word (or Google Docs) -->
 
-## Logistics: 
+<!-- ### Thursday: Rough Draft Peer Review -->
 
--   In your project groups, discuss assigned paper and fill out the "FORMAL Rough Draft Peer Feedback - Group X" form in the shared Google Drive folder (located in the folder of the group you're reviewing)
+<!-- Why peer review? -->
 
--   Then, you will write up a 1-2 page formal review, which will include:
+<!-- -   Giving good feedback is a skill (that we don't often practice) -->
 
-    -   A summary of the research questions, data context, and findings, as you understand them
+<!-- -   Receiving and incorporating feedback effectively also takes practice -->
 
-    -   Brief comments on strengths of the paper
+<!-- -   Our work is better when we have multiple perspectives speak into it -->
 
-    -   Constructive criticism, raising questions / points of confusion, and outlining what needs to be changed/improved in order for the report to be exemplary
+<!-- -   It's one of the only cures to the curse of expertise! -->
 
--   The constructive criticism should make up the bulk of the 1-page review. Remember: the goal is to help them IMPROVE the work. You should NOT simply tell them it's wonderful, and you should NOT simply criticize without offering concrete suggestions for HOW to improve.
+<!-- -   Makes us better at self-assessing our own work -->
 
-### 
+<!-- -   It's part of the scientific process -->
+
+<!-- ## Logistics:  -->
+
+<!-- -   In your project groups, discuss assigned paper and fill out the "FORMAL Rough Draft Peer Feedback - Group X" form in the shared Google Drive folder (located in the folder of the group you're reviewing) -->
+
+<!-- -   Then, you will write up a 1-2 page formal review, which will include: -->
+
+<!--     -   A summary of the research questions, data context, and findings, as you understand them -->
+
+<!--     -   Brief comments on strengths of the paper -->
+
+<!--     -   Constructive criticism, raising questions / points of confusion, and outlining what needs to be changed/improved in order for the report to be exemplary -->
+
+<!-- -   The constructive criticism should make up the bulk of the 1-page review. Remember: the goal is to help them IMPROVE the work. You should NOT simply tell them it's wonderful, and you should NOT simply criticize without offering concrete suggestions for HOW to improve. -->
+
+<!-- ###  -->
