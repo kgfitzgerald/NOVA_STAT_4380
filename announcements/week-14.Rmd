@@ -1,6 +1,6 @@
 ---
 title: "Week 14"
-subtitle: "Project Wrap-Up"
+subtitle: "Project Peer Review"
 output: 
   prettydoc::html_pretty:
     theme: hpstr
@@ -13,54 +13,54 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-### Thursday Announcements
+### Tuesday Announcements
 
--   Final draft of poster - upload to Blackboard AND email to me by noon tomorrow
-
--   IDEA survey - need three more people - closes tomorrow
-
--   [Final project repo](https://canvas.apu.edu/courses/55797/assignments/997114) - make game plan for what docs you still need
-
--   Next Thursday: Presentations 4:05 - 5:55
-    + Try to arrive \~10 mins early to hang poster
-    + Will be starting in Physics Lab to watch their presentations (~1hr), then everyone outside for poster session
-- [End of Course Reflection](https://canvas.apu.edu/courses/55797/assignments/997098) (\~1 page), due next Thursday
+- Quiz to start class today (last one!)
+- Student hours on Thursday will be 1:15 - 2:15
+- End of Course Reflection(\~1 page), due next Thursday
     + Meta-cognition important for learning
     + More nitty gritty feedback / course-specific suggestions for how to improve
-    + Concrete things changed based on previous year's feedback:
+    + Concrete things changed based on previous years' feedback:
       -   No HW assignments (reduced work-load)
       -   No Posit Cloud (web-based version of RStudio)
-      -   In-class group work but individual submissions -->
-      -   More focus on interpreting results (re-did middle 3rd of the course to be more stats-focused, added more interpretation Qs & reflection prompts) 
+      -   In-class group work but individual submissions 
+      -   Shorter lecture videos
+- Today: Peer review of slides
+- Thursday: Peer review of written reports
+- BEFORE Thursday: Read the written report assigned to you - jot down initial (informal) impressions / suggestions as you go. The hard copy is for YOU to mark up - you will not be giving your written notes to the group. 
++ Sat April 25 (11:59pm): Formal peer review submitted
++ Tue & Th April 28 & 30: Presentations - must be in class both days!
++ A note on presentations: not every group member needs to present! Play to your strengths.
++ Monday May 4: Final deliverables (report + repository)
 
-### Questions?
+## Why peer review?
 
-### Poster Tips / Guidelines
++ Feedback makes us better - we should never assume our perspective / work is ultimate
++ Curse of expertise
++ Giving good feedback is a skill (which requires practice)
++ Asking for, receiving, and incorporating feedback is a skill (which requires practice)
++ It's a part of professional life
++ Assessing others' work helps you self-assess and improve your own work
++ Has potential to help your grade! Give the constructive feedback now, before I take points off for it later :) 
 
--   What is your main / most interesting finding? What succinct & catchy sentence will you use to communicate it?
--   Identify your best 2 - 3 visualizations
--   [#betterposter templates](https://osf.io/ef53g/)
--   Examples in our Google Drive also
--   Be careful with font size and image quality!
--   Update slide size to be 48" wide x 36" tall
--   In elevator pitch:
-    -   beware of the curse of expertise
-    -   use gestures to guide where they should be looking
-    -   don't need to tell them EVERYTHING - best pitches are interesting discussion starters
-    -   help them connect to something they already know
 
-### Poster Evaluation Criteria & Rubric
+**Your task: help them make their project better!** It is NOT helpful or sufficient to say it all looks great. **Don't just critique - give specific suggestions!**
 
-The poster presentations will be rated on a scale from 1 - 4 (weak, basic, solid, exceptional) on each of the following 4 criteria:
++ ~10 minutes - read over rubric & slides on your own, start taking notes for yourself
++ ~10 minutes - Discuss initial impressions in your groups
+    + What do you all think was the main takeaway?
+    + Where were people confused? (same spots?)
+    + What visualizations came up repeatedly as unclear?
++ ~15 minutes - Fill out feedback form together
++ ~10 minutes - Identify 2-3 specific changes you will make to your own slides
++ ~10 minutes - Debrief
 
--   **Research questions & data relevance**: Is the overall research question(s) / objective(s) of the analysis clearly communicated? Is it clear how the data used is relevant to investigating the question(s)?
--   **Methods & statistical communication** - Is it clear what statistical procedures were used to analyze the data? Are appropriate statistical procedures carried out and explained correctly?
--   **Data visualization / results presentation** - Are the data and main results displayed effectively, in visualizations and/or tables?
--   **Creativity and Critical Thought** - Is the project carefully thought out? Are insightful conclusions reached? Does it appear that time and effort went into the planning and implementation of the project?
+## Group assignments (for slides only):
 
-## Today
-
-- Take about 15 mins in your groups to practice elevator pitch, upload latest version of poster to Google Drive
-- Each group will give elevator pitch, all of us will provide feedback on poster and pitch (10 - 15 mins per group)
-- Make game plan of next steps
-
++ Nixie & Mae review Jay & Ryan
++ Jay & Ryan review Will & Zach
++ Will & Zach review Catherine, Deanna, Perry
++ Catherine, Deanna, Perry review Alex & Andrew
++ Alex & Andrew review Claire & Sophie
++ Claire & Sophie review Hannah & Briell
++ Hannah & Briell review Nixie & Mae
