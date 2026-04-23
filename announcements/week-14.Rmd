@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Thursday Announcements
 
 - Take a look at [project evaluation rubric](https://villanova-my.sharepoint.com/:x:/r/personal/kfitzg24_villanova_edu/Documents/Desktop/Nova/STAT%204380/STAT%204380%20S26%20Projects/Written%20Report%20Rough%20Drafts/Project%20evaluation%20rubric.xlsx?d=w859bb67eaccc4263925fa060d71926f5&csf=1&web=1&e=lDHdBw) (also located in shared OneDrive folder. 
-    + Make sure you can Render to pdf! 
+    + Make sure you can [Render to pdf](https://quarto.org/docs/output-formats/pdf-basics.html)! 
     + Make sure your report is FULLY reproducible - including file paths! 
 + Take 5 minutes in your group to create a to-do list 
 
