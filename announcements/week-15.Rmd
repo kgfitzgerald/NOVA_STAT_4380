@@ -1,0 +1,27 @@
+---
+title: "Week 15"
+subtitle: "Project Presentations"
+output: 
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Announcements
+
+-   End-of-course reflection (\~1 page) due Thursday, 11:59pm
+-   Final deliverables due Monday, May 4, 11:59pm (make sure you incorporate peer review feedback!)
+-   Fill out [End-of-semester survey](https://forms.office.com/r/iMz5LWdaes) by Thursday (so far 40% have filled it out, need \>80% for extra credit)
+-   Will take first 10 mins of class on Thursday for CATS
+
+# Q&A logistics
+
+-   Each person should submit one question per presentation, using [this link](https://forms.office.com/r/t1YnzJnS8Q) or QR Code below
+-   Your question should be SUBSTANTIVE (e.g., about the context, data, analysis, limitations, implications, etc).
+-   Asking questions such as "what was your favorite part?" are not sufficient
+
+![](images/QRCode.png)
