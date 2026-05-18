@@ -11,15 +11,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## For Thursday, January 15
+## For Thursday, August 27
 
 **Note:** All required prepare activities are due **by the beginning of class (4pm)** on the specified date.
 
 ### Required 
 
-`r emo::ji("movie_camera")` Watch the [Week 01 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5847308_1) on Perusall (accessible via Blackboard)
+`r emo::ji("movie_camera")` Watch the [Week 01 lecture](https://www.youtube.com/watch?v=OV-ync2Lh28&list=PLWcmnxLOSKbZAcRNx0-uRRBnsFox1Rs9g&index=8)
 
 - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/02-toolkit-R.html)
+
+`r emo::ji("memo")` Complete Prep Quiz 01 on Brightspace
 
 <!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Blackboard -->
 
