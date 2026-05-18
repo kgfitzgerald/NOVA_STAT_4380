@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/25-multiple-predictors-model-selection.html)
   
-`r emo::ji("memo")` Complete Prep Quiz 08 on Blackboard
+`r emo::ji("memo")` Complete Prep Quiz 08 on Brightspace
 
 ### Optional 
 

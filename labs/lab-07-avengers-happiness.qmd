@@ -259,7 +259,7 @@ State an additional research question you could investigate using either the `av
 
 # Submission
 
-Before submitting your `.html` (as a .zip file to Blackboard):
+Before submitting your `.html` (as a .zip file to Brightspace):
 
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 + Check visualizations for clean titles and labels
@@ -267,7 +267,7 @@ Before submitting your `.html` (as a .zip file to Blackboard):
 + Ensure exercises are clearly labeled and your text responses are visually distinguished 
 + Confirm neat organization and readable structure
 
-Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Blackboard.
+Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Brightspace.
 
 # Grading (100 pts)
 

@@ -34,7 +34,7 @@ In this lab, you will:
 
 # Getting Started
 
-+ You will be working in your Lab 03–04 Groups (see Blackboard).
++ You will be working in your Lab 03–04 Groups (see Brightspace).
 + Download the `.qmd` file for this lab from our class
   [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main/labs).
 + Refer back to
@@ -304,7 +304,7 @@ Before submitting your `.html`:
 + Ensure figures and tables have clear labels
 + Confirm exercises are clearly labeled
 
-Convert the final `.html` file to a .zip file and upload to Blackboard.
+Convert the final `.html` file to a .zip file and upload to Brightspace.
 
 ---
 

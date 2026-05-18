@@ -34,7 +34,7 @@ Joins allow us to combine information from multiple data sources into a single a
 
 # Getting Started
 
-+ You will be working in your Lab 03–04 Groups (see Blackboard).
++ You will be working in your Lab 03–04 Groups (see Brightspace).
 + Download the `.qmd` file for this lab from our class
   [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main/labs).
 + Refer back to
@@ -313,7 +313,7 @@ Before submitting your `.html`:
 + Suppress unnecessary warnings and messages
 + Clearly label all exercises
 
-Render one final time and submit the `.html` file to Blackboard.
+Render one final time and submit the `.html` file to Brightspace.
 
 ---
 

@@ -31,7 +31,7 @@ library(lubridate)
 ### .gray[Course operation]
 .gray[
 - nova-stat-4380.netlify.app
-- Blackboard
+- Brightspace
 ]
 ]
 .pull-right[

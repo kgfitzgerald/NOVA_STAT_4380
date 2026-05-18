@@ -138,7 +138,7 @@ iris|>
 <!-- <!-- ### Thursday Announcements --> 
 
 <!-- <!-- -   2 Stats Experience Points due Saturday --> 
-<!-- <!-- -   Sign up for project groups on Blackboard by class-time on Tuesday --> 
+<!-- <!-- -   Sign up for project groups on Brightspace by class-time on Tuesday --> 
 <!-- <!--     -   choose your own groups of 2 --> 
 <!-- <!--     -   who will you work well with? --> 
 <!-- <!--     -   who do you have common (data) interests with? Check out initial Campuswire responses --> 
@@ -196,7 +196,7 @@ Who are you rooting for in the super bowl?
 -   The remainder of class will be spent on AE-04.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Blackboard.
+-   To turn it in, you should upload your .html file to Brightspace.
 
 
 ### Tidyverse style guidelines

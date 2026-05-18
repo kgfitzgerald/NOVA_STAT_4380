@@ -21,12 +21,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 + Due Saturday (usually Thursdays): Annotations 01 (watch ONLY the first 15 minutes of the video + 2 brief articles)
 
-+ Today in class: Lab 01 - see your assigned group in Blackboard (under Groups)
++ Today in class: Lab 01 - see your assigned group in Brightspace (under Groups)
 
 + Due Tuesday: Watch Week 02 Lecture video - can you access them now? 
 
 + I'm relatively flexible with due dates - they're there for a reason, but up to a 5 day extension is usually granted (with the exception of some project due dates).
-    + "Extension request form" link on Blackboard home page
+    + "Extension request form" link on Brightspace home page
 
 + Notecards for attendance. What to put on it:
     + Name
@@ -71,5 +71,5 @@ knitr::opts_chunk$set(echo = TRUE)
 - The remainder of class will be spent on Lab 01. 
 - You can access the INSTRUCTIONS on the course website
 - You can access the TEMPLATE Quarto file for your report on GitHub. 
-- Work in Lab 01 - 02 groups (see Blackboard), submit individually 
-- To turn it in, you should upload your .html file (converted to .zip) on Blackboard.
+- Work in Lab 01 - 02 groups (see Brightspace), submit individually 
+- To turn it in, you should upload your .html file (converted to .zip) on Brightspace.

@@ -32,7 +32,7 @@ In this lab, you will...
 
 + Go to our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main) and download the `.qmd` file for this lab.
 + Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for instructions on how to get started on a lab.
-+ You will work in your Lab 06–07 groups (see Blackboard).
++ You will work in your Lab 06–07 groups (see Brightspace).
 
 
 # Packages
@@ -213,7 +213,7 @@ Attempt to recreate this visualization as closely as possible.
 
 # Submission
 
-Before submitting your `.html` (as a .zip file to Blackboard):
+Before submitting your `.html` (as a .zip file to Brightspace):
 
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 + Check visualizations for clean titles and labels
@@ -221,7 +221,7 @@ Before submitting your `.html` (as a .zip file to Blackboard):
 + Ensure exercises are clearly labeled and your text responses are visually distinguished 
 + Confirm neat organization and readable structure
 
-Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Blackboard.
+Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Brightspace.
 
 # Grading (50 pts)
 

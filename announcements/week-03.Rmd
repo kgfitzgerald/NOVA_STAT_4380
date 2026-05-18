@@ -18,7 +18,7 @@ library(tidyverse)
 ### Thursday announcements
 
 + Quiz 01 to start class today
-+ Then Lab 03 in groups (see Blackboard)
++ Then Lab 03 in groups (see Brightspace)
 + Week 04 lecture posted - shorter this week! 
 + One week from today: [project brainstorm due](https://nova-stat-4380.netlify.app/project/#choosing-a-topic-project-brainstorm)
 
@@ -111,4 +111,4 @@ ggplot(midwest, aes(x = area, y = poptotal,
 -   The remainder of class will be spent on AE-03.
 -   You can access it from GitHub.
 -   It is due at the end of class today.
--   To turn it in, you should upload your .html file to Blackboard.
+-   To turn it in, you should upload your .html file to Brightspace.

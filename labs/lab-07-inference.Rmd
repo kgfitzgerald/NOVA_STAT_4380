@@ -174,7 +174,7 @@ These data come from reservations made at hotels located all around the world fr
 
 # Submission
 
-Before submitting your assignment on Blackboard, Render one last time, then open up your .html in a full window and inspect the following:
+Before submitting your assignment on Brightspace, Render one last time, then open up your .html in a full window and inspect the following:
 
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 
@@ -190,7 +190,7 @@ Before submitting your assignment on Blackboard, Render one last time, then open
 
 + Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
 
-To submit, Render one last time and then upload your .html document to the relevant assignment on Blackboard. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
+To submit, Render one last time and then upload your .html document to the relevant assignment on Brightspace. Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for detailed instructions on how to submit your assignment. 
 
 # Grading (75pts)
 

@@ -108,7 +108,7 @@ class: middle, center
 **Course Website:** [https://nova-stat-4380.netlify.app](https://nova-stat-4380.netlify.app)
   - Central hub for the course!
 
-**Blackboard**: Gradebook, Submit assignments, Piazza
+**Brightspace**: Gradebook, Submit assignments, Piazza
 
 **RStudio:** Software -- more on this later!
 
@@ -157,7 +157,7 @@ class: middle, center
 
 --
 
-- Use **Piazza** (linked on Blackboard) for any questions about course content and/or assignments, since other students may benefit from the response. And it's easier to type code and math, compared to email.
+- Use **Piazza** (linked on Brightspace) for any questions about course content and/or assignments, since other students may benefit from the response. And it's easier to type code and math, compared to email.
 
 --
 

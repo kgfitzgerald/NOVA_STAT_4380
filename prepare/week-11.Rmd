@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - [Slides](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/33-cat-inf-two-way-tables.html)
 
 
-<!-- `r emo::ji("memo")` Complete Prep Quiz 11 on Blackboard -->
+<!-- `r emo::ji("memo")` Complete Prep Quiz 11 on Brightspace -->
 
 
 ### Optional 

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Required 
 
-`r emo::ji("movie_camera")` Watch the [Week 05 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5868816_1) on Perusall (accessible via Blackboard)
+`r emo::ji("movie_camera")` Watch the [Week 05 lecture](https://elearning.villanova.edu/webapps/blackboard/content/listContent.jsp?course_id=_187521_1&content_id=_5868816_1) on Perusall (accessible via Brightspace)
 
 - [Slides - 08 Data Wrangling III](https://kgfitzgerald.github.io/NOVA_STAT_4380/slides/08-data-wrangling-3.html)
 

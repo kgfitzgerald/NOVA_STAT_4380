@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("memo")` Complete Prep Quiz 01 on Brightspace
 
-<!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Blackboard -->
+<!-- `r emo::ji("computer")` Complete AE 01a in RStudio, submit .html on Brightspace -->
 
 ### Optional 
 

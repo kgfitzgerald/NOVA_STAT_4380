@@ -91,4 +91,4 @@ In the final 7 weeks (including this week):
 -   The remainder of class will be spent on AE-06.
 - You can access it from GitHub. 
 - It is due at the end of class today. 
--   To turn it in, you should upload your .html file to Blackboard.
+-   To turn it in, you should upload your .html file to Brightspace.

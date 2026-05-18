@@ -26,14 +26,14 @@ Each experience has two parts:
 
 `r emo::ji("one")` Have a statistics experience
 
-`r emo::ji("two")` Post a one-paragraph reflection on Blackboard
+`r emo::ji("two")` Post a one-paragraph reflection on Brightspace
 
 **You must complete both parts to receive credit.**
 
 
 # Part 1: Experience statistics outside of the classroom 
 
-The following are categories of possible statistics experiences, each worth a varying number of points. Suggested activities are included in each category. You  do not have to do one these suggested activities. You are welcome to find other activities as long as they are related to statistics/data science and they fit in one of the six categories. You can ask a question on the Blackboard HELP Forum if there is an activity you'd like to do but you're not sure if it qualifies for the statistics experience.
+The following are categories of possible statistics experiences, each worth a varying number of points. Suggested activities are included in each category. You  do not have to do one these suggested activities. You are welcome to find other activities as long as they are related to statistics/data science and they fit in one of the six categories. You can ask a question on the Brightspace HELP Forum if there is an activity you'd like to do but you're not sure if it qualifies for the statistics experience.
 
 ## Category A: Engage with statistics in popular media
 
@@ -116,7 +116,7 @@ Note, you can only earn 1 of your first 5 points from this category, however add
 
 # Part 2: Summarize your experience
 
-Write a one-paragraph reflection summarizing your experience. Post the reflection to the appropriate Discussion thread on Blackboard. 
+Write a one-paragraph reflection summarizing your experience. Post the reflection to the appropriate Discussion thread on Brightspace. 
 
 Make sure the following are included in your reflection:
 

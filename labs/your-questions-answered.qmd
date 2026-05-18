@@ -37,7 +37,7 @@ As the labs progress, you are encouraged to explore beyond what the labs dictate
 Before we get to that stage, however, you need to build some basic fluency in R.
 Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.
 
-For this lab, you will collaborate in your (randomly assigned) groups (see Blackboard), but you will each submit your own lab.
+For this lab, you will collaborate in your (randomly assigned) groups (see Brightspace), but you will each submit your own lab.
 
 # Getting Started - RStudio
 
@@ -283,14 +283,14 @@ knitr::include_graphics("img/view-html.png")
 
 ::: {.callout-important}
 
-Unfortunately, Blackboard does not accept html file submissions. So, you will first need to turn it into a .zip file. 
+Unfortunately, Brightspace does not accept html file submissions. So, you will first need to turn it into a .zip file. 
 
 + Outside of RStudio, locate the .html file (e.g., lab_01.html) on your computer. It should be in the STAT_4380 folder you created.
 + Right click on the file name, then
   + On Windows, select "Send to --> Compressed (zipped) folder"
   + On Mac, select "Compress"
 + A .zip file will be created in the same folder
-+ Upload the .zip file to the Lab 01 assignment in Blackboard and submit
++ Upload the .zip file to the Lab 01 assignment in Brightspace and submit
 
 :::
 

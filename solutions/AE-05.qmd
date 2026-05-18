@@ -101,10 +101,10 @@ Need:
 
 ## Submission & Grading
 
-At the end of class, you should submit your (zipped) .html file to the appropriate AE assignment on Blackboard. This serves as your "exit ticket" for today's class.
+At the end of class, you should submit your (zipped) .html file to the appropriate AE assignment on Brightspace. This serves as your "exit ticket" for today's class.
 
 It is okay if you did not complete all the exercises - it is helpful for me to see your progress, and you will receive full credit (10pts) if you made a good faith effort on the assignment.
 
-You are encouraged to complete any remaining exercises on your own, but you do not need to re-submit your assignment to Blackboard.
+You are encouraged to complete any remaining exercises on your own, but you do not need to re-submit your assignment to Brightspace.
 
 If you were unable to attend class, you may still submit your AE for half credit (5pts). The two lowest AE scores will be dropped at the end of the semester to accommodate occasional absences.
