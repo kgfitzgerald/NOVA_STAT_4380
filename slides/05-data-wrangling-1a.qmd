@@ -1,0 +1,720 @@
+---
+title: "Data Wrangling I"
+subtitle: "STAT 4380"
+author: "Katie Fitzgerald, adpated from datasciencebox.org"
+format:
+  revealjs:
+    theme: stat4380-slides.css
+    width: 1280
+    height: 720
+    margin: 0
+    slide-number: false
+    progress: false
+    toc: false
+    center: false
+    transition: none
+    background-transition: none
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE,
+  dplyr.print_min = 6,
+  dplyr.print_max = 6,
+  tibble.width = 65,
+  width = 65
+)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE,
+  warning = FALSE
+)
+library(tidyverse)
+```
+
+
+
+
+## Tidy data
+
+>Happy families are all alike; every unhappy family is unhappy in its own way. 
+>
+>Leo Tolstoy
+
+::: {.fragment}
+
+> Tidy datasets are all alike; every untidy dataset is untidy in its own way
+
+::: {.columns}
+::: {.column width="50%"}
+**Characteristics of tidy data:**
+
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+:::
+:::
+::: {.fragment}
+:::
+::: {.column width="50%"}
+**Characteristics of untidy data:**
+
+!@#$%^&*()
+:::
+:::
+
+:::
+
+---
+
+## 
+
+::: {.question}
+What makes this data not tidy?
+:::
+
+```{r hyperwar-airplanes-on-hand, echo=FALSE, out.width="90%", fig.align = "center", caption = "WW2 Army Air Force combat aircraft", out.width = "70%"}
+knitr::include_graphics("img/hyperwar-airplanes-on-hand.png")
+```
+
+::: {.footnote}
+Source: [Army Air Forces Statistical Digest, WW II](https://www.ibiblio.org/hyperwar/AAF/StatDigest/aafsd-3.html)
+:::
+
+
+---
+
+::: {.question}
+What makes this data not tidy?
+:::
+
+<br>
+
+```{r hiv-est-prevalence-15-49, echo=FALSE, out.width="95%", fig.align = "center", caption = "Estimated HIV prevalence among 15-49 year olds", out.width = "70%"}
+knitr::include_graphics("img/hiv-est-prevalence-15-49.png")
+```
+
+::: {.footnote}
+Source: [Gapminder, Estimated HIV prevalence among 15-49 year olds](https://www.gapminder.org/data)
+:::
+
+
+---
+
+::: {.question}
+What makes this data not tidy?
+:::
+
+<br>
+
+```{r us-general-economic-characteristic-acs-2017, echo=FALSE, out.width="95%", fig.align = "center", caption = "US General Economic Characteristics, ACS 2017", out.width = "85%"}
+knitr::include_graphics("img/us-general-economic-characteristic-acs-2017.png")
+```
+
+::: {.footnote}
+Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03&src=pt)
+:::
+
+
+---
+
+
+## Grammar of data wrangling {.section-divider .middle}
+
+
+---
+
+## A grammar of data wrangling...
+
+... based on the concepts of functions as verbs that manipulate data frames
+
+::: {.columns}
+::: {.column width="50%"}
+```{r dplyr-part-of-tidyverse, echo=FALSE, out.width="70%", caption = "dplyr is part of the tidyverse"}
+knitr::include_graphics("img/dplyr-part-of-tidyverse.png")
+```
+:::
+:::
+::: {.column width="50%"}
+::: {.midi}
+- `select`: pick columns by name
+- `arrange`: reorder rows
+- `slice`: pick rows using index(es)
+- `filter`: pick rows matching criteria
+- `distinct`: filter for unique rows
+- `mutate`: add new variables
+- `summarise`: reduce variables to values
+- `group_by`: for grouped operations
+- ... (many more)
+:::
+:::
+:::
+
+
+---
+
+## Rules of **dplyr** functions
+
+- First argument is *always* a data frame
+- Subsequent arguments say what to do with that data frame
+- Always return a data frame
+- Don't modify in place
+
+
+---
+
+## Data: Hotel bookings
+
+- Data from two hotels: one resort and one city hotel
+- Observations: Each row represents a hotel booking
+- Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be cancelled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
+
+```{r message=FALSE}
+hotels <- read_csv("data/hotels.csv")
+```
+
+::: {.footnote}
+Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md)
+:::
+
+
+---
+
+## First look: Variables
+
+```{r output.lines=18}
+names(hotels)
+```
+
+
+---
+
+## Second look: Overview
+
+```{r output.lines=18}
+glimpse(hotels)
+```
+
+
+---
+
+## `select` a single column
+
+View only `lead_time` (number of days between booking and arrival date):
+
+::: {.columns}
+::: {.column width="50%"}
+```{r eval=FALSE}
+select( #<<
+  hotels, 
+  lead_time
+  )
+```
+:::
+:::
+::: {.column width="50%"}
+- Start with the function (a verb): `select()`
+:::
+:::
+
+
+---
+
+## `select` a single column
+
+View only `lead_time` (number of days between booking and arrival date):
+
+::: {.columns}
+::: {.column width="50%"}
+```{r eval=FALSE}
+select( 
+  hotels, #<<
+  lead_time
+  )
+```
+:::
+:::
+::: {.column width="50%"}
+- Start with the function (a verb): `select()`
+- First argument: data frame we're working with , `hotels`
+:::
+:::
+
+
+---
+
+## `select` a single column
+
+View only `lead_time` (number of days between booking and arrival date):
+
+::: {.columns}
+::: {.column width="50%"}
+```{r eval=FALSE}
+select( 
+  hotels, 
+  lead_time #<<
+  )
+```
+:::
+:::
+::: {.column width="50%"}
+- Start with the function (a verb): `select()`
+- First argument: data frame we're working with , `hotels`
+- Second argument: variable we want to select, `lead_time`
+:::
+:::
+
+
+---
+
+## `select` a single column
+
+View only `lead_time` (number of days between booking and arrival date):
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+select( 
+  hotels, 
+  lead_time
+  )
+```
+:::
+:::
+::: {.column width="50%"}
+- Start with the function (a verb): `select()`
+- First argument: data frame we're working with , `hotels`
+- Second argument: variable we want to select, `lead_time`
+- Result: data frame with `r nrow(hotels)` rows and 1 column
+:::
+:::
+
+
+---
+
+::: {.tip}
+dplyr functions always expect a data frame and always yield a data frame.
+:::
+
+```{r}
+select(hotels, lead_time)
+```
+
+
+---
+
+## `select` multiple columns
+
+
+View only the `hotel` type and `lead_time`:
+
+::: {.fragment}
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+select(hotels, hotel, lead_time)
+```
+:::
+
+:::
+
+---
+
+## `select` to exclude variables
+
+::: {.small}
+```{r output.lines=18}
+hotels |>
+  select(-agent) #<<
+```
+:::
+
+
+---
+
+## `select` a range of variables
+
+```{r}
+hotels |>
+  select(hotel:arrival_date_month) #<<
+```
+
+
+---
+
+## `select` variables with certain characteristics
+
+```{r}
+hotels |>
+  select(starts_with("arrival")) #<<
+```
+
+
+---
+
+## `select` variables with certain characteristics
+
+```{r}
+hotels |>
+  select(ends_with("type")) #<<
+```
+
+
+---
+
+## Select helpers
+
+- `starts_with()`: Starts with a prefix
+- `ends_with()`: Ends with a suffix
+- `contains()`: Contains a literal string
+- `num_range()`: Matches a numerical range like x01, x02, x03
+- `one_of()`: Matches variable names in a character vector
+- `everything()`: Matches all variables
+- `last_col()`: Select last variable, possibly with an offset
+- `matches()`: Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)
+
+::: {.fragment}
+
+::: {.question}
+What if we wanted to select columns, and then arrange the data in descending order of lead time?
+:::
+
+:::
+
+---
+
+## Data wrangling, step-by-step
+
+::: {.columns}
+::: {.column width="50%"}
+Select:
+```{r}
+hotels |>
+  select(hotel, lead_time)
+```
+:::
+
+::: {.fragment}
+:::
+::: {.column width="50%"}
+Select, then arrange:
+```{r}
+hotels |>
+  select(hotel, lead_time) |>
+  arrange(desc(lead_time))
+```
+:::
+:::
+
+:::
+
+---
+
+
+## Pipes {.section-divider .middle}
+
+
+---
+
+## What is a pipe?
+
+In programming, a pipe is a technique for passing information from one process to another.
+
+::: {.fragment}
+
+::: {.columns}
+::: {.column width="50%"}
+- Start with the data frame `hotels`, and pass it to the `select()` function,
+:::
+:::
+::: {.column width="50%"}
+::: {.small}
+```{r}
+hotels |> #<<
+  select(hotel, lead_time) |>
+  arrange(desc(lead_time))
+```
+:::
+:::
+:::
+
+:::
+
+---
+
+## What is a pipe?
+
+In programming, a pipe is a technique for passing information from one process to another.
+
+::: {.columns}
+::: {.column width="50%"}
+- Start with the data frame `hotels`, and pass it to the `select()` function,
+- then we select the variables `hotel` and `lead_time`,
+:::
+:::
+::: {.column width="50%"}
+::: {.small}
+```{r}
+hotels |>
+  select(hotel, lead_time) |> #<<
+  arrange(desc(lead_time))
+```
+:::
+:::
+:::
+
+
+---
+
+## What is a pipe?
+
+In programming, a pipe is a technique for passing information from one process to another.
+
+::: {.columns}
+::: {.column width="50%"}
+- Start with the data frame `hotels`, and pass it to the `select()` function,
+- then we select the variables `hotel` and `lead_time`,
+- and then we arrange the data frame by `lead_time` in descending order.
+:::
+:::
+::: {.column width="50%"}
+::: {.small}
+```{r}
+hotels |>
+  select(hotel, lead_time) |> 
+  arrange(desc(lead_time)) #<<
+```
+:::
+:::
+:::
+
+
+---
+
+## Aside %>% vs. |>
+
+Historically, the `tidyverse` community has used the `%>%` pipe operator, from the `magrittr` package (loaded with the `tidyverse`)
+
+A couple of years ago, Hadley Wickham & Posit recommended we move to the "native pipe" `|>`
+
+They are equivalent in most circumstances; `|>` supposedly is more streamlined and faster.
+
+
+---
+
+## Shortcuts for the pipe {.section-divider .middle}
+
+The following keystroke is a "shortcut" for typing the pipe operator:
+
++ Command + Shift + M (Mac)
++ Ctrl + Shift + M (Windows)
+
+By default it will type the old pipe `%>%`. To change this, go to Tools > Global Options > Code > Use native pipe operator. 
+
+
+---
+
+## How does a pipe work?
+
+- You can think about the following sequence of actions - find keys, start car, drive to work, park.
+
+::: {.fragment}
+- Expressed as a set of nested functions in R pseudocode this would look like:
+```{r eval=FALSE}
+park(drive(start_car(find("keys")), to = "work"))
+```
+
+:::
+::: {.fragment}
+- Writing it out using pipes give it a more natural (and easier to read) 
+structure:
+```{r eval=FALSE}
+find("keys") |>
+  start_car() |>
+  drive(to = "work") |>
+  park()
+```
+
+:::
+
+---
+
+## A note on piping and layering
+
+- `|>` used mainly in **dplyr** pipelines, *we pipe the output of the previous line of code as the first input of the next line of code*
+
+::: {.fragment}
+- `+` used in **ggplot2** plots is used for "layering", *we create the plot in layers, separated by `+`*
+
+:::
+
+---
+
+## dplyr
+
+::: {.midi}
+`r emo::ji("x")`
+
+```{r error=TRUE}
+hotels +
+  select(hotel, lead_time)
+```
+
+`r emo::ji("white_check_mark")`
+
+```{r eval=FALSE}
+hotels |>
+  select(hotel, lead_time)
+```
+
+```{r echo=FALSE, output.lines=6}
+hotels |>
+  select(hotel, lead_time)
+```
+:::
+
+
+---
+
+## ggplot2
+
+::: {.midi}
+`r emo::ji("x")`
+
+```{r error=TRUE}
+ggplot(hotels, aes(x = hotel, fill = deposit_type)) |>
+  geom_bar()
+```
+
+`r emo::ji("white_check_mark")`
+
+```{r out.width="25%"}
+ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
+  geom_bar()
+```
+:::
+
+
+---
+
+## Code styling
+
+Many of the styling principles are consistent across `|>` and `+`:
+
+- always a space before
+- always a line break after (for pipelines with more than 2 lines)
+
+`r emo::ji("x")`
+
+```{r eval=FALSE}
+ggplot(hotels,aes(x=hotel,y=deposit_type))+geom_bar()
+```
+
+`r emo::ji("white_check_mark")`
+
+```{r eval=FALSE}
+ggplot(hotels, aes(x = hotel, y = deposit_type)) + 
+  geom_bar()
+```
+
+
+---
+
+## `arrange` in ascending / descending order
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+hotels |>
+  select(adults, children, babies) |>
+  arrange(babies) #<<
+```
+:::
+:::
+::: {.column width="50%"}
+```{r}
+hotels |>
+  select(adults, children, babies) |>
+  arrange(desc(babies)) #<<
+```
+:::
+:::
+
+
+---
+
+## `slice` for certain row numbers
+
+::: {.midi}
+```{r output.lines=17}
+## first five {.section-divider .middle}
+hotels |>
+  slice(1:5) #<<
+```
+:::
+
+
+---
+
+::: {.tip}
+In R, you can use the `#` for adding comments to your code. 
+Any text following `#` will be printed as is, and won't be run as R code.
+This is useful for leaving comments in your code and for temporarily disabling 
+certain lines of code while debugging.
+:::
+
+::: {.small}
+```{r output.lines=10}
+hotels |>
+  # slice the first five rows  # this line is a comment
+  #select(hotel) |>           # this one doesn't run
+  slice(1:5)                   # this line runs
+```
+:::
+
+
+---
+
+## Quiz {.section-divider .middle}
+
+How many rows and columns do you expect the following code to produce? `starwars` has 87 rows and 14 columns to begin with (87 x 14).
+
+```{r, eval = FALSE}
+starwars |> 
+  select(name, homeworld, species)
+```
+
+
+    a. 87 x 14
+    b. 3 x 14
+    c. 87 x 3
+    d. 14 x 3
+
+
+---
+
+## Quiz {.section-divider .middle}
+
+How many rows and columns do you expect the following code to produce? `starwars` has 87 rows and 14 columns to begin with.
+
+```{r, eval = FALSE}
+starwars |> 
+  slice(1:10)
+```
+
+    a. 87 x 10
+    b. 10 x 14
+    c. 14 x 10
+    d. 10  x 87
+
+

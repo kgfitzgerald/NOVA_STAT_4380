@@ -83,19 +83,19 @@ A - R
 
 ---
 
-## Examples of data science in practice
+<!-- ## Examples of data science in practice -->
 
-- [The World Bank - ATLAS of Sustainable Development Goals](https://datatopics.worldbank.org/sdgatlas/goal-1-no-poverty)
+<!-- - [The World Bank - ATLAS of Sustainable Development Goals](https://datatopics.worldbank.org/sdgatlas/goal-1-no-poverty) -->
 
-- [The Upshot: 11 Data Points and Discoveries That Stuck With Us in 2025](https://www.nytimes.com/2023/08/26/upshot/spelling-bee-words.html)
+<!-- - [The Upshot: 11 Data Points and Discoveries That Stuck With Us in 2025](https://www.nytimes.com/2023/08/26/upshot/spelling-bee-words.html) -->
 
-- [When Caitlin Clark Comes to Town](https://www.nytimes.com/2024/03/06/upshot/caitlin-clark-popularity-attendance.html)
+<!-- - [When Caitlin Clark Comes to Town](https://www.nytimes.com/2024/03/06/upshot/caitlin-clark-popularity-attendance.html) -->
 
-- [The Eclipses Path is Also Leaving a Trail of High Hotel Prices](https://www.nytimes.com/2024/04/04/upshot/eclipse-hotel-prices.html)
+<!-- - [The Eclipses Path is Also Leaving a Trail of High Hotel Prices](https://www.nytimes.com/2024/04/04/upshot/eclipse-hotel-prices.html) -->
 
-- [Tracking their life via Fitbit](https://livefreeordichotomize.com/posts/2017-12-27-a-year-in-fitbit.Rmd/)
+<!-- - [Tracking their life via Fitbit](https://livefreeordichotomize.com/posts/2017-12-27-a-year-in-fitbit.Rmd/) -->
 
----
+<!-- --- -->
 
 class: middle, center
 
@@ -105,10 +105,7 @@ class: middle, center
 
 ## Course Toolkit
 
-**Course Website:** [https://nova-stat-4380.netlify.app](https://nova-stat-4380.netlify.app)
-  - Central hub for the course!
-
-**Brightspace**: Gradebook, Submit assignments, Piazza
+**Brightspace**: Central hub of the course. Assignments, Announcements, Gradebook, HELP Forum, etc
 
 **RStudio:** Software -- more on this later!
 
@@ -120,26 +117,30 @@ class: middle, center
 
 ## Course structure / assignments
 
-- **Prepare**: lecture videos on Perusall (due Tuesday class time)
+- **Prepare**: lecture videos & short Prep Quiz (due Tuesday class time, 3 attempts)
 
 --
 
-- **Tuesday class**: in-class practice, live coding, Q&A, Application Exercises due at end of class
+- **Tuesday class**: in-class practice, live coding, Q&A
 --
 
 - **Thursday class**: lab assignments started in-class, due following Thursday
 
 --
 
-- **Weekly quizzes**: usually on Thursdays (first one next week)
+- **Reading annotations**: engaged with assigned articles/videos/podcasts in Perusall by Tuesdays 11:59pm (first one next week)
 
 --
 
-- **Reading annotations**: engaged with assigned articles/videos/podcasts in Perusall by class-time on Thursdays
+- **Concept Quizzes**: usually on Thursdays (first one next week)
 
 --
 
-- **Course project**: scaffolded throughout the semester, analysis on data of your choosing, related to the broad theme of "data for social good"
+- **Midterm Data Viz project**: re-create and improve a data visualization from the media (presentations after Fall break)
+
+--
+
+- **Course project**: scaffolded throughout the semester, analysis on data of your choosing, related to the broad theme of "data for social good" (presentations during Finals week)
 
 ---
 
@@ -151,13 +152,13 @@ class: middle, center
 --
 
 - Attend (drop-in) Student Hours
-  - Mondays 3 - 4:30pm (Zoom)
-  - Tuesdays 1 - 2pm (my office, SAC 370)
-  - Thursdays 11am - 12pm (my office, SAC 370)
+  - Tuesdays 2-2:30 (Mendel 115)
+  - Tuesdays 4 – 5:30 (SAC 370)
+  - Thursdays 1:15 – 2:15 (SAC 370)
 
 --
 
-- Use **Piazza** (linked on Brightspace) for any questions about course content and/or assignments, since other students may benefit from the response. And it's easier to type code and math, compared to email.
+- Use the HELP Forum (under Discussions in Brightspace) for any questions about course content and/or assignments, since other students may benefit from the response. And it's easier to type code and math, compared to email.
 
 --
 

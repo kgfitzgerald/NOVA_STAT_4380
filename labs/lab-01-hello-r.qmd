@@ -46,7 +46,7 @@ If you haven't, touch base with the professor to get set up.
 To get started on this lab, do the following:
 
 -   Open our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates)
--   Navigate to LABS \> lab-01.qmd
+-   Navigate to lab-01.qmd
 -   Click to "Download raw file"
 -   Place the downloaded .qmd document in your STAT_4380 folder on your computer
 -   From inside your STAT_4380 RStudio Project, open and render the Quarto document
@@ -194,7 +194,8 @@ Start with `dino_data` and calculate a summary statistic that we will call `r` a
 ### Exercise 3
 
 + Plot `y` vs. `x` for the `star` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. 
-+ Then, calculate the correlation coefficient between `x` and `y` for this dataset. 
++ Before calculating r: Based only on the plot, predict whether the correlation will be strongly positive, strongly negative, or close to zero. Explain your reasoning in 1–2 sentences. Then calculate r for this dataset. Were you surprised?
+
 + How does this value compare to the `r` of `dino`?
 :::
 
@@ -203,9 +204,11 @@ Start with `dino_data` and calculate a summary statistic that we will call `r` a
 ::: callout-note
 ### Exercise 4
 
-+ Plot `y` vs. `x` for the `circle` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. 
-+ Then, calculate the correlation coefficient between `x` and `y` for this dataset. 
-+ How does this value compare to the `r` of `dino`?
++ Refer back to the list of dataset names printed after Exercise 1 (from the code `datasaurus_dozen |> count(dataset)`. Choose one Datasaurus dataset other than `dino` or `star` that makes you curious.
++ Plot your chosen dataset. 
++ Before calculating r, describe what you notice and predict whether the correlation will be positive, negative, or close to zero.
++ Now calculate r. How does it compare with your prediction? What does the correlation capture about this dataset, and what does it miss?
+
 :::
 
 `r emo::ji("pause_button")` `r emo::ji("right_arrow")` ✅ *This is a good place to pause and Render to make sure there are no errors in your .qmd*
@@ -283,34 +286,40 @@ knitr::include_graphics("img/view-html.png")
 
 ::: {.callout-important}
 
-Unfortunately, Brightspace does not accept html file submissions. So, you will first need to turn it into a .zip file. 
-
-+ Outside of RStudio, locate the .html file (e.g., lab_01.html) on your computer. It should be in the STAT_4380 folder you created.
-+ Right click on the file name, then
-  + On Windows, select "Send to --> Compressed (zipped) folder"
-  + On Mac, select "Compress"
-+ A .zip file will be created in the same folder
-+ Upload the .zip file to the Lab 01 assignment in Brightspace and submit
+To submit, you need to upload your lab-01.html file to the Lab 01 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380). 
 
 :::
 
-# Grading (50 pts)
+# Grading (10pts)
 
-<br>
+Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.
 
-| Component             | Points |
-|:----------------------|:-------|
-| Ex 1                  | 6      |
-| Ex 2                  | 6      |
-| Ex 3                  | 6      |
-| Ex 4                  | 6      |
-| Ex 5                  | 6      |
-| Ex 6                  | 6      |
-| Ex 7                  | 6      |
-| Reflection prompts    | 4     |
-| Workflow & formatting | 4     |
+Your lab will be evaluated for:
+
+* **Completion & substantive correctness (8 points):** You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.
+* **Reproducible workflow & presentation (2 points):** Your document renders successfully and your code, output, visualizations, and responses are organized and readable.
+
+Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.
 
 
-**Grading notes**:
+### Lab rubric - 10 points total
 
--   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having readable code (e.g. adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g. suppress messages & warnings, no extraneous output).
+#### Completion & substantive correctness — 8 points
+
+| Score | Description |
+|---|---|
+| **8** | Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay. |
+| **7** | Mostly complete and correct, with one notable error, omission, or misunderstanding. |
+| **6** | Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas. |
+| **4–5** | Significant errors, omissions, or misunderstandings that should be addressed before moving on. |
+| **0–3** | Substantially incomplete, incorrect, or shows limited engagement with the lab. |
+
+#### Reproducible workflow & presentation — 2 points
+
+| Score | Description |
+|---|---|
+| **2** | Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable. |
+| **1** | Some problems with reproducibility, organization, readability, or presentation. |
+| **0** | Major problems with reproducibility, organization, readability, or presentation. |
+
+**Total: 10 points**

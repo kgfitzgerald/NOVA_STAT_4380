@@ -1,0 +1,311 @@
+---
+title: "Meet the toolkit: programming"
+subtitle: "STAT 4380"
+author: "Katie Fitzgerald, adapted from datasciencebox.org"
+format:
+  revealjs:
+    theme: stat4380-slides.css
+    width: 1280
+    height: 720
+    margin: 0
+    slide-number: false
+    controls: true
+    progress: false
+    transition: none
+    background-transition: none
+    center: false
+    chalkboard: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE,
+  warning = FALSE
+)
+
+library(tidyverse)
+```
+
+## Course toolkit
+
+<br>
+
+::: {.columns}
+::: {.column width="50%"}
+### <span class="gray">Course operation</span>
+
+::: {.gray}
+- nova-stat-4380.netlify.app
+- Brightspace
+:::
+:::
+
+::: {.column width="50%"}
+### <span class="pink">Doing data science</span>
+
+- <span class="pink">Programming:</span>
+  - <span class="pink">R</span>
+  - <span class="pink">RStudio</span>
+  - <span class="pink">tidyverse</span>
+  - <span class="pink">Quarto</span>
+:::
+:::
+
+## Learning goals
+
+By the end of the course, you will be able to...
+
+. . .
+
+- gain insight from data
+
+. . .
+
+- gain insight from data, **reproducibly**
+
+. . .
+
+- gain insight from data, reproducibly **(with literate programming)**
+
+. . .
+
+- gain insight from data, reproducibly (with literate programming), **using modern programming tools and techniques**
+
+## Reproducible data analysis {.section-divider .middle}
+
+## Reproducibility checklist
+
+::: {.question}
+What does it mean for a data analysis to be "reproducible"?
+:::
+
+. . .
+
+Near-term goals:
+
+- Are the tables and figures reproducible from the code and data?
+- Does the code actually do what you think it does?
+- In addition to what was done, is it clear *why* it was done?
+
+Long-term goals:
+
+- Can the code be used for other data?
+- Can you extend the code to do other things?
+
+## Toolkit for reproducibility
+
+- Scriptability $\rightarrow$ R
+
+. . .
+
+- Literate programming (code, narrative, output in one place) $\rightarrow$ Quarto
+
+. . .
+
+- Sharability $\rightarrow$ R Projects & GitHub
+
+## R and RStudio {.section-divider .middle}
+
+## R and RStudio
+
+::: {.columns}
+::: {.column width="35%"}
+![](img/r-logo.png){width="25%"}
+:::
+
+::: {.column width="65%"}
+![](img/rstudio-logo.png){width="50%"}
+:::
+:::
+
+- R is an open-source statistical **programming language**
+- RStudio is a convenient interface for R called an **IDE** (integrated development environment), e.g. *"I write R code in the RStudio IDE"*
+- At its simplest:<sup>*</sup>
+    - R is like a car’s engine
+    - RStudio is like a car’s dashboard
+
+::: {.footnote}
+*Source: [Modern Dive](https://moderndive.com/)
+:::
+
+## R packages
+
+- **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data<sup>1</sup>
+
+- There are over 20,000 R packages available on **CRAN** (the Comprehensive R Archive Network)<sup>2</sup>
+
+- We're going to work with a small (but important) subset of these!
+
+::: {.footnote}
+<sup>1</sup> Wickham and Bryan, [R Packages](https://r-pkgs.org/).
+
+<sup>2</sup> [CRAN contributed packages](https://cran.r-project.org/web/packages/)
+:::
+
+## Tour: R and RStudio
+
+![](img/tour-r-rstudio.png){width="80%"}
+
+## A short list (for now) of R essentials
+
+- Functions are (most often) verbs, followed by what they will be applied to in parentheses:
+
+```{r}
+#| eval: false
+#| echo: true
+do_this(to_this)
+do_that(to_this, to_that, with_those)
+```
+
+. . .
+
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("package_name")
+library(package_name)
+```
+
+## R essentials (continued)
+
+- Columns (variables) in data frames are accessed with `$`:
+
+::: {.small}
+```{r}
+#| eval: false
+#| echo: true
+dataframe$var_name
+```
+:::
+
+. . .
+
+- Object documentation can be accessed with `?`
+
+```{r}
+#| eval: false
+#| echo: true
+?mean
+```
+
+## tidyverse
+
+::: {.columns}
+::: {.column width="40%"}
+![](img/tidyverse.png){width="99%"}
+:::
+
+::: {.column width="60%"}
+::: {.center .large}
+[tidyverse.org](https://www.tidyverse.org/)
+:::
+
+- The **tidyverse** is an opinionated collection of R packages designed for data science
+- All packages share an underlying philosophy and a common grammar
+:::
+:::
+
+## Quarto {.section-divider .middle}
+
+## Quarto
+
+::: {.center .large}
+[https://quarto.org/](https://quarto.org/)
+:::
+
+- **Quarto** and the various packages that support it enable R users to write their code and prose in reproducible computational documents
+    + each time you render, the analysis is run from the beginning
+- Quarto documents have a `.qmd` file extension
+- Simple markdown syntax for text
+- Code goes in chunks, defined by three backticks, narrative goes outside of chunks
+
+## Tour: Quarto
+
+![](img/tour-quarto.jpg){height="100%"}
+
+## Environments
+
+::: {.tip}
+The environment of your Quarto document is separate from the Console!
+:::
+
+Remember this, and expect it to bite you a few times as you're learning to work with Quarto!
+
+## Environments
+
+::: {.columns}
+::: {.column width="50%"}
+First, run the following in the console
+
+::: {.small}
+```{r}
+#| eval: false
+#| echo: true
+x <- 2
+x * 3
+```
+:::
+
+::: {.question}
+All looks good, eh?
+:::
+:::
+
+. . .
+
+::: {.column width="50%"}
+Then, add the following in an R chunk in your Quarto document
+
+::: {.small}
+```{r}
+#| eval: false
+#| echo: true
+x * 3
+```
+:::
+
+::: {.question}
+What happens? Why the error?
+:::
+:::
+:::
+
+## How will we use Quarto?
+
+- Every assignment / report / project / etc. is a Quarto document
+- You'll always have a template Quarto document to start with
+- The amount of scaffolding in the template will decrease over the semester
+
+## What's with all the hexes?
+
+![](img/hex-australia.png){width="60%"}
+
+::: {.footnote}
+Mitchell O'Hara-Wild, [useR! 2018 feature wall](https://www.mitchelloharawild.com/blog/useR-2018-feature-wall/)
+:::
+
+## Your turn!
+
+::: {.your-turn}
+<span class="light-blue hand">Your turn: </span> `AE 01 - UN Votes`
+
+If you haven't already completed AE 01 - UN Votes,
+
+- Go to our [Github repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and navigate to AE > AE-01-unvotes.qmd
+- Click to "Download raw file"
+- Place the downloaded .qmd document in your STAT_4380 folder on your computer
+- From inside your STAT_4380 RStudio Project, open and render the Quarto document `AE-01-unvotes.qmd`
+- Complete the tasks in the "Try it out!" section
+:::

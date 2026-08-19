@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Lab 01 - Hello R!</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,18 +64,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="lab-01-hello-r_files/libs/clipboard/clipboard.min.js"></script>
 <script src="lab-01-hello-r_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="lab-01-hello-r_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="lab-01-hello-r_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="lab-01-hello-r_files/libs/quarto-html/popper.min.js"></script>
 <script src="lab-01-hello-r_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="lab-01-hello-r_files/libs/quarto-html/anchor.min.js"></script>
 <link href="lab-01-hello-r_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lab-01-hello-r_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="lab-01-hello-r_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="lab-01-hello-r_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="lab-01-hello-r_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="lab-01-hello-r_files/libs/bootstrap/bootstrap-38458d338e70b6e444f8abc9f7e1ae71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="lab-01-hello-r_files/libs/bootstrap/bootstrap-1feb9f095034be8e4d50c8a4aaf610bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -124,7 +126,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   <li><a href="#submit" id="toc-submit" class="nav-link" data-scroll-target="#submit">Submit</a></li>
-  <li><a href="#grading-50-pts" id="toc-grading-50-pts" class="nav-link" data-scroll-target="#grading-50-pts">Grading (50 pts)</a></li>
+  <li><a href="#grading-10pts" id="toc-grading-10pts" class="nav-link" data-scroll-target="#grading-10pts">Grading (10pts)</a>
+  <ul class="collapse">
+  <li><a href="#lab-rubric---10-points-total" id="toc-lab-rubric---10-points-total" class="nav-link" data-scroll-target="#lab-rubric---10-points-total">Lab rubric - 10 points total</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -176,7 +181,7 @@ window.Quarto = {
 <p>You should have already downloaded R &amp; RStudio and created an R Project called “STAT_4380”. If you haven’t, touch base with the professor to get set up. To get started on this lab, do the following:</p>
 <ul>
 <li>Open our class <a href="https://github.com/kgfitzgerald/NOVA_STAT_4380_templates">GitHub repo</a></li>
-<li>Navigate to LABS &gt; lab-01.qmd</li>
+<li>Navigate to lab-01.qmd</li>
 <li>Click to “Download raw file”</li>
 <li>Place the downloaded .qmd document in your STAT_4380 folder on your computer</li>
 <li>From inside your STAT_4380 RStudio Project, open and render the Quarto document</li>
@@ -331,9 +336,9 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>star</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset.</li>
-<li>Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset.</li>
-<li>How does this value compare to the <code>r</code> of <code>dino</code>?</li>
+<li><p>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>star</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset.</p></li>
+<li><p>Before calculating r: Based only on the plot, predict whether the correlation will be strongly positive, strongly negative, or close to zero. Explain your reasoning in 1–2 sentences. Then calculate r for this dataset. Were you surprised?</p></li>
+<li><p>How does this value compare to the <code>r</code> of <code>dino</code>?</p></li>
 </ul>
 </div>
 </div>
@@ -349,9 +354,10 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>circle</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset.</li>
-<li>Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset.</li>
-<li>How does this value compare to the <code>r</code> of <code>dino</code>?</li>
+<li>Refer back to the list of dataset names printed after Exercise 1 (from the code <code>datasaurus_dozen |&gt; count(dataset)</code>. Choose one Datasaurus dataset other than <code>dino</code> or <code>star</code> that makes you curious.</li>
+<li>Plot your chosen dataset.</li>
+<li>Before calculating r, describe what you notice and predict whether the correlation will be positive, negative, or close to zero.</li>
+<li>Now calculate r. How does it compare with your prediction? What does the correlation capture about this dataset, and what does it miss?</li>
 </ul>
 </div>
 </div>
@@ -402,10 +408,10 @@ Important
 <p>In the YAML under the <code>html:</code> settings, add <code>fig-width: 3</code> and <code>fig-height: 3</code> This will make each plot 3 inches by 3 inches.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-resize-global" class="quarto-float quarto-figure quarto-figure-center anchored" width="745">
+<div id="fig-resize-global" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-resize-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/fig-resize-global.png" id="fig-resize-global" class="img-fluid figure-img" width="745">
+<img src="img/fig-resize-global.png" id="fig-resize-global" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-resize-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
@@ -417,10 +423,10 @@ Figure&nbsp;1
 <p>You can also use different figure sizes for different figures. To do so, add <code>#| fig-width:</code> and <code>#| fig-height:</code> as two new lines to the top of the code chunk for the figure you want to change. For example, change the figure in Exercise 5 to be 15 x 9.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-resize-local" class="quarto-float quarto-figure quarto-figure-center anchored" width="743">
+<div id="fig-resize-local" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-resize-local-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/fig-resize-local.png" id="fig-resize-local" class="img-fluid figure-img" width="743">
+<img src="img/fig-resize-local.png" id="fig-resize-local" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-resize-local-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
@@ -448,7 +454,7 @@ Figure&nbsp;2
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="img/theme.png" class="img-fluid figure-img" width="1303"></p>
+<p><img src="img/theme.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -457,7 +463,7 @@ Figure&nbsp;2
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="img/view-html.png" class="img-fluid figure-img" width="715"></p>
+<p><img src="img/view-html.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -476,73 +482,89 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Unfortunately, Brightspace does not accept html file submissions. So, you will first need to turn it into a .zip file.</p>
-<ul>
-<li>Outside of RStudio, locate the .html file (e.g., lab_01.html) on your computer. It should be in the STAT_4380 folder you created.</li>
-<li>Right click on the file name, then
-<ul>
-<li>On Windows, select “Send to –&gt; Compressed (zipped) folder”</li>
-<li>On Mac, select “Compress”</li>
-</ul></li>
-<li>A .zip file will be created in the same folder</li>
-<li>Upload the .zip file to the Lab 01 assignment in Brightspace and submit</li>
-</ul>
+<p>To submit, you need to upload your lab-01.html file to the Lab 01 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380).</p>
 </div>
 </div>
 </section>
-<section id="grading-50-pts" class="level1">
-<h1>Grading (50 pts)</h1>
-<p><br></p>
+<section id="grading-10pts" class="level1">
+<h1>Grading (10pts)</h1>
+<p>Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.</p>
+<p>Your lab will be evaluated for:</p>
+<ul>
+<li><strong>Completion &amp; substantive correctness (8 points):</strong> You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.</li>
+<li><strong>Reproducible workflow &amp; presentation (2 points):</strong> Your document renders successfully and your code, output, visualizations, and responses are organized and readable.</li>
+</ul>
+<p>Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.</p>
+<section id="lab-rubric---10-points-total" class="level3">
+<h3 class="anchored" data-anchor-id="lab-rubric---10-points-total">Lab rubric - 10 points total</h3>
+<section id="completion-substantive-correctness-8-points" class="level4">
+<h4 class="anchored" data-anchor-id="completion-substantive-correctness-8-points">Completion &amp; substantive correctness — 8 points</h4>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Component</th>
-<th style="text-align: left;">Points</th>
+<th>Score</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Ex 1</td>
-<td style="text-align: left;">6</td>
+<td><strong>8</strong></td>
+<td>Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Ex 2</td>
-<td style="text-align: left;">6</td>
+<td><strong>7</strong></td>
+<td>Mostly complete and correct, with one notable error, omission, or misunderstanding.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Ex 3</td>
-<td style="text-align: left;">6</td>
+<td><strong>6</strong></td>
+<td>Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Ex 4</td>
-<td style="text-align: left;">6</td>
+<td><strong>4–5</strong></td>
+<td>Significant errors, omissions, or misunderstandings that should be addressed before moving on.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Ex 5</td>
-<td style="text-align: left;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ex 6</td>
-<td style="text-align: left;">6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ex 7</td>
-<td style="text-align: left;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Reflection prompts</td>
-<td style="text-align: left;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Workflow &amp; formatting</td>
-<td style="text-align: left;">4</td>
+<td><strong>0–3</strong></td>
+<td>Substantially incomplete, incorrect, or shows limited engagement with the lab.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Grading notes</strong>:</p>
-<ul>
-<li>The “Workflow &amp; formatting” grade is to assess the reproducible workflow. This includes having readable code (e.g.&nbsp;adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g.&nbsp;suppress messages &amp; warnings, no extraneous output).</li>
-</ul>
+</section>
+<section id="reproducible-workflow-presentation-2-points" class="level4">
+<h4 class="anchored" data-anchor-id="reproducible-workflow-presentation-2-points">Reproducible workflow &amp; presentation — 2 points</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td>Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable.</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td>Some problems with reproducibility, organization, readability, or presentation.</td>
+</tr>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td>Major problems with reproducibility, organization, readability, or presentation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total: 10 points</strong></p>
+</section>
+</section>
 </section>
 
 </main>
