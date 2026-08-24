@@ -14,6 +14,7 @@ format:
     background-transition: none
     center: false
     chalkboard: true
+    auto-stretch: false
 execute:
   echo: false
   warning: false
@@ -87,13 +88,13 @@ A - R
 
 ## Course Toolkit
 
-**Brightspace**: Central hub of the course. Assignments, Announcements, Gradebook, HELP Forum, etc
+**Brightspace**: Central hub of the course. Assignments, Announcements, Gradebook, HELP Forum
 
 **RStudio:** Software -- more on this later!
 
 **GitHub repo:** Assignment templates -- more on this later!
 
-**Perusall:** Lecture videos + Community Reading Annotations (data ethics)
+**Perusall:** Community Reading Annotations (data ethics)
 
 ## Course structure / assignments
 
@@ -113,7 +114,7 @@ A - R
 
 . . .
 
-- **Concept Quizzes**: usually on Thursdays (first one next week)
+- **In-class Concept Quizzes**: usually on Thursdays (first one next week)
 
 . . .
 
@@ -215,17 +216,15 @@ If you have NOT participated in flipped learning, what is your first impression 
 ## {.image-slide .inverse}
 ![](img/unvotes/unvotes-14.jpeg){.full-slide-image}
 
-## Your turn!
+## Let's get set-up!
 
-- Complete 4 steps on [this page](https://kgfitzgerald.github.io/NOVA_STAT_4380/announcements/week-00.html) "Getting Started with R & RStudio"
++ Create STAT_4380 R Project
++ Download AE-01.qmd starter file from Github and place it in STAT_4380
++ In RStudio, open the .qmd file by clicking on it in the Files quadrant (bottom right)
++ Complete the tasks in the "Try it out!" section
 
-- Application Exercise (AE) 01a
+#### For Thursday: 
 
-    - Download the AE-01a-unvotes.qmd file
-    - Place it in your STAT_4380 folder on your computer
-    - Back in RStudio, open the .qmd file by clicking on it in the Files quadrant (bottom right)
-    - Complete the tasks in the "Try it out!" section
++ Watch "Meet the Toolkit" lecture (under Week 01 Overview in Brightspace)
++ Complete Prep Quiz 01
 
-#### For Thursday: Watch "Meet the Toolkit" lecture in Perusall
-
-#### For Saturday (this week only): Complete Community Reading Annotations (3+ thoughtful comments)
