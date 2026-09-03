@@ -32,7 +32,7 @@ In this lab, you will:
 + You will work in your Lab 01–02 groups (see Brightspace).
 + Launch RStudio and make sure you are in your STAT_4380 folder
 + Create a subfolder called `data` inside your STAT_4380 folder
-+ Go to our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380/tree/main/assignment_templates) and download the `.qmd` file for this lab and the dataset `anes_subset.csv` from the data subfolder
++ Go to our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates) and download the `.qmd` file for this lab and the dataset `anes_subset.csv` from the data subfolder
 + Place the .qmd in your STAT_4380 folder and the .csv file in your `data` subfolder
 
 
