@@ -5,6 +5,7 @@ format:
     css: styles.css
     grid:
       margin-width: 350px
+    self-contained: true
 fig-numbering: false
 toc: true
 toc-location: right

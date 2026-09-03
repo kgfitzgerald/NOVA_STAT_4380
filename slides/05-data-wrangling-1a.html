@@ -276,7 +276,7 @@ Katie Fitzgerald, adpated from datasciencebox.org
 <p>… based on the concepts of functions as verbs that manipulate data frames</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center" data-caption="dplyr is part of the tidyverse">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -285,8 +285,7 @@ Katie Fitzgerald, adpated from datasciencebox.org
 </div>
 </div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="midi">
 <ul>
 <li><code>select</code>: pick columns by name</li>
@@ -297,10 +296,10 @@ Katie Fitzgerald, adpated from datasciencebox.org
 <li><code>mutate</code>: add new variables</li>
 <li><code>summarise</code>: reduce variables to values</li>
 <li><code>group_by</code>: for grouped operations</li>
-<li>… (many more)</li>
+<li>… and many more</li>
 </ul>
 </div>
-</div><p>:::</p>
+</div></div>
 </section>
 <section id="rules-of-dplyr-functions" class="slide level2">
 <h2>Rules of <strong>dplyr</strong> functions</h2>
@@ -416,14 +415,13 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">select</span>( <span class="co">#&lt;&lt;</span></span>
 <span id="cb6-2"><a href=""></a>  hotels, </span>
 <span id="cb6-3"><a href=""></a>  lead_time</span>
-<span id="cb6-4"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <ul>
 <li>Start with the function (a verb): <code>select()</code></li>
 </ul>
-</div><p>:::</p>
+</div></div>
 </section>
 <section id="select-a-single-column-1" class="slide level2">
 <h2><code>select</code> a single column</h2>
@@ -434,15 +432,14 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">select</span>( </span>
 <span id="cb7-2"><a href=""></a>  hotels, <span class="co">#&lt;&lt;</span></span>
 <span id="cb7-3"><a href=""></a>  lead_time</span>
-<span id="cb7-4"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <ul>
 <li>Start with the function (a verb): <code>select()</code></li>
-<li>First argument: data frame we’re working with , <code>hotels</code></li>
+<li>First argument: data frame we’re working with, <code>hotels</code></li>
 </ul>
-</div><p>:::</p>
+</div></div>
 </section>
 <section id="select-a-single-column-2" class="slide level2">
 <h2><code>select</code> a single column</h2>
@@ -453,16 +450,15 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">select</span>( </span>
 <span id="cb8-2"><a href=""></a>  hotels, </span>
 <span id="cb8-3"><a href=""></a>  lead_time <span class="co">#&lt;&lt;</span></span>
-<span id="cb8-4"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <ul>
 <li>Start with the function (a verb): <code>select()</code></li>
-<li>First argument: data frame we’re working with , <code>hotels</code></li>
+<li>First argument: data frame we’re working with, <code>hotels</code></li>
 <li>Second argument: variable we want to select, <code>lead_time</code></li>
 </ul>
-</div><p>:::</p>
+</div></div>
 </section>
 <section id="select-a-single-column-3" class="slide level2">
 <h2><code>select</code> a single column</h2>
@@ -473,7 +469,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">select</span>( </span>
 <span id="cb9-2"><a href=""></a>  hotels, </span>
 <span id="cb9-3"><a href=""></a>  lead_time</span>
-<span id="cb9-4"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 1
   lead_time
@@ -487,15 +483,14 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 # ℹ 119,384 more rows</code></pre>
 </div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <ul>
 <li>Start with the function (a verb): <code>select()</code></li>
-<li>First argument: data frame we’re working with , <code>hotels</code></li>
+<li>First argument: data frame we’re working with, <code>hotels</code></li>
 <li>Second argument: variable we want to select, <code>lead_time</code></li>
 <li>Result: data frame with 119390 rows and 1 column</li>
 </ul>
-</div><p>:::</p>
+</div></div>
 </section>
 <section class="slide level2">
 
@@ -672,9 +667,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 # ℹ 119,384 more rows</code></pre>
 </div>
 </div>
-</div><div class="fragment">
-
 </div><div class="column" style="width:50%;">
+<div class="fragment">
 <p>Select, then arrange:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
@@ -693,12 +687,13 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 # ℹ 119,384 more rows</code></pre>
 </div>
 </div>
-</div></div>
-</section>
 </div>
+</div></div>
+<hr>
 </section>
 <section id="pipes" class="slide level2 section-divider middle">
 <h2>Pipes</h2>
+<hr>
 </section>
 <section id="what-is-a-pipe" class="slide level2">
 <h2>What is a pipe?</h2>
@@ -709,8 +704,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <ul>
 <li>Start with the data frame <code>hotels</code>, and pass it to the <code>select()</code> function,</li>
 </ul>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>hotels <span class="sc">|&gt;</span> <span class="co">#&lt;&lt;</span></span>
@@ -731,7 +725,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div></div>
-<p>:::</p>
+</div>
+<hr>
 </section>
 <section id="what-is-a-pipe-1" class="slide level2">
 <h2>What is a pipe?</h2>
@@ -742,8 +737,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <li>Start with the data frame <code>hotels</code>, and pass it to the <code>select()</code> function,</li>
 <li>then we select the variables <code>hotel</code> and <code>lead_time</code>,</li>
 </ul>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
@@ -763,7 +757,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
-</div><p>:::</p>
+</div></div>
+<hr>
 </section>
 <section id="what-is-a-pipe-2" class="slide level2">
 <h2>What is a pipe?</h2>
@@ -775,8 +770,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <li>then we select the variables <code>hotel</code> and <code>lead_time</code>,</li>
 <li>and then we arrange the data frame by <code>lead_time</code> in descending order.</li>
 </ul>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
@@ -796,13 +790,15 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
-</div><p>:::</p>
+</div></div>
+<hr>
 </section>
 <section id="aside-vs." class="slide level2">
 <h2>Aside %&gt;% vs.&nbsp;|&gt;</h2>
 <p>Historically, the <code>tidyverse</code> community has used the <code>%&gt;%</code> pipe operator, from the <code>magrittr</code> package (loaded with the <code>tidyverse</code>)</p>
 <p>A couple of years ago, Hadley Wickham &amp; Posit recommended we move to the “native pipe” <code>|&gt;</code></p>
 <p>They are equivalent in most circumstances; <code>|&gt;</code> supposedly is more streamlined and faster.</p>
+<hr>
 </section>
 <section id="shortcuts-for-the-pipe" class="slide level2 section-divider middle">
 <h2>Shortcuts for the pipe</h2>
@@ -812,6 +808,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <li>Ctrl + Shift + M (Windows)</li>
 </ul>
 <p>By default it will type the old pipe <code>%&gt;%</code>. To change this, go to Tools &gt; Global Options &gt; Code &gt; Use native pipe operator.</p>
+<hr>
 </section>
 <section id="how-does-a-pipe-work" class="slide level2">
 <h2>How does a pipe work?</h2>
@@ -837,6 +834,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <span id="cb34-4"><a href=""></a>  <span class="fu">park</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<hr>
 </section>
 <section id="a-note-on-piping-and-layering" class="slide level2">
 <h2>A note on piping and layering</h2>
@@ -848,6 +846,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <li><code>+</code> used in <strong>ggplot2</strong> plots is used for “layering”, <em>we create the plot in layers, separated by <code>+</code></em></li>
 </ul>
 </div>
+<hr>
 </section>
 <section id="dplyr" class="slide level2">
 <h2>dplyr</h2>
@@ -881,6 +880,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
+<hr>
 </section>
 <section id="ggplot2" class="slide level2">
 <h2>ggplot2</h2>
@@ -909,6 +909,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
+<hr>
 </section>
 <section id="code-styling" class="slide level2">
 <h2>Code styling</h2>
@@ -926,6 +927,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">ggplot</span>(hotels, <span class="fu">aes</span>(<span class="at">x =</span> hotel, <span class="at">y =</span> deposit_type)) <span class="sc">+</span> </span>
 <span id="cb43-2"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
 <section id="arrange-in-ascending-descending-order" class="slide level2">
 <h2><code>arrange</code> in ascending / descending order</h2>
@@ -948,8 +950,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 # ℹ 119,384 more rows</code></pre>
 </div>
 </div>
-</div></div>
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb46-2"><a href=""></a>  <span class="fu">select</span>(adults, children, babies) <span class="sc">|&gt;</span></span>
@@ -967,13 +968,14 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 # ℹ 119,384 more rows</code></pre>
 </div>
 </div>
-</div><p>:::</p>
+</div></div>
+<hr>
 </section>
 <section id="slice-for-certain-row-numbers" class="slide level2">
 <h2><code>slice</code> for certain row numbers</h2>
 <div class="midi">
 <div class="cell" data-layout-align="center" data-output.lines="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## first five {.section-divider .middle}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## first five </span></span>
 <span id="cb48-2"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb48-3"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -995,9 +997,10 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
+<hr>
 </section>
-<section class="slide level2">
-
+<section id="r-tip" class="slide level2">
+<h2>R tip</h2>
 <div class="tip">
 <p>In R, you can use the <code>#</code> for adding comments to your code. Any text following <code>#</code> will be printed as is, and won’t be run as R code. This is useful for leaving comments in your code and for temporarily disabling certain lines of code while debugging.</p>
 </div>
@@ -1006,7 +1009,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb50-2"><a href=""></a>  <span class="co"># slice the first five rows  # this line is a comment</span></span>
 <span id="cb50-3"><a href=""></a>  <span class="co">#select(hotel) |&gt;           # this one doesn't run</span></span>
-<span id="cb50-4"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)                   <span class="co"># this line runs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-4"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)                  <span class="co"># this line runs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 32
   hotel        is_canceled lead_time arrival_date_year
@@ -1026,6 +1029,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div>
 </div>
+<hr>
 </section>
 <section id="quiz" class="slide level2 section-divider middle">
 <h2>Quiz</h2>
@@ -1038,6 +1042,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 b. 3 x 14
 c. 87 x 3
 d. 14 x 3</code></pre>
+<hr>
 </section>
 <section id="quiz-1" class="slide level2 section-divider middle">
 <h2>Quiz</h2>
@@ -1049,8 +1054,10 @@ d. 14 x 3</code></pre>
 <pre><code>a. 87 x 10
 b. 10 x 14
 c. 14 x 10
-d. 10  x 87</code></pre>
+d. 10 x 87</code></pre>
 
+</section>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

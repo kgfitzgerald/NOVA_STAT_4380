@@ -138,12 +138,13 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 ... based on the concepts of functions as verbs that manipulate data frames
 
 ::: {.columns}
+
 ::: {.column width="50%"}
-```{r dplyr-part-of-tidyverse, echo=FALSE, out.width="70%", caption = "dplyr is part of the tidyverse"}
+```{r dplyr-part-of-tidyverse, echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/dplyr-part-of-tidyverse.png")
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 ::: {.midi}
 - `select`: pick columns by name
@@ -154,11 +155,11 @@ knitr::include_graphics("img/dplyr-part-of-tidyverse.png")
 - `mutate`: add new variables
 - `summarise`: reduce variables to values
 - `group_by`: for grouped operations
-- ... (many more)
-:::
+- ... and many more
 :::
 :::
 
+:::
 
 ---
 
@@ -212,20 +213,21 @@ glimpse(hotels)
 View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 ```{r eval=FALSE}
 select( #<<
   hotels, 
   lead_time
-  )
+)
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 - Start with the function (a verb): `select()`
 :::
-:::
 
+:::
 
 ---
 
@@ -234,21 +236,22 @@ select( #<<
 View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 ```{r eval=FALSE}
 select( 
   hotels, #<<
   lead_time
-  )
+)
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 - Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
-:::
+- First argument: data frame we're working with, `hotels`
 :::
 
+:::
 
 ---
 
@@ -257,22 +260,23 @@ select(
 View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 ```{r eval=FALSE}
 select( 
   hotels, 
   lead_time #<<
-  )
+)
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 - Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
+- First argument: data frame we're working with, `hotels`
 - Second argument: variable we want to select, `lead_time`
 :::
-:::
 
+:::
 
 ---
 
@@ -281,21 +285,23 @@ select(
 View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 ```{r}
 select( 
   hotels, 
   lead_time
-  )
+)
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 - Start with the function (a verb): `select()`
-- First argument: data frame we're working with , `hotels`
+- First argument: data frame we're working with, `hotels`
 - Second argument: variable we want to select, `lead_time`
 - Result: data frame with `r nrow(hotels)` rows and 1 column
 :::
+
 :::
 
 
@@ -396,18 +402,20 @@ What if we wanted to select columns, and then arrange the data in descending ord
 ## Data wrangling, step-by-step
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 Select:
+
 ```{r}
 hotels |>
   select(hotel, lead_time)
 ```
 :::
 
-::: {.fragment}
-:::
 ::: {.column width="50%"}
+::: {.fragment}
 Select, then arrange:
+
 ```{r}
 hotels |>
   select(hotel, lead_time) |>
@@ -420,9 +428,7 @@ hotels |>
 
 ---
 
-
 ## Pipes {.section-divider .middle}
-
 
 ---
 
@@ -431,12 +437,12 @@ hotels |>
 In programming, a pipe is a technique for passing information from one process to another.
 
 ::: {.fragment}
-
 ::: {.columns}
+
 ::: {.column width="50%"}
 - Start with the data frame `hotels`, and pass it to the `select()` function,
 :::
-:::
+
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
@@ -446,8 +452,8 @@ hotels |> #<<
 ```
 :::
 :::
-:::
 
+:::
 :::
 
 ---
@@ -457,11 +463,12 @@ hotels |> #<<
 In programming, a pipe is a technique for passing information from one process to another.
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 - Start with the data frame `hotels`, and pass it to the `select()` function,
 - then we select the variables `hotel` and `lead_time`,
 :::
-:::
+
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
@@ -471,8 +478,8 @@ hotels |>
 ```
 :::
 :::
-:::
 
+:::
 
 ---
 
@@ -481,12 +488,13 @@ hotels |>
 In programming, a pipe is a technique for passing information from one process to another.
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 - Start with the data frame `hotels`, and pass it to the `select()` function,
 - then we select the variables `hotel` and `lead_time`,
 - and then we arrange the data frame by `lead_time` in descending order.
 :::
-:::
+
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
@@ -496,8 +504,8 @@ hotels |>
 ```
 :::
 :::
-:::
 
+:::
 
 ---
 
@@ -508,7 +516,6 @@ Historically, the `tidyverse` community has used the `%>%` pipe operator, from t
 A couple of years ago, Hadley Wickham & Posit recommended we move to the "native pipe" `|>`
 
 They are equivalent in most circumstances; `|>` supposedly is more streamlined and faster.
-
 
 ---
 
@@ -521,7 +528,6 @@ The following keystroke is a "shortcut" for typing the pipe operator:
 
 By default it will type the old pipe `%>%`. To change this, go to Tools > Global Options > Code > Use native pipe operator. 
 
-
 ---
 
 ## How does a pipe work?
@@ -530,21 +536,22 @@ By default it will type the old pipe `%>%`. To change this, go to Tools > Global
 
 ::: {.fragment}
 - Expressed as a set of nested functions in R pseudocode this would look like:
+
 ```{r eval=FALSE}
 park(drive(start_car(find("keys")), to = "work"))
 ```
-
 :::
+
 ::: {.fragment}
 - Writing it out using pipes give it a more natural (and easier to read) 
 structure:
+
 ```{r eval=FALSE}
 find("keys") |>
   start_car() |>
   drive(to = "work") |>
   park()
 ```
-
 :::
 
 ---
@@ -555,7 +562,6 @@ find("keys") |>
 
 ::: {.fragment}
 - `+` used in **ggplot2** plots is used for "layering", *we create the plot in layers, separated by `+`*
-
 :::
 
 ---
@@ -583,7 +589,6 @@ hotels |>
 ```
 :::
 
-
 ---
 
 ## ggplot2
@@ -603,7 +608,6 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
   geom_bar()
 ```
 :::
-
 
 ---
 
@@ -627,12 +631,12 @@ ggplot(hotels, aes(x = hotel, y = deposit_type)) +
   geom_bar()
 ```
 
-
 ---
 
 ## `arrange` in ascending / descending order
 
 ::: {.columns}
+
 ::: {.column width="50%"}
 ```{r}
 hotels |>
@@ -640,7 +644,7 @@ hotels |>
   arrange(babies) #<<
 ```
 :::
-:::
+
 ::: {.column width="50%"}
 ```{r}
 hotels |>
@@ -648,8 +652,8 @@ hotels |>
   arrange(desc(babies)) #<<
 ```
 :::
-:::
 
+:::
 
 ---
 
@@ -657,14 +661,15 @@ hotels |>
 
 ::: {.midi}
 ```{r output.lines=17}
-## first five {.section-divider .middle}
+## first five 
 hotels |>
   slice(1:5) #<<
 ```
 :::
 
-
 ---
+
+## R tip
 
 ::: {.tip}
 In R, you can use the `#` for adding comments to your code. 
@@ -678,10 +683,9 @@ certain lines of code while debugging.
 hotels |>
   # slice the first five rows  # this line is a comment
   #select(hotel) |>           # this one doesn't run
-  slice(1:5)                   # this line runs
+  slice(1:5)                  # this line runs
 ```
 :::
-
 
 ---
 
@@ -689,17 +693,15 @@ hotels |>
 
 How many rows and columns do you expect the following code to produce? `starwars` has 87 rows and 14 columns to begin with (87 x 14).
 
-```{r, eval = FALSE}
+```{r eval=FALSE}
 starwars |> 
   select(name, homeworld, species)
 ```
-
 
     a. 87 x 14
     b. 3 x 14
     c. 87 x 3
     d. 14 x 3
-
 
 ---
 
@@ -707,7 +709,7 @@ starwars |>
 
 How many rows and columns do you expect the following code to produce? `starwars` has 87 rows and 14 columns to begin with.
 
-```{r, eval = FALSE}
+```{r eval=FALSE}
 starwars |> 
   slice(1:10)
 ```
@@ -715,6 +717,4 @@ starwars |>
     a. 87 x 10
     b. 10 x 14
     c. 14 x 10
-    d. 10  x 87
-
-
+    d. 10 x 87
