@@ -172,36 +172,56 @@ Write a brief paragraph summarizing what you found in this lab, what limitations
 :::
 
 
-# Submission
+Before submitting your lab:
 
-Before submitting your `.html` (as a .zip file to Brightspace):
-
++ Render one last time, check the `.html` file for accuracy
 + Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 + Check visualizations for clean titles and labels
 + Suppress extraneous messages/warnings (e.g. set `#| warning: false`, `#| message: false` inside code chunks)
 + Ensure exercises are clearly labeled and your text responses are visually distinguished 
 + Confirm neat organization and readable structure
 
-Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Brightspace.
+# Submit
 
-# Grading (50 pts)
+::: {.callout-important}
 
-| Component              | Points |
-|------------------------|--------|
-| Exercise 1             | 2      |
-| Exercise 2             | 2      |
-| Exercise 3             | 4      |
-| Exercise 4             | 4      |
-| Exercise 5             | 4      |
-| Exercise 6             | 4      |
-| Exercise 7             | 4      |
-| Exercise 8             | 4      |
-| Exercise 9             | 4      |
-| Exercise 10            | 4      |
-| Exercise 11            | 4      |
-| Reflection prompts     | 5      |
-| Workflow & formatting  | 5      |
+Unfortunately, Brightspace does not handle .html files well. Before submitting, you will need to convert your .html file to a .zip folder. Locate the file on your computer (not in RStudio), right click, and select "Compress." Then, upload the .zip folder to Brightspace.
 
-**Grading notes**:
+:::
 
--   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having readable code (e.g. adequate use of spacing and line breaks), labeled code chunks, informative headers and sub-headers, and an overall organized and uncluttered report (e.g. suppress messages & warnings, no extraneous output). 
+
+
+# Grading (10pts)
+
+Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.
+
+Your lab will be evaluated for:
+
+* **Completion & substantive correctness (8 points):** You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.
+* **Reproducible workflow & presentation (2 points):** Your document renders successfully and your code, output, visualizations, and responses are organized and readable.
+
+Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.
+
+
+### Lab rubric - 10 points total
+
+#### Completion & substantive correctness — 8 points
+
+| Score | Description |
+|---|---|
+| **8** | Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay. |
+| **7** | Mostly complete and correct, with one notable error, omission, or misunderstanding. |
+| **6** | Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas. |
+| **4–5** | Significant errors, omissions, or misunderstandings that should be addressed before moving on. |
+| **0–3** | Substantially incomplete, incorrect, or shows limited engagement with the lab. |
+
+#### Reproducible workflow & presentation — 2 points
+
+| Score | Description |
+|---|---|
+| **2** | Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable. |
+| **1** | Some problems with reproducibility, organization, readability, or presentation. |
+| **0** | Major problems with reproducibility, organization, readability, or presentation. |
+
+**Total: 10 points**
+
