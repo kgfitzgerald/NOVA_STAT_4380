@@ -59,6 +59,10 @@ library(ggridges)
 library(kableExtra)
 ```
 
+::: {.callout-important}
+Add code to your .qmd to load each of the relevant packages. You may need to install a package first if this is your first time using it.
+:::
+
 ## Data: College Majors and Earnings
 
 In this assignment we explore data on college majors and earnings, specifically the data in the FiveThirtyEight story ["The Economic Guide To Picking A College Major"](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
@@ -94,8 +98,13 @@ Respond to each exercise with clearly labeled code and written interpretation.
 
 ::: callout-note
 ### Exercise 1
-How many observations and variables are in this dataset?
-What does each row represent?
+
++ How many observations and variables are in this dataset?
+
++ Take a look at the data (i.e., using `View()`:
+
+    + What does one row represent?
+    + What is the difference between `major` and `major_category`?
 :::
 
 ::: callout-note
@@ -295,7 +304,9 @@ Propose an additional question you could explore using these data.
 Provide a visualization and comment on what it shows.
 :::
 
-# Submission
+# Submit
+
+::: {.callout-important}
 
 Before submitting your `.html`:
 
@@ -304,15 +315,47 @@ Before submitting your `.html`:
 + Ensure figures and tables have clear labels
 + Confirm exercises are clearly labeled
 
+To submit, you need to upload your lab-03.html file to the Lab 03 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380). 
+
+:::
+
+
+
 Convert the final `.html` file to a .zip file and upload to Brightspace.
 
 ---
 
-# Grading (50 pts)
+# Grading (10pts)
 
-| Component              | Points |
-|------------------------|--------|
-| Exercises 1–14         | 42 (3 each)     |
-| Workflow & formatting  | 5       |
-| Reflection             | 3      |
-| Bonus                  | 2      |
+Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.
+
+Your lab will be evaluated for:
+
+* **Completion & substantive correctness (8 points):** You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.
+* **Reproducible workflow & presentation (2 points):** Your document renders successfully and your code, output, visualizations, and responses are organized and readable.
+
+Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.
+
+
+### Lab rubric - 10 points total
+
+#### Completion & substantive correctness — 8 points
+
+| Score | Description |
+|---|---|
+| **8** | Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay. |
+| **7** | Mostly complete and correct, with one notable error, omission, or misunderstanding. |
+| **6** | Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas. |
+| **4–5** | Significant errors, omissions, or misunderstandings that should be addressed before moving on. |
+| **0–3** | Substantially incomplete, incorrect, or shows limited engagement with the lab. |
+
+#### Reproducible workflow & presentation — 2 points
+
+| Score | Description |
+|---|---|
+| **2** | Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable. |
+| **1** | Some problems with reproducibility, organization, readability, or presentation. |
+| **0** | Major problems with reproducibility, organization, readability, or presentation. |
+
+**Total: 10 points**
+
