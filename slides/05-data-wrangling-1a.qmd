@@ -54,25 +54,24 @@ library(tidyverse)
 
 > Tidy datasets are all alike; every untidy dataset is untidy in its own way
 
+:::
+
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="50%" .fragment}
 **Characteristics of tidy data:**
 
 - Each variable forms a column.
 - Each observation forms a row.
 - Each type of observational unit forms a table.
 :::
-:::
-::: {.fragment}
-:::
-::: {.column width="50%"}
+
+::: {.column width="50%" .fragment}
 **Characteristics of untidy data:**
 
 !@#$%^&*()
 :::
 :::
 
-:::
 
 ---
 
@@ -82,9 +81,13 @@ library(tidyverse)
 What makes this data not tidy?
 :::
 
-```{r hyperwar-airplanes-on-hand, echo=FALSE, out.width="90%", fig.align = "center", caption = "WW2 Army Air Force combat aircraft", out.width = "70%"}
-knitr::include_graphics("img/hyperwar-airplanes-on-hand.png")
-```
+![](img/hyperwar-airplanes-on-hand.png){
+  width="70%"
+  height="500px"
+  fig-align="center"
+}
+
+
 
 ::: {.footnote}
 Source: [Army Air Forces Statistical Digest, WW II](https://www.ibiblio.org/hyperwar/AAF/StatDigest/aafsd-3.html)
@@ -99,7 +102,11 @@ What makes this data not tidy?
 
 <br>
 
-```{r hiv-est-prevalence-15-49, echo=FALSE, out.width="95%", fig.align = "center", caption = "Estimated HIV prevalence among 15-49 year olds", out.width = "70%"}
+```{r}
+#| echo: false
+#| out-width: "85%"
+#| out-height: "500px"
+#| fig-align: center
 knitr::include_graphics("img/hiv-est-prevalence-15-49.png")
 ```
 
@@ -116,7 +123,11 @@ What makes this data not tidy?
 
 <br>
 
-```{r us-general-economic-characteristic-acs-2017, echo=FALSE, out.width="95%", fig.align = "center", caption = "US General Economic Characteristics, ACS 2017", out.width = "85%"}
+```{r}
+#| echo: false
+#| out-width: "85%"
+#| out-height: "500px"
+#| fig-align: center
 knitr::include_graphics("img/us-general-economic-characteristic-acs-2017.png")
 ```
 
@@ -216,7 +227,8 @@ View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.column width="50%"}
 ```{r eval=FALSE}
-select( #<<
+#| code-line-numbers: "1"
+select(
   hotels, 
   lead_time
 )
@@ -239,8 +251,9 @@ View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.column width="50%"}
 ```{r eval=FALSE}
+#| code-line-numbers: "2"
 select( 
-  hotels, #<<
+  hotels,
   lead_time
 )
 ```
@@ -263,9 +276,10 @@ View only `lead_time` (number of days between booking and arrival date):
 
 ::: {.column width="50%"}
 ```{r eval=FALSE}
+#| code-line-numbers: "3"
 select( 
   hotels, 
-  lead_time #<<
+  lead_time
 )
 ```
 :::
@@ -340,8 +354,9 @@ select(hotels, hotel, lead_time)
 
 ::: {.small}
 ```{r output.lines=18}
+#| code-line-numbers: "2"
 hotels |>
-  select(-agent) #<<
+  select(-agent)
 ```
 :::
 
@@ -351,8 +366,9 @@ hotels |>
 ## `select` a range of variables
 
 ```{r}
+#| code-line-numbers: "2"
 hotels |>
-  select(hotel:arrival_date_month) #<<
+  select(hotel:arrival_date_month)
 ```
 
 
@@ -361,8 +377,9 @@ hotels |>
 ## `select` variables with certain characteristics
 
 ```{r}
+#| code-line-numbers: "2"
 hotels |>
-  select(starts_with("arrival")) #<<
+  select(starts_with("arrival"))
 ```
 
 
@@ -371,8 +388,9 @@ hotels |>
 ## `select` variables with certain characteristics
 
 ```{r}
+#| code-line-numbers: "2"
 hotels |>
-  select(ends_with("type")) #<<
+  select(ends_with("type"))
 ```
 
 
@@ -446,7 +464,8 @@ In programming, a pipe is a technique for passing information from one process t
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
-hotels |> #<<
+#| code-line-numbers: "1"
+hotels |>
   select(hotel, lead_time) |>
   arrange(desc(lead_time))
 ```
@@ -472,8 +491,9 @@ In programming, a pipe is a technique for passing information from one process t
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
+#| code-line-numbers: "2"
 hotels |>
-  select(hotel, lead_time) |> #<<
+  select(hotel, lead_time) |>
   arrange(desc(lead_time))
 ```
 :::
@@ -498,9 +518,10 @@ In programming, a pipe is a technique for passing information from one process t
 ::: {.column width="50%"}
 ::: {.small}
 ```{r}
+#| code-line-numbers: "3"
 hotels |>
   select(hotel, lead_time) |> 
-  arrange(desc(lead_time)) #<<
+  arrange(desc(lead_time))
 ```
 :::
 :::
@@ -639,17 +660,19 @@ ggplot(hotels, aes(x = hotel, y = deposit_type)) +
 
 ::: {.column width="50%"}
 ```{r}
+#| code-line-numbers: "3"
 hotels |>
   select(adults, children, babies) |>
-  arrange(babies) #<<
+  arrange(babies)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r}
+#| code-line-numbers: "3"
 hotels |>
   select(adults, children, babies) |>
-  arrange(desc(babies)) #<<
+  arrange(desc(babies))
 ```
 :::
 
@@ -661,9 +684,10 @@ hotels |>
 
 ::: {.midi}
 ```{r output.lines=17}
+#| code-line-numbers: "2"
 ## first five 
 hotels |>
-  slice(1:5) #<<
+  slice(1:5)
 ```
 :::
 

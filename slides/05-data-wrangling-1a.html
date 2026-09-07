@@ -98,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="05-data-wrangling-1a_files/libs/revealjs/dist/theme/quarto-6f944716451a15576fde82ef686815b4.css">
+  <link rel="stylesheet" href="05-data-wrangling-1a_files/libs/revealjs/dist/theme/quarto-8a756275b375364e80dac965378d9a42.css">
   <link href="05-data-wrangling-1a_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="05-data-wrangling-1a_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="05-data-wrangling-1a_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -218,31 +218,31 @@ Katie Fitzgerald, adpated from datasciencebox.org
 <blockquote>
 <p>Tidy datasets are all alike; every untidy dataset is untidy in its own way</p>
 </blockquote>
+</div>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column fragment" style="width:50%;">
 <p><strong>Characteristics of tidy data:</strong></p>
 <ul>
 <li>Each variable forms a column.</li>
 <li>Each observation forms a row.</li>
 <li>Each type of observational unit forms a table.</li>
 </ul>
-</div></div>
-<div class="fragment">
-
-</div>
-<div class="column" style="width:50%;">
+</div><div class="column fragment" style="width:50%;">
 <p><strong>Characteristics of untidy data:</strong></p>
 <p>!@#$%^&amp;*()</p>
 </div></div>
-<p>:::</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
 <div class="question">
 <p>What makes this data not tidy?</p>
 </div>
-
-<img data-src="img/hyperwar-airplanes-on-hand.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="footnote">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/hyperwar-airplanes-on-hand.png" class="quarto-figure quarto-figure-center" style="width:70.0%" height="500"></p>
+</figure>
+</div>
+<div class="footnote">
 <p>Source: <a href="https://www.ibiblio.org/hyperwar/AAF/StatDigest/aafsd-3.html">Army Air Forces Statistical Digest, WW II</a></p>
 </div>
 </section>
@@ -252,8 +252,16 @@ Katie Fitzgerald, adpated from datasciencebox.org
 <p>What makes this data not tidy?</p>
 </div>
 <p><br></p>
-
-<img data-src="img/hiv-est-prevalence-15-49.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="footnote">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/hiv-est-prevalence-15-49.png" class="quarto-figure quarto-figure-center" style="width:85.0%" height="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="footnote">
 <p>Source: <a href="https://www.gapminder.org/data">Gapminder, Estimated HIV prevalence among 15-49 year olds</a></p>
 </div>
 </section>
@@ -263,8 +271,16 @@ Katie Fitzgerald, adpated from datasciencebox.org
 <p>What makes this data not tidy?</p>
 </div>
 <p><br></p>
-
-<img data-src="img/us-general-economic-characteristic-acs-2017.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><div class="footnote">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/us-general-economic-characteristic-acs-2017.png" class="quarto-figure quarto-figure-center" style="width:85.0%" height="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="footnote">
 <p>Source: <a href="https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03&amp;src=pt">US Census Fact Finder, General Economic Characteristics, ACS 2017</a></p>
 </div>
 </section>
@@ -412,7 +428,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">select</span>( <span class="co">#&lt;&lt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">select</span>(</span>
 <span id="cb6-2"><a href=""></a>  hotels, </span>
 <span id="cb6-3"><a href=""></a>  lead_time</span>
 <span id="cb6-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -429,8 +445,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">select</span>( </span>
-<span id="cb7-2"><a href=""></a>  hotels, <span class="co">#&lt;&lt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">select</span>( </span>
+<span id="cb7-2"><a href=""></a>  hotels,</span>
 <span id="cb7-3"><a href=""></a>  lead_time</span>
 <span id="cb7-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -447,9 +463,9 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">select</span>( </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">select</span>( </span>
 <span id="cb8-2"><a href=""></a>  hotels, </span>
-<span id="cb8-3"><a href=""></a>  lead_time <span class="co">#&lt;&lt;</span></span>
+<span id="cb8-3"><a href=""></a>  lead_time</span>
 <span id="cb8-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -540,8 +556,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <h2><code>select</code> to exclude variables</h2>
 <div class="small">
 <div class="cell" data-layout-align="center" data-output.lines="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>agent) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 31
   hotel        is_canceled lead_time arrival_date_year
@@ -567,8 +583,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <section id="select-a-range-of-variables" class="slide level2">
 <h2><code>select</code> a range of variables</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">select</span>(hotel<span class="sc">:</span>arrival_date_month) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">select</span>(hotel<span class="sc">:</span>arrival_date_month)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 5
   hotel        is_canceled lead_time arrival_date_year
@@ -588,8 +604,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <section id="select-variables-with-certain-characteristics" class="slide level2">
 <h2><code>select</code> variables with certain characteristics</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"arrival"</span>)) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"arrival"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 4
   arrival_date_year arrival_date_month arrival_date_week_number
@@ -609,8 +625,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <section id="select-variables-with-certain-characteristics-1" class="slide level2">
 <h2><code>select</code> variables with certain characteristics</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href=""></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"type"</span>)) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"type"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 4
   reserved_room_type assigned_room_type deposit_type
@@ -707,7 +723,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>hotels <span class="sc">|&gt;</span> <span class="co">#&lt;&lt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb27-2"><a href=""></a>  <span class="fu">select</span>(hotel, lead_time) <span class="sc">|&gt;</span></span>
 <span id="cb27-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lead_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -740,8 +756,8 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href=""></a>  <span class="fu">select</span>(hotel, lead_time) <span class="sc">|&gt;</span> <span class="co">#&lt;&lt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">select</span>(hotel, lead_time) <span class="sc">|&gt;</span></span>
 <span id="cb29-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lead_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 2
@@ -773,9 +789,9 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div><div class="column" style="width:50%;">
 <div class="small">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb31-2"><a href=""></a>  <span class="fu">select</span>(hotel, lead_time) <span class="sc">|&gt;</span> </span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lead_time)) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lead_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 2
   hotel        lead_time
@@ -903,7 +919,7 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="05-data-wrangling-1a_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" style="width:25.0%"></p>
+<p><img data-src="05-data-wrangling-1a_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" style="width:25.0%"></p>
 </figure>
 </div>
 </div>
@@ -934,9 +950,9 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb44-2"><a href=""></a>  <span class="fu">select</span>(adults, children, babies) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href=""></a>  <span class="fu">arrange</span>(babies) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-3"><a href=""></a>  <span class="fu">arrange</span>(babies)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 3
   adults children babies
@@ -952,9 +968,9 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
 <span id="cb46-2"><a href=""></a>  <span class="fu">select</span>(adults, children, babies) <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(babies)) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb46-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(babies))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 119,390 × 3
   adults children babies
@@ -975,9 +991,9 @@ $ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01,…</code><
 <h2><code>slice</code> for certain row numbers</h2>
 <div class="midi">
 <div class="cell" data-layout-align="center" data-output.lines="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## first five </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## first five </span></span>
 <span id="cb48-2"><a href=""></a>hotels <span class="sc">|&gt;</span></span>
-<span id="cb48-3"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="co">#&lt;&lt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb48-3"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 32
   hotel        is_canceled lead_time arrival_date_year
