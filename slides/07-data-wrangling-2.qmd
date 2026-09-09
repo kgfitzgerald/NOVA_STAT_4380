@@ -1,0 +1,510 @@
+---
+title: "Data Wrangling II"
+subtitle: "STAT 4380"
+author: "Katie Fitzgerald, adapted from datasciencebox.org"
+format:
+  revealjs:
+    theme: stat4380-slides.css
+    width: 1280
+    height: 720
+    margin: 0
+    slide-number: false
+    progress: false
+    toc: false
+    center: false
+    transition: none
+    background-transition: none
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE,
+  dplyr.print_min = 10,
+  dplyr.print_max = 10,
+  tibble.width = 65,
+  width = 65
+)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE,
+  warning = FALSE
+)
+library(tidyverse)
+library(knitr)
+library(scales)
+library(kableExtra)
+library(dsbox)
+```
+
+## Data Wrangling: Joining multiple datasets {.section-divider .middle}
+
+---
+
+## We... {.section-divider .middle}
+
+::: {.hand}
+[have]{.huge .green} multiple data frames
+
+[want]{.huge .pink} to bring them together
+:::
+
+---
+
+```{r include=FALSE}
+professions <- read_csv("data/scientists/professions.csv")
+dates <- read_csv("data/scientists/dates.csv")
+works <- read_csv("data/scientists/works.csv")
+```
+
+## Data: Women in science
+
+Information on "10 women in science who changed the world"
+
+::: {.small}
+```{r echo=FALSE}
+professions |> select(name) |> kable()
+```
+:::
+
+::: {.footer}
+Source: [Discover Magazine](https://www.discovermagazine.com/the-sciences/meet-10-women-in-science-who-changed-the-world)
+:::
+
+---
+
+## Inputs
+
+::: {.panel-tabset}
+### professions
+
+```{r}
+professions
+```
+
+### dates
+
+```{r}
+dates
+```
+
+### works
+
+```{r}
+works
+```
+:::
+
+---
+
+## Desired output
+
+```{r echo=FALSE}
+professions |>
+  left_join(dates) |>
+  left_join(works)
+```
+
+---
+
+## Inputs, reminder
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+names(professions)
+names(dates)
+names(works)
+```
+:::
+::: {.column width="50%"}
+```{r}
+nrow(professions)
+nrow(dates)
+nrow(works)
+```
+:::
+:::
+
+---
+
+## Joining data frames {.section-divider .middle}
+
+---
+
+## Joining data frames
+
+```{r eval=FALSE}
+something_join(x, y)
+
+x |>
+  something_join(y)
+```
+
+#### Mutating joins (add variables in)
+
+- `left_join()`: keeps all rows in x
+- `right_join()`: keeps all rows in y
+- `full_join()`: keeps all rows in x or y
+- `inner_join()`: only keeps rows from x that have a matching key in y
+
+---
+
+## Joining data frames
+
+```{r eval=FALSE}
+something_join(x, y)
+
+x |>
+  something_join(y)
+```
+
+#### Filtering joins (remove rows based on matches, don't bring in new variables)
+
+- `semi_join()`: only keeps rows from x that have a match in y; does not bring in y's columns
+- `anti_join()`: only keeps rows from x that do NOT have a match in y; does not bring in y's columns
+
+---
+
+## Setup
+
+For the next few slides...
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE}
+x <- tibble(
+  id = c(1, 2, 3),
+  value_x = c("x1", "x2", "x3")
+)
+```
+
+```{r}
+x
+```
+:::
+::: {.column width="50%"}
+```{r echo=FALSE}
+y <- tibble(
+  id = c(1, 2, 4),
+  value_y = c("y1", "y2", "y4")
+)
+```
+
+```{r}
+y
+```
+:::
+:::
+
+---
+
+## `left_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/left-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+left_join(x, y)
+```
+:::
+:::
+
+---
+
+## `left_join()`
+
+What do you expect? How many rows and columns?
+
+```{r eval=FALSE}
+#| code-line-numbers: "2"
+professions |>
+  left_join(dates)
+```
+
+::: {.fragment}
+```{r echo=FALSE}
+professions |>
+  left_join(dates)
+```
+:::
+
+---
+
+## `right_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/right-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+right_join(x, y)
+```
+:::
+:::
+
+---
+
+## `right_join()`
+
+What do you expect? How many rows and columns?
+
+```{r eval=FALSE}
+#| code-line-numbers: "2"
+professions |>
+  right_join(dates)
+```
+
+::: {.fragment}
+```{r echo=FALSE}
+professions |>
+  right_join(dates)
+```
+:::
+
+---
+
+## `full_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/full-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+full_join(x, y)
+```
+:::
+:::
+
+---
+
+## `full_join()`
+
+```{r}
+#| code-line-numbers: "2"
+dates |>
+  full_join(works)
+```
+
+---
+
+## `inner_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/inner-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+inner_join(x, y)
+```
+:::
+:::
+
+---
+
+## `inner_join()`
+
+```{r}
+#| code-line-numbers: "2"
+dates |>
+  inner_join(works)
+```
+
+---
+
+## `semi_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/semi-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+semi_join(x, y)
+```
+:::
+:::
+
+---
+
+## `semi_join()`
+
+What do you expect? How many rows and columns?
+
+```{r eval=FALSE}
+#| code-line-numbers: "2"
+dates |>
+  semi_join(works)
+```
+
+::: {.fragment}
+```{r echo=FALSE}
+dates |>
+  semi_join(works)
+```
+:::
+
+---
+
+## `anti_join()`
+
+::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+include_graphics("img/anti-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+anti_join(x, y)
+```
+:::
+:::
+
+---
+
+## `anti_join()`
+
+```{r}
+#| code-line-numbers: "2"
+dates |>
+  anti_join(works)
+```
+
+---
+
+## Putting it all together
+
+```{r}
+professions |>
+  left_join(dates) |>
+  left_join(works)
+```
+
+---
+
+## Case study: Student records {.section-divider .middle}
+
+---
+
+## Student records
+
+- Have:
+  - Enrolment: official university enrolment records
+  - Survey: student-provided info; missing students who never filled it out and including students who filled it out but dropped the class
+- Want: Survey info for all students enrolled in class
+
+::: {.fragment}
+```{r include=FALSE}
+enrolment <- read_csv("data/students/enrolment.csv")
+survey <- read_csv("data/students/survey.csv")
+```
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+enrolment
+```
+:::
+::: {.column width="50%"}
+```{r}
+survey
+```
+:::
+:::
+:::
+
+---
+
+## Quiz {.section-divider .middle}
+
+Which code is guaranteed to retain rows for all students enrolled in the course, but not students who dropped (i.e., are not currently enrolled)?
+
+A. `enrolment |> left_join(survey, by = "id")`
+
+B. `enrolment |> inner_join(survey, by = "id")`
+
+C. `enrolment |> semi_join(survey, by = "id")`
+
+D. `enrolment |> full_join(survey, by = "id")`
+
+---
+
+## Quiz {.section-divider .middle}
+
+Which code will return rows for students who did not fill out the survey?
+
+A. `enrolment |> semi_join(survey, by = "id")`
+
+B. `enrolment |> anti_join(survey, by = "id")`
+
+C. `survey |> semi_join(enrolment, by = "id")`
+
+D. `survey |> anti_join(enrolment, by = "id")`
+
+---
+
+## Quiz {.section-divider .middle}
+
+Which code will return rows for students who filled out the survey but dropped the course?
+
+A. `enrolment |> semi_join(survey, by = "id")`
+
+B. `enrolment |> anti_join(survey, by = "id")`
+
+C. `survey |> semi_join(enrolment, by = "id")`
+
+D. `survey |> anti_join(enrolment, by = "id")`
+
+---
+
+## Student records
+
+::: {.panel-tabset}
+### In class
+
+```{r}
+#| code-line-numbers: "2"
+enrolment |>
+  left_join(survey, by = "id")
+```
+
+### Survey missing
+
+```{r}
+#| code-line-numbers: "2"
+enrolment |>
+  anti_join(survey, by = "id")
+```
+
+### Dropped
+
+```{r}
+#| code-line-numbers: "2"
+survey |>
+  anti_join(enrolment, by = "id")
+```
+:::
