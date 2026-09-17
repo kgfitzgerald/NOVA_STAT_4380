@@ -35,11 +35,7 @@ Joins allow us to combine information from multiple data sources into a single a
 # Getting Started
 
 + You will be working in your Lab 03–04 Groups (see Brightspace).
-+ Download the `.qmd` file for this lab from our class
-  [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main/labs).
-+ Refer back to
-  [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html)
-  for detailed workflow and submission instructions.
++ Download the `.qmd` file for this lab from our class GitHub repo
 
 # Packages
 
@@ -303,30 +299,58 @@ Provide a visualization or table and briefly interpret the result.
 
 ---
 
-# Submission
+# Submit
+
+::: {.callout-important}
 
 Before submitting your `.html`:
 
 + Check code readability
-+ Check visualization labels and titles
-+ Ensure tables are cleanly formatted
 + Suppress unnecessary warnings and messages
-+ Clearly label all exercises
++ Ensure figures and tables have clear labels
++ Confirm exercises are clearly labeled
 
-Render one final time and submit the `.html` file to Brightspace.
+To submit, you need to upload your lab-04.html file to the Lab 04 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380). 
+
+:::
+
+
+
+Convert the final `.html` file to a .zip file and upload to Brightspace.
 
 ---
 
-# Grading (50 pts)
+# Grading (10pts)
 
-| Component          | Points |
-|-------------------|--------|
-| Exercise 1        | 5      |
-| Exercise 2        | 5      |
-| Exercise 3        | 5      |
-| Exercise 4        | 5      |
-| Exercise 5        | 5      |
-| Exercise 6        | 5      |
-| Exercise 7        | 5      |
-| Exercise 8        | 10     |
-| Reflection        | 5      |
+Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.
+
+Your lab will be evaluated for:
+
+* **Completion & substantive correctness (8 points):** You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.
+* **Reproducible workflow & presentation (2 points):** Your document renders successfully and your code, output, visualizations, and responses are organized and readable.
+
+Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.
+
+
+### Lab rubric - 10 points total
+
+#### Completion & substantive correctness — 8 points
+
+| Score | Description |
+|---|---|
+| **8** | Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay. |
+| **7** | Mostly complete and correct, with one notable error, omission, or misunderstanding. |
+| **6** | Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas. |
+| **4–5** | Significant errors, omissions, or misunderstandings that should be addressed before moving on. |
+| **0–3** | Substantially incomplete, incorrect, or shows limited engagement with the lab. |
+
+#### Reproducible workflow & presentation — 2 points
+
+| Score | Description |
+|---|---|
+| **2** | Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable. |
+| **1** | Some problems with reproducibility, organization, readability, or presentation. |
+| **0** | Major problems with reproducibility, organization, readability, or presentation. |
+
+**Total: 10 points**
+

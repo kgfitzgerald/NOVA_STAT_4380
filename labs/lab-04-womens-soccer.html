@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Lab 04 - National Women’s Soccer</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="lab-04-womens-soccer_files/libs/clipboard/clipboard.min.js"></script>
 <script src="lab-04-womens-soccer_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="lab-04-womens-soccer_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="lab-04-womens-soccer_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="lab-04-womens-soccer_files/libs/quarto-html/popper.min.js"></script>
 <script src="lab-04-womens-soccer_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="lab-04-womens-soccer_files/libs/quarto-html/anchor.min.js"></script>
 <link href="lab-04-womens-soccer_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lab-04-womens-soccer_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="lab-04-womens-soccer_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="lab-04-womens-soccer_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="lab-04-womens-soccer_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="lab-04-womens-soccer_files/libs/bootstrap/bootstrap-38458d338e70b6e444f8abc9f7e1ae71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="lab-04-womens-soccer_files/libs/bootstrap/bootstrap-acc26b129f4aac1e556042b9a47165f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="lab-04-womens-soccer_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="lab-04-womens-soccer_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -96,8 +101,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#player-stats" id="toc-player-stats" class="nav-link" data-scroll-target="#player-stats">Player Stats</a></li>
   <li><a href="#bonus-2-pts" id="toc-bonus-2-pts" class="nav-link" data-scroll-target="#bonus-2-pts">Bonus (2 pts)</a></li>
   </ul></li>
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
-  <li><a href="#grading-50-pts" id="toc-grading-50-pts" class="nav-link" data-scroll-target="#grading-50-pts">Grading (50 pts)</a></li>
+  <li><a href="#submit" id="toc-submit" class="nav-link" data-scroll-target="#submit">Submit</a></li>
+  <li><a href="#grading-10pts" id="toc-grading-10pts" class="nav-link" data-scroll-target="#grading-10pts">Grading (10pts)</a>
+  <ul class="collapse">
+  <li><a href="#lab-rubric---10-points-total" id="toc-lab-rubric---10-points-total" class="nav-link" data-scroll-target="#lab-rubric---10-points-total">Lab rubric - 10 points total</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -145,8 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Getting Started</h1>
 <ul>
 <li>You will be working in your Lab 03–04 Groups (see Brightspace).</li>
-<li>Download the <code>.qmd</code> file for this lab from our class <a href="https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main/labs">GitHub repo</a>.</li>
-<li>Refer back to <a href="https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html">Lab 01</a> for detailed workflow and submission instructions.</li>
+<li>Download the <code>.qmd</code> file for this lab from our class GitHub repo</li>
 </ul>
 </section>
 <section id="packages" class="level1">
@@ -493,67 +500,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="submission" class="level1">
-<h1>Submission</h1>
+<section id="submit" class="level1">
+<h1>Submit</h1>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Before submitting your <code>.html</code>:</p>
 <ul>
 <li>Check code readability</li>
-<li>Check visualization labels and titles</li>
-<li>Ensure tables are cleanly formatted</li>
 <li>Suppress unnecessary warnings and messages</li>
-<li>Clearly label all exercises</li>
+<li>Ensure figures and tables have clear labels</li>
+<li>Confirm exercises are clearly labeled</li>
 </ul>
-<p>Render one final time and submit the <code>.html</code> file to Brightspace.</p>
+<p>To submit, you need to upload your lab-04.html file to the Lab 04 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380).</p>
+</div>
+</div>
+<p>Convert the final <code>.html</code> file to a .zip file and upload to Brightspace.</p>
 <hr>
 </section>
-<section id="grading-50-pts" class="level1">
-<h1>Grading (50 pts)</h1>
+<section id="grading-10pts" class="level1">
+<h1>Grading (10pts)</h1>
+<p>Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.</p>
+<p>Your lab will be evaluated for:</p>
+<ul>
+<li><strong>Completion &amp; substantive correctness (8 points):</strong> You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.</li>
+<li><strong>Reproducible workflow &amp; presentation (2 points):</strong> Your document renders successfully and your code, output, visualizations, and responses are organized and readable.</li>
+</ul>
+<p>Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.</p>
+<section id="lab-rubric---10-points-total" class="level3">
+<h3 class="anchored" data-anchor-id="lab-rubric---10-points-total">Lab rubric - 10 points total</h3>
+<section id="completion-substantive-correctness-8-points" class="level4">
+<h4 class="anchored" data-anchor-id="completion-substantive-correctness-8-points">Completion &amp; substantive correctness — 8 points</h4>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Component</th>
-<th>Points</th>
+<th>Score</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Exercise 1</td>
-<td>5</td>
+<td><strong>8</strong></td>
+<td>Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay.</td>
 </tr>
 <tr class="even">
-<td>Exercise 2</td>
-<td>5</td>
+<td><strong>7</strong></td>
+<td>Mostly complete and correct, with one notable error, omission, or misunderstanding.</td>
 </tr>
 <tr class="odd">
-<td>Exercise 3</td>
-<td>5</td>
+<td><strong>6</strong></td>
+<td>Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas.</td>
 </tr>
 <tr class="even">
-<td>Exercise 4</td>
-<td>5</td>
+<td><strong>4–5</strong></td>
+<td>Significant errors, omissions, or misunderstandings that should be addressed before moving on.</td>
 </tr>
 <tr class="odd">
-<td>Exercise 5</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Exercise 6</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Exercise 7</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Exercise 8</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>Reflection</td>
-<td>5</td>
+<td><strong>0–3</strong></td>
+<td>Substantially incomplete, incorrect, or shows limited engagement with the lab.</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="reproducible-workflow-presentation-2-points" class="level4">
+<h4 class="anchored" data-anchor-id="reproducible-workflow-presentation-2-points">Reproducible workflow &amp; presentation — 2 points</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td>Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable.</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td>Some problems with reproducibility, organization, readability, or presentation.</td>
+</tr>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td>Major problems with reproducibility, organization, readability, or presentation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total: 10 points</strong></p>
+</section>
+</section>
 </section>
 
 </main>
