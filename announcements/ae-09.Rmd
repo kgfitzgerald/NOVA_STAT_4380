@@ -86,9 +86,9 @@ all_polls <- read_rds("data/all_polls.rds")
 
 ## Exercise 1
 
--   Compute the sample proportion for each of the 1000 original samples, assigning to `many_sample_props`.
-    -   Group by `poll`.
-    -   Summarize to calculate `stat` as the proportion of cases of `vote` that equal `"yes"`.
+- Compute the sample proportion for each of the 1000 original samples, assigning to `many_sample_props`.
+  - Group by `poll`.
+  - Summarize to calculate `stat` as the proportion of cases of `vote` that equal `"yes"`.
 
 ```{r resampling, eval = FALSE}
 # Compute p-hat for each poll
@@ -110,13 +110,13 @@ many_sample_props <- all_polls |>
 
 ## Exercise 2
 
--   Select one poll from which to resample, as `one_poll`.
-    -   Filter out data for every poll except the first poll. That is, only keep `poll` when `poll` equals `1`.
-    -   Select the `vote` column.
--   Compute $\hat{p}^*$ for each resampled poll, as `bootstrapped_props`, using tolls from the infer package.
-    -   Specify the `response` as `vote`. The `success` value is `"yes"`.
-    -   Generate `1000` replicates of type `"bootstrap"`.
-    -   Calculate the `"prop"`ortion summary statistic.
+- Select one poll from which to resample, as `one_poll`.
+  - Filter out data for every poll except the first poll. That is, only keep `poll` when `poll` equals `1`.
+  - Select the `vote` column.
+- Compute $\hat{p}^*$ for each resampled poll, as `bootstrapped_props`, using tolls from the infer package.
+  - Specify the `response` as `vote`. The `success` value is `"yes"`.
+  - Generate `1000` replicates of type `"bootstrap"`.
+  - Calculate the `"prop"`ortion summary statistic.
 
 ```{r resampling2, eval = FALSE}
 # Select one poll from which to resample
@@ -156,8 +156,8 @@ bootstrapped_props <- one_poll |>
 
 ## Exercise 3
 
--   Using `many_sample_props`, calculate the variability of $\hat{p}$. In the call to `summarize()`, set `variability` to the standard deviation, `sd()`, of `stat`.
--   Do the same with `bootstrapped_props` to calculate the variability of $\hat{p}^*$.
+- Using `many_sample_props`, calculate the variability of $\hat{p}$. In the call to `summarize()`, set `variability` to the standard deviation, `sd()`, of `stat`.
+- Do the same with `bootstrapped_props` to calculate the variability of $\hat{p}^*$.
 
 ```{r resampling3, eval = FALSE}
 # Calculate variability of p-hat
@@ -289,9 +289,9 @@ Note that this method of constructing bootstrap intervals also gives an intuitiv
 
 ## Exercise 4
 
--   Calculate the `95` percent interval of the bootstrapped $\hat{p}^*$ values contained in `bootstrapped_props`.
-    -   Summarize to calculate the lower end at the 2.5% `quantile()` of `stat` by setting `p` to `0.025`.
-    -   Calculate the upper 97.5% `quantile()` in a similar way.
+- Calculate the `95` percent interval of the bootstrapped $\hat{p}^*$ values contained in `bootstrapped_props`.
+  - Summarize to calculate the lower end at the 2.5% `quantile()` of `stat` by setting `p` to `0.025`.
+  - Calculate the upper 97.5% `quantile()` in a similar way.
 
 ```{r bootstrap_percentile, eval = FALSE}
 # manually calculate a 95% percentile interval
@@ -324,9 +324,9 @@ Does the interval capture the true parameter in this case?
 
 ## Exercise 7
 
--   Finally, use the `visualize()` function to plot the distribution of bootstrapped proportions and add `shade_confidence_interval()` to highlight the middle 95% of the distribution.
-    -   Set the `endpoints` argument to be `bootstrap_ci`.
-    -   Add a red vertical line to denote the true proportion (note this part is unknown in real life)
+- Finally, use the `visualize()` function to plot the distribution of bootstrapped proportions and add `shade_confidence_interval()` to highlight the middle 95% of the distribution.
+  - Set the `endpoints` argument to be `bootstrap_ci`.
+  - Add a red vertical line to denote the true proportion (note this part is unknown in real life)
 
 ```{r bootstrap_percentile_3, eval = FALSE}
 bootstrapped_props |> 
@@ -451,17 +451,17 @@ bootstrapped_props |>
 
 Before submitting, open up your .html in a full window and inspect the following:
 
--   Check your code for neatness - add spaces and line breaks where appropriate to improve readability
+- Check your code for neatness - add spaces and line breaks where appropriate to improve readability
 
--   Check your visualizations for informative and clean labels and titles
+- Check your visualizations for informative and clean labels and titles
 
--   Check that you've interpreted each visualization
+- Check that you've interpreted each visualization
 
--   Make sure extraneous warnings and messages are suppressed (e.g. set `warning = FALSE, message = FALSE)`
+- Make sure extraneous warnings and messages are suppressed (e.g. set `warning = FALSE, message = FALSE)`
 
--   Check that your text responses are visually distinguished
+- Check that your text responses are visually distinguished
 
--   Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
+- Check for overall neatness & organization of the report (e.g. headers, subheaders, use of bullets, font changes)
 
 To submit, upload your .html file to the AE 08 assignment on Brightspace.
 
