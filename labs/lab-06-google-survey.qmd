@@ -30,9 +30,8 @@ In this lab, you will...
 
 # Getting started
 
-+ Go to our class [GitHub repo](https://github.com/kgfitzgerald/NOVA_STAT_4380_templates/tree/main) and download the `.qmd` file for this lab.
-+ Refer back to [Lab 01](https://kgfitzgerald.github.io/NOVA_STAT_4380/labs/lab-01-hello-r.html) for instructions on how to get started on a lab.
-+ You will work in your Lab 06–07 groups (see Brightspace).
++ Go to our class GitHub repo (linked on Brightspace) and download the `.qmd` file for this lab.
++ You will work in your Lab 05–06 groups (see Brightspace).
 
 
 # Packages
@@ -189,7 +188,7 @@ knitr::include_graphics("img/tidyr-longer-wider.gif")
 
 ::: {.callout-note}
 ### BONUS 1
-Create a new variable called `semester` that uses the time variable to designate whether each student was in MATH 130 in a Fall or Spring semester. . Use this new variable to investigate whether students in the Fall or Spring semester were more anxious about MATH 130 on average.  
+Create a new variable called `semester` that uses the time variable to designate whether each student was in MATH 130 in a Fall or Spring semester. Use this new variable to investigate whether students in the Fall or Spring semester were more anxious about MATH 130 on average.  
 
 :::
 
@@ -211,29 +210,58 @@ Attempt to recreate this visualization as closely as possible.
 *Hint: you will first need to use a `pivot_longer` and then use a `case_when()` to recode the levels of the new variable to be the full statements seen on the y-axis)*. 
 ::: 
 
-# Submission
+# Submit
 
-Before submitting your `.html` (as a .zip file to Brightspace):
+::: {.callout-important}
 
-+ Check your code for neatness - add spaces and line breaks where appropriate to improve readability
-+ Check visualizations for clean titles and labels
-+ Suppress extraneous messages/warnings (e.g. set `#| warning: false`, `#| message: false` inside code chunks)
-+ Ensure exercises are clearly labeled and your text responses are visually distinguished 
-+ Confirm neat organization and readable structure
+Before submitting your `.html`:
 
-Render one last time, check the `.html` file for accuracy, then convert to .zip file to upload to Brightspace.
++ Check code readability
++ Suppress unnecessary warnings and messages
++ Ensure figures and tables have clear labels
++ Confirm exercises are clearly labeled
 
-# Grading (50 pts)
+To submit, you need to upload your lab-04.html file to the Lab 04 assignment on Brightspace. The html file should be located in the same folder on your computer where you placed your .qmd (STAT_4380). 
 
-| Component              | Points |
-|------------------------|--------|
-| Exercise 1             | 4      |
-| Exercise 2             | 4      |
-| Exercise 3             | 6      |
-| Exercise 4             | 6      |
-| Exercise 5             | 6      |
-| Exercise 6             | 6      |
-| Exercise 7             | 6      |
-| Exercise 8             | 6      |
-| Reflection prompts     | 3      |
-| Workflow & formatting  | 3      |
+:::
+
+
+
+Convert the final `.html` file to a .zip file and upload to Brightspace.
+
+---
+
+# Grading (10pts)
+
+Labs are opportunities to practice the skills and habits you will use on larger course projects. They are graded holistically rather than point-by-point.
+
+Your lab will be evaluated for:
+
+* **Completion & substantive correctness (8 points):** You have attempted all exercises, your code and results are generally correct, and your written responses appropriately interpret and engage with the data.
+* **Reproducible workflow & presentation (2 points):** Your document renders successfully and your code, output, visualizations, and responses are organized and readable.
+
+Minor mistakes will not be penalized individually. You may also receive feedback about misconceptions or habits to improve even when they do not result in a point deduction. Use this feedback in future labs and projects.
+
+
+### Lab rubric - 10 points total
+
+#### Completion & substantive correctness — 8 points
+
+| Score | Description |
+|---|---|
+| **8** | Complete and substantively correct. Code and analyses accomplish what was asked, and written responses appropriately interpret the results. Minor imperfections are okay. |
+| **7** | Mostly complete and correct, with one notable error, omission, or misunderstanding. |
+| **6** | Several errors or omissions, but the work demonstrates reasonable understanding of the main ideas. |
+| **4–5** | Significant errors, omissions, or misunderstandings that should be addressed before moving on. |
+| **0–3** | Substantially incomplete, incorrect, or shows limited engagement with the lab. |
+
+#### Reproducible workflow & presentation — 2 points
+
+| Score | Description |
+|---|---|
+| **2** | Document renders successfully; code, output, visualizations, and written responses are reasonably organized and readable. |
+| **1** | Some problems with reproducibility, organization, readability, or presentation. |
+| **0** | Major problems with reproducibility, organization, readability, or presentation. |
+
+**Total: 10 points**
+
