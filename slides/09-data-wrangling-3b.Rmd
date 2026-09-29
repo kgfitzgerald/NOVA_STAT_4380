@@ -147,6 +147,29 @@ ucbadmit |>
 
 ---
 
+.question[
+How could we display the counts in this format?
+]
+
+.panelset[
+
+.panel[.panel-name[Output]
+```{r ref.label="gender-admit-long", echo = FALSE}
+```
+]
+
+.panel[.panel-name[Code]
+```{r gender-admit-long, fig.show = "hide"}
+ucbadmit |>
+  count(dept, gender, admit) |>
+  pivot_wider(names_from = dept, values_from = n)
+```
+]
+
+]
+
+
+---
 
 ```{r}
 ucbadmit |>
